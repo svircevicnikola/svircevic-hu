@@ -210,8 +210,6 @@ button { font: inherit; }
 
 @media (min-width: 1101px) {
   .desktop-stage {
-    flex: none;
-    width: 1440px;
     transform-origin: top center;
   }
 }
