@@ -8,7 +8,7 @@ const cards = [
     ),
     subtitle: "Személyes oldal · Szakmai pálya",
     image: "/images/nikola.jpg",
-    href: "https://nikola.svircevic.hu",
+    href: "/nikola",
     alt: "Dr. Svircevic Nikola",
     ariaLabel: "Dr. Svircevic Nikola – megnyitás",
   },
