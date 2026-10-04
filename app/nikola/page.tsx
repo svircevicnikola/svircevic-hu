@@ -10,11 +10,11 @@ const career = [
 ];
 
 const areas = [
-  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK", "/images/nikola.jpg"],
-  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", "/images/nikola-stevan.jpg"],
-  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", "/art/kecskemet-skyline.png"],
-  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", "/images/agota.jpg"],
-  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/images/family.jpg"],
+  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK", "/area1-img.svg"],
+  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", "/area2-img.svg"],
+  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", "/area3-img.svg"],
+  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", "/area4-img.svg"],
+  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/area5-img.svg"],
 ];
 
 export default function NikolaPage() {
@@ -35,7 +35,7 @@ export default function NikolaPage() {
 
       <section className="about-section" id="rolam">
         <div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Tapasztalatot szereztem önkormányzati, területi államigazgatási és szakértői feladatokban.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="4" label="év projektértékelői gyakorlat" /><Stat number="2" label="év cégvezetői tapasztalat" /></div></div>
-        <div className="about-photo"><img src="/art/kecskemet-skyline.png" alt="Kecskemét" /></div>
+        <div className="about-photo"><img src="/kecskemet.svg" alt="Kecskemét" /></div>
       </section>
 
       <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></aside></section>
