@@ -114,8 +114,6 @@ button { font: inherit; }
   outline-offset: 4px;
 }
 
-/* The original photographs fill the entire top of each card. No generated
-   background, blur, frame, or artificial side panels are used. */
 .photo-wrap {
   position: relative;
   height: 335px;
@@ -173,15 +171,12 @@ button { font: inherit; }
 }
 .profile-card:hover .arrow { transform: translateX(4px); }
 
-/* Ágota uses exactly the same type size as the other names. The markup puts
-   the surname on line one and ÁGOTA on line two. */
 .profile-card:nth-child(2) .card-body h2 {
   font-size: 1.42rem;
   letter-spacing: 0.045em;
   white-space: nowrap;
 }
 
-/* The approved layout has no skyline between the cards and footer. */
 .cityscape { display: none; }
 
 .footer {
@@ -245,4 +240,313 @@ button { font: inherit; }
   .card-body h2,
   .profile-card:nth-child(2) .card-body h2 { font-size: 1.28rem; }
   .footer { width: calc(100% - 36px); }
+}
+
+/* ==================== ÁGOTA PERSONAL PAGE ==================== */
+.agota-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 70% 5%, rgba(255,255,255,0.84), transparent 34%),
+    var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.agota-topbar {
+  max-width: 1460px;
+  margin: 0 auto;
+  padding: 28px 42px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.agota-topbar a { color: inherit; text-decoration: none; }
+.back-link {
+  color: rgba(21,32,42,0.68) !important;
+  transition: color 180ms ease;
+}
+.back-link:hover { color: var(--ink) !important; }
+.agota-topbar .language-switch a {
+  color: var(--muted);
+}
+.agota-topbar .language-switch a.active,
+.agota-topbar .language-switch .active {
+  color: var(--ink);
+}
+
+.agota-hero {
+  max-width: 1360px;
+  margin: 56px auto 0;
+  padding: 0 42px;
+  display: grid;
+  grid-template-columns: minmax(360px, 47%) minmax(0, 1fr);
+  gap: clamp(50px, 8vw, 120px);
+  align-items: center;
+}
+.agota-hero-image {
+  aspect-ratio: 1 / 1.04;
+  overflow: hidden;
+  background: #252326;
+}
+.agota-hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  filter: saturate(0.92);
+}
+.agota-hero-copy {
+  max-width: 610px;
+  padding-right: 12px;
+}
+.eyebrow, .section-kicker {
+  display: inline-block;
+  color: rgba(21,32,42,0.55);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.agota-rule {
+  width: 58px;
+  height: 1px;
+  margin: 20px 0 24px;
+  background: rgba(21,32,42,0.45);
+}
+.agota-hero h1,
+.section-grid h2,
+.agota-quote p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+.agota-hero h1 {
+  margin: 0;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  line-height: 0.94;
+  letter-spacing: 0.015em;
+}
+.agota-hero h1 span {
+  display: block;
+  margin-top: 7px;
+}
+.hero-role {
+  margin: 23px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  color: rgba(21,32,42,0.64);
+}
+.hero-lead {
+  max-width: 520px;
+  margin: 28px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.14rem;
+  line-height: 1.65;
+  color: rgba(21,32,42,0.84);
+}
+.linkedin-link {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 31px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(21,32,42,0.42);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.linkedin-link:hover { border-color: var(--ink); }
+
+.section-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 42px;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 28px;
+}
+.section-index {
+  padding-top: 7px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(21,32,42,0.40);
+}
+.agota-intro {
+  margin-top: 145px;
+  align-items: start;
+}
+.section-grid h2 {
+  margin: 12px 0 23px;
+  max-width: 830px;
+  font-size: clamp(2rem, 3.1vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.section-grid p {
+  max-width: 790px;
+  margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: rgba(21,32,42,0.72);
+}
+
+.focus-section,
+.timeline-section {
+  max-width: 1120px;
+  margin: 142px auto 0;
+  padding: 0 42px;
+}
+.focus-head { padding: 0; }
+.focus-grid {
+  margin-top: 49px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(21,32,42,0.18);
+  border-left: 1px solid rgba(21,32,42,0.18);
+}
+.focus-card {
+  min-height: 176px;
+  padding: 21px 22px 24px;
+  border-right: 1px solid rgba(21,32,42,0.18);
+  border-bottom: 1px solid rgba(21,32,42,0.18);
+  background: rgba(255,255,255,0.18);
+}
+.focus-card > span {
+  display: block;
+  margin-bottom: 42px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(21,32,42,0.38);
+}
+.focus-card h3 {
+  margin: 0;
+  max-width: 190px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.18rem;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.timeline {
+  margin-top: 50px;
+  border-top: 1px solid rgba(21,32,42,0.18);
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 38px;
+  padding: 33px 0 36px;
+  border-bottom: 1px solid rgba(21,32,42,0.18);
+}
+.timeline-year {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  color: rgba(21,32,42,0.45);
+  padding-top: 4px;
+}
+.timeline-content h3 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.42rem;
+}
+.timeline-content p {
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.agota-quote {
+  max-width: 1120px;
+  margin: 150px auto 0;
+  padding: 0 106px 0 134px;
+  position: relative;
+}
+.quote-mark {
+  position: absolute;
+  left: 75px;
+  top: -16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 6.2rem;
+  line-height: 1;
+  color: rgba(21,32,42,0.14);
+}
+.agota-quote p {
+  margin: 0;
+  max-width: 810px;
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+  line-height: 1.18;
+}
+.agota-quote > span {
+  display: block;
+  margin-top: 20px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(21,32,42,0.42);
+}
+
+.agota-contact {
+  margin-top: 150px;
+  padding-top: 42px;
+  border-top: 1px solid rgba(21,32,42,0.18);
+}
+.contact-panel h2 { margin-top: 12px; }
+.linkedin-link.large { margin-top: 18px; }
+
+.agota-footer {
+  max-width: 1120px;
+  margin: 138px auto 0;
+  padding: 0 42px 26px;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(21,32,42,0.44);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+.agota-footer a { color: inherit; text-decoration: none; }
+
+@media (max-width: 900px) {
+  .agota-hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .agota-hero-image { max-width: 640px; }
+  .agota-hero-copy { max-width: 720px; }
+  .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agota-quote { padding-left: 96px; padding-right: 42px; }
+  .quote-mark { left: 43px; }
+}
+
+@media (max-width: 640px) {
+  .agota-topbar { padding: 20px 20px 0; }
+  .agota-hero { padding: 0 20px; margin-top: 34px; }
+  .agota-hero h1 { font-size: clamp(2.2rem, 13vw, 3.8rem); }
+  .hero-lead { font-size: 1rem; }
+  .section-grid,
+  .focus-section,
+  .timeline-section { padding-left: 20px; padding-right: 20px; }
+  .section-grid { grid-template-columns: 42px minmax(0,1fr); gap: 15px; }
+  .agota-intro,
+  .focus-section,
+  .timeline-section,
+  .agota-quote,
+  .agota-contact { margin-top: 102px; }
+  .focus-grid { grid-template-columns: 1fr; margin-top: 36px; }
+  .focus-card { min-height: 138px; }
+  .focus-card > span { margin-bottom: 26px; }
+  .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+  .timeline-year { padding-top: 0; }
+  .agota-quote { padding: 0 24px 0 58px; }
+  .quote-mark { left: 7px; }
+  .agota-footer { padding: 0 20px 18px; }
 }
