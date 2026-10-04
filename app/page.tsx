@@ -46,26 +46,38 @@ export default function Home() {
 
   useEffect(() => {
     const updateScale = () => {
-      const isDesktop = window.innerWidth > 680;
+      const isDesktop = window.matchMedia("(pointer: fine)").matches && window.innerWidth > 680;
       if (!isDesktop || !stageRef.current) {
         setDesktopScale(1);
         setStageHeight(0);
         return;
       }
 
-      const naturalHeight = stageRef.current.scrollHeight;
-      const availableWidth = Math.max(1, window.innerWidth - 20);
-      const availableHeight = Math.max(1, window.innerHeight - 16);
+      const stage = stageRef.current;
+      const naturalHeight = stage.scrollHeight;
+      const viewportScale = window.visualViewport?.scale || 1;
+
+      // Use the effective visual viewport so browser zoom does not trigger
+      // a second, conflicting responsive layout.
+      const availableWidth = Math.max(1, window.innerWidth * viewportScale - 20);
+      const availableHeight = Math.max(1, window.innerHeight * viewportScale - 16);
       const widthScale = availableWidth / DESIGN_WIDTH;
       const heightScale = naturalHeight > 0 ? availableHeight / naturalHeight : 1;
 
       setStageHeight(naturalHeight);
-      setDesktopScale(Math.min(0.9, widthScale, heightScale));
+      setDesktopScale(Math.min(0.95, widthScale, heightScale));
     };
 
-    updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
+    const update = () => requestAnimationFrame(updateScale);
+
+    update();
+    window.addEventListener("resize", update);
+    window.visualViewport?.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+      window.visualViewport?.removeEventListener("resize", update);
+    };
   }, []);
 
   const desktopHeight = stageHeight > 0 ? stageHeight * desktopScale : undefined;
