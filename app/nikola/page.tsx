@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import "./nikola.css";
 
 const career = [
@@ -18,31 +21,44 @@ const areas = [
 ] as const;
 
 export default function NikolaPage() {
+  const stageRef = useRef<HTMLElement | null>(null);
+  const [stageHeight, setStageHeight] = useState(0);
+  useEffect(() => {
+    const update = () => setStageHeight(stageRef.current?.scrollHeight || 0);
+    update();
+    const observer = stageRef.current ? new ResizeObserver(update) : null;
+    if (stageRef.current && observer) observer.observe(stageRef.current);
+    window.addEventListener("resize", update);
+    return () => { observer?.disconnect(); window.removeEventListener("resize", update); };
+  }, []);
+  const scale = typeof window !== "undefined" && window.matchMedia("(pointer: fine) and (min-width: 901px)").matches ? 0.9 : 1;
   return (
-    <main className="nikola-page">
-      <nav className="nikola-nav" aria-label="Fő navigáció">
-        <a className="monogram" href="/">SN</a>
-        <div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI TERÜLETEK</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div>
-        <div className="nav-lang"><span /> HU <b>|</b> EN</div>
-      </nav>
+    <div className="nikola-viewport" style={scale < 1 && stageHeight ? { height: stageHeight * scale } : undefined}>
+      <main ref={stageRef} className="nikola-page" style={{ transform: `scale(${scale})` }}>
+        <nav className="nikola-nav" aria-label="Fő navigáció">
+          <a className="monogram" href="/">SN</a>
+          <div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI TERÜLETEK</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div>
+          <div className="nav-lang"><span /> HU <b>|</b> EN</div>
+        </nav>
 
-      <section className="nikola-hero">
-        <div className="hero-photo"><img src="/images/nikola-hero-reference.png" alt="Dr. Svircevic Nikola" /></div>
-        <div className="hero-copy"><span className="eyebrow">DR.</span><h1>SVIRCEVIC<br />NIKOLA</h1><div className="gold-rule" /><div className="qualification">JOGÁSZ-KÖZGAZDÁSZ</div><p>Több mint húsz éve dolgozom jogi és közigazgatási területen. Pályám során önkormányzati, területi államigazgatási és szakértői feladatokban egyaránt szereztem tapasztalatot. Érdeklődési területeim a közigazgatás működése, a jog, a gazdasági összefüggések, az uniós források és a közbeszerzések.</p><div className="hero-actions"><a className="primary" href="#rolam">RÓLAM →</a><a className="secondary" href="#kapcsolat">KAPCSOLAT</a></div></div>
-      </section>
+        <section className="nikola-hero">
+          <div className="hero-photo"><img src="/images/nikola-hero-reference.png" alt="Dr. Svircevic Nikola" /></div>
+          <div className="hero-copy"><span className="eyebrow">DR.</span><h1>SVIRCEVIC<br />NIKOLA</h1><div className="gold-rule" /><div className="qualification">JOGÁSZ-KÖZGAZDÁSZ</div><p>Több mint húsz éve dolgozom jogi és közigazgatási területen. Pályám során önkormányzati, területi államigazgatási és szakértői feladatokban egyaránt szereztem tapasztalatot. Érdeklődési területeim a közigazgatás működése, a jog, a gazdasági összefüggések, az uniós források és a közbeszerzések.</p><div className="hero-actions"><a className="primary" href="#rolam">RÓLAM →</a><a className="secondary" href="#kapcsolat">KAPCSOLAT</a></div></div>
+        </section>
 
-      <section className="expertise-strip" aria-label="Szakmai fókusz"><SkillItem kind="book" top="JOGI" bottom="SZAKÉRTELEM" /><SkillItem kind="document" top="KÖZIGAZGATÁSI" bottom="TAPASZTALAT" /><SkillItem kind="layers" top="PROJEKTEK" bottom="ÉS PÁLYÁZATOK" /><SkillItem kind="handshake" top="KÖZBESZERZÉS" bottom="ÉS ELLENŐRZÉS" /><SkillItem kind="people" top="EGYÜTTMŰKÖDÉS" bottom="ÉS SZERVEZÉS" /></section>
+        <section className="expertise-strip" aria-label="Szakmai fókusz"><SkillItem kind="book" top="JOGI" bottom="SZAKÉRTELEM" /><SkillItem kind="document" top="KÖZIGAZGATÁSI" bottom="TAPASZTALAT" /><SkillItem kind="layers" top="PROJEKTEK" bottom="ÉS PÁLYÁZATOK" /><SkillItem kind="handshake" top="KÖZBESZERZÉS" bottom="ÉS ELLENŐRZÉS" /><SkillItem kind="people" top="EGYÜTTMŰKÖDÉS" bottom="ÉS SZERVEZÉS" /></section>
 
-      <section className="about-section" id="rolam">
-        <div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Tapasztalatot szereztem önkormányzati, területi államigazgatási és szakértői feladatokban.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="4" label="év projektvezetői gyakorlat" /><Stat number="2" label="év cégvezetői tapasztalat" /></div></div>
-        <div className="about-photo"><img src="/images/kecskemet-styled.jpg" alt="Kecskemét" /></div>
-      </section>
+        <section className="about-section" id="rolam">
+          <div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Tapasztalatot szereztem önkormányzati, területi államigazgatási és szakértői feladatokban.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="4" label="év projektvezetői gyakorlat" /><Stat number="2" label="év cégvezetői tapasztalat" /></div></div>
+          <div className="about-photo"><img src="/images/kecskemet-styled.jpg" alt="Kecskemét" /></div>
+        </section>
 
-      <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
+        <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
 
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3><span>{a}</span><span>{b}</span></h3></article>)}</div></section>
-      <footer className="nikola-footer" id="kapcsolat"><span><a className="footer-home" href="/">← VISSZA A FŐOLDALRA</a><span className="footer-name">DR. SVIRCEVIC NIKOLA</span></span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><a className="footer-linkedin" id="publikaciok" href="https://www.linkedin.com/in/nikola-svircevic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profil">in</a></footer>
-    </main>
+        <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3><span>{a}</span><span>{b}</span></h3></article>)}</div></section>
+        <footer className="nikola-footer" id="kapcsolat"><span><a className="footer-home" href="/">← VISSZA A FŐOLDALRA</a><span className="footer-name">DR. SVIRCEVIC NIKOLA</span></span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><a className="footer-linkedin" id="publikaciok" href="https://www.linkedin.com/in/nikola-svircevic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profil">in</a></footer>
+      </main>
+    </div>
   );
 }
 
@@ -55,5 +71,5 @@ function SkillIcon({ kind }: { kind: "book" | "document" | "layers" | "handshake
   if (kind === "document") return <svg {...common}><path d="M8 4h12l6 6v20H8V4Z" stroke="currentColor" strokeWidth="1.5"/><path d="M20 4v7h6M12 15h10M12 20h10M12 25h7" stroke="currentColor" strokeWidth="1.5"/></svg>;
   if (kind === "layers") return <svg {...common}><path d="m17 5 12 7-12 7L5 12l12-7Z" stroke="currentColor" strokeWidth="1.5"/><path d="m7 17 10 6 10-6M7 23l10 6 10-6" stroke="currentColor" strokeWidth="1.5"/></svg>;
   if (kind === "handshake") return <svg {...common}><path d="m4 12 6-5 6 4 4-3 10 7-5 7-7-5-4 4-10-9Z" stroke="currentColor" strokeWidth="1.5"/><path d="m10 15 4 3 3-3m-7 4 2 2m7-9 4 3" stroke="currentColor" strokeWidth="1.5"/></svg>;
-  return <svg {...common}><circle cx="17" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="7.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="26.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M9 29c.7-5.1 3.3-8 8-8s7.3 2.9 8 8M2 28c.4-3.5 2.2-5.5 5.5-5.5 1.2 0 2.2.3 3 .8M32 28c-.4-3.5-2.2-5.5-5.5-5.5-1.2 0-2.2.3-3 .8" stroke="currentColor" strokeWidth="1.5"/></svg>;
+  return <svg {...common}><circle cx="17" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="7.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="26.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M9 29c.7-5.1 3.3-8 8-8s7.3 2.9 8 8M2 28c.4-3.5 2.2-5.5 5.5-5.5 1.2 0 2.2.3 3 .8M32 28c-.4-3.5-2.2-5.5-5.5-5.5-1.2 0-2.2 3 .?" stroke="currentColor" strokeWidth="1.5"/></svg>;
 }
