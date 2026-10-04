@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const DESIGN_WIDTH = 1440;
 
 const cards = [
   {
@@ -38,82 +40,86 @@ const cards = [
 ] as const;
 
 export default function Home() {
+  const stageRef = useRef<HTMLElement | null>(null);
   const [desktopScale, setDesktopScale] = useState(1);
+  const [stageHeight, setStageHeight] = useState(0);
 
   useEffect(() => {
     const updateScale = () => {
-      const isDesktop = window.innerWidth > 1100;
-      if (!isDesktop) {
+      const isDesktop = window.innerWidth > 680;
+      if (!isDesktop || !stageRef.current) {
         setDesktopScale(1);
+        setStageHeight(0);
         return;
       }
 
-      const stage = document.querySelector(".desktop-stage") as HTMLElement | null;
-      if (!stage) return;
-
-      // Measure the approved layout at its natural size, then scale that
-      // complete composition as one unit. This never changes card internals
-      // or the photo crop.
-      const naturalHeight = stage.scrollHeight;
+      const naturalHeight = stageRef.current.scrollHeight;
+      const availableWidth = Math.max(1, window.innerWidth - 20);
       const availableHeight = Math.max(1, window.innerHeight - 16);
-      const fitScale = availableHeight / naturalHeight;
+      const widthScale = availableWidth / DESIGN_WIDTH;
+      const heightScale = naturalHeight > 0 ? availableHeight / naturalHeight : 1;
 
-      setDesktopScale(Math.min(0.9, fitScale));
+      setStageHeight(naturalHeight);
+      setDesktopScale(Math.min(0.9, widthScale, heightScale));
     };
 
-    const frame = requestAnimationFrame(updateScale);
+    updateScale();
     window.addEventListener("resize", updateScale);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("resize", updateScale);
-    };
+    return () => window.removeEventListener("resize", updateScale);
   }, []);
 
+  const desktopHeight = stageHeight > 0 ? stageHeight * desktopScale : undefined;
+
   return (
-    <main
-      className="page-shell desktop-stage"
-      style={{ transform: `scale(${desktopScale})` }}
+    <div
+      className="desktop-viewport"
+      style={desktopHeight ? { height: desktopHeight } : undefined}
     >
-      <header className="topbar" aria-label="Oldalfejléc">
-        <div aria-hidden="true" />
-        <div className="language-switch">
-          <button className="active" type="button" aria-current="true">HU</button>
-          <span aria-hidden="true">|</span>
-          <button type="button">EN</button>
-        </div>
-      </header>
+      <main
+        ref={stageRef}
+        className="page-shell desktop-stage"
+        style={{ transform: `scale(${desktopScale})` }}
+      >
+        <header className="topbar" aria-label="Oldalfejléc">
+          <div aria-hidden="true" />
+          <div className="language-switch">
+            <button className="active" type="button" aria-current="true">HU</button>
+            <span aria-hidden="true">|</span>
+            <button type="button">EN</button>
+          </div>
+        </header>
 
-      <section className="hero" aria-labelledby="site-title">
-        <div className="rule" aria-hidden="true" />
-        <h1 id="site-title">SVIRCEVIC.HU</h1>
-        <div className="rule" aria-hidden="true" />
-      </section>
+        <section className="hero" aria-labelledby="site-title">
+          <div className="rule" aria-hidden="true" />
+          <h1 id="site-title">SVIRCEVIC.HU</h1>
+          <div className="rule" aria-hidden="true" />
+        </section>
 
-      <section className="directory" aria-label="Személyes és családi oldalak">
-        {cards.map((card) => (
-          <a className="profile-card" href={card.href} key={card.href} aria-label={card.ariaLabel}>
-            <div className="photo-wrap">
-              <img src={card.image} alt={card.alt} />
-            </div>
-            <div className="card-body">
-              <span className="mini-rule" aria-hidden="true" />
-              <h2>{card.name}</h2>
-              <p>{card.subtitle}</p>
-              <span className="arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-        ))}
-      </section>
+        <section className="directory" aria-label="Személyes és családi oldalak">
+          {cards.map((card) => (
+            <a className="profile-card" href={card.href} key={card.href} aria-label={card.ariaLabel}>
+              <div className="photo-wrap">
+                <img src={card.image} alt={card.alt} />
+              </div>
+              <div className="card-body">
+                <span className="mini-rule" aria-hidden="true" />
+                <h2>{card.name}</h2>
+                <p>{card.subtitle}</p>
+                <span className="arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          ))}
+        </section>
 
-      <section className="cityscape" aria-hidden="true">
-        <img src="/art/kecskemet-skyline.png" alt="" />
-      </section>
+        <section className="cityscape" aria-hidden="true">
+          <img src="/art/kecskemet-skyline.png" alt="" />
+        </section>
 
-      <footer className="footer">
-        <span>SVIRCEVIC.HU</span>
-        <span>KECSKEMÉT · HUNGARY</span>
-      </footer>
-    </main>
+        <footer className="footer">
+          <span>SVIRCEVIC.HU</span>
+          <span>KECSKEMÉT · HUNGARY</span>
+        </footer>
+      </main>
+    </div>
   );
 }
