@@ -22,7 +22,7 @@ export default function NikolaPage() {
     <main className="nikola-page">
       <nav className="nikola-nav" aria-label="Fő navigáció">
         <a className="monogram" href="/">SN</a>
-        <div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI TERÜLETEK</a><a href="#teruletek">TERÜLETEK</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div>
+        <div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI TERÜLETEK</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div>
         <div className="nav-lang"><span /> HU <b>|</b> EN</div>
       </nav>
 
