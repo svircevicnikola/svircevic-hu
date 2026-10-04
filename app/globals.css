@@ -73,7 +73,7 @@ button { font: inherit; }
   margin: 0 auto 12px;
   background: rgba(21,32,42,0.48);
 }
-.hero .rule:last-child { margin: 21px auto 0; }
+.hero .rule:last-child { margin: 12px auto 0; }
 .hero h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
