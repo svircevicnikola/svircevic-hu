@@ -27,7 +27,7 @@ export default function NikolaPage() {
       </nav>
 
       <section className="nikola-hero">
-        <div className="hero-photo"><img src="/nikola-hero.svg" alt="Dr. Svircevic Nikola" /></div>
+        <div className="hero-photo"><img src="/images/nikola-hero.jpg" alt="Dr. Svircevic Nikola" /></div>
         <div className="hero-copy"><span className="eyebrow">DR.</span><h1>SVIRCEVIC<br />NIKOLA</h1><div className="gold-rule" /><div className="qualification">JOGÁSZ-KÖZGAZDÁSZ</div><p>Több mint húsz éve dolgozom jogi és közigazgatási területen. Pályám során önkormányzati, területi államigazgatási és szakértői feladatokban egyaránt szereztem tapasztalatot. Érdeklődési területeim a közigazgatás működése, a jog, a gazdasági összefüggések, az uniós források és a közbeszerzések.</p><div className="hero-actions"><a className="primary" href="#rolam">RÓLAM →</a><a className="secondary" href="#kapcsolat">KAPCSOLAT</a></div></div>
       </section>
 
