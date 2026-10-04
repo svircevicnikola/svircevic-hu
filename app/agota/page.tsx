@@ -52,7 +52,7 @@ export default function AgotaPage() {
         <div className="language-switch" aria-label="Nyelvválasztó">
           <span className="active">HU</span>
           <span aria-hidden="true">|</span>
-          <a href="#" aria-disabled="true" onClick={(event) => event.preventDefault()}>EN</a>
+          <span aria-disabled="true">EN</span>
         </div>
       </header>
 
