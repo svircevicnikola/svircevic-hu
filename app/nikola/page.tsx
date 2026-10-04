@@ -2,11 +2,11 @@ import "./nikola.css";
 
 const career = [
   { period: "2022.10. – jelenleg", role: "Megyei aljegyző", org: "Bács-Kiskun Vármegyei Önkormányzati Hivatal", text: "Jogi, szervezeti és igazgatási feladatok, közgyűlési előkészítés, pályázati és beszerzési ügyek, területi koordináció." },
-  { period: "2020.02. – 2022.10.", role: "Jegyző", org: "Jászkarajenői Polgármesteri Hivatal", text: "Hivatalszervezés, munkáltatói jogkör, önkormányzati feladatok ellátása." },
-  { period: "2021.03. – 2022.09.", role: "Ügyvezető", org: "Jászkarajenői Szolgáltató Nonprofit Kft.", text: "Önkormányzati tulajdonú társaság vezetése, projektmenedzsment." },
+  { period: "2020.02. – 2022.10.", role: "Jegyző", org: "Jászkarajenői Polgármesteri Hivatal", text: "Hivatalvezetés, szervezet- és intézményfejlesztés, projektek törvényességi felügyelete." },
+  { period: "2021.03. – 2022.09.", role: "Ügyvezető", org: "Jászkarajenői Szolgáltató Nonprofit Kft.", text: "Önkormányzati tulajdonú társaság vezetése, vállalkozás üzemeltetés, projektmenedzsment." },
   { period: "2020.03. – jelenleg", role: "Kamarai jogtanácsos", org: "Kecskeméti Ügyvédi Kamara", text: "Jogi képviselet és tanácsadás, peres képviselet." },
-  { period: "2017.01. – 2020.01.", role: "Jogi szakreferens", org: "Bács-Kiskun Megyei Kormányhivatal", text: "Jogi feladatok, kérelemkezelés, szabályzatok, ellenőrzés." },
-  { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelmezési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "EU-s és hazai agrártámogatások kérelmezése, jogorvoslati feladatok." },
+  { period: "2017.01. – 2020.01.", role: "Jogi szakreferens", org: "Bács-Kiskun Megyei Kormányhivatal", text: "Jogszerűségi ellenőrzés, Compliance, Vezetőtámogatás." },
+  { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelmezési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
 ];
 
 const areas = [
@@ -55,5 +55,5 @@ function SkillIcon({ kind }: { kind: "book" | "document" | "layers" | "handshake
   if (kind === "document") return <svg {...common}><path d="M8 4h12l6 6v20H8V4Z" stroke="currentColor" strokeWidth="1.5"/><path d="M20 4v7h6M12 15h10M12 20h10M12 25h7" stroke="currentColor" strokeWidth="1.5"/></svg>;
   if (kind === "layers") return <svg {...common}><path d="m17 5 12 7-12 7L5 12l12-7Z" stroke="currentColor" strokeWidth="1.5"/><path d="m7 17 10 6 10-6M7 23l10 6 10-6" stroke="currentColor" strokeWidth="1.5"/></svg>;
   if (kind === "handshake") return <svg {...common}><path d="m4 12 6-5 6 4 4-3 10 7-5 7-7-5-4 4-10-9Z" stroke="currentColor" strokeWidth="1.5"/><path d="m10 15 4 3 3-3m-7 4 2 2m7-9 4 3" stroke="currentColor" strokeWidth="1.5"/></svg>;
-  return <svg {...common}><circle cx="17" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="7.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="26.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M9 29c.7-5.1 3.3-8 8-8s7.3 2.9 8 8M2 28c.4-3.5 2.2-5.5 5.5-5.5 1.2 0 2.2.3 3 .8M32 28c-.4-3.5-2.2-5.5-5.5-5.5-1.2 0-2.2.3-3 .8" stroke="currentColor" strokeWidth="1.5"/></svg>;
+  return <svg {...common}><circle cx="17" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="7.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="26.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M9 29c.7-5.1 3.3-8 8-8s7.3 2.9 8 8M2 28c.4-3.5 2.2-5.5 5.5-5.5 1.2 0 2.2.3 3 .8M32 28c-.4-3.5-2.2-5.5-5.5-5.5-1.2 0-2.2 0-3 .8" stroke="currentColor" strokeWidth="1.5"/></svg>;
 }
