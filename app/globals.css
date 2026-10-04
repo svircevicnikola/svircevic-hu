@@ -215,3 +215,9 @@ button { font: inherit; }
   .profile-card:nth-child(2) .card-body h2 { font-size: 1.28rem; }
   .footer { width: calc(100% - 36px); }
 }
+
+/* Desktop fit: the entire already-approved page is shown at 80% scale.
+   Nothing inside the cards is re-sized independently. */
+@media (min-width: 681px) {
+  body { zoom: 0.8; }
+}
