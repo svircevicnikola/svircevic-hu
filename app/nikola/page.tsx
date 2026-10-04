@@ -10,12 +10,12 @@ const career = [
 ];
 
 const areas = [
-  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK", "/area1-img.svg"],
-  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", "/area2-img.svg"],
-  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", "/area3-img.svg"],
-  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", "/area4-img.svg"],
-  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/area5-img.svg"],
-];
+  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK", 0],
+  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", 1],
+  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", 2],
+  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", 3],
+  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", 4],
+] as const;
 
 export default function NikolaPage() {
   return (
@@ -40,7 +40,7 @@ export default function NikolaPage() {
 
       <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></aside></section>
 
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b,image]) => <article key={a}><div className="area-image"><img src={image} alt="" /></div><h3>{a}<br />{b}</h3></article>)}</div></section>
+      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b,index]) => <article key={a}><div className={`area-image area-${index}`} aria-hidden="true" /><h3>{a}<br />{b}</h3></article>)}</div></section>
       <footer className="nikola-footer" id="kapcsolat"><span>DR. SVIRCEVIC NIKOLA</span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><span id="publikaciok">in</span></footer>
     </main>
   );
