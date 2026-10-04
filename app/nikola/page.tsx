@@ -14,7 +14,7 @@ const areas = [
   ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", "/area2-img.svg"],
   ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", "/area3-img.svg"],
   ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", "/area4-img.svg"],
-  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/area5-img.svg"],
+  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/images/area5.jpg"],
 ] as const;
 
 export default function NikolaPage() {
