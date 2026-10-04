@@ -38,10 +38,10 @@ export default function NikolaPage() {
         <div className="about-photo"><img src="/kecskemet.svg" alt="Kecskemét" /></div>
       </section>
 
-      <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet" /></section>
+      <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
 
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3>{a}<br />{b}</h3></article>)}</div></section>
-      <footer className="nikola-footer" id="kapcsolat"><span>DR. SVIRCEVIC NIKOLA</span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><span id="publikaciok">in</span></footer>
+      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3><span>{a}</span><span>{b}</span></h3></article>)}</div></section>
+      <footer className="nikola-footer" id="kapcsolat"><span><a className="footer-home" href="/">← VISSZA A FŐOLDALRA</a><span className="footer-name">DR. SVIRCEVIC NIKOLA</span></span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><a className="footer-linkedin" id="publikaciok" href="https://www.linkedin.com/in/nikola-svircevic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profil">in</a></footer>
     </main>
   );
 }
