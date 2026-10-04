@@ -35,7 +35,7 @@ export default function NikolaPage() {
 
       <section className="about-section" id="rolam">
         <div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Tapasztalatot szereztem önkormányzati, területi államigazgatási és szakértői feladatokban.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="2" label="egyetemi diploma (cum laude)" /><Stat number="2" label="szakvizsga (jogi, közigazgatási)" /></div></div>
-        <div className="about-photo"><img src="/kecskemet.svg" alt="Kecskemét" /></div>
+        <div className="about-photo"><img src="/images/kecskemet-styled.jpg" alt="Kecskemét" /></div>
       </section>
 
       <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
