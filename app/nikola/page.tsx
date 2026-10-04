@@ -10,11 +10,11 @@ const career = [
 ];
 
 const areas = [
-  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK", "/area1-img.svg"],
-  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK", "/area2-img.svg"],
-  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS", "/area3-img.svg"],
-  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM", "/area4-img.svg"],
-  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS", "/images/area5.jpg"],
+  ["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK"],
+  ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"],
+  ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS"],
+  ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM"],
+  ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS"],
 ] as const;
 
 export default function NikolaPage() {
@@ -35,12 +35,12 @@ export default function NikolaPage() {
 
       <section className="about-section" id="rolam">
         <div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Tapasztalatot szereztem önkormányzati, területi államigazgatási és szakértői feladatokban.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="2" label="egyetemi diploma (cum laude)" /><Stat number="2" label="szakvizsga (jogi, közigazgatási)" /></div></div>
-        <div className="about-photo"><img src="/kecskemet.svg" alt="Kecskemét" /></div>
+        <div className="about-photo"><img src="/images/kecskemet.jpg" alt="Kecskemét" /></div>
       </section>
 
-      <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></aside></section>
+      <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet" /></section>
 
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b,image]) => <article key={a}><div className="area-image"><img src={image} alt="" /></div><h3>{a}<br />{b}</h3></article>)}</div></section>
+      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3>{a}<br />{b}</h3></article>)}</div></section>
       <footer className="nikola-footer" id="kapcsolat"><span>DR. SVIRCEVIC NIKOLA</span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><span id="publikaciok">in</span></footer>
     </main>
   );
