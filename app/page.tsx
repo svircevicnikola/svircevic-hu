@@ -1,3 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const DESIGN_WIDTH = 1440;
+const DESIGN_HEIGHT = 850;
+
 const cards = [
   {
     name: <>DR. SVIRCEVIC<br />NIKOLA</>,
@@ -33,48 +40,70 @@ const cards = [
   },
 ] as const;
 
+function getDesktopScale() {
+  if (window.innerWidth <= 1100) return 1;
+  const widthScale = window.innerWidth / DESIGN_WIDTH;
+  const heightScale = (window.innerHeight - 16) / DESIGN_HEIGHT;
+  return Math.min(0.9, widthScale, heightScale);
+}
+
 export default function Home() {
+  const [desktopScale, setDesktopScale] = useState(1);
+
+  useEffect(() => {
+    const updateScale = () => setDesktopScale(getDesktopScale());
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
+
   return (
-    <main className="page-shell">
-      <header className="topbar" aria-label="Oldalfejléc">
-        <div aria-hidden="true" />
-        <div className="language-switch">
-          <button className="active" type="button" aria-current="true">HU</button>
-          <span aria-hidden="true">|</span>
-          <button type="button">EN</button>
-        </div>
-      </header>
+    <div className="desktop-viewport">
+      <main
+        className="page-shell desktop-stage"
+        style={{ transform: `scale(${desktopScale})` }}
+      >
+        <header className="topbar" aria-label="Oldalfejléc">
+          <div aria-hidden="true" />
+          <div className="language-switch">
+            <button className="active" type="button" aria-current="true">HU</button>
+            <span aria-hidden="true">|</span>
+            <button type="button">EN</button>
+          </div>
+        </header>
 
-      <section className="hero" aria-labelledby="site-title">
-        <div className="rule" aria-hidden="true" />
-        <h1 id="site-title">SVIRCEVIC.HU</h1>
-        <div className="rule" aria-hidden="true" />
-      </section>
+        <section className="hero" aria-labelledby="site-title">
+          <div className="rule" aria-hidden="true" />
+          <h1 id="site-title">SVIRCEVIC.HU</h1>
+          <div className="rule" aria-hidden="true" />
+        </section>
 
-      <section className="directory" aria-label="Személyes és családi oldalak">
-        {cards.map((card) => (
-          <a className="profile-card" href={card.href} key={card.href} aria-label={card.ariaLabel}>
-            <div className="photo-wrap">
-              <img src={card.image} alt={card.alt} />
-            </div>
-            <div className="card-body">
-              <span className="mini-rule" aria-hidden="true" />
-              <h2>{card.name}</h2>
-              <p>{card.subtitle}</p>
-              <span className="arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-        ))}
-      </section>
+        <section className="directory" aria-label="Személyes és családi oldalak">
+          {cards.map((card) => (
+            <a className="profile-card" href={card.href} key={card.href} aria-label={card.ariaLabel}>
+              <div className="photo-wrap">
+                <img src={card.image} alt={card.alt} />
+              </div>
+              <div className="card-body">
+                <span className="mini-rule" aria-hidden="true" />
+                <h2>{card.name}</h2>
+                <p>{card.subtitle}</p>
+                <span className="arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          ))}
+        </section>
 
-      <section className="cityscape" aria-hidden="true">
-        <img src="/art/kecskemet-skyline.png" alt="" />
-      </section>
+        <section className="cityscape" aria-hidden="true">
+          <img src="/art/kecskemet-skyline.png" alt="" />
+        </section>
 
-      <footer className="footer">
-        <span>SVIRCEVIC.HU</span>
-        <span>KECSKEMÉT · HUNGARY</span>
-      </footer>
-    </main>
+        <footer className="footer">
+          <span>SVIRCEVIC.HU</span>
+          <span>KECSKEMÉT · HUNGARY</span>
+        </footer>
+      </main>
+    </div>
   );
 }
