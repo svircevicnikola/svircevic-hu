@@ -7,7 +7,7 @@ Ez a projekt a `svircevic.hu` kezdőoldala. A négy kártya a következő címek
 - https://nikola.stevan.svircevic.hu
 - https://family.svircevic.hu
 
-A négy feltöltött eredeti fénykép változtatás nélkül került a `public/images` mappába.
+A négy feltöltött eredeti fénykép változtatás nélkül került a `public/images` mappába; a webes megjelenítés csak CSS-szel vágja és pozicionálja a képeket.
 
 ## Vercelre feltöltés
 

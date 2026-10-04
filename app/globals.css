@@ -106,7 +106,7 @@ button { font: inherit; }
 }
 
 .photo-wrap {
-  height: 250px;
+  height: 220px;
   overflow: hidden;
   background: #e8e3db;
 }
@@ -117,12 +117,12 @@ button { font: inherit; }
   object-fit: cover;
 }
 .profile-card:nth-child(1) .photo-wrap img { object-position: center 42%; }
-.profile-card:nth-child(2) .photo-wrap img { object-position: center 42%; }
-.profile-card:nth-child(3) .photo-wrap img { object-position: center 38%; }
-.profile-card:nth-child(4) .photo-wrap img { object-position: center 35%; }
+.profile-card:nth-child(2) .photo-wrap img { object-position: center 36%; }
+.profile-card:nth-child(3) .photo-wrap img { object-position: center 12%; }
+.profile-card:nth-child(4) .photo-wrap img { object-position: center 44%; }
 
 .card-body {
-  min-height: 236px;
+  min-height: 275px;
   padding: 28px 26px 24px;
   text-align: center;
   display: flex;
@@ -162,11 +162,11 @@ button { font: inherit; }
 .cityscape {
   position: relative;
   z-index: 1;
-  height: 190px;
-  margin-top: -8px;
+  height: 130px;
+  margin-top: 62px;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.44;
+  opacity: 0.27;
   mask-image: linear-gradient(to bottom, transparent 0%, black 23%, black 84%, transparent 100%);
 }
 .cityscape img {
@@ -199,8 +199,8 @@ button { font: inherit; }
   .hero { padding: 14px 22px 0; }
   .hero h1 { font-size: 2.2rem; letter-spacing: 0.12em; }
   .directory { grid-template-columns: 1fr; gap: 16px; padding: 0 18px; margin-top: 34px; }
-  .photo-wrap { height: 230px; }
-  .card-body { min-height: 210px; }
-  .cityscape { height: 150px; margin-top: 16px; }
+  .photo-wrap { height: 220px; }
+  .card-body { min-height: 215px; }
+  .cityscape { height: 120px; margin-top: 28px; }
   .footer { padding: 0 18px 22px; font-size: 9px; letter-spacing: 0.14em; }
 }
