@@ -2,8 +2,7 @@
   --paper: #f8f6f1;
   --ink: #15202a;
   --muted: #767b80;
-  --line: rgba(21, 32, 42, 0.14);
-  --card: rgba(255, 255, 255, 0.44);
+  --card: rgba(255, 255, 255, 0.55);
 }
 
 * { box-sizing: border-box; }
@@ -20,9 +19,9 @@ button { font: inherit; }
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  padding-bottom: 88px;
+  padding-bottom: 24px;
   background:
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.72), transparent 40%),
+    radial-gradient(circle at 50% 8%, rgba(255,255,255,0.78), transparent 43%),
     var(--paper);
 }
 
@@ -32,7 +31,9 @@ button { font: inherit; }
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
-  padding: 30px 46px 0;
+  padding: 28px 46px 0;
+  position: relative;
+  z-index: 3;
 }
 
 .language-switch {
@@ -43,7 +44,6 @@ button { font: inherit; }
   font-size: 12px;
   letter-spacing: 0.14em;
 }
-
 .language-switch button {
   border: 0;
   background: transparent;
@@ -57,20 +57,23 @@ button { font: inherit; }
 .hero {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 3px 46px 0;
+  padding: 8px 46px 0;
   text-align: center;
+  position: relative;
+  z-index: 3;
 }
 .hero .rule {
   width: 86px;
   height: 1px;
-  margin: 0 auto 22px;
-  background: rgba(21,32,42,0.55);
+  margin: 0 auto 20px;
+  background: rgba(21,32,42,0.58);
 }
-.hero .rule:last-child { margin: 22px auto 0; }
+.hero .rule:last-child { margin: 20px auto 0; }
 .hero h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.6rem, 4.2vw, 4.4rem);
+  font-size: clamp(2.7rem, 4.15vw, 4.25rem);
+  line-height: 1;
   font-weight: 400;
   letter-spacing: 0.19em;
 }
@@ -82,12 +85,13 @@ button { font: inherit; }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   max-width: 1450px;
-  margin: 44px auto 0;
+  margin: 40px auto 0;
   padding: 0 40px;
 }
 
 .profile-card {
   display: block;
+  min-width: 0;
   color: inherit;
   text-decoration: none;
   background: var(--card);
@@ -96,6 +100,7 @@ button { font: inherit; }
   overflow: hidden;
   box-shadow: 0 8px 28px rgba(21,32,42,0.045);
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  backdrop-filter: blur(2px);
 }
 .profile-card:hover {
   transform: translateY(-4px);
@@ -107,42 +112,47 @@ button { font: inherit; }
   outline-offset: 4px;
 }
 
+/* The uploaded photos stay untouched. The image is deliberately scaled down
+   inside the card so substantially more of the original frame remains visible. */
 .photo-wrap {
   position: relative;
-  height: 242px;
+  height: 198px;
   overflow: hidden;
-  background: #e8e3db;
+  background: #ece8e1;
   isolation: isolate;
 }
 .photo-wrap::before {
   content: "";
   position: absolute;
-  inset: -14px;
+  inset: -18px;
   z-index: -1;
   background-position: center;
   background-size: cover;
-  filter: blur(14px) saturate(0.75);
-  opacity: 0.18;
-  transform: scale(1.06);
+  filter: blur(18px) saturate(0.62);
+  opacity: 0.16;
+  transform: scale(1.04);
 }
 .profile-card:nth-child(1) .photo-wrap::before { background-image: url('/images/nikola.jpg'); }
 .profile-card:nth-child(2) .photo-wrap::before { background-image: url('/images/agota.jpg'); }
 .profile-card:nth-child(3) .photo-wrap::before { background-image: url('/images/nikola-stevan.jpg'); }
 .profile-card:nth-child(4) .photo-wrap::before { background-image: url('/images/family.jpg'); }
 .photo-wrap img {
-  position: relative;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
-  transform: scale(0.94);
-  transform-origin: center;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(0.82);
+  transform-origin: center center;
 }
+.profile-card:nth-child(1) .photo-wrap img { object-position: 50% 48%; }
+.profile-card:nth-child(2) .photo-wrap img { object-position: 50% 47%; }
+.profile-card:nth-child(3) .photo-wrap img { object-position: 50% 46%; }
+.profile-card:nth-child(4) .photo-wrap img { object-position: 50% 46%; }
 
 .card-body {
-  min-height: 320px;
-  padding: 28px 26px 24px;
+  min-height: 348px;
+  padding: 28px 20px 24px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -157,25 +167,29 @@ button { font: inherit; }
 .card-body h2 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.05rem, 1.35vw, 1.55rem);
-  line-height: 1.35;
+  font-size: clamp(1.03rem, 1.32vw, 1.48rem);
+  line-height: 1.32;
   font-weight: 400;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.095em;
+  width: 100%;
 }
 .name-line {
   display: block;
   white-space: nowrap;
 }
 .profile-card:nth-child(2) .card-body h2 {
-  font-size: clamp(0.84rem, 0.98vw, 1.08rem);
-  letter-spacing: 0.05em;
+  font-size: clamp(0.79rem, 0.92vw, 1rem);
+  letter-spacing: 0.018em;
+}
+.profile-card:nth-child(2) .card-body h2 .name-line:first-child {
+  white-space: nowrap;
 }
 .card-body p {
   margin: 22px 0 0;
   color: var(--muted);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(0.92rem, 1.02vw, 1.08rem);
-  letter-spacing: 0.03em;
+  font-size: clamp(0.9rem, 1vw, 1.06rem);
+  letter-spacing: 0.025em;
 }
 .arrow {
   margin-top: auto;
@@ -186,53 +200,54 @@ button { font: inherit; }
 }
 .profile-card:hover .arrow { transform: translateX(4px); }
 
+/* The Kecskemét line-art is part of the normal document flow, so it can
+   never rise behind the cards. It hugs the bottom of the content. */
 .cityscape {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   z-index: 0;
+  width: 100%;
   height: 78px;
+  margin-top: 2px;
   pointer-events: none;
   overflow: hidden;
   opacity: 0.30;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 92%, transparent 100%);
 }
-
 .cityscape img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
   display: block;
-  filter: sepia(0.07) saturate(0.6);
+  filter: sepia(0.07) saturate(0.62);
 }
 
 .footer {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   max-width: 1450px;
-  margin: -2px auto 0;
-  padding: 0 40px 28px;
-  color: rgba(21,32,42,0.55);
+  margin: 0 auto;
+  padding: 8px 40px 6px;
+  color: rgba(21,32,42,0.5);
   font-size: 10px;
   letter-spacing: 0.22em;
 }
 
 @media (max-width: 1100px) {
   .directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cityscape { height: 66px; }
+  .photo-wrap { height: 210px; }
+  .cityscape { height: 64px; }
 }
 
 @media (max-width: 680px) {
   .topbar { padding: 22px 22px 0; }
   .hero { padding: 14px 22px 0; }
   .hero h1 { font-size: 2.2rem; letter-spacing: 0.12em; }
-  .directory { grid-template-columns: 1fr; gap: 16px; padding: 0 18px; margin-top: 34px; }
+  .directory { grid-template-columns: 1fr; gap: 16px; padding: 0 18px; margin-top: 30px; }
   .photo-wrap { height: 220px; }
-  .profile-card:nth-child(2) .card-body h2 { font-size: 0.98rem; }
-  .photo-wrap img { transform: scale(0.94); }
-  .card-body { min-height: 235px; }
-  .cityscape { height: 58px; }
-  .footer { padding: 0 18px 22px; font-size: 9px; letter-spacing: 0.14em; }
+  .card-body { min-height: 240px; }
+  .profile-card:nth-child(2) .card-body h2 { font-size: 0.92rem; }
+  .cityscape { height: 54px; }
+  .footer { padding: 0 18px 18px; font-size: 9px; letter-spacing: 0.14em; }
 }
