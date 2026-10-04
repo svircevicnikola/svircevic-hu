@@ -1,6 +1,11 @@
 const cards = [
   {
-    name: <>DR. SVIRCEVIC<br />NIKOLA</>,
+    name: (
+      <>
+        <span className="name-line">DR. SVIRCEVIC</span>
+        <span className="name-line">NIKOLA</span>
+      </>
+    ),
     subtitle: "Személyes oldal · Szakmai pálya",
     image: "/images/nikola.jpg",
     href: "https://nikola.svircevic.hu",
@@ -8,7 +13,12 @@ const cards = [
     ariaLabel: "Dr. Svircevic Nikola – megnyitás",
   },
   {
-    name: <>DR. SVIRCEVIC-BODNÁR<br />ÁGOTA</>,
+    name: (
+      <>
+        <span className="name-line">DR. SVIRCEVIC-BODNÁR</span>
+        <span className="name-line">ÁGOTA</span>
+      </>
+    ),
     subtitle: "Személyes oldal · Szakmai pálya",
     image: "/images/agota.jpg",
     href: "https://agota.bodnar.svircevic.hu",
@@ -16,7 +26,12 @@ const cards = [
     ariaLabel: "Dr. Svircevic-Bodnár Ágota – megnyitás",
   },
   {
-    name: <>SVIRCEVIC<br />NIKOLA STEVAN</>,
+    name: (
+      <>
+        <span className="name-line">SVIRCEVIC</span>
+        <span className="name-line">NIKOLA STEVAN</span>
+      </>
+    ),
     subtitle: "Gaming · Tech · Közösség",
     image: "/images/nikola-stevan.jpg",
     href: "https://nikola.stevan.svircevic.hu",
@@ -24,7 +39,7 @@ const cards = [
     ariaLabel: "Svircevic Nikola Stevan – megnyitás",
   },
   {
-    name: <>CSALÁDUNK</>,
+    name: <span className="name-line">CSALÁDUNK</span>,
     subtitle: "Otthon · Élmények · Emlékek",
     image: "/images/family.jpg",
     href: "https://family.svircevic.hu",
