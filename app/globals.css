@@ -418,7 +418,7 @@ button { font: inherit; }
 .focus-section,
 .timeline-section {
   max-width: 920px;
-  margin: 96px auto 0;
+  margin: 82px auto 0;
   padding: 0 28px;
 }
 .focus-head { padding: 0; }
@@ -518,9 +518,13 @@ button { font: inherit; }
 }
 
 .agota-contact {
-  margin-top: 104px;
+  margin-top: 82px;
   padding-top: 30px;
   border-top: 1px solid rgba(21,32,42,0.16);
+}
+.agota-contact > div:last-child p {
+  margin-left: -68px;
+  max-width: 828px;
 }
 .contact-panel h2 { margin-top: 8px; }
 .linkedin-link.large { margin-top: 16px; }
