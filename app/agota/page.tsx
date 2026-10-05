@@ -162,7 +162,7 @@ export default function AgotaPage() {
             LinkedIn · Dr. Svircevic-Bodnár Ágota <span aria-hidden="true">↗</span>
           </a>
         </div>
-      </section
+      </section>
 
       <section className="agota-quote">
         <div className="quote-mark" aria-hidden="true">“</div>
