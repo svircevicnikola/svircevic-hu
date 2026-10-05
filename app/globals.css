@@ -443,8 +443,8 @@ button { font: inherit; }
   filter: saturate(0.82) sepia(0.03) brightness(1.06);
   opacity: 0.94;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
-  mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 43%, #000 42%, rgba(0,0,0,0.78) 65%, transparent 91%);
+  mask-image: radial-gradient(ellipse at 50% 43%, #000 42%, rgba(0,0,0,0.78) 65%, transparent 91%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
