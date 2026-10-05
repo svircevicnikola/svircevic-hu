@@ -462,40 +462,38 @@ button { font: inherit; }
 }
 
 .agota-quote {
-  max-width: 920px;
-  margin: 100px auto 0;
-  padding: 0 28px;
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  gap: 22px;
+  margin-top: 100px;
   position: relative;
 }
 .agota-quote .quote-content {
   position: relative;
-  padding: 0 0 0 42px;
+  padding-left: 0;
 }
 .agota-page .quote-mark {
   position: absolute;
-  left: 0;
-  top: 13px;
+  left: -72px;
+  top: -8px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 4.2rem;
   line-height: 1;
-  color: rgba(21,32,42,0.12);
+  color: rgba(21,32,42,0.14);
 }
 .agota-quote p {
   margin: 16px 0 0;
   max-width: 720px;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.45rem, 2.4vw, 2.35rem);
   line-height: 1.2;
+  color: rgba(21,32,42,0.82);
 }
 .agota-quote .quote-attribution {
   display: block;
-  margin-top: 14px;
+  margin-top: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 9px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: rgba(21,32,42,0.40);
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: rgba(21,32,42,0.48);
 }
 
 .agota-contact {
@@ -537,9 +535,8 @@ button { font: inherit; }
   .agota-hero-image { max-width: 420px; }
   .agota-hero-copy { max-width: 620px; }
   .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .agota-quote { padding-left: 28px; padding-right: 28px; }
-  .agota-quote .quote-content { padding-left: 34px; }
-  .agota-page .quote-mark { left: 0; }
+  .agota-quote { margin-top: 82px; }
+  .agota-page .quote-mark { left: -52px; }
 }
 
 @media (max-width: 640px) {
@@ -561,8 +558,7 @@ button { font: inherit; }
   .focus-card > span { margin-bottom: 22px; }
   .timeline-item { grid-template-columns: 1fr; gap: 7px; padding: 21px 0 24px; }
   .timeline-year { padding-top: 0; }
-  .agota-quote { padding: 0 18px; }
-  .agota-quote .quote-content { padding-left: 30px; }
-  .agota-page .quote-mark { left: 0; }
+  .agota-quote { margin-top: 82px; }
+  .agota-page .quote-mark { left: -42px; }
   .agota-footer { padding: 0 18px 16px; }
 }
