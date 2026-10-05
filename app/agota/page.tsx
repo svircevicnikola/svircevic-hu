@@ -194,8 +194,8 @@ export default function AgotaPage() {
 
       <footer className="agota-footer">
         <a href="https://svircevic.hu">SVIRCEVIC.HU</a>
-        <span>KECSKEMÉT · HUNGARY</span>
         <a href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+        <span>KECSKEMÉT · HUNGARY</span>
       </footer>
     </main>
   );
