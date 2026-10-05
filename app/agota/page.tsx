@@ -152,28 +152,15 @@ export default function AgotaPage() {
         </div>
       </section>
 
-      <section className="agota-contact section-grid">
+      <section className="agota-quote section-grid">
         <div className="section-index">04</div>
-        <div className="contact-panel">
-          <span className="section-kicker">KAPCSOLÓDÁS</span>
-          <h2>Professzionális profil és szakmai jelenlét.</h2>
-          <p>A részletes szakmai háttér, aktuális munkakapcsolatok és a pálya további állomásai a LinkedIn-profilon érhetők el.</p>
-          <a className="linkedin-link large" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
-            LinkedIn · Dr. Svircevic-Bodnár Ágota <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
-
-      <section className="agota-quote">
-        <div className="section-grid">
-          <div className="section-index">04</div>
-          <div>
-            <span className="section-kicker">HITVALLÁS</span>
-            <p>
-              A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
-            </p>
-            <span className="quote-attribution">— szakmai hitvallásként megfogalmazott gondolat</span>
-          </div>
+        <div className="quote-content">
+          <span className="section-kicker">HITVALLÁS</span>
+          <div className="quote-mark" aria-hidden="true">“</div>
+          <p>
+            A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
+          </p>
+          <span className="quote-attribution">— szakmai hitvallásként megfogalmazott gondolat</span>
         </div>
       </section>
 
@@ -187,14 +174,6 @@ export default function AgotaPage() {
             LinkedIn · Dr. Svircevic-Bodnár Ágota <span aria-hidden="true">↗</span>
           </a>
         </div>
-      </section>
-
-      <section className="agota-quote">
-        <div className="quote-mark" aria-hidden="true">“</div>
-        <p>
-          A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
-        </p>
-        <span>— szakmai hitvallásként megfogalmazott gondolat</span>
       </section>
 
       <footer className="agota-footer">
