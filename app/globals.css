@@ -391,45 +391,13 @@ button { font: inherit; }
   margin-top: 92px;
   align-items: start;
 }
-.agota-intro-main {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-  gap: 40px;
-  align-items: end;
+.agota-intro .section-grid {
+  /* Keep the chapter heading in the numbered content column,
+     but pull the introductory copy back to the page text edge. */
 }
-.agota-intro-copy {
-  min-width: 0;
-}
-.agota-intro-copy p {
-  margin-left: -136px;
-  width: calc(100% + 136px);
-  max-width: 650px;
-  box-sizing: border-box;
-}
-.agota-intro-image-secondary {
-  width: 250px;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: transparent;
-  margin: 0 -34px 4px 0;
-}
-.agota-intro-main {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-  gap: 40px;
-  align-items: end;
-}
-.agota-intro-copy p {
-  margin-left: -136px;
-  width: auto;
-  max-width: 700px;
-}
-.agota-intro-image-secondary {
-  width: 250px;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: transparent;
-  margin: 0 -34px 4px 0;
+.agota-intro > div:last-child p {
+  margin-left: -68px;
+  max-width: 828px;
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -636,19 +604,7 @@ button { font: inherit; }
   .timeline-section,
   .agota-quote,
   .agota-contact { margin-top: 58px; }
-  .agota-intro-main {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .agota-intro-copy p {
-    margin-left: 0;
-    width: 100%;
-    max-width: 760px;
-  }
-  .agota-intro-image-secondary {
-    width: min(250px, 58vw);
-    margin: 0 0 0 auto;
-  }
+  .agota-intro > div:last-child p { margin-left: 0; max-width: 760px; }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
   .focus-card { min-height: 118px; }
   .focus-card > .focus-icon { margin-bottom: 22px; }
