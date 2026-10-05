@@ -160,7 +160,6 @@ export default function AgotaPage() {
           <p>
             A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
           </p>
-          <span className="quote-attribution">— szakmai hitvallásként megfogalmazott gondolat</span>
         </div>
       </section>
 
