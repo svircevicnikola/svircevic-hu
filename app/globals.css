@@ -405,7 +405,7 @@ button { font: inherit; }
 }
 .agota-intro-image-secondary {
   position: absolute;
-  top: 0;
+  top: -82px;
   right: 0;
   width: 235px;
   height: 270px;
