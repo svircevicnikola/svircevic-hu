@@ -440,11 +440,11 @@ button { font: inherit; }
   height: 108%;
   object-fit: cover;
   object-position: center top;
-  filter: saturate(0.82) sepia(0.03) brightness(1.06);
-  opacity: 0.94;
-  mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 43%, #000 42%, rgba(0,0,0,0.78) 65%, transparent 91%);
-  mask-image: radial-gradient(ellipse at 50% 43%, #000 42%, rgba(0,0,0,0.78) 65%, transparent 91%);
+  filter: none;
+  opacity: 1;
+  mix-blend-mode: darken;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 68%, transparent 93%);
+  mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 68%, transparent 93%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
