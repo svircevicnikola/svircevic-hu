@@ -391,12 +391,12 @@ button { font: inherit; }
   margin-top: 92px;
   align-items: start;
 }
-.agota-intro-body {
+.agota-intro > div:last-child {
   position: relative;
+}
+.agota-intro-body {
   width: calc(100% + 68px);
-  min-height: 270px;
   margin-left: -68px;
-  padding-right: 275px;
   box-sizing: border-box;
 }
 .agota-intro-body p {
@@ -405,24 +405,24 @@ button { font: inherit; }
 }
 .agota-intro-image-secondary {
   position: absolute;
-  top: -178px;
+  top: 8px;
   right: 0;
   width: 235px;
-  height: 390px;
+  height: 355px;
   overflow: hidden;
   background: transparent;
 }
 .agota-intro-image-secondary img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 108%;
   object-fit: cover;
   object-position: center top;
-  filter: none;
-  opacity: 1;
+  filter: saturate(0.82) sepia(0.03) brightness(1.06);
+  opacity: 0.94;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 66%, rgba(0,0,0,0.9) 84%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 66%, rgba(0,0,0,0.9) 84%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
+  mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -631,9 +631,7 @@ button { font: inherit; }
   .agota-contact { margin-top: 58px; }
   .agota-intro-body {
     width: 100%;
-    min-height: 0;
     margin-left: 0;
-    padding-right: 0;
   }
   .agota-intro-body p {
     margin-left: 0;
@@ -645,7 +643,7 @@ button { font: inherit; }
     top: auto;
     right: auto;
     width: min(235px, 58vw);
-    height: 270px;
+    height: 300px;
     margin: 24px 0 0 auto;
   }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
