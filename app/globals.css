@@ -392,31 +392,37 @@ button { font: inherit; }
   align-items: start;
 }
 .agota-intro-body {
+  position: relative;
   width: calc(100% + 68px);
+  min-height: 270px;
   margin-left: -68px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 235px;
-  gap: 40px;
-  align-items: start;
+  padding-right: 275px;
+  box-sizing: border-box;
 }
 .agota-intro-body p {
   margin: 0;
-  max-width: 590px;
+  max-width: 650px;
 }
 .agota-intro-image-secondary {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 235px;
-  height: 295px;
+  height: 270px;
   overflow: hidden;
   background: transparent;
 }
 .agota-intro-image-secondary img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
   filter: none;
   opacity: 1;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 66%, rgba(0,0,0,0.9) 84%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 66%, rgba(0,0,0,0.9) 84%, transparent 100%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -625,9 +631,9 @@ button { font: inherit; }
   .agota-contact { margin-top: 58px; }
   .agota-intro-body {
     width: 100%;
+    min-height: 0;
     margin-left: 0;
-    grid-template-columns: 1fr;
-    gap: 24px;
+    padding-right: 0;
   }
   .agota-intro-body p {
     margin-left: 0;
@@ -635,9 +641,12 @@ button { font: inherit; }
     max-width: 760px;
   }
   .agota-intro-image-secondary {
+    position: relative;
+    top: auto;
+    right: auto;
     width: min(235px, 58vw);
-    height: 295px;
-    margin: 0 0 0 auto;
+    height: 270px;
+    margin: 24px 0 0 auto;
   }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
   .focus-card { min-height: 118px; }
