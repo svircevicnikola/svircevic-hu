@@ -447,6 +447,12 @@ button { font: inherit; }
   -webkit-mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 64%, transparent 88%);
   mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 64%, transparent 88%);
 }
+.agota-page-en .agota-intro-image-secondary {
+  top: 42px;
+}
+.agota-page-en .agota-intro-image-secondary img {
+  filter: brightness(1.03);
+}
 .section-grid h2 {
   margin: 8px 0 18px;
   max-width: 760px;
