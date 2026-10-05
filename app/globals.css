@@ -401,7 +401,8 @@ button { font: inherit; }
 }
 .agota-intro-body p {
   margin: 0;
-  max-width: 650px;
+  width: calc(100% - 275px);
+  max-width: none;
 }
 .agota-intro-image-secondary {
   position: absolute;
