@@ -108,10 +108,7 @@ export default function AgotaPage() {
           <span className="section-kicker">BEMUTATKOZÁS</span>
           <h2>Jog, közigazgatás, szervezet</h2>
           <p>
-            Szakmai pályám középpontjában a jogi és közigazgatási munka áll, amelyhez az évek során szervezési, vagyongazdálkodási és beszerzési feladatok is kapcsolódtak.
-          </p>
-          <p>
-            A különböző munkakörökben szerzett tapasztalatok ma is a hivatali működés mindennapi feladataiban kapcsolódnak össze.
+            Szakmai pályám középpontjában a jogi munka és a közigazgatás áll, emellett azonban a vagyongazdálkodás és az ingatlankezelés is végigkísérte a pályámat. Ezen a területen az önkormányzatnál végzett munkám mellett az önkormányzati tulajdonú KIK-FOR Kft.-nél, majd a Neumann János Egyetem Kancelláriáján is szereztem szakmai és vezetői tapasztalatot, többek között vagyongazdálkodási és beszerzési területen. Jogi és közigazgatási munkám mellett társadalomtudományi és gazdasági szakfordító képesítést is szereztem, és rövid ideig egyetemi óraadóként agrárjogot oktattam. A gyermekjogok iránt is régóta érdeklődöm; önkéntesként az UNICEF Magyarország Ébresztő Óra programjának trénereként iskolákban tartok gyermekjogi érzékenyítő foglalkozásokat.
           </p>
         </div>
       </section>
