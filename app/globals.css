@@ -393,32 +393,39 @@ button { font: inherit; }
 }
 .agota-intro-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 235px;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 40px;
   align-items: end;
 }
 .agota-intro-copy p {
   margin-left: -136px;
-  width: calc(100% + 136px);
-  max-width: 760px;
+  width: auto;
+  max-width: 700px;
 }
 .agota-intro-image-secondary {
-  width: 235px;
-  aspect-ratio: 4 / 5;
+  width: 250px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: transparent;
-  margin: 0 0 4px;
+  margin: 0 -34px 4px 0;
 }
-.agota-intro-image-secondary img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  filter: none;
-  opacity: 1;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 62%, rgba(0,0,0,0.9) 80%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 62%, rgba(0,0,0,0.9) 80%, transparent 100%);
+.agota-intro-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 40px;
+  align-items: end;
+}
+.agota-intro-copy p {
+  margin-left: -136px;
+  width: auto;
+  max-width: 700px;
+}
+.agota-intro-image-secondary {
+  width: 250px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: transparent;
+  margin: 0 -34px 4px 0;
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -635,7 +642,7 @@ button { font: inherit; }
     max-width: 760px;
   }
   .agota-intro-image-secondary {
-    width: min(235px, 58vw);
+    width: min(250px, 58vw);
     margin: 0 0 0 auto;
   }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
