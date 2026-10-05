@@ -258,10 +258,10 @@ button { font: inherit; }
   content: "";
   position: absolute;
   z-index: 0;
+  left: max(28px, calc((100% - 920px) / 2 - 68px));
   right: -70px;
   bottom: -40px;
-  width: min(76vw, 1020px);
-  aspect-ratio: 3 / 2;
+  height: min(68vw, 680px);
   background: url("/images/kecskemet-townhall-line.svg") no-repeat right bottom / contain;
   opacity: 0.14;
   mix-blend-mode: multiply;
