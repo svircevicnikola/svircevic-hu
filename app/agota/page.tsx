@@ -165,7 +165,7 @@ export default function AgotaPage() {
           <div className="section-index">03</div>
           <div>
             <span className="section-kicker">SZAKMAI PÁLYA</span>
-            <h2>Egy pálya, amelyben a szakmai felelősség fokozatosan épült vezetői szereppé.</h2>
+            <h2>A pályám során szerzett tapasztalatok és fontosabb állomások</h2>
           </div>
         </div>
         <div className="timeline">
