@@ -192,21 +192,10 @@ export default function AgotaPage() {
         </div>
       </section>
 
-      <section className="agota-contact section-grid">
-        <div className="section-index">05</div>
-        <div className="contact-panel">
-          <span className="section-kicker">SZAKMAI JELENLÉT</span>
-          <h2>Szakmai jelenlét</h2>
-          <p>A részletes szakmai háttér, aktuális munkakapcsolatok és a pálya további állomásai a LinkedIn-profilon érhetők el.</p>
-          <a className="linkedin-link large" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
-            LinkedIn · Dr. Svircevic-Bodnár Ágota <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
-
       <footer className="agota-footer">
         <a href="https://svircevic.hu">SVIRCEVIC.HU</a>
         <span>KECSKEMÉT · HUNGARY</span>
+        <a href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
       </footer>
     </main>
   );
