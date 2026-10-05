@@ -408,17 +408,17 @@ button { font: inherit; }
 }
 .section-grid p {
   max-width: 760px;
-  margin: 0 0 13px;
+  margin: 0 0 8px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.98rem;
-  line-height: 1.72;
+  line-height: 1.68;
   color: rgba(21,32,42,0.70);
 }
 
 .focus-section,
 .timeline-section {
   max-width: 920px;
-  margin: 82px auto 0;
+  margin: 56px auto 0;
   padding: 0 28px;
 }
 .focus-head { padding: 0; }
@@ -453,7 +453,7 @@ button { font: inherit; }
 }
 
 .timeline {
-  margin-top: 36px;
+  margin-top: 28px;
   border-top: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-item {
@@ -483,7 +483,7 @@ button { font: inherit; }
 }
 
 .agota-quote {
-  margin-top: 100px;
+  margin-top: 64px;
   position: relative;
 }
 .agota-quote .quote-content {
@@ -518,7 +518,7 @@ button { font: inherit; }
 }
 
 .agota-contact {
-  margin-top: 82px;
+  margin-top: 64px;
   padding-top: 30px;
   border-top: 1px solid rgba(21,32,42,0.16);
 }
@@ -577,7 +577,7 @@ button { font: inherit; }
   .focus-section,
   .timeline-section,
   .agota-quote,
-  .agota-contact { margin-top: 82px; }
+  .agota-contact { margin-top: 58px; }
   .agota-intro > div:last-child p { margin-left: 0; max-width: 760px; }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
   .focus-card { min-height: 118px; }
