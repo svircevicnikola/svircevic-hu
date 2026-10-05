@@ -104,7 +104,7 @@ export default function AgotaPage() {
         <div className="language-switch" aria-label="Nyelvválasztó">
           <span className="active">HU</span>
           <span aria-hidden="true">|</span>
-          <span aria-disabled="true">EN</span>
+          <a href="https://agota.bodnar.svircevic.hu/en" aria-label="English version">EN</a>
         </div>
       </header>
 
