@@ -9,52 +9,52 @@ const timeline = [
   {
     year: "2022.07 – jelenleg",
     title: "Aljegyző",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2021.08 – 2022.06",
     title: "Irodavezető, Szervezési és Jogi Iroda · jogtanácsos",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2020.03 – 2021.07",
     title: "Osztályvezető, Jogi Osztály · jogtanácsos",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2018.06 – 2020.03",
     title: "Irodavezető, Vagyongazdálkodási és Beszerzési Iroda",
-    text: "Neumann János Egyetem, Kecskemét.",
+    text: "Neumann János Egyetem, Kecskemét",
   },
   {
     year: "2018.02 – 2018.05",
     title: "Vagyongazdálkodási referens",
-    text: "Neumann János Egyetem, Kecskemét.",
+    text: "Neumann János Egyetem, Kecskemét",
   },
   {
     year: "2014.11 – 2018.02",
     title: "Osztályvezető, Bérlakás- és társasházkezelési Osztály",
-    text: "KIK-FOR Kft., Kecskemét.",
+    text: "KIK-FOR Kft., Kecskemét",
   },
   {
     year: "2014.03 – 2014.11",
     title: "Csoportvezető, Jogi Osztály · Vagyongazdálkodási Csoport",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2012.04 – 2014.03",
     title: "Csoportvezető, Jogi Osztály · Lakás Csoport",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2008.05 – 2012.04",
     title: "Vagyongazdálkodási ügyintéző",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala",
   },
   {
     year: "2006.09 – 2008.05",
     title: "Jogász",
-    text: "Nagykőrös Város Polgármesteri Hivatala.",
+    text: "Nagykőrös Város Polgármesteri Hivatala",
   },
 ];
 
