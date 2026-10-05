@@ -58,7 +58,7 @@ export default function AgotaPage() {
 
       <section className="agota-hero">
         <div className="agota-hero-image">
-          <img src="/images/agota.jpg" alt="Dr. Svircevic-Bodnár Ágota portréja" />
+          <img src="/images/agota-hero.jpg" alt="Dr. Svircevic-Bodnár Ágota portréja" />
         </div>
         <div className="agota-hero-copy">
           <span className="eyebrow">SVIRCEVIC.HU · SZEMÉLYES OLDAL</span>
