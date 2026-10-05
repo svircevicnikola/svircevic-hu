@@ -405,10 +405,10 @@ button { font: inherit; }
 }
 .agota-intro-image-secondary {
   position: absolute;
-  top: -82px;
+  top: -178px;
   right: 0;
   width: 235px;
-  height: 270px;
+  height: 390px;
   overflow: hidden;
   background: transparent;
 }
