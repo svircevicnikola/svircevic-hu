@@ -246,76 +246,73 @@ button { font: inherit; }
 .agota-page {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 70% 5%, rgba(255,255,255,0.84), transparent 34%),
+    radial-gradient(circle at 72% 4%, rgba(255,255,255,0.88), transparent 30%),
     var(--paper);
   color: var(--ink);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .agota-topbar {
-  max-width: 1460px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 28px 42px 0;
+  padding: 22px 28px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11px;
-  letter-spacing: 0.15em;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .agota-topbar a { color: inherit; text-decoration: none; }
 .back-link {
-  color: rgba(21,32,42,0.68) !important;
+  color: rgba(21,32,42,0.66) !important;
   transition: color 180ms ease;
 }
 .back-link:hover { color: var(--ink) !important; }
-.agota-topbar .language-switch a {
-  color: var(--muted);
-}
-.agota-topbar .language-switch a.active,
-.agota-topbar .language-switch .active {
-  color: var(--ink);
-}
+.agota-topbar .language-switch { font-size: 10px; }
+.agota-topbar .language-switch a { color: var(--muted); }
+.agota-topbar .language-switch .active { color: var(--ink); }
 
 .agota-hero {
-  max-width: 1360px;
-  margin: 56px auto 0;
-  padding: 0 42px;
+  max-width: 1040px;
+  margin: 40px auto 0;
+  padding: 0 28px;
   display: grid;
-  grid-template-columns: minmax(360px, 47%) minmax(0, 1fr);
-  gap: clamp(50px, 8vw, 120px);
+  grid-template-columns: 390px minmax(0, 1fr);
+  gap: 58px;
   align-items: center;
 }
 .agota-hero-image {
-  aspect-ratio: 1 / 1.04;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: #252326;
+  background: #e8e3db;
+  box-shadow: 0 18px 40px rgba(21,32,42,0.08);
 }
 .agota-hero-image img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 36%;
-  filter: saturate(0.92);
+  object-position: center center;
+  filter: saturate(0.94);
 }
 .agota-hero-copy {
-  max-width: 610px;
-  padding-right: 12px;
+  max-width: 520px;
 }
 .eyebrow, .section-kicker {
   display: inline-block;
-  color: rgba(21,32,42,0.55);
-  font-size: 10px;
+  color: rgba(21,32,42,0.52);
+  font-size: 9px;
   line-height: 1.4;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.19em;
   text-transform: uppercase;
 }
 .agota-rule {
-  width: 58px;
+  width: 46px;
   height: 1px;
-  margin: 20px 0 24px;
-  background: rgba(21,32,42,0.45);
+  margin: 16px 0 19px;
+  background: rgba(21,32,42,0.40);
 }
 .agota-hero h1,
 .section-grid h2,
@@ -325,228 +322,238 @@ button { font: inherit; }
 }
 .agota-hero h1 {
   margin: 0;
-  font-size: clamp(2.7rem, 5vw, 5.2rem);
-  line-height: 0.94;
-  letter-spacing: 0.015em;
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: 0.012em;
 }
 .agota-hero h1 span {
   display: block;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 .hero-role {
-  margin: 23px 0 0;
+  margin: 18px 0 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
-  color: rgba(21,32,42,0.64);
+  font-size: 0.98rem;
+  color: rgba(21,32,42,0.62);
 }
 .hero-lead {
-  max-width: 520px;
-  margin: 28px 0 0;
+  max-width: 490px;
+  margin: 22px 0 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.14rem;
+  font-size: 1rem;
   line-height: 1.65;
-  color: rgba(21,32,42,0.84);
+  color: rgba(21,32,42,0.79);
 }
 .linkedin-link {
   display: inline-flex;
-  gap: 10px;
+  gap: 9px;
   align-items: center;
-  margin-top: 31px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid rgba(21,32,42,0.42);
+  margin-top: 24px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(21,32,42,0.36);
   text-decoration: none;
   color: var(--ink);
-  font-size: 11px;
-  letter-spacing: 0.13em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: border-color 180ms ease, color 180ms ease;
 }
 .linkedin-link:hover { border-color: var(--ink); }
 
 .section-grid {
-  max-width: 1120px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 0 42px;
+  padding: 0 28px;
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 22px;
 }
 .section-index {
-  padding-top: 7px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: rgba(21,32,42,0.40);
+  padding-top: 6px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(21,32,42,0.36);
 }
 .agota-intro {
-  margin-top: 145px;
+  margin-top: 92px;
   align-items: start;
 }
 .section-grid h2 {
-  margin: 12px 0 23px;
-  max-width: 830px;
-  font-size: clamp(2rem, 3.1vw, 3.25rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  margin: 8px 0 18px;
+  max-width: 760px;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.008em;
 }
 .section-grid p {
-  max-width: 790px;
-  margin: 0 0 16px;
+  max-width: 760px;
+  margin: 0 0 13px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.02rem;
-  line-height: 1.78;
-  color: rgba(21,32,42,0.72);
+  font-size: 0.98rem;
+  line-height: 1.72;
+  color: rgba(21,32,42,0.70);
 }
 
 .focus-section,
 .timeline-section {
-  max-width: 1120px;
-  margin: 142px auto 0;
-  padding: 0 42px;
+  max-width: 920px;
+  margin: 96px auto 0;
+  padding: 0 28px;
 }
 .focus-head { padding: 0; }
 .focus-grid {
-  margin-top: 49px;
+  margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(21,32,42,0.18);
-  border-left: 1px solid rgba(21,32,42,0.18);
+  border-top: 1px solid rgba(21,32,42,0.16);
+  border-left: 1px solid rgba(21,32,42,0.16);
 }
 .focus-card {
-  min-height: 176px;
-  padding: 21px 22px 24px;
-  border-right: 1px solid rgba(21,32,42,0.18);
-  border-bottom: 1px solid rgba(21,32,42,0.18);
-  background: rgba(255,255,255,0.18);
+  min-height: 132px;
+  padding: 17px 18px 19px;
+  border-right: 1px solid rgba(21,32,42,0.16);
+  border-bottom: 1px solid rgba(21,32,42,0.16);
+  background: rgba(255,255,255,0.14);
 }
 .focus-card > span {
   display: block;
-  margin-bottom: 42px;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: rgba(21,32,42,0.38);
+  margin-bottom: 31px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(21,32,42,0.34);
 }
 .focus-card h3 {
   margin: 0;
-  max-width: 190px;
+  max-width: 180px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.18rem;
-  line-height: 1.35;
+  font-size: 1.02rem;
+  line-height: 1.34;
   font-weight: 400;
 }
 
 .timeline {
-  margin-top: 50px;
-  border-top: 1px solid rgba(21,32,42,0.18);
+  margin-top: 36px;
+  border-top: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-item {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 38px;
-  padding: 33px 0 36px;
-  border-bottom: 1px solid rgba(21,32,42,0.18);
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 28px;
+  padding: 25px 0 28px;
+  border-bottom: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-year {
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  color: rgba(21,32,42,0.45);
-  padding-top: 4px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(21,32,42,0.42);
+  padding-top: 3px;
 }
 .timeline-content h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
-  font-size: 1.42rem;
+  font-size: 1.18rem;
 }
 .timeline-content p {
   margin: 0;
-  max-width: 680px;
-  line-height: 1.7;
+  max-width: 650px;
+  line-height: 1.68;
+  font-size: 0.96rem;
 }
 
 .agota-quote {
-  max-width: 1120px;
-  margin: 150px auto 0;
-  padding: 0 106px 0 134px;
+  max-width: 920px;
+  margin: 100px auto 0;
+  padding: 0 68px 0 104px;
   position: relative;
 }
-.quote-mark {
+.agota-page .quote-mark {
   position: absolute;
-  left: 75px;
-  top: -16px;
+  left: 48px;
+  top: -9px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 6.2rem;
+  font-size: 4.6rem;
   line-height: 1;
-  color: rgba(21,32,42,0.14);
+  color: rgba(21,32,42,0.12);
 }
 .agota-quote p {
   margin: 0;
-  max-width: 810px;
-  font-size: clamp(1.8rem, 2.8vw, 3rem);
-  line-height: 1.18;
+  max-width: 720px;
+  font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+  line-height: 1.2;
 }
 .agota-quote > span {
   display: block;
-  margin-top: 20px;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  margin-top: 16px;
+  font-size: 9px;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: rgba(21,32,42,0.42);
+  color: rgba(21,32,42,0.40);
 }
 
 .agota-contact {
-  margin-top: 150px;
-  padding-top: 42px;
-  border-top: 1px solid rgba(21,32,42,0.18);
+  margin-top: 104px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(21,32,42,0.16);
 }
-.contact-panel h2 { margin-top: 12px; }
-.linkedin-link.large { margin-top: 18px; }
+.contact-panel h2 { margin-top: 8px; }
+.linkedin-link.large { margin-top: 16px; }
 
 .agota-footer {
-  max-width: 1120px;
-  margin: 138px auto 0;
-  padding: 0 42px 26px;
+  max-width: 920px;
+  margin: 92px auto 0;
+  padding: 0 28px 22px;
   display: flex;
   justify-content: space-between;
-  color: rgba(21,32,42,0.44);
-  font-size: 9px;
-  letter-spacing: 0.20em;
+  color: rgba(21,32,42,0.42);
+  font-size: 8px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 .agota-footer a { color: inherit; text-decoration: none; }
 
 @media (max-width: 900px) {
   .agota-hero {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    margin-top: 48px;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: 38px;
   }
-  .agota-hero-image { max-width: 640px; }
-  .agota-hero-copy { max-width: 720px; }
+  .agota-hero h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); }
   .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .agota-quote { padding-left: 96px; padding-right: 42px; }
-  .quote-mark { left: 43px; }
+}
+
+@media (max-width: 760px) {
+  .agota-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 34px;
+  }
+  .agota-hero-image { max-width: 420px; }
+  .agota-hero-copy { max-width: 620px; }
+  .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agota-quote { padding-left: 78px; padding-right: 28px; }
+  .agota-page .quote-mark { left: 24px; }
 }
 
 @media (max-width: 640px) {
-  .agota-topbar { padding: 20px 20px 0; }
-  .agota-hero { padding: 0 20px; margin-top: 34px; }
-  .agota-hero h1 { font-size: clamp(2.2rem, 13vw, 3.8rem); }
-  .hero-lead { font-size: 1rem; }
+  .agota-topbar { padding: 18px 18px 0; }
+  .agota-hero { padding: 0 18px; margin-top: 28px; }
+  .agota-hero h1 { font-size: clamp(2rem, 12vw, 3.15rem); }
+  .hero-lead { font-size: 0.96rem; }
   .section-grid,
   .focus-section,
-  .timeline-section { padding-left: 20px; padding-right: 20px; }
-  .section-grid { grid-template-columns: 42px minmax(0,1fr); gap: 15px; }
+  .timeline-section { padding-left: 18px; padding-right: 18px; }
+  .section-grid { grid-template-columns: 34px minmax(0,1fr); gap: 13px; }
   .agota-intro,
   .focus-section,
   .timeline-section,
   .agota-quote,
-  .agota-contact { margin-top: 102px; }
-  .focus-grid { grid-template-columns: 1fr; margin-top: 36px; }
-  .focus-card { min-height: 138px; }
-  .focus-card > span { margin-bottom: 26px; }
-  .timeline-item { grid-template-columns: 1fr; gap: 10px; }
+  .agota-contact { margin-top: 82px; }
+  .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
+  .focus-card { min-height: 118px; }
+  .focus-card > span { margin-bottom: 22px; }
+  .timeline-item { grid-template-columns: 1fr; gap: 7px; padding: 21px 0 24px; }
   .timeline-year { padding-top: 0; }
-  .agota-quote { padding: 0 24px 0 58px; }
-  .quote-mark { left: 7px; }
-  .agota-footer { padding: 0 20px 18px; }
+  .agota-quote { padding: 0 18px 0 56px; }
+  .agota-page .quote-mark { left: 6px; }
+  .agota-footer { padding: 0 18px 16px; }
 }
