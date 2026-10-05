@@ -440,7 +440,7 @@ button { font: inherit; }
   height: 108%;
   object-fit: cover;
   object-position: center top;
-  filter: none;
+  filter: brightness(1.01);
   opacity: 1;
   mix-blend-mode: darken;
   opacity: 0.90;
