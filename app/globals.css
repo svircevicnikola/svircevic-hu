@@ -393,20 +393,20 @@ button { font: inherit; }
 }
 .agota-intro-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 36px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 235px;
+  gap: 48px;
+  align-items: end;
 }
 .agota-intro-copy p {
   margin-left: -68px;
   max-width: 570px;
 }
 .agota-intro-image-secondary {
-  width: 220px;
-  aspect-ratio: 3 / 4;
+  width: 235px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: #e8e3db;
-  margin-top: 12px;
+  background: var(--paper);
+  margin: 0 0 4px;
 }
 .agota-intro-image-secondary img {
   display: block;
@@ -414,7 +414,9 @@ button { font: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: saturate(0.94);
+  mix-blend-mode: multiply;
+  filter: saturate(0.82) contrast(0.96);
+  opacity: 0.92;
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -630,7 +632,7 @@ button { font: inherit; }
     max-width: 760px;
   }
   .agota-intro-image-secondary {
-    width: min(220px, 55vw);
+    width: min(235px, 58vw);
     margin: 0 0 0 auto;
   }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
