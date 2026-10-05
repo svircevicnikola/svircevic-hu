@@ -398,8 +398,8 @@ button { font: inherit; }
   align-items: end;
 }
 .agota-intro-copy p {
-  margin-left: -68px;
-  width: calc(100% + 68px);
+  margin-left: -136px;
+  width: calc(100% + 136px);
   max-width: 760px;
 }
 .agota-intro-image-secondary {
@@ -415,11 +415,10 @@ button { font: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  mix-blend-mode: multiply;
-  filter: saturate(0.78) contrast(0.93);
-  opacity: 0.84;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0,0,0,0.82) 76%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0,0,0,0.82) 76%, transparent 100%);
+  filter: none;
+  opacity: 1;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 62%, rgba(0,0,0,0.9) 80%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 62%, rgba(0,0,0,0.9) 80%, transparent 100%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
@@ -632,6 +631,7 @@ button { font: inherit; }
   }
   .agota-intro-copy p {
     margin-left: 0;
+    width: 100%;
     max-width: 760px;
   }
   .agota-intro-image-secondary {
