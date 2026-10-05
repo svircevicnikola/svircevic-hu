@@ -152,14 +152,6 @@ export default function AgotaPage() {
         </div>
       </section>
 
-      <section className="agota-quote">
-        <div className="quote-mark" aria-hidden="true">“</div>
-        <p>
-          A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
-        </p>
-        <span>— szakmai hitvallásként megfogalmazott gondolat</span>
-      </section>
-
       <section className="agota-contact section-grid">
         <div className="section-index">04</div>
         <div className="contact-panel">
@@ -170,6 +162,14 @@ export default function AgotaPage() {
             LinkedIn · Dr. Svircevic-Bodnár Ágota <span aria-hidden="true">↗</span>
           </a>
         </div>
+      </section
+
+      <section className="agota-quote">
+        <div className="quote-mark" aria-hidden="true">“</div>
+        <p>
+          A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
+        </p>
+        <span>— szakmai hitvallásként megfogalmazott gondolat</span>
       </section>
 
       <footer className="agota-footer">
