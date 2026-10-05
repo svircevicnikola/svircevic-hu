@@ -464,27 +464,34 @@ button { font: inherit; }
 .agota-quote {
   max-width: 920px;
   margin: 100px auto 0;
-  padding: 0 68px 0 104px;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 22px;
   position: relative;
+}
+.agota-quote .quote-content {
+  position: relative;
+  padding: 0 0 0 42px;
 }
 .agota-page .quote-mark {
   position: absolute;
-  left: 48px;
-  top: -9px;
+  left: 0;
+  top: 13px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 4.6rem;
+  font-size: 4.2rem;
   line-height: 1;
   color: rgba(21,32,42,0.12);
 }
 .agota-quote p {
-  margin: 0;
+  margin: 16px 0 0;
   max-width: 720px;
   font-size: clamp(1.45rem, 2.4vw, 2.35rem);
   line-height: 1.2;
 }
-.agota-quote > span {
+.agota-quote .quote-attribution {
   display: block;
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: 9px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -530,8 +537,9 @@ button { font: inherit; }
   .agota-hero-image { max-width: 420px; }
   .agota-hero-copy { max-width: 620px; }
   .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .agota-quote { padding-left: 78px; padding-right: 28px; }
-  .agota-page .quote-mark { left: 24px; }
+  .agota-quote { padding-left: 28px; padding-right: 28px; }
+  .agota-quote .quote-content { padding-left: 34px; }
+  .agota-page .quote-mark { left: 0; }
 }
 
 @media (max-width: 640px) {
@@ -553,7 +561,8 @@ button { font: inherit; }
   .focus-card > span { margin-bottom: 22px; }
   .timeline-item { grid-template-columns: 1fr; gap: 7px; padding: 21px 0 24px; }
   .timeline-year { padding-top: 0; }
-  .agota-quote { padding: 0 18px 0 56px; }
-  .agota-page .quote-mark { left: 6px; }
+  .agota-quote { padding: 0 18px; }
+  .agota-quote .quote-content { padding-left: 30px; }
+  .agota-page .quote-mark { left: 0; }
   .agota-footer { padding: 0 18px 16px; }
 }
