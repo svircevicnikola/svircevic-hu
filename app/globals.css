@@ -258,11 +258,12 @@ button { font: inherit; }
   content: "";
   position: absolute;
   z-index: 0;
-  left: max(28px, calc((100% - 920px) / 2 + 678px));
-  right: -70px;
-  bottom: -40px;
+  left: auto;
+  right: calc((100% - 920px) / 2);
+  bottom: 0;
+  width: min(76vw, 1020px);
   height: min(68vw, 680px);
-  background: url("/images/kecskemet-townhall-line.svg") no-repeat left bottom / contain;
+  background: url("/images/kecskemet-townhall-line.svg") no-repeat right bottom / contain;
   opacity: 0.14;
   mix-blend-mode: multiply;
   pointer-events: none;
