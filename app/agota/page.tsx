@@ -185,9 +185,8 @@ export default function AgotaPage() {
         <div className="section-index">04</div>
         <div className="quote-content">
           <span className="section-kicker">HITVALLÁS</span>
-          <div className="quote-mark" aria-hidden="true">“</div>
-          <p>
-            A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.
+          <p className="quote-text">
+            „A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.”
           </p>
         </div>
       </section>
