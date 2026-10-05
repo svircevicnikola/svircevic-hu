@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 const DESIGN_WIDTH = 1440;
 
 const cards = [
-  { name: <>DR. SVIRCEVIC<br />NIKOLA</>, subtitle: "Személyes oldal · Szakmai pálya", image: "/images/nikola.jpg", href: "/nikola", alt: "Dr. Svircevic Nikola", ariaLabel: "Dr. Svircevic Nikola – megnyitás" },
-  { name: <>DR. SVIRCEVIC-BODNÁR<br />ÁGOTA</>, subtitle: "Személyes oldal · Szakmai pálya", image: "/images/agota.jpg", href: "/agota", alt: "Dr. Svircevic-Bodnár Ágota", ariaLabel: "Dr. Svircevic-Bodnár Ágota – megnyitás" },
+  { name: <>DR. SVIRCEVIC<br />NIKOLA</>, subtitle: "Személyes oldal · Szakmai pálya", image: "/images/nikola.jpg", href: "https://nikola.svircevic.hu", alt: "Dr. Svircevic Nikola", ariaLabel: "Dr. Svircevic Nikola – megnyitás" },
+  { name: <>DR. SVIRCEVIC-BODNÁR<br />ÁGOTA</>, subtitle: "Személyes oldal · Szakmai pálya", image: "/images/agota.jpg", href: "https://agota.bodnar.svircevic.hu", alt: "Dr. Svircevic-Bodnár Ágota", ariaLabel: "Dr. Svircevic-Bodnár Ágota – megnyitás" },
   { name: <>SVIRCEVIC<br />NIKOLA STEVAN</>, subtitle: "Gaming · Tech · Közösség", image: "/images/nikola-stevan.jpg", href: "https://nikola.stevan.svircevic.hu", alt: "Svircevic Nikola Stevan", ariaLabel: "Svircevic Nikola Stevan – megnyitás" },
   { name: <>CSALÁDUNK</>, subtitle: "Otthon · Élmények · Emlékek", image: "/images/family.jpg", href: "https://family.svircevic.hu", alt: "Svircevic család", ariaLabel: "Családunk – megnyitás" },
 ] as const;
