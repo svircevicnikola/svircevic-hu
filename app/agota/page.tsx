@@ -117,8 +117,8 @@ export default function AgotaPage() {
         <div className="section-grid focus-head">
           <div className="section-index">02</div>
           <div>
-            <span className="section-kicker">SZAKMAI FÓKUSZ</span>
-            <h2>Területek, ahol a jog és a szervezet találkozik.</h2>
+            <span className="section-kicker">FÓKUSZ</span>
+            <h2>Szakmai munkám fókusza</h2>
           </div>
         </div>
         <div className="focus-grid">
