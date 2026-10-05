@@ -46,7 +46,7 @@ export default function AgotaPage() {
   return (
     <main className="agota-page">
       <header className="agota-topbar">
-        <a className="back-link" href="/" aria-label="Vissza a főoldalra">
+        <a className="back-link" href="https://svircevic.hu" aria-label="Vissza a főoldalra">
           <span aria-hidden="true">←</span> Főoldal
         </a>
         <div className="language-switch" aria-label="Nyelvválasztó">
@@ -151,7 +151,7 @@ export default function AgotaPage() {
       </section>
 
       <footer className="agota-footer">
-        <a href="/">SVIRCEVIC.HU</a>
+        <a href="https://svircevic.hu">SVIRCEVIC.HU</a>
         <span>KECSKEMÉT · HUNGARY</span>
       </footer>
     </main>
