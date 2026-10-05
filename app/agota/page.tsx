@@ -59,13 +59,40 @@ const timeline = [
 ];
 
 const focusAreas = [
-  "önkormányzati igazgatás",
-  "jogi és szervezeti ügyek",
-  "vagyongazdálkodás",
-  "lakás- és ingatlangazdálkodás",
-  "szervezeti működés és koordináció",
-  "választási igazgatás",
-];
+  { label: "önkormányzati igazgatás", icon: "building" },
+  { label: "szervezetfejlesztés", icon: "structure" },
+  { label: "vagyongazdálkodás", icon: "property" },
+  { label: "lakás- és ingatlangazdálkodás", icon: "home" },
+  { label: "választási igazgatás", icon: "vote" },
+  { label: "koordináció és kontrolling", icon: "coordination" },
+] as const;
+
+function FocusIcon({ kind }: { kind: "building" | "structure" | "property" | "home" | "vote" | "coordination" }) {
+  const common = {
+    width: 22,
+    height: 22,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg",
+  } as const;
+
+  if (kind === "building") {
+    return <svg {...common}><path d="M4 20V5h16v15M8 8h2M14 8h2M8 12h2M14 12h2M8 16h2M14 16h2M10 20v-4h4v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+  if (kind === "structure") {
+    return <svg {...common}><rect x="9" y="3" width="6" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/><rect x="3" y="16" width="6" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/><rect x="15" y="16" width="6" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/><path d="M12 8v4M6 16v-4h12v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+  if (kind === "property") {
+    return <svg {...common}><path d="m4 10 8-6 8 6M6 9v10h12V9M9 19v-6h6v6M4 21h16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+  if (kind === "home") {
+    return <svg {...common}><path d="m4 11 8-7 8 7v9H4v-9ZM9 20v-5h6v5M8 11h8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+  if (kind === "vote") {
+    return <svg {...common}><path d="M6 4h12v5H6zM4 9h16v11H4zM8 14l2 2 5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+  }
+  return <svg {...common}><circle cx="6" cy="6" r="2.2" stroke="currentColor" strokeWidth="1.4"/><circle cx="18" cy="6" r="2.2" stroke="currentColor" strokeWidth="1.4"/><circle cx="12" cy="18" r="2.2" stroke="currentColor" strokeWidth="1.4"/><path d="M8.2 6h7.6M7.3 7.7l3.3 8.1M16.7 7.7l-3.3 8.1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>;
+}
 
 export default function AgotaPage() {
   return (
@@ -122,10 +149,12 @@ export default function AgotaPage() {
           </div>
         </div>
         <div className="focus-grid">
-          {focusAreas.map((area, index) => (
-            <article className="focus-card" key={area}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{area}</h3>
+          {focusAreas.map((area) => (
+            <article className="focus-card" key={area.label}>
+              <span className="focus-icon" aria-hidden="true">
+                <FocusIcon kind={area.icon} />
+              </span>
+              <h3>{area.label}</h3>
             </article>
           ))}
         </div>
