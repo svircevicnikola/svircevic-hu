@@ -96,7 +96,7 @@ function FocusIcon({ kind }: { kind: "building" | "structure" | "property" | "ho
 
 export default function AgotaEnglishPage() {
   return (
-    <main className="agota-page">
+    <main className="agota-page agota-page-en">
       <header className="agota-topbar">
         <a className="back-link" href="https://svircevic.hu" aria-label="Back to homepage">
           <span aria-hidden="true">←</span> Home
