@@ -368,6 +368,19 @@ button { font: inherit; }
   grid-template-columns: 46px minmax(0, 1fr);
   gap: 22px;
 }
+.agota-intro,
+.focus-section,
+.timeline-section,
+.agota-quote,
+.agota-contact {
+  width: 100%;
+}
+.timeline-section > .section-grid {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .section-index {
   padding-top: 6px;
   font-size: 9px;
