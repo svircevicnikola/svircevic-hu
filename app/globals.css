@@ -391,6 +391,14 @@ button { font: inherit; }
   margin-top: 92px;
   align-items: start;
 }
+.agota-intro .section-grid {
+  /* Keep the chapter heading in the numbered content column,
+     but pull the introductory copy back to the page text edge. */
+}
+.agota-intro > div:last-child p {
+  margin-left: -68px;
+  max-width: 828px;
+}
 .section-grid h2 {
   margin: 8px 0 18px;
   max-width: 760px;
@@ -566,6 +574,7 @@ button { font: inherit; }
   .timeline-section,
   .agota-quote,
   .agota-contact { margin-top: 82px; }
+  .agota-intro > div:last-child p { margin-left: 0; max-width: 760px; }
   .focus-grid { grid-template-columns: 1fr; margin-top: 28px; }
   .focus-card { min-height: 118px; }
   .focus-card > span { margin-bottom: 22px; }
