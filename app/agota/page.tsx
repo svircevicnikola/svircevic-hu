@@ -94,7 +94,7 @@ export default function AgotaPage() {
           </h1>
           <p className="hero-role">Jogász · aljegyző · Kecskemét</p>
           <p className="hero-lead">
-            A jogi szakmai pálya, az önkormányzati igazgatás és a szervezeti vezetés metszetében szerzett tapasztalat.
+            Jogászként és közigazgatási szakemberként a jogi, szervezési, vagyongazdálkodási és beszerzési területeken szerzett tapasztalataimat hasznosítom a helyi önkormányzati működés támogatásában.
           </p>
           <a className="linkedin-link" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
             LinkedIn profil <span aria-hidden="true">↗</span>
