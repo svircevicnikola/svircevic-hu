@@ -106,12 +106,12 @@ export default function AgotaPage() {
         <div className="section-index">01</div>
         <div>
           <span className="section-kicker">BEMUTATKOZÁS</span>
-          <h2>Jogászi szemlélet, közszolgálati tapasztalat.</h2>
+          <h2>Jog, közigazgatás, szervezet</h2>
           <p>
-            Dr. Svircevic-Bodnár Ágota szakmai pályája a jogi végzettségre épülő önkormányzati munkától a szervezeti és vezetői feladatokig ível. Pályája során a jogi tudás, az önkormányzati működés, a vagyongazdálkodás és a hivatali szervezés területei kapcsolódtak össze.
+            Szakmai pályám középpontjában a jogi és közigazgatási munka áll, amelyhez az évek során szervezési, vagyongazdálkodási és beszerzési feladatok is kapcsolódtak.
           </p>
           <p>
-            Kecskeméti munkájának fontos eleme a jogszerű, kiszámítható és együttműködésre épülő hivatali működés támogatása. Jelenleg a Kecskeméti Polgármesteri Hivatal aljegyzőjeként dolgozik.
+            A különböző munkakörökben szerzett tapasztalatok ma is a hivatali működés mindennapi feladataiban kapcsolódnak össze.
           </p>
         </div>
       </section>
