@@ -7,29 +7,54 @@ export const metadata: Metadata = {
 
 const timeline = [
   {
-    year: "2006",
-    title: "Jogi diploma",
-    text: "A Szegedi Tudományegyetem Állam- és Jogtudományi Karán szerzett jogi diplomát.",
-  },
-  {
-    year: "2011",
-    title: "Jogi szakvizsga",
-    text: "A jogi szakvizsga megszerzésével a klasszikus jogászi pályán szerzett képzettsége teljessé vált.",
-  },
-  {
-    year: "2010-es évek",
-    title: "Önkormányzati és vagyonkezelési tapasztalat",
-    text: "Kecskeméten önkormányzati munkakörökben, többek között vagyonkezelési és lakásgazdálkodási területen szerzett szakmai tapasztalatot.",
-  },
-  {
-    year: "2020–2022",
-    title: "Jogi és szervezeti vezetői feladatok",
-    text: "A Kecskeméti Polgármesteri Hivatalban a Jogi Osztály, majd a Szervezési és Jogi Iroda vezetőjeként dolgozott.",
-  },
-  {
-    year: "2022–",
+    year: "2022.07 – jelenleg",
     title: "Aljegyző",
-    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatalának aljegyzőjeként vesz részt a hivatal szakmai és szervezeti működésében.",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2021.08 – 2022.06",
+    title: "Irodavezető, Szervezési és Jogi Iroda · jogtanácsos",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2020.03 – 2021.07",
+    title: "Osztályvezető, Jogi Osztály · jogtanácsos",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2018.06 – 2020.03",
+    title: "Irodavezető, Vagyongazdálkodási és Beszerzési Iroda",
+    text: "Neumann János Egyetem, Kecskemét.",
+  },
+  {
+    year: "2018.02 – 2018.05",
+    title: "Vagyongazdálkodási referens",
+    text: "Neumann János Egyetem, Kecskemét.",
+  },
+  {
+    year: "2014.11 – 2018.02",
+    title: "Osztályvezető, Bérlakás- és társasházkezelési Osztály",
+    text: "KIK-FOR Kft., Kecskemét.",
+  },
+  {
+    year: "2014.03 – 2014.11",
+    title: "Csoportvezető, Jogi Osztály · Vagyongazdálkodási Csoport",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2012.04 – 2014.03",
+    title: "Csoportvezető, Jogi Osztály · Lakás Csoport",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2008.05 – 2012.04",
+    title: "Vagyongazdálkodási ügyintéző",
+    text: "Kecskemét Megyei Jogú Város Polgármesteri Hivatala.",
+  },
+  {
+    year: "2006.09 – 2008.05",
+    title: "Jogász",
+    text: "Nagykőrös Város Polgármesteri Hivatala.",
   },
 ];
 
