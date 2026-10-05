@@ -497,16 +497,7 @@ button { font: inherit; }
   position: relative;
   padding-left: 0;
 }
-.agota-page .quote-mark {
-  position: absolute;
-  left: -72px;
-  top: -8px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 4.2rem;
-  line-height: 1;
-  color: rgba(21,32,42,0.14);
-}
-.agota-quote p {
+.agota-quote .quote-text {
   margin: 16px 0 0;
   max-width: 720px;
   font-family: Georgia, "Times New Roman", serif;
