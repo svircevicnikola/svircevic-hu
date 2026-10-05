@@ -432,7 +432,7 @@ button { font: inherit; }
   width: 235px;
   height: 355px;
   overflow: hidden;
-  background: transparent;
+  background: var(--paper);
 }
 .agota-intro-image-secondary img {
   display: block;
@@ -440,11 +440,11 @@ button { font: inherit; }
   height: 108%;
   object-fit: cover;
   object-position: center top;
-  filter: saturate(0.82) sepia(0.03) brightness(1.06);
-  opacity: 0.94;
+  filter: grayscale(0.55) sepia(0.08) brightness(1.15) contrast(0.96);
+  opacity: 0.92;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
-  mask-image: radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,0.78) 72%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0,0,0,0.72) 63%, transparent 87%);
+  mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0,0,0,0.72) 63%, transparent 87%);
 }
 .section-grid h2 {
   margin: 8px 0 18px;
