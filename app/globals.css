@@ -456,7 +456,7 @@ button { font: inherit; }
 .agota-page-en .agota-intro-image-secondary img {
   filter: brightness(1.015);
 }
-.agota-intro h2 {
+.agota-intro.section-grid h2 {
   margin-bottom: 30px;
 }
 .section-grid h2 {
