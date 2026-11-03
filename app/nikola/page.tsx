@@ -9,31 +9,11 @@ const career = [
   { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelemkezelési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
 ];
 const areas = [
-  {
-    title: ["TERÜLETI KÖZIGAZGATÁS", "ÖNKORMÁNYZATI MŰKÖDÉS"],
-    image: "https://images.unsplash.com/photo-1736544186338-085acc2b8299?auto=format&fit=crop&w=1200&h=600&q=85",
-    alt: "Városháza monumentális épülete",
-  },
-  {
-    title: ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"],
-    image: "https://images.unsplash.com/photo-1764449321624-913ca52646c6?auto=format&fit=crop&w=1200&h=600&q=85",
-    alt: "Hídépítési és közlekedési infrastruktúra-fejlesztés",
-  },
-  {
-    title: ["KÖZBESZERZÉSI", "ELJÁRÁSOK"],
-    image: "https://images.unsplash.com/photo-1764231467852-b609a742e082?auto=format&fit=crop&w=1200&h=600&q=85",
-    alt: "Szerződés és hivatalos dokumentum aláírása",
-  },
-  {
-    title: ["ADATVÉDELEM", "INFORMÁCIÓBIZTONSÁG"],
-    image: "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=1200&h=600&q=85",
-    alt: "Szervertermek és digitális infrastruktúra",
-  },
-  {
-    title: ["AI GOVERNANCE", "DIGITALIZÁLT SZOLGÁLTATÁSOK"],
-    image: "https://images.unsplash.com/photo-1768224656445-33d078c250b7?auto=format&fit=crop&w=1200&h=600&q=85",
-    alt: "Digitális adatmegjelenítés és mesterséges intelligenciához kapcsolódó technológia",
-  },
+  { title: ["TERÜLETI KÖZIGAZGATÁS", "ÖNKORMÁNYZATI MŰKÖDÉS"], icon: "administration" },
+  { title: ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"], icon: "projects" },
+  { title: ["KÖZBESZERZÉSI", "ELJÁRÁSOK"], icon: "procurement" },
+  { title: ["ADATVÉDELEM", "INFORMÁCIÓBIZTONSÁG"], icon: "privacy" },
+  { title: ["AI GOVERNANCE", "DIGITALIZÁLT SZOLGÁLTATÁSOK"], icon: "ai" },
 ] as const;
 
 export default function NikolaPage() {
@@ -44,12 +24,20 @@ export default function NikolaPage() {
       <section className="expertise-strip" aria-label="Szakmai fókusz"><SkillItem kind="document" top="KÖZIGAZGATÁSI" bottom="TAPASZTALAT" /><SkillItem kind="book" top="JOGI TANÁCSADÁS" bottom="PERES KÉPVISELET" /><SkillItem kind="handshake" top="KÖZBESZERZÉS" bottom="ÉS ELLENŐRZÉS" /><SkillItem kind="people" top="SZERVEZETVEZETÉS" bottom="ÉS -FEJLESZTÉS" /><SkillItem kind="layers" top="PÁLYÁZATÉRTÉKELÉS" bottom="PROJEKTMENEDZSMENT" /></section>
       <section className="about-section" id="rolam"><div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Vezetői gyakorlatomat települési jegyzőként, nonprofit társaság ügyvezetőjeként és megyei aljegyzőként szereztem. 2020 óta kamarai jogtanácsosként is tevékenykedem.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><p>Jelenleg munkahelyi MI-rendszer alkalmazását vizsgáló pilot programot felügyelek. A program célja az adatgyűjtés és -strukturálás, valamint a kimutatások és elemzések elkészítésének támogatása.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="4" label="év projektértékelői tapasztalat" /><Stat number="2" label="év cégvezetői tapasztalat" /></div></div><div className="about-photo"><img src="/images/nikola-conference-original.jpg" alt="Dr. Svircevic Nikola" /></div></section>
       <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI FÓKUSZ" dark /><div className="areas-grid">{areas.map((area) => <article key={area.title[0]}><div className="area-image"><img src={area.image} alt={area.alt} loading="lazy" decoding="async" /></div><h3><span>{area.title[0]}</span><span>{area.title[1]}</span></h3></article>)}</div></section>
+      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI FÓKUSZ" dark /><div className="areas-grid">{areas.map((area) => <article key={area.title[0]}><div className="area-image"><ExpertiseIcon kind={area.icon} /></div><h3><span>{area.title[0]}</span><span>{area.title[1]}</span></h3></article>)}</div></section>
       <footer className="nikola-footer" id="kapcsolat"><span><a className="footer-home" href="https://svircevic.hu">← VISSZA A FŐOLDALRA</a><span className="footer-name">DR. SVIRCEVIC NIKOLA</span></span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><a className="footer-linkedin" id="publikaciok" href="https://www.linkedin.com/in/nikola-svircevic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profil">in</a></footer>
     </main>
   </div>;
 }
 function SectionTitle({ title, dark = false }: { title: string; dark?: boolean }) { return <div className={`section-title${dark ? " dark" : ""}`}><h2>{title}</h2><span /></div>; }
 function Stat({ number, label }: { number: string; label: string }) { return <div className="stat"><strong>{number}</strong><span>{label}</span></div>; }
+function ExpertiseIcon({ kind }: { kind: "administration" | "projects" | "procurement" | "privacy" | "ai" }) {
+  const common = { viewBox: "0 0 64 64", fill: "none", xmlns: "http://www.w3.org/2000/svg", className: "expertise-icon", "aria-hidden": true } as const;
+  if (kind === "administration") return <svg {...common}><path d="M8 23 32 10l24 13H8Z M12 27h40 M15 29v22m11-22v22m12-22v22m11-22v22 M10 54h44" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><path d="M5 58h54" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>;
+  if (kind === "projects") return <svg {...common}><circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="1.8" strokeDasharray="2.6 4.2" /><circle cx="32" cy="32" r="13" stroke="currentColor" strokeWidth="1.8" /><path d="m25 33 5 5 10-12" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+  if (kind === "procurement") return <svg {...common}><path d="M15 11h25l10 10v32H15V11Z M40 11v11h10 M22 31h20 M22 38h13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><path d="m34 47 11-11 5 5-11 11-7 2 2-7Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /></svg>;
+  if (kind === "privacy") return <svg {...common}><path d="M32 7 53 15v15c0 13-8 22-21 28C19 52 11 43 11 30V15L32 7Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /><rect x="23" y="29" width="18" height="15" rx="3" stroke="currentColor" strokeWidth="2" /><path d="M27 29v-4a5 5 0 0 1 10 0v4m-5 7v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>;
+  return <svg {...common}><rect x="18" y="18" width="28" height="28" rx="5" stroke="currentColor" strokeWidth="2" /><path d="M24 10v8m8-8v8m8-8v8M24 46v8m8-8v8m8-8v8M10 24h8m-8 8h8m-8 8h8m28-16h8m-8 8h8m-8 8h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /><path d="M25 37V27h6.5a3.5 3.5 0 0 1 0 7H25m7 3-3-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /><path d="M39 27v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>;
+}
 function SkillItem({ kind, top, bottom }: { kind: "book" | "document" | "layers" | "handshake" | "people"; top: string; bottom: string }) { return <div><SkillIcon kind={kind} /><span className="skill-label"><strong>{top}</strong><span>{bottom}</span></span></div>; }
 function SkillIcon({ kind }: { kind: "book" | "document" | "layers" | "handshake" | "people" }) { const common = { width: 34, height: 34, viewBox: "0 0 34 34", fill: "none", xmlns: "http://www.w3.org/2000/svg", className: "skill-icon", "aria-hidden": true } as const; if (kind === "book") return <svg {...common}><path d="M5 7.5c4.5-2 8.5-1.2 12 1.7v17c-3.5-2.9-7.5-3.7-12-1.7v-17Z" stroke="currentColor" strokeWidth="1.5"/><path d="M29 7.5c-4.5-2-8.5-1.2-12 1.7v17c3.5-2.9 7.5-3.7 12-1.7v-17Z" stroke="currentColor" strokeWidth="1.5"/><path d="M17 9.2v16.9" stroke="currentColor" strokeWidth="1.5"/></svg>; if (kind === "document") return <svg {...common}><path d="M8 4h12l6 6v20H8V4Z" stroke="currentColor" strokeWidth="1.5"/><path d="M20 4v7h6M12 15h10M12 20h10M12 25h7" stroke="currentColor" strokeWidth="1.5"/></svg>; if (kind === "layers") return <svg {...common}><path d="m17 5 12 7-12 7L5 12l12-7Z" stroke="currentColor" strokeWidth="1.5"/><path d="m7 17 10 6 10-6M7 23l10 6 10-6" stroke="currentColor" strokeWidth="1.5"/></svg>; if (kind === "handshake") return <svg {...common}><path d="m4 12 6-5 6 4 4-3 10 7-5 7-7-5-4 4-10-9Z" stroke="currentColor" strokeWidth="1.5"/><path d="m10 15 4 3 3-3m-7 4 2 2m7-9 4 3" stroke="currentColor" strokeWidth="1.5"/></svg>; return <svg {...common}><circle cx="17" cy="9" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="7.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><circle cx="26.5" cy="14" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M9 29c.7-5.1 3.3-8 8-8s7.3 2.9 8 8M2 28c.4-3.5 2.2-5.5 5.5-5.5 1.2 0 2.2.3 3 .8M32 28c-.4-3.5-2.2-5.5-5.5-5.5-1.2 0-2.2 0-3 .8" stroke="currentColor" strokeWidth="1.5"/></svg>; }
