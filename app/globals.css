@@ -410,14 +410,14 @@ button { font: inherit; }
   color: rgba(21,32,42,0.36);
 }
 .agota-intro {
-  margin-top: 92px;
+  margin-top: 72px;
   align-items: start;
 }
 .agota-intro > div:last-child {
   position: relative;
 }
 .agota-intro-body {
-  margin-top: 36px;
+  margin-top: 28px;
   width: calc(100% + 68px);
   margin-left: -68px;
   box-sizing: border-box;
@@ -428,7 +428,7 @@ button { font: inherit; }
   max-width: none;
 }
 .agota-intro-body p + p {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .agota-intro-image-secondary {
   position: absolute;
@@ -470,30 +470,30 @@ button { font: inherit; }
 }
 .section-grid p {
   max-width: 760px;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.98rem;
-  line-height: 1.68;
+  line-height: 1.55;
   color: rgba(21,32,42,0.70);
 }
 
 .focus-section,
 .timeline-section {
   max-width: 920px;
-  margin: 44px auto 0;
+  margin: 36px auto 0;
   padding: 0 28px;
 }
 .focus-head { padding: 0; }
 .focus-grid {
-  margin-top: 28px;
+  margin-top: 22px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(21,32,42,0.16);
   border-left: 1px solid rgba(21,32,42,0.16);
 }
 .focus-card {
-  min-height: 118px;
-  padding: 14px 18px 15px;
+  min-height: 104px;
+  padding: 11px 16px 12px;
   border-right: 1px solid rgba(21,32,42,0.16);
   border-bottom: 1px solid rgba(21,32,42,0.16);
   background: rgba(255,255,255,0.14);
@@ -504,7 +504,7 @@ button { font: inherit; }
   justify-content: center;
   width: 22px;
   height: 22px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   color: rgba(21,32,42,0.42);
 }
 .focus-card > .focus-icon svg {
@@ -518,19 +518,19 @@ button { font: inherit; }
   max-width: 180px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.02rem;
-  line-height: 1.34;
+  line-height: 1.25;
   font-weight: 400;
 }
 
 .timeline {
-  margin-top: 22px;
+  margin-top: 18px;
   border-top: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-item {
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
-  gap: 20px;
-  padding: 17px 0 19px;
+  gap: 16px;
+  padding: 13px 0 15px;
   border-bottom: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-year {
@@ -540,7 +540,7 @@ button { font: inherit; }
   padding-top: 3px;
 }
 .timeline-content h3 {
-  margin: 0 0 8px;
+  margin: 0 0 5px;
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   font-size: 1.18rem;
@@ -548,14 +548,14 @@ button { font: inherit; }
 .timeline-content p {
   margin: 0;
   max-width: 650px;
-  line-height: 1.55;
+  line-height: 1.42;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.88rem;
   color: rgba(21,32,42,0.54);
 }
 
 .agota-quote {
-  margin-top: 48px;
+  margin-top: 38px;
   position: relative;
 }
 .agota-quote .quote-content {
@@ -620,7 +620,7 @@ button { font: inherit; }
 
 .agota-footer {
   max-width: 920px;
-  margin: 68px auto 0;
+  margin: 52px auto 0;
   padding: 0 28px 22px;
   display: flex;
   justify-content: space-between;
