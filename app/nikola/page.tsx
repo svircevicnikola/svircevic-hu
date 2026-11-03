@@ -8,17 +8,43 @@ const career = [
   { period: "2017.01. – 2020.01.", role: "Jogi szakreferens", org: "Bács-Kiskun Megyei Kormányhivatal", text: "Jogszerűségi ellenőrzés, Compliance, Vezetőtámogatás." },
   { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelemkezelési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
 ];
-const areas = [["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK"], ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"], ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS"], ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM"], ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS"]] as const;
+const areas = [
+  {
+    title: ["TERÜLETI KÖZIGAZGATÁS", "ÖNKORMÁNYZATI MŰKÖDÉS"],
+    image: "https://images.unsplash.com/photo-1736544186338-085acc2b8299?auto=format&fit=crop&w=1200&h=600&q=85",
+    alt: "Városháza monumentális épülete",
+  },
+  {
+    title: ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"],
+    image: "https://images.unsplash.com/photo-1764449321624-913ca52646c6?auto=format&fit=crop&w=1200&h=600&q=85",
+    alt: "Hídépítési és közlekedési infrastruktúra-fejlesztés",
+  },
+  {
+    title: ["KÖZBESZERZÉSI", "ELJÁRÁSOK"],
+    image: "https://images.unsplash.com/photo-1764231467852-b609a742e082?auto=format&fit=crop&w=1200&h=600&q=85",
+    alt: "Szerződés és hivatalos dokumentum aláírása",
+  },
+  {
+    title: ["ADATVÉDELEM", "INFORMÁCIÓBIZTONSÁG"],
+    image: "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=1200&h=600&q=85",
+    alt: "Szervertermek és digitális infrastruktúra",
+  },
+  {
+    title: ["AI GOVERNANCE", "DIGITALIZÁLT SZOLGÁLTATÁSOK"],
+    image: "https://images.unsplash.com/photo-1768224656445-33d078c250b7?auto=format&fit=crop&w=1200&h=600&q=85",
+    alt: "Digitális adatmegjelenítés és mesterséges intelligenciához kapcsolódó technológia",
+  },
+] as const;
 
 export default function NikolaPage() {
   return <div className="nikola-viewport">
     <main className="nikola-page">
-      <nav className="nikola-nav" aria-label="Fő navigáció"><a className="monogram" href="https://svircevic.hu">SN</a><div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI TERÜLETEK</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div><div className="nav-lang"><span /> <a href="https://nikola.svircevic.hu">HU</a> <b>|</b> <a href="https://nikola.svircevic.hu/en">EN</a></div></nav>
+      <nav className="nikola-nav" aria-label="Fő navigáció"><a className="monogram" href="https://svircevic.hu">SN</a><div className="nav-links"><a href="#rolam">RÓLAM</a><a href="#palya">PÁLYA</a><a href="#teruletek">SZAKMAI FÓKUSZ</a><a href="#publikaciok">PUBLIKÁCIÓK</a><a href="#kapcsolat">KAPCSOLAT</a></div><div className="nav-lang"><span /> <a href="https://nikola.svircevic.hu">HU</a> <b>|</b> <a href="https://nikola.svircevic.hu/en">EN</a></div></nav>
       <section className="nikola-hero"><div className="hero-photo"><img src="/images/nikola-hero2.jpg" alt="Dr. Svircevic Nikola" /></div><div className="hero-copy"><span className="eyebrow">DR.</span><h1>SVIRCEVIC<br />NIKOLA</h1><div className="gold-rule" /><div className="qualification">JOGÁSZ-KÖZGAZDÁSZ</div><p>Több mint húsz éve dolgozom jogi és közigazgatási területen. Pályám során önkormányzati, területi államigazgatási és szakértői feladatokban egyaránt szereztem tapasztalatot. Érdeklődési körömbe tartozik a hatékonyabb, jogszerűbb működési modellek kialakítása, a mesterséges intelligencia és digitális folyamatok integrációja a közigazgatásba.</p><div className="hero-actions"><a className="primary" href="#rolam">RÓLAM →</a><a className="secondary" href="#kapcsolat">KAPCSOLAT</a></div></div></section>
       <section className="expertise-strip" aria-label="Szakmai fókusz"><SkillItem kind="document" top="KÖZIGAZGATÁSI" bottom="TAPASZTALAT" /><SkillItem kind="book" top="JOGI TANÁCSADÁS" bottom="PERES KÉPVISELET" /><SkillItem kind="handshake" top="KÖZBESZERZÉS" bottom="ÉS ELLENŐRZÉS" /><SkillItem kind="people" top="SZERVEZETVEZETÉS" bottom="ÉS -FEJLESZTÉS" /><SkillItem kind="layers" top="PÁLYÁZATÉRTÉKELÉS" bottom="PROJEKTMENEDZSMENT" /></section>
       <section className="about-section" id="rolam"><div className="about-copy"><SectionTitle title="RÓLAM" /><p>Jogász-közgazdász végzettségű szakember vagyok, aki több mint húsz éve dolgozik a közigazgatás különböző szintjein. Vezetői gyakorlatomat települési jegyzőként, nonprofit társaság ügyvezetőjeként és megyei aljegyzőként szereztem. 2020 óta kamarai jogtanácsosként is tevékenykedem.</p><p>A munkám során fontosnak tartom a jogi és gazdasági szempontok együttes érvényesítését, a szabályozott, átlátható működést, valamint a projektek és fejlesztések hatékony megvalósítását.</p><p>Jelenleg munkahelyi MI-rendszer alkalmazását vizsgáló pilot programot felügyelek. A program célja az adatgyűjtés és -strukturálás, valamint a kimutatások és elemzések elkészítésének támogatása.</p><div className="stats"><Stat number="20+" label="év szakmai tapasztalat" /><Stat number="3" label="szintű közigazgatási rálátás" /><Stat number="4" label="év projektértékelői tapasztalat" /><Stat number="2" label="év cégvezetői tapasztalat" /></div></div><div className="about-photo"><img src="/images/nikola-conference-original.jpg" alt="Dr. Svircevic Nikola" /></div></section>
       <section className="career-section" id="palya"><div className="career-main"><SectionTitle title="PÁLYA" /><div className="timeline">{career.map((item) => <div className="career-item" key={`${item.period}-${item.role}`}><div className="period">{item.period}</div><div><h3>{item.role}</h3><strong>{item.org}</strong><p>{item.text}</p></div></div>)}</div></div><aside className="quote-panel" aria-label="Idézet"><div className="quote-content"><div className="quote-mark">„</div><p>A jog, a közigazgatás és a gazdasági szemlélet egymást kiegészítve adnak valódi megoldásokat a mindennapi feladatokhoz.</p><div className="gold-rule" /></div></aside></section>
-      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI TERÜLETEK" dark /><div className="areas-grid">{areas.map(([a,b]) => <article key={a}><div className="area-image" aria-hidden="true" /><h3><span>{a}</span><span>{b}</span></h3></article>)}</div></section>
+      <section className="areas-section" id="teruletek"><SectionTitle title="SZAKMAI FÓKUSZ" dark /><div className="areas-grid">{areas.map((area) => <article key={area.title[0]}><div className="area-image"><img src={area.image} alt={area.alt} loading="lazy" decoding="async" /></div><h3><span>{area.title[0]}</span><span>{area.title[1]}</span></h3></article>)}</div></section>
       <footer className="nikola-footer" id="kapcsolat"><span><a className="footer-home" href="https://svircevic.hu">← VISSZA A FŐOLDALRA</a><span className="footer-name">DR. SVIRCEVIC NIKOLA</span></span><span className="footer-rule" /><span>KECSKEMÉT</span><span>|</span><a className="footer-linkedin" id="publikaciok" href="https://www.linkedin.com/in/nikola-svircevic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profil">in</a></footer>
     </main>
   </div>;
