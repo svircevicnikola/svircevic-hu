@@ -480,20 +480,20 @@ button { font: inherit; }
 .focus-section,
 .timeline-section {
   max-width: 920px;
-  margin: 56px auto 0;
+  margin: 44px auto 0;
   padding: 0 28px;
 }
 .focus-head { padding: 0; }
 .focus-grid {
-  margin-top: 36px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(21,32,42,0.16);
   border-left: 1px solid rgba(21,32,42,0.16);
 }
 .focus-card {
-  min-height: 132px;
-  padding: 17px 18px 19px;
+  min-height: 118px;
+  padding: 14px 18px 15px;
   border-right: 1px solid rgba(21,32,42,0.16);
   border-bottom: 1px solid rgba(21,32,42,0.16);
   background: rgba(255,255,255,0.14);
@@ -504,7 +504,7 @@ button { font: inherit; }
   justify-content: center;
   width: 22px;
   height: 22px;
-  margin-bottom: 27px;
+  margin-bottom: 18px;
   color: rgba(21,32,42,0.42);
 }
 .focus-card > .focus-icon svg {
@@ -523,14 +523,14 @@ button { font: inherit; }
 }
 
 .timeline {
-  margin-top: 28px;
+  margin-top: 22px;
   border-top: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-item {
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
-  gap: 28px;
-  padding: 25px 0 28px;
+  gap: 20px;
+  padding: 17px 0 19px;
   border-bottom: 1px solid rgba(21,32,42,0.16);
 }
 .timeline-year {
@@ -555,7 +555,7 @@ button { font: inherit; }
 }
 
 .agota-quote {
-  margin-top: 64px;
+  margin-top: 48px;
   position: relative;
 }
 .agota-quote .quote-content {
@@ -620,7 +620,7 @@ button { font: inherit; }
 
 .agota-footer {
   max-width: 920px;
-  margin: 92px auto 0;
+  margin: 68px auto 0;
   padding: 0 28px 22px;
   display: flex;
   justify-content: space-between;
