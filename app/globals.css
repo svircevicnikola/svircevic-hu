@@ -260,7 +260,7 @@ button { font: inherit; }
   z-index: 0;
   left: calc((100% - 920px) / 2);
   right: calc((100% - 920px) / 2);
-  bottom: 0;
+  bottom: 120px;
   width: auto;
   height: min(68vw, 680px);
   background: url("/images/kecskemet-townhall-line.svg") no-repeat right bottom / contain;
