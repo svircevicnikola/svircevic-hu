@@ -197,8 +197,8 @@ export default function AgotaPage() {
           <span className="section-kicker">HITVALLÁS</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
-            <p className="quote-text">A szociális védelem köz- és magánintézményei, a bíróságok, a közigazgatási hatóságok és a törvényhozó szervek minden, a gyermeket érintő döntésükben a gyermek mindenek felett álló érdekét veszik figyelembe elsősorban.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
-            <span className="quote-attribution">ENSZ Gyermekjogi Egyezmény · 3. cikk (1)</span>
+            <p className="quote-text">Nincs szentebb bizalmi kötelék annál, amely a világot a gyermekekhez fűzi. Nincs fontosabb kötelesség annál, mint hogy jogaik érvényesüljenek, jólétük védett legyen, életük pedig mentes legyen a félelemtől és a nélkülözéstől, és békében nőjenek fel.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <span className="quote-attribution">Kofi Annan · UNICEF · The State of the World's Children 2000</span>
           </div>
         </div>
       </section>
