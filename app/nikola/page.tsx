@@ -6,7 +6,7 @@ const career = [
   { period: "2021.03. – 2022.09.", role: "Ügyvezető", org: "Jászkarajenői Szolgáltató Nonprofit Kft.", text: "Önkormányzati tulajdonú társaság vezetése, vállalkozás üzemeltetés, projektmenedzsment." },
   { period: "2020.03. – jelenleg", role: "Kamarai jogtanácsos", org: "Kecskeméti Ügyvédi Kamara", text: "Jogi képviselet és tanácsadás, peres képviselet." },
   { period: "2017.01. – 2020.01.", role: "Jogi szakreferens", org: "Bács-Kiskun Megyei Kormányhivatal", text: "Jogszerűségi ellenőrzés, Compliance, Vezetőtámogatás." },
-  { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelmezési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
+  { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelemkezelési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
 ];
 const areas = [["KÖZIGAZGATÁS", "ÉS ÖNKORMÁNYZATOK"], ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"], ["KÖZBESZERZÉS", "ÉS ELLENŐRZÉS"], ["JOGI TANÁCSADÁS", "ÉS JOGVÉDELEM"], ["SZERVEZÉS", "ÉS EGYÜTTMŰKÖDÉS"]] as const;
 
