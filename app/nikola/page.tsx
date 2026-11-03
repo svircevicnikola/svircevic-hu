@@ -9,11 +9,11 @@ const career = [
   { period: "2006.02. – 2016.12.", role: "Jogi referens, kérelemkezelési szakreferens", org: "Mezőgazdasági és Vidékfejlesztési Hivatal (MVH)", text: "Uniós és hazai agrártámogatások adminisztratív ellenőrzése, jogorvoslati kérelmek elbírálása." },
 ];
 const areas = [
-  { title: ["TERÜLETI KÖZIGAZGATÁS", "ÖNKORMÁNYZATI MŰKÖDÉS"], icon: "administration" },
+  { title: ["TERÜLETI KÖZIGAZGATÁS,", "ÖNKORMÁNYZATI MŰKÖDÉS"], icon: "administration" },
   { title: ["UNIÓS FORRÁSOK", "ÉS PROJEKTEK"], icon: "projects" },
   { title: ["KÖZBESZERZÉSI", "ELJÁRÁSOK"], icon: "procurement" },
-  { title: ["ADATVÉDELEM", "INFORMÁCIÓBIZTONSÁG"], icon: "privacy" },
-  { title: ["AI GOVERNANCE", "DIGITALIZÁLT SZOLGÁLTATÁSOK"], icon: "ai" },
+  { title: ["ADATVÉDELEM,", "INFORMÁCIÓBIZTONSÁG"], icon: "privacy" },
+  { title: ["AI GOVERNANCE,", "DIGITALIZÁLT SZOLGÁLTATÁSOK"], icon: "ai" },
 ] as const;
 
 export default function NikolaPage() {
