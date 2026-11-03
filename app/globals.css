@@ -417,7 +417,7 @@ button { font: inherit; }
   position: relative;
 }
 .agota-intro-body {
-  margin-top: 28px;
+  margin-top: 18px;
   width: calc(100% + 68px);
   margin-left: -68px;
   box-sizing: border-box;
@@ -432,7 +432,7 @@ button { font: inherit; }
 }
 .agota-intro-image-secondary {
   position: absolute;
-  top: 8px;
+  top: -4px;
   right: 0;
   width: 235px;
   height: 355px;
