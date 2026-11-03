@@ -197,8 +197,8 @@ export default function AgotaEnglishPage() {
           <span className="section-kicker">PRINCIPLES</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
-            <p className="quote-text">In all actions concerning children, whether undertaken by public or private social welfare institutions, courts of law, administrative authorities or legislative bodies, the best interests of the child shall be a primary consideration.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
-            <span className="quote-attribution">UN Convention on the Rights of the Child · Article 3(1)</span>
+            <p className="quote-text">There is no trust more sacred than the one the world holds with children. There is no duty more important than ensuring that their rights are respected, that their welfare is protected, that their lives are free from fear and want and that they grow up in peace.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <span className="quote-attribution">Kofi Annan · UNICEF · The State of the World's Children 2000</span>
           </div>
         </div>
       </section>
