@@ -195,7 +195,8 @@ export default function AgotaPage() {
             <span className="section-kicker">HITVALLÁS</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
-            <p className="quote-text">A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <p className="quote-text">Hol kezdődnek az egyetemes emberi jogok? Kis helyeken, az otthonunkhoz közel.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <span className="quote-attribution">Eleanor Roosevelt · 1958 · magyar fordítás</span>
           </div>
         </div>
       </section>
