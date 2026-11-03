@@ -189,17 +189,7 @@ export default function AgotaPage() {
         </div>
       </section>
 
-      <section className="agota-quote section-grid">
-        <div className="section-index">04</div>
-        <div className="quote-content">
-            <span className="section-kicker">HITVALLÁS</span>
-          <div className="quote-line">
-            <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
-            <p className="quote-text">Hol kezdődnek az egyetemes emberi jogok? Kis helyeken, az otthonunkhoz közel.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
-            <span className="quote-attribution">Eleanor Roosevelt · 1958 · magyar fordítás</span>
-          </div>
-        </div>
-      </section>
+
 
       <footer className="agota-footer">
         <a href="https://svircevic.hu">SVIRCEVIC.HU</a>
