@@ -121,7 +121,7 @@ export default function AgotaEnglishPage() {
           </h1>
           <p className="hero-role">Lawyer · Deputy Clerk · Kecskemét</p>
           <p className="hero-lead">
-            Family and professional life are both important parts of who I am. My personal and professional journey has been connected to Kecskemét at several important points. I spent my secondary school years here and returned to the city after my university studies in Szeged. I have lived here with my family ever since, and much of my professional career has also been rooted in this city.
+            Family and professional life are both important parts of who I am. My personal and professional journey has been connected to Kecskemét at several important points. I spent my secondary school years here and returned to the city after my university studies in Szeged. I have lived here with my family ever since.
           </p>
           <a className="linkedin-link" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
             LinkedIn profile <span aria-hidden="true">↗</span>
