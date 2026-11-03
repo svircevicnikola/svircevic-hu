@@ -425,6 +425,9 @@ button { font: inherit; }
   width: calc(100% - 275px);
   max-width: none;
 }
+.agota-intro-body p + p {
+  margin-top: 12px;
+}
 .agota-intro-image-secondary {
   position: absolute;
   top: 8px;
