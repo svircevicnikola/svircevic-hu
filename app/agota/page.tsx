@@ -194,7 +194,7 @@ export default function AgotaPage() {
       <section className="agota-quote section-grid">
         <div className="section-index">04</div>
         <div className="quote-content">
-          <span className="section-kicker">GYERMEKJOGOK</span>
+          <span className="section-kicker">HITVALLÁS</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
             <p className="quote-text">A szociális védelem köz- és magánintézményei, a bíróságok, a közigazgatási hatóságok és a törvényhozó szervek minden, a gyermeket érintő döntésükben a gyermek mindenek felett álló érdekét veszik figyelembe elsősorban.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
