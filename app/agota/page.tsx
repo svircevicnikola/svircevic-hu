@@ -132,7 +132,8 @@ export default function AgotaPage() {
       <section className="agota-intro section-grid">
         <div className="section-index">01</div>
         <div>
-          <h2>Jog, közigazgatás, szervezet</h2>
+            <span className="section-kicker">BEMUTATKOZÁS</span>
+          
           <div className="agota-intro-body">
             <p>
               Szakmai pályám középpontjában a közigazgatás áll, ahol a klasszikus jogi feladatok mellett a vagyongazdálkodás és az ingatlankezelés területével is foglalkoztam. Jelenleg a kecskeméti polgármesteri hivatal aljegyzőjeként dolgozom, ezt megelőzően az önkormányzati tulajdonú KIK-FOR Kft.-nél, illetve a Neumann János Egyetem Kancelláriáján szereztem vezetői és szakmai tapasztalatot, egyebek mellett beszerzési és ingatlangazdálkodási területen. Emellett rövid ideig egyetemi óraadóként agrárjogot is oktattam, valamint eseti jelleggel szakfordítói tevékenységet is végeztem.
@@ -151,7 +152,8 @@ export default function AgotaPage() {
         <div className="section-grid focus-head">
           <div className="section-index">02</div>
           <div>
-            <h2>Szakmai munkám fókuszterületei</h2>
+            <span className="section-kicker">FÓKUSZ</span>
+            
           </div>
         </div>
         <div className="focus-grid">
@@ -170,7 +172,8 @@ export default function AgotaPage() {
         <div className="section-grid">
           <div className="section-index">03</div>
           <div>
-            <h2>A pályám során szerzett tapasztalatok és fontosabb állomások</h2>
+            <span className="section-kicker">SZAKMAI PÁLYA</span>
+            
           </div>
         </div>
         <div className="timeline">
@@ -189,6 +192,7 @@ export default function AgotaPage() {
       <section className="agota-quote section-grid">
         <div className="section-index">04</div>
         <div className="quote-content">
+            <span className="section-kicker">HITVALLÁS</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
             <p className="quote-text">A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
