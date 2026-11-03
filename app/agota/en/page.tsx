@@ -121,7 +121,7 @@ export default function AgotaEnglishPage() {
           </h1>
           <p className="hero-role">Lawyer · Deputy Clerk · Kecskemét</p>
           <p className="hero-lead">
-            As a lawyer and public administration professional, I draw on my experience in legal, organisational, property management and procurement work to support local government operations.
+            Family and professional life are both important parts of who I am. My personal and professional journey has been connected to Kecskemét at several important points. I spent my secondary school years here and returned to the city after my university studies in Szeged. I have lived here with my family ever since, and much of my professional career has also been rooted in this city.
           </p>
           <a className="linkedin-link" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
             LinkedIn profile <span aria-hidden="true">↗</span>
@@ -135,9 +135,6 @@ export default function AgotaEnglishPage() {
           <span className="section-kicker">PROFILE</span>
           <h2>Law, public administration, organisation</h2>
           <div className="agota-intro-body">
-            <p>
-              Family and professional life are both important parts of who I am. My personal and professional journey has been connected to Kecskemét at several important points. I spent my secondary school years here and returned to the city after my university studies in Szeged. I have lived here with my family ever since, and much of my professional career has also been rooted in this city.
-            </p>
             <p>
               My work has primarily focused on public administration, where, alongside traditional legal duties, I have also worked in property and real estate management. I currently work as Deputy Clerk at the Mayor's Office of Kecskemét. Before this, I held professional and management roles at the municipally owned KIK-FOR Ltd. and at the Chancellery of John von Neumann University, including work in procurement and property management. I also taught agricultural law for a short time as a university lecturer and have occasionally undertaken professional translation work.
             </p>
