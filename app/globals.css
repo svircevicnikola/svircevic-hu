@@ -258,8 +258,8 @@ button { font: inherit; }
   content: "";
   position: absolute;
   z-index: 0;
-  left: calc((100% - 1040px) / 2);
-  right: calc((100% - 1040px) / 2);
+  left: calc((100% - 920px) / 2);
+  right: calc((100% - 920px) / 2);
   bottom: 0;
   width: auto;
   height: min(68vw, 680px);
@@ -382,7 +382,7 @@ button { font: inherit; }
 .linkedin-link:hover { border-color: var(--ink); }
 
 .section-grid {
-  max-width: 1040px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 28px;
   display: grid;
@@ -477,7 +477,7 @@ button { font: inherit; }
 
 .focus-section,
 .timeline-section {
-  max-width: 1040px;
+  max-width: 920px;
   margin: 56px auto 0;
   padding: 0 28px;
 }
@@ -617,7 +617,7 @@ button { font: inherit; }
 .linkedin-link.large { margin-top: 16px; }
 
 .agota-footer {
-  max-width: 1040px;
+  max-width: 920px;
   margin: 92px auto 0;
   padding: 0 28px 22px;
   display: flex;
