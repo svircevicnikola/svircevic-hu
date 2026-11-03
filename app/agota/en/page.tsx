@@ -132,7 +132,6 @@ export default function AgotaEnglishPage() {
       <section className="agota-intro section-grid">
         <div className="section-index">01</div>
         <div>
-          <span className="section-kicker">PROFILE</span>
           <h2>Law, public administration, organisation</h2>
           <div className="agota-intro-body">
             <p>
@@ -152,7 +151,6 @@ export default function AgotaEnglishPage() {
         <div className="section-grid focus-head">
           <div className="section-index">02</div>
           <div>
-            <span className="section-kicker">FOCUS</span>
             <h2>Areas of professional focus</h2>
           </div>
         </div>
@@ -172,7 +170,6 @@ export default function AgotaEnglishPage() {
         <div className="section-grid">
           <div className="section-index">03</div>
           <div>
-            <span className="section-kicker">PROFESSIONAL CAREER</span>
             <h2>Experience and key milestones throughout my career</h2>
           </div>
         </div>
@@ -192,7 +189,6 @@ export default function AgotaEnglishPage() {
       <section className="agota-quote section-grid">
         <div className="section-index">04</div>
         <div className="quote-content">
-          <span className="section-kicker">PRINCIPLES</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
             <p className="quote-text">Good public administration requires sound legal foundations, precise organisation and a spirit of cooperation and mutual attention.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
