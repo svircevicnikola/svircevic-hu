@@ -258,8 +258,8 @@ button { font: inherit; }
   content: "";
   position: absolute;
   z-index: 0;
-  left: calc((100% - 920px) / 2);
-  right: calc((100% - 920px) / 2);
+  left: calc((100% - 1040px) / 2);
+  right: calc((100% - 1040px) / 2);
   bottom: 0;
   width: auto;
   height: min(68vw, 680px);
@@ -382,7 +382,7 @@ button { font: inherit; }
 .linkedin-link:hover { border-color: var(--ink); }
 
 .section-grid {
-  max-width: 920px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 0 28px;
   display: grid;
@@ -456,6 +456,9 @@ button { font: inherit; }
 .agota-page-en .agota-intro-image-secondary img {
   filter: brightness(1.015);
 }
+.agota-intro h2 {
+  margin-bottom: 30px;
+}
 .section-grid h2 {
   margin: 8px 0 18px;
   max-width: 760px;
@@ -474,7 +477,7 @@ button { font: inherit; }
 
 .focus-section,
 .timeline-section {
-  max-width: 920px;
+  max-width: 1040px;
   margin: 56px auto 0;
   padding: 0 28px;
 }
@@ -508,6 +511,7 @@ button { font: inherit; }
   height: 22px;
 }
 .focus-card h3 {
+  color: rgba(21,32,42,0.70);
   margin: 0;
   max-width: 180px;
   font-family: Georgia, "Times New Roman", serif;
@@ -613,7 +617,7 @@ button { font: inherit; }
 .linkedin-link.large { margin-top: 16px; }
 
 .agota-footer {
-  max-width: 920px;
+  max-width: 1040px;
   margin: 92px auto 0;
   padding: 0 28px 22px;
   display: flex;
