@@ -417,6 +417,7 @@ button { font: inherit; }
   position: relative;
 }
 .agota-intro-body {
+  position: relative;
   margin-top: 18px;
   width: calc(100% + 68px);
   margin-left: -68px;
@@ -432,7 +433,8 @@ button { font: inherit; }
 }
 .agota-intro-image-secondary {
   position: absolute;
-  top: -4px;
+  top: auto;
+  bottom: 0;
   right: 0;
   width: 235px;
   height: 355px;
@@ -451,9 +453,6 @@ button { font: inherit; }
   opacity: 0.90;
   -webkit-mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 64%, transparent 88%);
   mask-image: radial-gradient(ellipse at 50% 43%, #000 46%, rgba(0,0,0,0.84) 64%, transparent 88%);
-}
-.agota-page-en .agota-intro-image-secondary {
-  top: 42px;
 }
 .agota-page-en .agota-intro-image-secondary img {
   filter: brightness(1.015);
