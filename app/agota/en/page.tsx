@@ -136,7 +136,13 @@ export default function AgotaEnglishPage() {
           <h2>Law, public administration, organisation</h2>
           <div className="agota-intro-body">
             <p>
-              My professional career has been centred on legal work and public administration, while property management and real estate management have also been a consistent part of my work. In this field, alongside my work in local government, I gained professional and leadership experience at the municipally owned KIK-FOR Ltd. and later at the Chancellery of the University of Neumann János, including in property management and procurement. Alongside my legal and public administration work, I also obtained a qualification in social sciences and economics translation, and for a short period I taught agricultural law as a university lecturer. I have also long been interested in children's rights; as a volunteer trainer in UNICEF Hungary's Wake-Up Call programme, I conduct children's rights awareness sessions in schools.
+              Family and professional life are both important parts of who I am. My personal and professional journey has been connected to Kecskemét at several important points. I spent my secondary school years here and returned to the city after my university studies in Szeged. I have lived here with my family ever since, and much of my professional career has also been rooted in this city.
+            </p>
+            <p>
+              My work has primarily focused on public administration, where, alongside traditional legal duties, I have also worked in property and real estate management. I currently work as Deputy Clerk at the Mayor's Office of Kecskemét. Before this, I held professional and management roles at the municipally owned KIK-FOR Ltd. and at the Chancellery of John von Neumann University, including work in procurement and property management. I also taught agricultural law for a short time as a university lecturer and have occasionally undertaken professional translation work.
+            </p>
+            <p>
+              Children's rights have long been an area of interest to me. As a volunteer trainer with UNICEF Hungary's Ébresztő Óra programme, I deliver children's rights awareness sessions in schools.
             </p>
             <div className="agota-intro-image-secondary">
               <img src="/images/agota-profile.jpg" alt="Dr. Ágota Svircevic-Bodnár" />
