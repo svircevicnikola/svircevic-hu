@@ -195,7 +195,8 @@ export default function AgotaEnglishPage() {
             <span className="section-kicker">PRINCIPLES</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
-            <p className="quote-text">Good public administration requires sound legal foundations, precise organisation and a spirit of cooperation and mutual attention.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <p className="quote-text">Where, after all, do universal human rights begin? In small places, close to home.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
+            <span className="quote-attribution">Eleanor Roosevelt · 1958</span>
           </div>
         </div>
       </section>
