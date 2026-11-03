@@ -121,7 +121,7 @@ export default function AgotaPage() {
           </h1>
           <p className="hero-role">Jogász · aljegyző · Kecskemét</p>
           <p className="hero-lead">
-            Jogászként és közigazgatási szakemberként a jogi, szervezési, vagyongazdálkodási és beszerzési területeken szerzett tapasztalataimat hasznosítom a helyi önkormányzati működés támogatásában.
+            A család és a hivatás egyaránt fontos része az életemnek. Személyes és szakmai utam több ponton is Kecskeméthez kapcsolódik. Középiskolás éveimet itt töltöttem, a szegedi egyetemi évek után pedig visszatértem a városba. Azóta itt élek a családommal, és a szakmai pályám is nagyrészt ehhez a városhoz kötődik.
           </p>
           <a className="linkedin-link" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
             LinkedIn profil <span aria-hidden="true">↗</span>
@@ -135,9 +135,6 @@ export default function AgotaPage() {
           <span className="section-kicker">BEMUTATKOZÁS</span>
           <h2>Jog, közigazgatás, szervezet</h2>
           <div className="agota-intro-body">
-            <p>
-              A család és a hivatás egyaránt fontos része az életemnek. Személyes és szakmai utam több ponton is Kecskeméthez kapcsolódik. Középiskolás éveimet itt töltöttem, a szegedi egyetemi évek után pedig visszatértem a városba. Azóta itt élek a családommal, és a szakmai pályám is nagyrészt ehhez a városhoz kötődik.
-            </p>
             <p>
               Szakmai pályám középpontjában a közigazgatás áll, ahol a klasszikus jogi feladatok mellett a vagyongazdálkodás és az ingatlankezelés területével is foglalkoztam. Jelenleg a kecskeméti polgármesteri hivatal aljegyzőjeként dolgozom, ezt megelőzően az önkormányzati tulajdonú KIK-FOR Kft.-nél, illetve a Neumann János Egyetem Kancelláriáján szereztem vezetői és szakmai tapasztalatot, egyebek mellett beszerzési és ingatlangazdálkodási területen. Emellett rövid ideig egyetemi óraadóként agrárjogot is oktattam, valamint eseti jelleggel szakfordítói tevékenységet is végeztem.
             </p>
