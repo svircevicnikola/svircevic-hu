@@ -194,7 +194,7 @@ export default function AgotaEnglishPage() {
       <section className="agota-quote section-grid">
         <div className="section-index">04</div>
         <div className="quote-content">
-          <span className="section-kicker">CHILDREN'S RIGHTS</span>
+          <span className="section-kicker">PRINCIPLES</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
             <p className="quote-text">In all actions concerning children, whether undertaken by public or private social welfare institutions, courts of law, administrative authorities or legislative bodies, the best interests of the child shall be a primary consideration.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
