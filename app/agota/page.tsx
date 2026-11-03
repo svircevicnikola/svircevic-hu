@@ -132,7 +132,6 @@ export default function AgotaPage() {
       <section className="agota-intro section-grid">
         <div className="section-index">01</div>
         <div>
-          <span className="section-kicker">BEMUTATKOZÁS</span>
           <h2>Jog, közigazgatás, szervezet</h2>
           <div className="agota-intro-body">
             <p>
@@ -152,7 +151,6 @@ export default function AgotaPage() {
         <div className="section-grid focus-head">
           <div className="section-index">02</div>
           <div>
-            <span className="section-kicker">FÓKUSZ</span>
             <h2>Szakmai munkám fókuszterületei</h2>
           </div>
         </div>
@@ -172,7 +170,6 @@ export default function AgotaPage() {
         <div className="section-grid">
           <div className="section-index">03</div>
           <div>
-            <span className="section-kicker">SZAKMAI PÁLYA</span>
             <h2>A pályám során szerzett tapasztalatok és fontosabb állomások</h2>
           </div>
         </div>
@@ -192,7 +189,6 @@ export default function AgotaPage() {
       <section className="agota-quote section-grid">
         <div className="section-index">04</div>
         <div className="quote-content">
-          <span className="section-kicker">HITVALLÁS</span>
           <div className="quote-line">
             <span className="quote-mark quote-mark-open" aria-hidden="true">„</span>
             <p className="quote-text">A jó hivatali működéshez egyszerre van szükség biztos jogi alapokra, pontos szervezésre és egymásra figyelő együttműködésre.<span className="quote-mark quote-mark-close" aria-hidden="true">”</span></p>
