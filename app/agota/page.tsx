@@ -121,7 +121,7 @@ export default function AgotaPage() {
           </h1>
           <p className="hero-role">Jogász · aljegyző · Kecskemét</p>
           <p className="hero-lead">
-            A család és a hivatás egyaránt fontos része az életemnek. Személyes és szakmai utam több ponton is Kecskeméthez kapcsolódik. Középiskolás éveimet itt töltöttem, a szegedi egyetemi évek után pedig visszatértem a városba. Azóta itt élek a családommal, és a szakmai pályám is nagyrészt ehhez a városhoz kötődik.
+            A család és a hivatás egyaránt fontos része az életemnek. Személyes és szakmai utam több ponton is Kecskeméthez kapcsolódik. Középiskolás éveimet itt töltöttem, a szegedi egyetemi évek után pedig visszatértem a városba. Azóta itt élek a családommal.
           </p>
           <a className="linkedin-link" href="https://www.linkedin.com/in/agota-svircevic-bodnar/" target="_blank" rel="noreferrer">
             LinkedIn profil <span aria-hidden="true">↗</span>
