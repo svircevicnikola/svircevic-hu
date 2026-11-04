@@ -4,6 +4,16 @@ import { useEffect, useState } from "react";
 import "./stevan.css";
 
 type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess" | "code" | "hiking";
+type GamePanel = "games" | "highlights" | "setup";
+
+const robloxGames = [
+  { title: "Forsaken Combat", number: "01 / 06" },
+  { title: "Forsaken", number: "02 / 06" },
+  { title: "RIVALS", number: "03 / 06" },
+  { title: "The Backrooms With Guns", number: "04 / 06" },
+  { title: "99 Nights in the Forest", number: "05 / 06" },
+  { title: "Last: Memories", number: "06 / 06" }
+] as const;
 
 const contactChannels = [
   { id: "messenger", label: "Messenger", kind: "PROFIL / KAPCSOLAT", hint: "Messenger-profil vagy elérési link" },
@@ -133,9 +143,67 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   );
 }
 
+
+function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => void }) {
+  return (
+    <div className="stevan-game-expansion" id="stevan-game-expansion" key={panel}>
+      <div className="stevan-game-expansion-top">
+        <span>{panel === "games" ? "ROBLOX / PLAYER PROFILE" : panel === "highlights" ? "PLAYER MODE / HIGHLIGHTS" : "PLAYER MODE / SETUP"}</span>
+        <button type="button" onClick={onClose} aria-label="Tartalom bezárása">CLOSE ×</button>
+      </div>
+
+      {panel === "games" ? (
+        <>
+          <div className="stevan-roblox-profile">
+            <img src="/images/team-nikola-roblox-avatar.webp" alt="TeamNikola Roblox-avatárja" />
+            <div className="stevan-roblox-player-copy">
+              <span>ROBLOX PLAYER</span>
+              <h3>TeamNikola</h3>
+              <p>@snikola32</p>
+            </div>
+            <a href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">VIEW ROBLOX PROFILE <span>↗</span></a>
+          </div>
+
+          <div className="stevan-roblox-games-heading">
+            <div><span className="stevan-eyebrow">RECENTLY PLAYED</span><h3>GAMES IN THE <b>MIX.</b></h3></div>
+            <span>SELECTED FROM ROBLOX CONTINUE</span>
+          </div>
+
+          <div className="stevan-roblox-games-grid">
+            {robloxGames.map((game, index) => (
+              <article className="stevan-roblox-game-card" key={game.title}>
+                <div className="stevan-roblox-game-cover" style={{ backgroundPosition: `${index * 20}% center` }} />
+                <div className="stevan-roblox-game-info">
+                  <span>{game.number} · ROBLOX</span>
+                  <h4>{game.title}</h4>
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      ) : panel === "highlights" ? (
+        <div className="stevan-game-empty">
+          <span>02 / GAMEPLAY HIGHLIGHTS</span>
+          <h3>CLIPS. MOMENTS. WINS.</h3>
+          <p>Videók, klipek és emlékezetes játékpillanatok helye.</p>
+          <small>HIGHLIGHTS CAN BE ADDED HERE</small>
+        </div>
+      ) : (
+        <div className="stevan-game-empty">
+          <span>03 / GAMING SETUP</span>
+          <h3>THE PLAYER STATION.</h3>
+          <p>Eszközök, perifériák és a saját játékállomás bemutatása.</p>
+          <small>SETUP DETAILS CAN BE ADDED HERE</small>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function NikolaStevanPage() {
   const [activeInterest, setActiveInterest] = useState<Interest | null>(null);
   const [activeContact, setActiveContact] = useState<ContactId | null>(null);
+  const [activeGamePanel, setActiveGamePanel] = useState<GamePanel | null>(null);
 
   return (
     <main className="stevan-site">
@@ -197,21 +265,22 @@ export default function NikolaStevanPage() {
             <div className="stevan-feature-bottom"><span>FOCUS MODE</span><span>GAME ON <i>↗</i></span></div>
           </article>
           <div className="stevan-game-cards">
-            <article className="stevan-game-card">
-              <span className="stevan-card-index">A / 01</span><div className="stevan-game-card-icon">▤</div>
-              <div><h3>KEDVENC JÁTÉKOK</h3><p>A fő játékok, kedvenc címek és játékprofilok helye.</p></div><span className="stevan-card-arrow">↗</span>
-            </article>
-            <article className="stevan-game-card">
-              <span className="stevan-card-index">B / 02</span><div className="stevan-game-card-icon">▶</div>
-              <div><h3>GAMEPLAY HIGHLIGHTS</h3><p>Videók, klipek és emlékezetes játékpillanatok.</p></div><span className="stevan-card-arrow">↗</span>
-            </article>
-            <article className="stevan-game-card">
-              <span className="stevan-card-index">C / 03</span><div className="stevan-game-card-icon">⌘</div>
-              <div><h3>GAMING SETUP</h3><p>Eszközök, perifériák és a saját játékállomás.</p></div><span className="stevan-card-arrow">↗</span>
-            </article>
+            <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "games" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "games" ? null : "games")} aria-expanded={activeGamePanel === "games"} aria-controls="stevan-game-expansion">
+              <span className="stevan-card-index">A / 01</span><span className="stevan-game-card-icon">▤</span>
+              <span className="stevan-game-card-copy"><h3>GAMES IN THE MIX</h3><p>Roblox-játékok, amelyek mostanában képben vannak.</p></span><span className="stevan-card-arrow">↗</span>
+            </button>
+            <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "highlights" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "highlights" ? null : "highlights")} aria-expanded={activeGamePanel === "highlights"} aria-controls="stevan-game-expansion">
+              <span className="stevan-card-index">B / 02</span><span className="stevan-game-card-icon">▶</span>
+              <span className="stevan-game-card-copy"><h3>GAMEPLAY HIGHLIGHTS</h3><p>Videók, klipek és emlékezetes játékpillanatok.</p></span><span className="stevan-card-arrow">↗</span>
+            </button>
+            <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "setup" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "setup" ? null : "setup")} aria-expanded={activeGamePanel === "setup"} aria-controls="stevan-game-expansion">
+              <span className="stevan-card-index">C / 03</span><span className="stevan-game-card-icon">⌘</span>
+              <span className="stevan-game-card-copy"><h3>GAMING SETUP</h3><p>Eszközök, perifériák és a saját játékállomás.</p></span><span className="stevan-card-arrow">↗</span>
+            </button>
           </div>
         </div>
         <div className="stevan-game-note"><span className="stevan-status-dot" /> A JÁTÉKOK, PROFILOK ÉS VIDEÓK FELTÖLTÉSE KÖVETKEZIK <span className="stevan-game-note-line" /></div>
+        {activeGamePanel && <GameExpansion panel={activeGamePanel} onClose={() => setActiveGamePanel(null)} />}
       </section>
 
       <section className="stevan-interests" id="interests">
