@@ -868,15 +868,17 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   padding:0 0 12px;
 }
 .stevan-mix-player > img.stevan-mix-player-logo {
-  width:176px;
-  height:138px;
+  width:190px;
+  height:150px;
   max-width:100%;
-  margin:-3px auto -5px;
+  margin:-8px auto -13px;
   object-fit:contain;
   object-position:center;
-  -webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 56%,rgba(0,0,0,.92) 70%,rgba(0,0,0,.42) 87%,transparent 100%);
-  mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 56%,rgba(0,0,0,.92) 70%,rgba(0,0,0,.42) 87%,transparent 100%);
-  filter:drop-shadow(0 0 13px rgba(46,213,207,.16));
+  /* A fekete háttér screen keveréssel eltűnik, a szélek több lépcsőben futnak el. */
+  mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(ellipse 78% 76% at 50% 50%,#000 48%,rgba(0,0,0,.98) 64%,rgba(0,0,0,.76) 76%,rgba(0,0,0,.34) 89%,transparent 100%);
+  mask-image:radial-gradient(ellipse 78% 76% at 50% 50%,#000 48%,rgba(0,0,0,.98) 64%,rgba(0,0,0,.76) 76%,rgba(0,0,0,.34) 89%,transparent 100%);
+  filter:drop-shadow(0 0 10px rgba(46,213,207,.23));
 }
 .stevan-mix-online-dot {
   top:111px;
@@ -885,14 +887,14 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 
 /* Calm the Roblox cover without changing its source or obscuring the player avatar */
 .stevan-roblox-hero-background {
-  object-position:center 48%;
-  filter:saturate(.48) brightness(.62) contrast(.9) blur(.7px);
+  object-position:center 52%;
+  filter:saturate(.72) brightness(.76) contrast(.94);
   transform:scale(1.025);
 }
 .stevan-roblox-hero-shade {
   background:
-    linear-gradient(90deg,rgba(2,13,20,.76),rgba(2,13,20,.56) 48%,rgba(2,13,20,.78)),
-    linear-gradient(0deg,rgba(2,10,14,.68),rgba(2,10,14,.16) 72%);
+    linear-gradient(90deg,rgba(2,13,20,.55),rgba(2,13,20,.18) 48%,rgba(2,13,20,.48)),
+    linear-gradient(0deg,rgba(2,10,14,.42),rgba(2,10,14,.04) 72%);
 }
 
 /* Softer, more atmospheric concealment for Xbox and Steam figures */
@@ -901,11 +903,14 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 .stevan-steam-metric b {
   color:transparent!important;
   -webkit-text-fill-color:transparent;
+  color:rgba(235,246,242,.24)!important;
+  -webkit-text-fill-color:rgba(235,246,242,.24);
   text-shadow:
-    0 0 2px rgba(242,246,242,.42),
-    0 0 7px rgba(75,205,197,.16);
-  filter:blur(2.1px);
-  opacity:.78;
+    0 0 3px rgba(242,246,242,.28),
+    0 0 9px rgba(75,205,197,.18),
+    0 0 16px rgba(75,205,197,.10);
+  filter:blur(3.4px);
+  opacity:.68;
   user-select:none;
 }
 @media (max-width:900px) {
@@ -913,9 +918,9 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     padding:0;
   }
   .stevan-mix-player > img.stevan-mix-player-logo {
-    width:126px;
-    height:92px;
-    margin:-2px 0 -2px;
+    width:136px;
+    height:102px;
+    margin:-5px 0 -5px;
   }
   .stevan-mix-online-dot {
     top:67px;
@@ -924,8 +929,8 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 }
 @media (max-width:640px) {
   .stevan-mix-player > img.stevan-mix-player-logo {
-    width:116px;
-    height:88px;
+    width:126px;
+    height:96px;
   }
   .stevan-mix-online-dot {
     top:62px;
