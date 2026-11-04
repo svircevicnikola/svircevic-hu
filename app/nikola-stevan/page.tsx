@@ -24,16 +24,16 @@ const steamGames = [
 ] as const;
 
 const gamingSetupItems = [
-  { category: "PROCESSZOR", name: "AMD Ryzen 9 9900X", detail: "AMD Ryzen 9000 Series", href: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x.html" },
-  { category: "ALAPLAP", name: "ASUS TUF GAMING B850M-PLUS", detail: "AMD B850 · AM5", href: "https://www.asus.com/hu/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b850m-plus/" },
-  { category: "MEMÓRIA", name: "Kingston FURY Beast", detail: "32 GB KIT · DDR5 · 6000 MT/s · CL30 · Black EXPO", href: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-memory" },
-  { category: "VIDEÓKÁRTYA", name: "PowerColor Hellhound White RX 9070 XT", detail: "16 GB · RX9070XT 16G-L/OC-WH PCX", href: "https://www.powercolor.com/product-detail232.htm" },
-  { category: "FOLYADÉKHŰTÉS", name: "MSI MAG CORELIQUID A13 360", detail: "360 mm · 306-7ZWDA11-L80", href: "https://www.msi.com/Liquid-Cooling/MAG-CORELIQUID-A13-360" },
-  { category: "SSD", name: "Kingston KC3000", detail: "1 TB · M.2 2280 · NVMe · SKC3000S/1024G", href: "https://www.kingston.com/en/ssd/kc3000-nvme-m2-solid-state-drive" },
-  { category: "TÁPEGYSÉG", name: "GIGABYTE AORUS ELITE", detail: "GP-AE1000PM PG5 · 1000 W · 80+ Platinum", href: "https://www.gigabyte.com/Power-Supply/GP-AE1000PM-PG5-rev-10" },
-  { category: "HÁZ", name: "ENDORFY Arx 700 ARGB", detail: "ARGB", href: "https://endorfy.com/en/product/arx-700-argb/" },
-  { category: "MONITOR", name: "MSI G27CQ4 E2", detail: "27 hüvelykes · ívelt monitor", href: "" },
-  { category: "KONZOL", name: "Xbox One", detail: "Játékkonzol", href: "" }
+  { icon: "cpu", category: "PROCESSZOR", name: "AMD Ryzen 9 9900X", detail: "AMD Ryzen 9000 Series", href: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x.html" },
+  { icon: "board", category: "ALAPLAP", name: "ASUS TUF GAMING B850M-PLUS", detail: "AMD B850 · AM5", href: "https://www.asus.com/hu/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b850m-plus/" },
+  { icon: "memory", category: "MEMÓRIA", name: "Kingston FURY Beast", detail: "32 GB KIT · DDR5 · 6000 MT/s · CL30 · Black EXPO", href: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-memory" },
+  { icon: "gpu", category: "VIDEÓKÁRTYA", name: "PowerColor Hellhound White RX 9070 XT", detail: "16 GB · RX9070XT 16G-L/OC-WH PCX", href: "https://www.powercolor.com/product-detail232.htm" },
+  { icon: "cooling", category: "FOLYADÉKHŰTÉS", name: "MSI MAG CORELIQUID A13 360", detail: "360 mm · 306-7ZWDA11-L80", href: "https://www.msi.com/Liquid-Cooling/MAG-CORELIQUID-A13-360" },
+  { icon: "ssd", category: "SSD", name: "Kingston KC3000", detail: "1 TB · M.2 2280 · NVMe · SKC3000S/1024G", href: "https://www.kingston.com/en/ssd/kc3000-nvme-m2-solid-state-drive" },
+  { icon: "power", category: "TÁPEGYSÉG", name: "GIGABYTE AORUS ELITE", detail: "GP-AE1000PM PG5 · 1000 W · 80+ Platinum", href: "https://www.gigabyte.com/Power-Supply/GP-AE1000PM-PG5-rev-10" },
+  { icon: "case", category: "HÁZ", name: "ENDORFY Arx 700 ARGB", detail: "ARGB", href: "https://endorfy.com/en/product/arx-700-argb/" },
+  { icon: "monitor", category: "MONITOR", name: "MSI G27CQ4 E2", detail: "27 hüvelykes · ívelt monitor", href: "" },
+  { icon: "console", category: "KONZOL", name: "Xbox One", detail: "Játékkonzol", href: "" }
 ] as const;
 
 const contactChannels = [
@@ -342,6 +342,96 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
   );
 }
 
+type HardwareIconKind = "cpu" | "board" | "memory" | "gpu" | "cooling" | "ssd" | "power" | "case" | "monitor" | "console";
+
+function HardwareIcon({ kind }: { kind: HardwareIconKind }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {kind === "cpu" && (
+        <>
+          <rect x="12" y="12" width="24" height="24" rx="3"/>
+          <rect x="18" y="18" width="12" height="12" rx="1.5"/>
+          <path d="M18 5v7m6-7v7m6-7v7M18 36v7m6-7v7m6-7v7M5 18h7m-7 6h7m-7 6h7m24-12h7m-7 6h7m-7 6h7"/>
+        </>
+      )}
+      {kind === "board" && (
+        <>
+          <rect x="8" y="7" width="32" height="34" rx="2.5"/>
+          <rect x="14" y="13" width="12" height="12" rx="1.5"/>
+          <path d="M30 13h5m-5 4h5m-5 4h5M14 30h20M14 34h12M12 7V4m6 3V4m6 3V4m6 3V4m6 3V4M12 41v3m8-3v3m8-3v3m8-3v3"/>
+          <circle cx="33" cy="31" r="2"/>
+        </>
+      )}
+      {kind === "memory" && (
+        <>
+          <rect x="5" y="15" width="38" height="17" rx="2.5"/>
+          <path d="M11 20h5v7h-5zm9 0h5v7h-5zm9 0h5v7h-5zM10 32v4m6-4v4m6-4v4m6-4v4m6-4v4m6-4v4"/>
+          <circle cx="38" cy="19" r="1"/>
+        </>
+      )}
+      {kind === "gpu" && (
+        <>
+          <path d="M5 14h31l7 6v13H5z"/>
+          <circle cx="18" cy="25" r="7"/>
+          <circle cx="18" cy="25" r="2"/>
+          <path d="M18 18v5m-6-1 4 3m7-3-4 3m-1 7v-5m-6 1 4-3m7 3-4-3M36 20v10m-26 7h26"/>
+        </>
+      )}
+      {kind === "cooling" && (
+        <>
+          <rect x="5" y="10" width="38" height="28" rx="2.5"/>
+          <circle cx="15" cy="24" r="8"/>
+          <circle cx="15" cy="24" r="2"/>
+          <path d="M15 16v6m-6 2h6m0 0v-6m0 6 5 4m5-14v20m5-20v20m5-20v20M43 16h2m-2 16h2"/>
+        </>
+      )}
+      {kind === "ssd" && (
+        <>
+          <rect x="7" y="16" width="34" height="16" rx="2.5"/>
+          <circle cx="12" cy="24" r="1.5"/>
+          <rect x="18" y="20" width="8" height="8" rx="1"/>
+          <rect x="29" y="20" width="7" height="8" rx="1"/>
+          <path d="M40 20h4v8h-4M9 32v4m5-4v4m5-4v4m5-4v4m5-4v4m5-4v4"/>
+        </>
+      )}
+      {kind === "power" && (
+        <>
+          <rect x="7" y="9" width="34" height="30" rx="3"/>
+          <circle cx="23" cy="24" r="10"/>
+          <circle cx="23" cy="24" r="2"/>
+          <path d="M23 14v8m-8 2h8m0 0v-8m0 8 7 5m3-15-5 6m-13 6 7-5m-2 11 2-8"/>
+        </>
+      )}
+      {kind === "case" && (
+        <>
+          <rect x="12" y="5" width="24" height="38" rx="2.5"/>
+          <path d="M17 10h14v28H17z"/>
+          <circle cx="24" cy="19" r="4.5"/>
+          <circle cx="24" cy="19" r="1.2"/>
+          <circle cx="24" cy="31" r="4.5"/>
+          <circle cx="24" cy="31" r="1.2"/>
+          <path d="M31 8h2"/>
+        </>
+      )}
+      {kind === "monitor" && (
+        <>
+          <rect x="5" y="8" width="38" height="25" rx="2.5"/>
+          <path d="M24 33v7m-8 3h16m-8-10-4 7h8l-4-7"/>
+          <path d="M10 13h28v15H10z"/>
+        </>
+      )}
+      {kind === "console" && (
+        <>
+          <path d="M13 17h22c4 0 6 3 7 8l1 7c.5 3-2 4.5-4.5 2.5L32 31H16l-6.5 3.5C7 36 4.5 34.5 5 31l1-7c1-4 3-7 7-7Z"/>
+          <path d="M15 22v8m-4-4h8"/>
+          <circle cx="31" cy="23" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="36" cy="27" r="1.5" fill="currentColor" stroke="none"/>
+        </>
+      )}
+    </svg>
+  );
+}
+
 function GameSetupPanel() {
   return (
     <div className="stevan-setup-panel">
@@ -354,9 +444,12 @@ function GameSetupPanel() {
         {gamingSetupItems.map((item) => {
           const content = (
             <>
-              <span className="stevan-setup-category">{item.category}</span>
-              <strong>{item.name}</strong>
-              <small>{item.detail}</small>
+              <span className="stevan-setup-icon"><HardwareIcon kind={item.icon} /></span>
+              <span className="stevan-setup-copy">
+                <span className="stevan-setup-category">{item.category}</span>
+                <strong>{item.name}</strong>
+                <small>{item.detail}</small>
+              </span>
               {item.href && <span className="stevan-setup-link-mark" aria-hidden="true">↗</span>}
             </>
           );
