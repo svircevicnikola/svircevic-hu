@@ -11,7 +11,7 @@ const robloxGames = [
   { title: "Forsaken", href: "https://www.roblox.com/games/18687417158/Forsaken", image: "https://tr.rbxcdn.com/180DAY-55e99cf98b802b038752d8db880bf318/500/280/Image/Jpeg/noFilter" },
   { title: "RIVALS", href: "https://www.roblox.com/games/17625359962/RIVALS", image: "https://tr.rbxcdn.com/180DAY-0379e61f5a8aebd28371e80dd76189a6/500/280/Image/Jpeg/noFilter" },
   { title: "The Backrooms With Guns", href: "https://www.roblox.com/games/8455137364/The-Backrooms-With-Guns", image: "https://tr.rbxcdn.com/180DAY-bf93048a8b5b21d6a958beea6ef85504/500/280/Image/Jpeg/noFilter" },
-  { title: "99 Nights in the Forest", href: "https://www.roblox.com/games/79546208627805/99-Nights-in-the-Forest", image: "https://tr.rbxcdn.com/180DAY-cd20e3c4b38e59cff4c62cc7435a820c/500/280/Image/Jpeg/noFilter" },
+  { title: "99 Nights in the Forest", href: "https://www.roblox.com/games/79546208627805/99-Nights-in-the-Forest", image: "https://tr.rbxcdn.com/180DAY-4a417d30921af2f0fba295eeaaa712da/500/280/Image/Jpeg/noFilter" },
   { title: "Last: Memories", href: "https://www.roblox.com/games/86022723355936/Last-Memories", image: "https://tr.rbxcdn.com/180DAY-7c784e5b519599cf6b9dd0eaad26ad02/500/280/Image/Jpeg/noFilter" }
 ] as const;
 
