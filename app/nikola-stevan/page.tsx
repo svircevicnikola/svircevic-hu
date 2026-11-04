@@ -390,6 +390,16 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
             <h3>CLIPS. MOMENTS. WINS.</h3>
             <p>Videók, klipek és élő közvetítések.</p>
           </div>
+          <div className="stevan-highlights-player">
+            <iframe
+              src="https://www.youtube.com/embed?listType=user_uploads&list=TeamNikola&rel=0"
+              title="TeamNikola YouTube-videók"
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
           <div className="stevan-highlights-links" aria-label="TeamNikola csatornák">
             <a className="stevan-highlight-link stevan-highlight-youtube" href="https://www.youtube.com/@TeamNikola" target="_blank" rel="noreferrer" aria-label="YouTube – @TeamNikola" title="YouTube – @TeamNikola">
               <img src="https://cdn.simpleicons.org/youtube/FF0033" alt="" />
