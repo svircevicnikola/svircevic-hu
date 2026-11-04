@@ -94,7 +94,7 @@ function ContactIcon({ id }: { id: ContactId }) {
   if (id === "xbox") {
     return <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="M8 8c4.6.2 7.2 3.2 8 4.2.8-1 3.4-4 8-4.2M8 24c2.1-4.8 5.4-8.6 8-10.2 2.6 1.6 5.9 5.4 8 10.2" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>;
   }
-  return <span className="stevan-contact-minecraft-mark" aria-hidden="true">M</span>;
+  return <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 28 9.8v12.4L16 29 4 22.2V9.8L16 3Z" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><path d="M4.8 10.2 16 16.6l11.2-6.4M16 16.6V28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/><path d="m10 6.5 12 6.9" stroke="currentColor" strokeWidth="1.5" opacity=".7"/></svg>;
 }
 
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
@@ -242,7 +242,9 @@ export default function NikolaStevanPage() {
         <div className="stevan-about-mark">TN<span>01</span></div>
         <div className="stevan-about-copy"><span className="stevan-eyebrow">03 — ABOUT THE PLAYER</span><h2>CURIOUS BY<br/><span>DEFAULT.</span></h2><p>Gaming, sport, zene, stratégia és programozás. Különböző pályák, ugyanaz a kíváncsiság: kipróbálni, megérteni, fejlődni.</p></div>
         <div className="stevan-about-social">
-          <img className="stevan-about-logo" src="/images/team-nikola-logo.png" alt="Team Nikola logó" />
+          <div className="stevan-about-logo-window">
+            <img className="stevan-about-logo" src="/images/team-nikola-logo.png" alt="Team Nikola embléma" />
+          </div>
           <div className="stevan-contact-icons" aria-label="Kapcsolati és játékos azonosítók">
             {contactChannels.map((channel) => (
               <button
