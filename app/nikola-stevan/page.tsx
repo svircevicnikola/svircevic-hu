@@ -135,7 +135,8 @@ export default function NikolaStevanPage() {
           <p className="stevan-hero-lead">A játék a fő pálya. A kíváncsiság visz tovább — a digitális világon innen és túl.</p>
           <div className="stevan-hero-actions">
             <a href="#gaming" className="stevan-button-primary">GAMING MODE <span>↓</span></a>
-            <a href="#interests" className="stevan-button-quiet">CURIOSITY MODE <span>↗</span></a>
+            <a href="#interests" className="stevan-button-secondary">CURIOSITY MODE <span>↗</span></a>
+            <a href="#about" className="stevan-button-quiet">ABOUT <span>↗</span></a>
           </div>
           <div className="stevan-hero-footnote"><span>01 / PLAYER</span><span>PLAY · THINK · CREATE</span></div>
         </div>
