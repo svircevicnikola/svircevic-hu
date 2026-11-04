@@ -243,7 +243,7 @@ export default function NikolaStevanPage() {
         <div className="stevan-about-copy"><span className="stevan-eyebrow">03 — ABOUT THE PLAYER</span><h2>CURIOUS BY<br/><span>DEFAULT.</span></h2><p>Gaming, sport, zene, stratégia és programozás. Különböző pályák, ugyanaz a kíváncsiság: kipróbálni, megérteni, fejlődni.</p></div>
         <div className="stevan-about-social">
           <div className="stevan-about-logo-window">
-            <img className="stevan-about-logo" src="/images/team-nikola-logo.png" alt="Team Nikola embléma" />
+            <img className="stevan-about-logo" src="/images/team-nikola-logo2.png" alt="Team Nikola embléma" />
           </div>
           <div className="stevan-contact-icons" aria-label="Kapcsolati és játékos azonosítók">
             {contactChannels.map((channel) => (
