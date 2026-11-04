@@ -301,7 +301,7 @@ export default function NikolaStevanPage() {
           <div className="stevan-game-cards">
             <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "games" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "games" ? null : "games")} aria-expanded={activeGamePanel === "games"} aria-controls="stevan-game-expansion">
               <span className="stevan-game-card-icon">▤</span>
-              <span className="stevan-game-card-copy"><h3>GAMES IN THE MIX</h3><p>Roblox-játékok, amelyek mostanában képben vannak.</p></span><span className="stevan-card-arrow">↗</span>
+              <span className="stevan-game-card-copy"><h3>GAMES IN THE MIX</h3><p>Játékok, platformok és kedvencek egy helyen.</p></span><span className="stevan-card-arrow">↗</span>
             </button>
             <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "highlights" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "highlights" ? null : "highlights")} aria-expanded={activeGamePanel === "highlights"} aria-controls="stevan-game-expansion">
               <span className="stevan-game-card-icon">▶</span>
