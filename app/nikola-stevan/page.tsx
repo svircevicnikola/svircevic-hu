@@ -18,7 +18,7 @@ type Interest = {
 
 const interests: Interest[] = [
   {
-    id: "math", number: "01", title: "Matematika", subtitle: "LOGIKA · VERSENYEK", mark: "∑",
+    id: "math", number: "01", title: "Matematika", subtitle: "LOGIC · CHALLENGE", mark: "∑",
     size: "large", description: "Gondolkodás, feladatok és versenykihívások.",
     detail: "A matematikaversenyek eredményei, oklevelei és versenyfotói itt kapnak helyet. A konkrét versenyneveket, évszámokat és helyezéseket a tényleges adatok alapján töltjük fel."
   },
