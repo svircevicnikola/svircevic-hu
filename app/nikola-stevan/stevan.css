@@ -98,7 +98,7 @@
 .stevan-feature-top { top: 20px; }.stevan-feature-bottom { bottom: 19px; color: var(--teal-bright); }
 .stevan-feature-bottom i { margin-left: 8px; font-style: normal; }
 .stevan-feature-art { position: absolute; inset: 0; display: grid; place-items: center; }
-.stevan-feature-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.9) contrast(1.05); }
+.stevan-feature-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; background: #070b0d; filter: saturate(.9) contrast(1.05); }
 .stevan-feature-image-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,8,10,.12) 8%, rgba(3,8,10,.18) 48%, rgba(3,8,10,.88) 100%); }
 .stevan-feature-art > svg { position: absolute; width: min(82%, 350px); height: auto; color: var(--teal-bright); filter: drop-shadow(0 0 22px rgba(57,203,195,.42)); transform: rotate(-8deg); }
 .stevan-feature-orbit { position: absolute; width: 74%; aspect-ratio: 1.8; border: 1px solid rgba(57,203,195,.62); border-radius: 50%; transform: rotate(-22deg); box-shadow: 0 0 25px rgba(57,203,195,.13), inset 0 0 24px rgba(57,203,195,.07); }
