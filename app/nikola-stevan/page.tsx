@@ -155,7 +155,7 @@ export default function NikolaStevanPage() {
       <section className="stevan-gaming" id="gaming">
         <div className="stevan-section-heading">
           <div><span className="stevan-eyebrow">01 — THE MAIN EVENT</span><h2>THE GAME <span>ZONE.</span></h2></div>
-          <p>Belépés a gamer világba.<br/>Itt kezdődik a történet.</p>
+          <p>Minden menet egy új kihívás.<br/>Minden pálya egy új lehetőség.</p>
         </div>
         <div className="stevan-game-layout">
           <article className="stevan-feature-card">
