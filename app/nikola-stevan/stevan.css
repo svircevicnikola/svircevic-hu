@@ -90,6 +90,8 @@
 .stevan-hero-bottomline span:nth-child(2) { color: var(--teal-bright); font-size: 17px; }
 
 .stevan-gaming, .stevan-interests { position: relative; width: min(1320px, calc(100% - 72px)); margin: 0 auto; padding: 92px 30px 100px; border-top: 1px solid var(--line); }
+.stevan-gaming { padding-bottom: 50px; }
+.stevan-interests { padding-top: 46px; }
 .stevan-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 40px; }
 .stevan-section-heading h2 { margin: 9px 0 0; font: 900 clamp(47px, 6vw, 76px)/.88 "Barlow Condensed", sans-serif; letter-spacing: -.02em; }
 .stevan-section-heading h2 span { color: var(--teal-bright); }
