@@ -129,8 +129,8 @@ export default function NikolaStevanPage() {
           <p className="stevan-hero-name">NIKOLA STEVAN <small>— TEAM NIKOLA</small></p>
           <p className="stevan-hero-lead">A játék a fő pálya. A kíváncsiság visz tovább — a digitális világon innen és túl.</p>
           <div className="stevan-hero-actions">
-            <a href="#gaming" className="stevan-button-primary">GAMING ZÓNA <span>↓</span></a>
-            <a href="#interests" className="stevan-button-quiet">ÉS AMI MÉG ÉRDEKEL <span>↗</span></a>
+            <a href="#gaming" className="stevan-button-primary">GAMING MODE <span>↓</span></a>
+            <a href="#interests" className="stevan-button-quiet">CURIOSITY MODE <span>↗</span></a>
           </div>
           <div className="stevan-hero-footnote"><span>01 / PLAYER</span><span>PLAY · THINK · CREATE</span></div>
         </div>
