@@ -109,7 +109,7 @@
 .stevan-feature-word { z-index: 1; position: absolute; bottom: 4%; left: 7%; color: rgba(237,247,243,.86); font: 900 clamp(38px, 5vw, 67px)/.78 "Barlow Condensed", sans-serif; letter-spacing: -.03em; transform: skew(-8deg); text-shadow: 0 3px 18px #000; }
 .stevan-feature-word b { color: var(--teal-bright); }
 .stevan-game-cards { display: flex; flex-direction: column; gap: 13px; }
-.stevan-game-card { min-height: 130px; width: 100%; position: relative; display: grid; grid-template-columns: 42px 58px 1fr 24px; align-items: center; gap: 14px; padding: 22px 20px; border: 1px solid rgba(105,155,154,.22); background: linear-gradient(110deg, rgba(17,29,32,.98), rgba(8,14,16,.96)); transition: border-color .2s, transform .2s, background .2s; }
+.stevan-game-card { min-height: 130px; width: 100%; position: relative; display: grid; grid-template-columns: 58px minmax(0,1fr) 24px; align-items: center; gap: 14px; padding: 22px 20px; border: 1px solid rgba(105,155,154,.22); background: linear-gradient(110deg, rgba(17,29,32,.98), rgba(8,14,16,.96)); transition: border-color .2s, transform .2s, background .2s; }
 .stevan-game-card:hover, .stevan-game-card.is-active { border-color: rgba(57,203,195,.78); transform: translateX(4px); background: linear-gradient(110deg, rgba(20,45,47,.98), rgba(8,14,16,.96)); }
 .stevan-game-card-button { appearance: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .stevan-game-card-button:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 3px; }
@@ -225,13 +225,8 @@
   .stevan-section-heading p { margin-top: 14px; text-align: left; font-size: 12px; }
   .stevan-game-layout { grid-template-columns: 1fr; }
   .stevan-feature-card { min-height: 320px; }
-  .stevan-game-card { grid-template-columns: 32px 45px 1fr 16px; gap: 9px; min-height: 112px; padding: 15px 12px; }
+  .stevan-game-card { grid-template-columns: 45px minmax(0,1fr) 16px; gap: 9px; min-height: 112px; padding: 15px 12px; }
   .stevan-game-expansion { margin-top: 20px; padding: 18px 15px; }
-  .stevan-platform-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .stevan-platform-steam { grid-column: 1 / -1; }
-  .stevan-xbox-game-large img { height: 88px; }
-  .stevan-roblox-game span, .stevan-steam-game span { font-size: 8px; }
-
   .stevan-game-card-icon { width: 41px; height: 41px; }
   .stevan-game-card h3 { font-size: 14px; }
   .stevan-game-card p { font-size: 10px; }
