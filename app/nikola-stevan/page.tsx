@@ -209,7 +209,7 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
             <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox játékok">
               <div className="stevan-platform-heading">
                 <div className="stevan-platform-brand"><PlatformMark platform="xbox"/><span>XBOX</span></div>
-                <a className="stevan-platform-account" href="https://www.xbox.com/" target="_blank" rel="noreferrer"><b>TeamNikola ↗</b></a>
+                <span className="stevan-platform-account"><b>TeamNikola</b></span>
               </div>
               <div className="stevan-platform-subheading"><span>Játékok</span><small>MICROSOFT ACCOUNT</small></div>
               <div className="stevan-xbox-featured">
@@ -237,7 +237,7 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
             <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam játékok">
               <div className="stevan-platform-heading">
                 <div className="stevan-platform-brand"><PlatformMark platform="steam"/><span>STEAM</span></div>
-                <a className="stevan-platform-account" href="https://store.steampowered.com/" target="_blank" rel="noreferrer"><b>TeamNikola ↗</b></a>
+                <span className="stevan-platform-account"><b>TeamNikola</b></span>
               </div>
               <div className="stevan-platform-subheading"><span>Kiemelt játékok</span><small>STEAM LIBRARY</small></div>
               <div className="stevan-steam-games-grid">
