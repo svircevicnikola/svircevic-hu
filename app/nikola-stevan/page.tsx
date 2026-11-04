@@ -17,10 +17,10 @@ const robloxGames = [
 
 const steamGames = [
   { title: "Geometry Dash", href: "https://store.steampowered.com/app/322170/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/322170/header.jpg" },
-  { title: "Might & Magic: Heroes VI", href: "https://store.steampowered.com/app/48220/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48220/header.jpg" },
   { title: "Bloons TD 6", href: "https://store.steampowered.com/app/960090/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg" },
   { title: "Baldur's Gate 3", href: "https://store.steampowered.com/app/1086940/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" },
-  { title: "Heroes of Might and Magic: Olden Era", href: "https://store.steampowered.com/app/3105440/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3105440/header.jpg" }
+  { title: "Heroes of Might and Magic: Olden Era", href: "https://store.steampowered.com/app/3105440/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3105440/header.jpg" },
+  { title: "Might & Magic: Heroes VI", href: "https://store.steampowered.com/app/48220/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48220/header.jpg" }
 ] as const;
 
 const contactChannels = [
@@ -225,6 +225,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
             <a href="#mix-roblox"><PlatformMark platform="roblox"/><span>ROBLOX</span><i>↗</i></a>
             <a href="#mix-xbox"><PlatformMark platform="xbox"/><span>XBOX / MINECRAFT</span><i>↗</i></a>
             <a href="#mix-steam"><PlatformMark platform="steam"/><span>STEAM</span><i>↗</i></a>
+            <a href="https://store.epicgames.com/" target="_blank" rel="noreferrer"><img className="stevan-platform-logo" src="https://cdn.simpleicons.org/epicgames/FFFFFF" alt="" aria-hidden="true"/><span>EPIC GAMES</span><i>↗</i></a>
           </nav>
           <div className="stevan-mix-sidebar-foot"><span className="stevan-status-dot"/> PLAY · THINK · CREATE</div>
         </aside>
