@@ -298,17 +298,20 @@
 .stevan-mix-sidebar-foot { display:flex; align-items:center; gap:7px; margin-top:auto; padding-top:20px; color:#6e8e89; font:700 7px/1 "Rajdhani",sans-serif; letter-spacing:.14em; }
 .stevan-mix-sidebar-foot .stevan-status-dot { width:6px; height:6px; }
 .stevan-platform-grid { min-width:0; display:grid; grid-template-columns:1.02fr .84fr 1.08fr; align-items:stretch; gap:12px; }
-.stevan-platform-card { min-width:0; min-height:520px; padding:16px 14px 15px; border:1px solid rgba(57,203,195,.38); border-radius:13px; background:radial-gradient(ellipse at 45% 0%,rgba(25,127,134,.18),transparent 53%),linear-gradient(155deg,rgba(10,28,33,.99),rgba(3,11,15,.995)); box-shadow:inset 0 1px 0 rgba(187,255,247,.06),0 13px 34px rgba(0,0,0,.24); transition:border-color .22s,box-shadow .22s,transform .22s; }
+.stevan-platform-card { position:relative; min-width:0; min-height:520px; padding:16px 14px 15px; border:1px solid rgba(57,203,195,.46); border-top:2px solid rgba(57,203,195,.74); border-radius:13px; background:radial-gradient(ellipse at 45% 0%,rgba(25,127,134,.2),transparent 53%),linear-gradient(155deg,rgba(10,28,33,.99),rgba(3,11,15,.995)); box-shadow:inset 0 1px 0 rgba(187,255,247,.08),0 13px 34px rgba(0,0,0,.24); transition:border-color .22s,box-shadow .22s,transform .22s; }
 .stevan-platform-card:hover { border-color:rgba(66,221,213,.63); box-shadow:inset 0 1px 0 rgba(187,255,247,.07),0 17px 40px rgba(0,0,0,.28),0 0 25px rgba(38,177,174,.1); transform:translateY(-2px); }
+.stevan-platform-card::before { content:""; position:absolute; z-index:2; top:-1px; left:14px; right:14px; height:2px; border-radius:2px; background:linear-gradient(90deg,transparent,rgba(57,203,195,.96) 16%,rgba(74,220,215,.96) 84%,transparent); box-shadow:0 0 10px rgba(57,203,195,.54); pointer-events:none; }
+.stevan-platform-xbox, .stevan-platform-steam { border-top-width:2px; border-top-color:rgba(67,218,211,.86); }
 .stevan-platform-roblox { background:radial-gradient(ellipse at 15% 16%,rgba(0,128,189,.22),transparent 51%),linear-gradient(155deg,#0a1c25 0%,#041116 78%); }
 .stevan-platform-xbox { background:radial-gradient(ellipse at 45% 0%,rgba(38,133,92,.17),transparent 51%),linear-gradient(155deg,#0a1c20 0%,#041114 78%); }
 .stevan-platform-steam { background:radial-gradient(ellipse at 70% 0%,rgba(61,94,131,.17),transparent 50%),linear-gradient(155deg,#101d2a 0%,#07131b 78%); }
 .stevan-platform-heading { min-height:43px; display:flex; align-items:center; justify-content:space-between; gap:9px; padding:0 0 11px; border-bottom:1px solid rgba(92,199,194,.24); }
 .stevan-platform-brand { min-width:0; display:flex; align-items:center; gap:10px; color:#f2f7f3; font:900 21px/1 "Barlow Condensed",sans-serif; letter-spacing:.08em; white-space:nowrap; }
 .stevan-platform-logo { display:block; width:34px; height:34px; flex:0 0 34px; object-fit:contain; filter:drop-shadow(0 0 7px rgba(57,203,195,.2)); }
-.stevan-platform-account { min-width:0; display:flex; flex-direction:column; align-items:flex-end; gap:4px; color:#e3ece7!important; font:700 11px/1 "Space Grotesk",sans-serif; text-align:right; white-space:normal; }
-.stevan-platform-account small { color:#83aaa5; font:500 9px/1 "Space Grotesk",sans-serif; }
+.stevan-platform-account { min-width:0; display:flex; flex-direction:column; align-items:flex-end; gap:5px; color:#f4f8f5!important; font:700 13px/1 "Rajdhani",sans-serif; letter-spacing:.045em; text-align:right; white-space:normal; text-shadow:0 0 13px rgba(142,239,228,.12); }
+.stevan-platform-account small { color:#8edbd3; font:700 10px/1 "Rajdhani",sans-serif; letter-spacing:.08em; }
 .stevan-platform-account:hover { color:#fff!important; }
+.stevan-platform-account b { color:#f6faf7; font:700 13px/1 "Rajdhani",sans-serif; letter-spacing:.05em; text-shadow:0 0 12px rgba(124,231,221,.16); }
 .stevan-platform-subheading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:14px 0 11px; color:#f0f5f1; font:700 14px/1.1 "Space Grotesk",sans-serif; }
 .stevan-roblox-hero { position:relative; height:148px; display:flex; align-items:center; gap:13px; margin-top:13px; padding:5px 12px; overflow:hidden; border:1px solid rgba(48,193,199,.37); border-radius:9px; background:radial-gradient(ellipse at 23% 43%,rgba(0,141,211,.38),transparent 54%),radial-gradient(ellipse at 75% 30%,rgba(37,96,177,.25),transparent 55%),linear-gradient(112deg,#0b2533,#071622 58%,#071117); box-shadow:inset 0 0 32px rgba(31,167,186,.13),0 8px 20px rgba(0,0,0,.28); }
 .stevan-roblox-hero::before { content:""; position:absolute; inset:0; background:linear-gradient(112deg,transparent 30%,rgba(52,197,222,.13) 53%,transparent 73%),radial-gradient(circle at 8% 0%,rgba(47,182,255,.22),transparent 35%); pointer-events:none; }
