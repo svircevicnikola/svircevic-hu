@@ -155,7 +155,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 function PlatformMark({ platform }: { platform: "roblox" | "xbox" | "steam" }) {
   const src = {
     roblox: "https://cdn.simpleicons.org/roblox/FFFFFF",
-    xbox: "https://cdn.simpleicons.org/xbox/FFFFFF",
+    xbox: "/images/platform-xbox.svg",
     steam: "https://cdn.simpleicons.org/steam/FFFFFF"
   }[platform];
   return <img className="stevan-platform-logo" src={src} alt="" aria-hidden="true" />;
@@ -219,7 +219,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
             <img src="/images/xboxavatar.png" alt="TeamNikola profilavatárja" loading="eager" decoding="async"/>
             <span className="stevan-mix-online-dot"/>
             <h3>TeamNikola</h3>
-            <p>GAMER PROFILE</p>
+            <img className="stevan-mix-player-logo" src="/images/Logo3.png" alt="TeamNikola logo" loading="eager" decoding="async"/>
           </div>
           <nav className="stevan-mix-nav" aria-label="Játékplatformok">
             <a href="#mix-roblox"><PlatformMark platform="roblox"/><span>ROBLOX</span><i>↗</i></a>
@@ -283,7 +283,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
                 <img src="https://www.nintendo.com/eu/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_Minecraft.jpg" alt="Minecraft" loading="lazy" decoding="async"/>
                 <span>MINECRAFT</span>
               </a>
-              <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-us/games/store/_/9P5786PJB9RP" target="_blank" rel="noreferrer">
+              <a className="stevan-xbox-game stevan-xbox-game-large stevan-xbox-game-dungeons-two" href="https://www.xbox.com/en-us/games/store/_/9P5786PJB9RP" target="_blank" rel="noreferrer">
                 <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/homepage_discover_our_games_mc_dungeons_ii_key_art_864x864.jpg" alt="Minecraft Dungeons II" loading="lazy" decoding="async"/>
                 <span>DUNGEONS II</span>
               </a>
