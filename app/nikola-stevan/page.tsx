@@ -183,7 +183,7 @@ export default function NikolaStevanPage() {
 
       <section className="stevan-interests" id="interests">
         <div className="stevan-section-heading">
-          <div><span className="stevan-eyebrow">02 — BEYOND THE SCREEN</span><h2>MORE THAN <span>GAMING.</span></h2></div>
+          <div><span className="stevan-eyebrow">02 — BEYOND THE SCREEN</span><h2>GEEK <span>ZONE.</span></h2></div>
           <p>A játék csak az egyik pálya.<br/>Nézz körül a többi világban is.</p>
         </div>
         <div className="stevan-interest-intro"><span>OTHER INTERESTS</span><span>VÁLASSZ EGYET A RÉSZLETEKHEZ <b>↓</b></span></div>
