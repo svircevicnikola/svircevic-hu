@@ -30,7 +30,7 @@ const gamingSetupItems = [
   { category: "VIDEÓKÁRTYA", name: "PowerColor Hellhound White RX 9070 XT", detail: "16 GB · RX9070XT 16G-L/OC-WH PCX", href: "https://www.powercolor.com/product-detail232.htm" },
   { category: "FOLYADÉKHŰTÉS", name: "MSI MAG CORELIQUID A13 360", detail: "360 mm · 306-7ZWDA11-L80", href: "https://www.msi.com/Liquid-Cooling/MAG-CORELIQUID-A13-360" },
   { category: "SSD", name: "Kingston KC3000", detail: "1 TB · M.2 2280 · NVMe · SKC3000S/1024G", href: "https://www.kingston.com/en/ssd/kc3000-nvme-m2-solid-state-drive" },
-  { category: "TÁPEGYSÉG", name: "GigaByte GP-AE1000PM PG5", detail: "1000 W · 80+ Platinum", href: "https://www.gigabyte.com/Power-Supply/GP-AE1000PM-PG5-rev-10" },
+  { category: "TÁPEGYSÉG", name: "GIGABYTE AORUS ELITE", detail: "GP-AE1000PM PG5 · 1000 W · 80+ Platinum", href: "https://www.gigabyte.com/Power-Supply/GP-AE1000PM-PG5-rev-10" },
   { category: "HÁZ", name: "ENDORFY Arx 700 ARGB", detail: "ARGB", href: "https://endorfy.com/en/product/arx-700-argb/" },
   { category: "MONITOR", name: "MSI G27CQ4 E2", detail: "27 hüvelykes · ívelt monitor", href: "" },
   { category: "KONZOL", name: "Xbox One", detail: "Játékkonzol", href: "" }
