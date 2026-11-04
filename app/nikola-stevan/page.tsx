@@ -23,6 +23,19 @@ const steamGames = [
   { title: "Might & Magic: Heroes VI", href: "https://store.steampowered.com/app/48220/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48220/header.jpg" }
 ] as const;
 
+const gamingSetupItems = [
+  { category: "PROCESSZOR", name: "AMD Ryzen 9 9900X", detail: "AMD Ryzen 9000 Series", href: "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x.html" },
+  { category: "ALAPLAP", name: "ASUS TUF GAMING B850M-PLUS", detail: "AMD B850 · AM5", href: "https://www.asus.com/hu/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b850m-plus/" },
+  { category: "MEMÓRIA", name: "Kingston FURY Beast", detail: "32 GB KIT · DDR5 · 6000 MT/s · CL30 · Black EXPO", href: "https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-memory" },
+  { category: "VIDEÓKÁRTYA", name: "PowerColor Hellhound White RX 9070 XT", detail: "16 GB · RX9070XT 16G-L/OC-WH PCX", href: "https://www.powercolor.com/product-detail232.htm" },
+  { category: "FOLYADÉKHŰTÉS", name: "MSI MAG CORELIQUID A13 360", detail: "360 mm · 306-7ZWDA11-L80", href: "https://www.msi.com/Liquid-Cooling/MAG-CORELIQUID-A13-360" },
+  { category: "SSD", name: "Kingston KC3000", detail: "1 TB · M.2 2280 · NVMe · SKC3000S/1024G", href: "https://www.kingston.com/en/ssd/kc3000-nvme-m2-solid-state-drive" },
+  { category: "TÁPEGYSÉG", name: "GigaByte GP-AE1000PM PG5", detail: "1000 W · 80+ Platinum", href: "https://www.gigabyte.com/Power-Supply/GP-AE1000PM-PG5-rev-10" },
+  { category: "HÁZ", name: "ENDORFY Arx 700 ARGB", detail: "ARGB", href: "https://endorfy.com/en/product/arx-700-argb/" },
+  { category: "MONITOR", name: "MSI G27CQ4 E2", detail: "27 hüvelykes · ívelt monitor", href: "" },
+  { category: "KONZOL", name: "Xbox One", detail: "Játékkonzol", href: "" }
+] as const;
+
 const contactChannels = [
   { id: "messenger", label: "Messenger", kind: "PROFIL / KAPCSOLAT", hint: "Messenger-profil vagy elérési link" },
   { id: "discord", label: "Discord", kind: "FELHASZNÁLÓNÉV", hint: "Discord felhasználónév" },
@@ -329,6 +342,39 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
   );
 }
 
+function GameSetupPanel() {
+  return (
+    <div className="stevan-setup-panel">
+      <div className="stevan-setup-intro">
+        <span>TEAM NIKOLA / HARDWARE</span>
+        <h3>THE PLAYER STATION.</h3>
+        <p>A konfiguráció alkatrészei és a játékhoz használt eszközök.</p>
+      </div>
+      <div className="stevan-setup-grid">
+        {gamingSetupItems.map((item) => {
+          const content = (
+            <>
+              <span className="stevan-setup-category">{item.category}</span>
+              <strong>{item.name}</strong>
+              <small>{item.detail}</small>
+              {item.href && <span className="stevan-setup-link-mark" aria-hidden="true">↗</span>}
+            </>
+          );
+          return item.href ? (
+            <a className="stevan-setup-item" href={item.href} key={item.category} target="_blank" rel="noreferrer">
+              {content}
+            </a>
+          ) : (
+            <div className="stevan-setup-item" key={item.category}>
+              {content}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => void }) {
   if (panel === "games") return <GamePlatformCollection onClose={onClose} />;
   return (
@@ -338,17 +384,23 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
         <button type="button" onClick={onClose} aria-label="Tartalom bezárása">CLOSE ×</button>
       </div>
       {panel === "highlights" ? (
-        <div className="stevan-game-empty">
-          <span>GAMEPLAY HIGHLIGHTS</span><h3>CLIPS. MOMENTS. WINS.</h3>
-          <p>Videók, klipek és emlékezetes játékpillanatok helye.</p>
-          <small>HIGHLIGHTS CAN BE ADDED HERE</small>
+        <div className="stevan-highlights-panel">
+          <div className="stevan-highlights-copy">
+            <span>GAMEPLAY HIGHLIGHTS</span>
+            <h3>CLIPS. MOMENTS. WINS.</h3>
+            <p>Videók, klipek és élő közvetítések.</p>
+          </div>
+          <div className="stevan-highlights-links" aria-label="TeamNikola csatornák">
+            <a className="stevan-highlight-link stevan-highlight-youtube" href="https://www.youtube.com/@TeamNikola" target="_blank" rel="noreferrer" aria-label="YouTube – @TeamNikola" title="YouTube – @TeamNikola">
+              <img src="https://cdn.simpleicons.org/youtube/FF0033" alt="" />
+            </a>
+            <a className="stevan-highlight-link stevan-highlight-twitch" href="https://www.twitch.tv/teamnikola" target="_blank" rel="noreferrer" aria-label="Twitch – teamnikola" title="Twitch – teamnikola">
+              <img src="https://cdn.simpleicons.org/twitch/9146FF" alt="" />
+            </a>
+          </div>
         </div>
       ) : (
-        <div className="stevan-game-empty">
-          <span>GAMING SETUP</span><h3>THE PLAYER STATION.</h3>
-          <p>Eszközök, perifériák és a saját játékállomás bemutatása.</p>
-          <small>SETUP DETAILS CAN BE ADDED HERE</small>
-        </div>
+        <GameSetupPanel />
       )}
     </div>
   );
