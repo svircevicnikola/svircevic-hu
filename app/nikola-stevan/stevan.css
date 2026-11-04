@@ -293,6 +293,7 @@
 .stevan-mix-player img {display:block;width:104px;height:104px;object-fit:cover;border-radius:50%;border:2px solid #57ded6;background:#10252a;box-shadow:0 0 0 6px rgba(57,203,195,.07),0 0 27px rgba(57,203,195,.26);}
 .stevan-mix-online-dot {position:absolute;top:91px;left:calc(50% + 32px);width:13px;height:13px;border-radius:50%;background:#18d36b;border:2px solid #071316;box-shadow:0 0 13px rgba(27,215,107,.55);}
 .stevan-mix-player h3 {margin:15px 0 0;color:#f5f8f5;font:900 27px/.95 "Barlow Condensed",sans-serif;letter-spacing:.01em;}
+.stevan-mix-player-logo {display:block;width:116px;max-width:100%;max-height:42px;margin-top:8px;object-fit:contain;object-position:center;}
 .stevan-mix-player p {margin:6px 0 0;color:#8ca8a4;font:700 8px/1 "Rajdhani",sans-serif;letter-spacing:.2em;}
 .stevan-mix-nav {display:flex;flex-direction:column;gap:8px;margin-top:16px;}
 .stevan-mix-nav a {min-width:0;min-height:45px;display:flex;align-items:center;gap:9px;padding:6px 8px;color:#e3efea!important;border:1px solid rgba(95,169,167,.2);border-radius:8px;background:linear-gradient(100deg,rgba(21,52,57,.92),rgba(6,18,23,.96));font:800 9px/1 "Rajdhani",sans-serif;letter-spacing:.09em;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
@@ -352,6 +353,7 @@
 .stevan-xbox-game img {display:block;width:100%;object-fit:cover;border:1px solid rgba(105,155,154,.27);border-radius:7px;background:#081215;box-shadow:0 5px 13px rgba(0,0,0,.28);transition:border-color .2s,transform .2s,filter .2s;}
 .stevan-xbox-game:hover img {border-color:#48d8d1;transform:translateY(-2px);filter:saturate(1.1);}
 .stevan-xbox-game-large img {height:105px;padding:0;}
+.stevan-xbox-game-dungeons-two img {object-position:center 8%;}
 .stevan-xbox-game span {display:block;min-height:16px;color:#e8f0eb;font:800 8px/1.1 "Rajdhani",sans-serif;letter-spacing:.035em;text-align:center;}
 .stevan-xbox-secondary {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px;padding-top:11px;border-top:1px solid rgba(92,199,194,.18);}
 .stevan-xbox-game-small {flex-direction:column;align-items:stretch;gap:5px;}
@@ -363,6 +365,7 @@
 .stevan-steam-metric > svg {display:block;width:27px;height:27px;flex:0 0 27px;}
 .stevan-steam-metric > span {min-width:0;display:flex;flex-direction:column;gap:3px;}
 .stevan-steam-metric b {color:#f4f7f4;font:700 18px/1 "Space Grotesk",sans-serif;}
+.stevan-xbox-score strong,.stevan-xbox-social-metric b,.stevan-steam-metric b {color:transparent!important;-webkit-text-fill-color:transparent;text-shadow:0 0 7px rgba(242,246,242,.92);filter:blur(3px);user-select:none;}
 .stevan-steam-metric small {color:#a1b1b2;font:500 8px/1.15 "Space Grotesk",sans-serif;}
 .stevan-steam-games-heading {margin:13px 0 10px;}
 .stevan-steam-games-grid {display:flex;flex-direction:column;gap:9px;margin-top:0;}
