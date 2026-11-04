@@ -988,3 +988,54 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     height:100px;
   }
 }
+
+
+/* Verified final correction: real WebP cover and softer TeamNikola edge integration */
+.stevan-mix-player > img.stevan-mix-player-logo {
+  width:196px;
+  height:154px;
+  margin:-10px auto -15px;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+  mix-blend-mode:screen;
+  opacity:.96;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 38%,rgba(0,0,0,.96) 54%,rgba(0,0,0,.78) 68%,rgba(0,0,0,.38) 83%,transparent 97%);
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 38%,rgba(0,0,0,.96) 54%,rgba(0,0,0,.78) 68%,rgba(0,0,0,.38) 83%,transparent 97%);
+  filter:drop-shadow(0 0 8px rgba(46,213,207,.18));
+}
+.stevan-roblox-hero-background {
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  opacity:1!important;
+  object-fit:cover!important;
+  object-position:center 52%!important;
+  filter:saturate(.78) brightness(.88) contrast(.96)!important;
+  transform:scale(1.025);
+}
+.stevan-roblox-hero-shade {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(90deg,rgba(2,13,20,.38),rgba(2,13,20,.12) 50%,rgba(2,13,20,.34)),
+    linear-gradient(0deg,rgba(2,10,14,.28),rgba(2,10,14,.02) 72%);
+}
+.stevan-roblox-hero-avatar {z-index:2;}
+@media (max-width:900px) {
+  .stevan-mix-player > img.stevan-mix-player-logo {
+    width:142px;
+    height:108px;
+    margin:-6px 0 -7px;
+  }
+}
+@media (max-width:640px) {
+  .stevan-mix-player > img.stevan-mix-player-logo {
+    width:130px;
+    height:100px;
+  }
+}
