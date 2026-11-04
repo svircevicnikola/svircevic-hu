@@ -251,7 +251,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
               </a>
             </header>
             <a className="stevan-roblox-hero" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer" aria-label="TeamNikola Roblox-profilja">
-              <img className="stevan-roblox-hero-background" src="https://tr.rbxcdn.com/180DAY-8b3d48f84ba2521a87ecdd35b0074730/768/432/Image/Webp/noFilter" alt="" loading="eager" decoding="async"/>
+              <img className="stevan-roblox-hero-background" src="https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/5/d/b/5db79e2c2ae47192673d83226ea037ee58881ada.png" alt="" loading="eager" decoding="async"/>
               <span className="stevan-roblox-hero-shade"/>
               <img className="stevan-roblox-hero-avatar" src="/images/noFilter.webp" alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async"/>
               <i>↗</i>
