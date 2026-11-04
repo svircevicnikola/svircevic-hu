@@ -155,8 +155,8 @@
 .stevan-about-copy h2 span { color: var(--teal-bright); }
 .stevan-about-copy p { max-width: 550px; margin: 0; color: #9eadaa; font-size: 13px; line-height: 1.75; }
 .stevan-about-social { min-width: 0; align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding-left: 15px; border-left: 1px solid var(--line); }
-.stevan-about-logo-window { width: 100%; height: 150px; display: grid; place-items: center; overflow: hidden; }
-.stevan-about-logo { display: block; width: 100%; height: 100%; object-fit: contain; transform: scale(1.72); }
+.stevan-about-logo-window { width: 100%; height: 180px; display: grid; place-items: center; }
+.stevan-about-logo { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transform: none; }
 .stevan-contact-icons { width: 100%; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 6px; }
 .stevan-contact-button { min-width: 0; min-height: 66px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 8px 2px 7px; border: 1px solid rgba(92,199,194,.26); border-radius: 2px; background: linear-gradient(145deg,rgba(19,43,45,.88),rgba(7,13,15,.98)); color: var(--teal-bright); cursor: pointer; transition: border-color .2s, background .2s, transform .2s, box-shadow .2s; }
 .stevan-contact-button:hover, .stevan-contact-button.is-active { border-color: var(--teal-bright); background: linear-gradient(145deg,rgba(25,73,73,.95),rgba(7,17,19,.98)); transform: translateY(-2px); box-shadow: 0 5px 18px rgba(57,203,195,.10); }
@@ -206,7 +206,7 @@
   .stevan-about-mark { font-size: 62px; }
   .stevan-about-copy h2 { font-size: 48px; }
   .stevan-about-social { padding-left: 13px; gap: 10px; }
-  .stevan-about-logo-window { height: 126px; }
+  .stevan-about-logo-window { height: 156px; }
   .stevan-contact-icons { gap: 4px; }
   .stevan-contact-button { min-height: 62px; padding: 7px 1px 6px; }
   .stevan-contact-label { font-size: 7px; }
@@ -257,8 +257,8 @@
   .stevan-about-copy h2 { font-size: 48px; }
   .stevan-about-copy p { font-size: 11px; }
   .stevan-about-social { width: 100%; padding: 19px 0 0; border-left: 0; border-top: 1px solid var(--line); gap: 12px; }
-  .stevan-about-logo-window { height: 145px; }
-  .stevan-about-logo { transform: scale(1.6); }
+  .stevan-about-logo-window { height: 175px; }
+  .stevan-about-logo { transform: none; }
   .stevan-contact-icons { gap: 7px; }
   .stevan-contact-button { min-height: 64px; padding: 9px 3px 7px; }
   .stevan-contact-label { font-size: 8px; }
