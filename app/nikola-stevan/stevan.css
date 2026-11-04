@@ -109,8 +109,12 @@
 .stevan-feature-word { z-index: 1; position: absolute; bottom: 4%; left: 7%; color: rgba(237,247,243,.86); font: 900 clamp(38px, 5vw, 67px)/.78 "Barlow Condensed", sans-serif; letter-spacing: -.03em; transform: skew(-8deg); text-shadow: 0 3px 18px #000; }
 .stevan-feature-word b { color: var(--teal-bright); }
 .stevan-game-cards { display: flex; flex-direction: column; gap: 13px; }
-.stevan-game-card { min-height: 130px; position: relative; display: grid; grid-template-columns: 42px 58px 1fr 24px; align-items: center; gap: 14px; padding: 22px 20px; border: 1px solid rgba(105,155,154,.22); background: linear-gradient(110deg, rgba(17,29,32,.98), rgba(8,14,16,.96)); transition: border-color .2s, transform .2s, background .2s; }
-.stevan-game-card:hover { border-color: rgba(57,203,195,.68); transform: translateX(4px); background: linear-gradient(110deg, rgba(20,45,47,.98), rgba(8,14,16,.96)); }
+.stevan-game-card { min-height: 130px; width: 100%; position: relative; display: grid; grid-template-columns: 42px 58px 1fr 24px; align-items: center; gap: 14px; padding: 22px 20px; border: 1px solid rgba(105,155,154,.22); background: linear-gradient(110deg, rgba(17,29,32,.98), rgba(8,14,16,.96)); transition: border-color .2s, transform .2s, background .2s; }
+.stevan-game-card:hover, .stevan-game-card.is-active { border-color: rgba(57,203,195,.78); transform: translateX(4px); background: linear-gradient(110deg, rgba(20,45,47,.98), rgba(8,14,16,.96)); }
+.stevan-game-card-button { appearance: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.stevan-game-card-button:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 3px; }
+.stevan-game-card-copy { display: block; min-width: 0; }
+.stevan-game-card-button.is-active .stevan-card-arrow { transform: rotate(90deg); }
 .stevan-card-index { align-self: start; padding-top: 4px; color: #68817f; font: 700 10px/1 "Rajdhani", sans-serif; letter-spacing: .1em; }
 .stevan-game-card-icon { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(57,203,195,.42); color: var(--teal-bright); background: rgba(57,203,195,.07); font-size: 22px; }
 .stevan-game-card h3 { margin: 0; color: #e7eeea; font: 800 16px/1 "Barlow Condensed", sans-serif; letter-spacing: .08em; }
@@ -118,6 +122,35 @@
 .stevan-card-arrow { color: var(--teal-bright); font-size: 20px; }
 .stevan-game-note { display: flex; align-items: center; gap: 10px; margin-top: 23px; color: #76908e; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
 .stevan-game-note-line { flex: 1; height: 1px; background: var(--line); margin-left: 5px; }
+
+.stevan-game-expansion { margin-top: 27px; padding: 27px; border: 1px solid rgba(57,203,195,.34); background: radial-gradient(ellipse at 88% 0%, rgba(39,145,144,.16), transparent 38%), linear-gradient(145deg, rgba(12,25,28,.98), rgba(5,10,12,.98)); animation: stevan-panel-in .28s ease both; }
+.stevan-game-expansion-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #829b98; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .2em; }
+.stevan-game-expansion-top button { border: 0; padding: 5px 0 5px 12px; background: transparent; color: var(--teal-bright); font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .16em; cursor: pointer; }
+.stevan-roblox-profile { display: flex; align-items: center; gap: 17px; margin-top: 22px; padding-bottom: 23px; border-bottom: 1px solid var(--line); }
+.stevan-roblox-profile > img { display: block; width: 82px; height: 82px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,203,195,.48); box-shadow: 0 0 24px rgba(57,203,195,.13); }
+.stevan-roblox-player-copy { min-width: 0; }
+.stevan-roblox-player-copy > span { color: var(--teal-bright); font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .2em; }
+.stevan-roblox-player-copy h3 { margin: 7px 0 2px; color: #f0f4f0; font: 900 29px/.95 "Barlow Condensed",sans-serif; letter-spacing: .03em; text-transform: uppercase; }
+.stevan-roblox-player-copy p { margin: 0; color: #95a6a2; font-size: 11px; }
+.stevan-roblox-profile > a { margin-left: auto; color: var(--teal-bright); font: 700 9px/1.4 "Rajdhani",sans-serif; letter-spacing: .15em; }
+.stevan-roblox-profile > a span { margin-left: 7px; font-size: 15px; }
+.stevan-roblox-games-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 24px 0 16px; }
+.stevan-roblox-games-heading h3 { margin: 7px 0 0; color: #f0f4f0; font: 900 clamp(30px,4vw,42px)/.9 "Barlow Condensed",sans-serif; letter-spacing: -.02em; }
+.stevan-roblox-games-heading h3 b { color: var(--teal-bright); }
+.stevan-roblox-games-heading > span { color: #758c89; font: 700 8px/1.4 "Rajdhani",sans-serif; letter-spacing: .16em; text-align: right; }
+.stevan-roblox-games-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+.stevan-roblox-game-card { min-width: 0; overflow: hidden; border: 1px solid rgba(105,155,154,.2); background: linear-gradient(145deg,rgba(17,30,33,.98),rgba(7,13,15,.98)); }
+.stevan-roblox-game-cover { width: 100%; aspect-ratio: 1.9 / 1; background-image: url("/images/roblox-games-sprite.webp"); background-size: 600% 100%; background-repeat: no-repeat; }
+.stevan-roblox-game-info { padding: 12px 14px 15px; }
+.stevan-roblox-game-info > span { color: var(--teal-bright); font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .16em; }
+.stevan-roblox-game-info h4 { margin: 7px 0 0; color: #eef3ef; font: 800 18px/1 "Barlow Condensed",sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.stevan-game-empty { min-height: 185px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 26px 0 12px; }
+.stevan-game-empty > span { color: var(--teal-bright); font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .2em; }
+.stevan-game-empty h3 { margin: 12px 0 7px; color: #eff4ef; font: 900 35px/.95 "Barlow Condensed",sans-serif; }
+.stevan-game-empty p { margin: 0; color: #9aaba7; font-size: 12px; line-height: 1.6; }
+.stevan-game-empty small { margin-top: 21px; color: #718985; font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .17em; }
+@keyframes stevan-panel-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
 
 .stevan-interests { border-top: 0; padding-top: 82px; }
 .stevan-interest-intro { display: flex; justify-content: space-between; align-items: center; margin-bottom: 19px; color: #718280; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .2em; }
@@ -242,6 +275,15 @@
   .stevan-game-layout { grid-template-columns: 1fr; }
   .stevan-feature-card { min-height: 320px; }
   .stevan-game-card { grid-template-columns: 32px 45px 1fr 16px; gap: 9px; min-height: 112px; padding: 15px 12px; }
+  .stevan-game-expansion { margin-top: 20px; padding: 18px 15px; }
+  .stevan-roblox-profile { gap: 12px; flex-wrap: wrap; }
+  .stevan-roblox-profile > img { width: 64px; height: 64px; }
+  .stevan-roblox-profile > a { width: 100%; margin: 3px 0 0 76px; }
+  .stevan-roblox-games-heading { display: block; }
+  .stevan-roblox-games-heading > span { display: block; margin-top: 10px; text-align: left; }
+  .stevan-roblox-games-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+  .stevan-roblox-game-info { padding: 10px 10px 12px; }
+  .stevan-roblox-game-info h4 { font-size: 15px; }
   .stevan-game-card-icon { width: 41px; height: 41px; }
   .stevan-game-card h3 { font-size: 14px; }
   .stevan-game-card p { font-size: 10px; }
