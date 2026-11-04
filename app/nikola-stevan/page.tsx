@@ -212,12 +212,12 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
 
         <div className="stevan-platform-grid">
           <section className="stevan-platform-card stevan-platform-roblox" id="mix-roblox" aria-label="Roblox játékok">
-            <div className="stevan-platform-heading">
+            <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
               <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
                 <b>TeamNikola</b><small>@snikola32 ↗</small>
               </a>
-            </div>
+            </header>
             <a className="stevan-roblox-hero" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer" aria-label="TeamNikola Roblox-profilja">
               <img src={robloxAssets.avatar || "/images/team-nikola-roblox-avatar.webp"} alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async"/>
               <span className="stevan-roblox-hero-caption"><b>PLAYER PROFILE</b><small>ROBLOX · TEAMNIKOLA</small></span>
@@ -240,10 +240,10 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
           </section>
 
           <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox játékok">
-            <div className="stevan-platform-heading">
+            <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="xbox"/><span>XBOX</span></div>
-              <span className="stevan-platform-account"><b>TeamNikola</b></span>
-            </div>
+              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola</b></span>
+            </header>
             <div className="stevan-platform-subheading"><span>Játékok</span></div>
             <div className="stevan-xbox-featured">
               <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC" target="_blank" rel="noreferrer">
@@ -268,10 +268,10 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
           </section>
 
           <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam játékok">
-            <div className="stevan-platform-heading">
+            <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="steam"/><span>STEAM</span></div>
-              <span className="stevan-platform-account"><b>TeamNikola</b></span>
-            </div>
+              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola</b></span>
+            </header>
             <div className="stevan-platform-subheading"><span>Kiemelt játékok</span></div>
             <div className="stevan-steam-games-grid">
               {steamGames.map((game) => (
