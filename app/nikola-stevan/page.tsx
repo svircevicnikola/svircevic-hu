@@ -163,14 +163,12 @@ function PlatformMark({ platform }: { platform: "roblox" | "xbox" | "steam" }) {
 
 type RobloxAssetData = {
   avatar: string | null;
-  headshot: string | null;
   games: Record<string, string>;
 };
 
 function GamePlatformCollection({ onClose }: { onClose: () => void }) {
   const [robloxAssets, setRobloxAssets] = useState<RobloxAssetData>({
     avatar: null,
-    headshot: null,
     games: {}
   });
 
@@ -184,7 +182,6 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
       .then((data) => {
         setRobloxAssets({
           avatar: data.avatar ?? null,
-          headshot: data.headshot ?? null,
           games: data.games ?? {}
         });
       })
@@ -200,7 +197,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
       <div className="stevan-mix-body">
         <aside className="stevan-mix-sidebar">
           <div className="stevan-mix-player">
-            <img src={robloxAssets.headshot || "/images/team-nikola-roblox-avatar.webp"} alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async" />
+            <img src="/images/team-nikola-profile-avatar.webp" alt="TeamNikola profilavatárja" loading="eager" decoding="async" />
             <span className="stevan-mix-online-dot" />
             <h3>TeamNikola</h3>
             <p>GAMER PROFILE</p>
