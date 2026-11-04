@@ -43,8 +43,8 @@ const interests: Interest[] = [
     detail: "Túrák, útvonalak, hegyek és természetben töltött napok – fotók és élmények gyűjtőhelye."
   },
   {
-    id: "kayak", number: "05", title: "Kajak", subtitle: "ON THE WATER", mark: "≈",
-    size: "small", description: "Víz, természet és kitartás.",
+    id: "kayak", number: "05", title: "Kajak", subtitle: "PADDLING · TEAMWORK", mark: "≈",
+    size: "small", description: "Víz, csapat, kitartás.",
     detail: "A kajakozáshoz kapcsolódó élmények, túrák, edzések és fotók gyűjtőhelye."
   },
   {
