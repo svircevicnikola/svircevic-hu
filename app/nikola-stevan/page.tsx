@@ -5,6 +5,16 @@ import "./stevan.css";
 
 type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess" | "code" | "hiking";
 
+const contactChannels = [
+  { id: "messenger", label: "Messenger", kind: "PROFIL / KAPCSOLAT", hint: "Messenger-profil vagy elérési link" },
+  { id: "discord", label: "Discord", kind: "FELHASZNÁLÓNÉV", hint: "Discord felhasználónév" },
+  { id: "roblox", label: "Roblox", kind: "FELHASZNÁLÓNÉV", hint: "Roblox azonosító" },
+  { id: "xbox", label: "Xbox", kind: "GAMERTAG", hint: "Xbox gamertag" },
+  { id: "minecraft", label: "Minecraft", kind: "SZERVER", hint: "Minecraft szervercím vagy IP" }
+] as const;
+
+type ContactId = (typeof contactChannels)[number]["id"];
+
 type Interest = {
   id: InterestId;
   number: string;
@@ -71,6 +81,22 @@ function ControllerMark({ className = "" }: { className?: string }) {
   );
 }
 
+function ContactIcon({ id }: { id: ContactId }) {
+  if (id === "messenger") {
+    return <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.4 3 15.1c0 3.7 1.8 7 4.8 9.2V29l4.5-2.5c1.2.3 2.4.5 3.7.5 7.2 0 13-5.4 13-12S23.2 3 16 3Z"/><path d="m8.5 19 6-6.3 4.1 3.1 4.9-3.1-6 6.3-4.1-3.1-4.9 3.1Z" fill="#071012"/></svg>;
+  }
+  if (id === "discord") {
+    return <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M25.7 7.2A24 24 0 0 0 20 5.5l-.7 1.4a21 21 0 0 0-6.6 0L12 5.5a24 24 0 0 0-5.7 1.7C2.7 12.5 1.7 17.7 2.2 22.8a23 23 0 0 0 7 3.5l1.5-2.4-2.3-1.1.6-.5c4.4 2 9.2 2 13.5 0l.6.5-2.3 1.1 1.5 2.4a23 23 0 0 0 7-3.5c.6-5.9-1-11-3.6-15.6ZM11.8 19.3c-1.3 0-2.3-1.2-2.3-2.6s1-2.6 2.3-2.6 2.4 1.2 2.3 2.6c0 1.4-1 2.6-2.3 2.6Zm8.4 0c-1.3 0-2.3-1.2-2.3-2.6s1-2.6 2.3-2.6 2.4 1.2 2.3 2.6c0 1.4-1 2.6-2.3 2.6Z"/></svg>;
+  }
+  if (id === "roblox") {
+    return <svg viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(18 16 16)" fill="none" stroke="currentColor" strokeWidth="4"><rect x="5" y="5" width="22" height="22" rx="1"/><rect x="12" y="12" width="8" height="8" rx=".5" strokeWidth="3"/></g></svg>;
+  }
+  if (id === "xbox") {
+    return <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" strokeWidth="2.4"/><path d="M8 8c4.6.2 7.2 3.2 8 4.2.8-1 3.4-4 8-4.2M8 24c2.1-4.8 5.4-8.6 8-10.2 2.6 1.6 5.9 5.4 8 10.2" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg>;
+  }
+  return <span className="stevan-contact-minecraft-mark" aria-hidden="true">M</span>;
+}
+
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
@@ -109,6 +135,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
 export default function NikolaStevanPage() {
   const [activeInterest, setActiveInterest] = useState<Interest | null>(null);
+  const [activeContact, setActiveContact] = useState<ContactId | null>(null);
 
   return (
     <main className="stevan-site">
@@ -214,7 +241,34 @@ export default function NikolaStevanPage() {
       <section className="stevan-about" id="about">
         <div className="stevan-about-mark">TN<span>01</span></div>
         <div className="stevan-about-copy"><span className="stevan-eyebrow">03 — ABOUT THE PLAYER</span><h2>CURIOUS BY<br/><span>DEFAULT.</span></h2><p>Gaming, sport, zene, stratégia és programozás. Különböző pályák, ugyanaz a kíváncsiság: kipróbálni, megérteni, fejlődni.</p></div>
-        <div className="stevan-about-stamp"><ControllerMark /><span>TEAM<br/>NIKOLA</span></div>
+        <div className="stevan-about-social">
+          <img className="stevan-about-logo" src="/images/team-nikola-logo.png" alt="Team Nikola logó" />
+          <div className="stevan-contact-icons" aria-label="Kapcsolati és játékos azonosítók">
+            {contactChannels.map((channel) => (
+              <button
+                className={`stevan-contact-button stevan-contact-${channel.id}${activeContact === channel.id ? " is-active" : ""}`}
+                key={channel.id}
+                type="button"
+                onClick={() => setActiveContact(activeContact === channel.id ? null : channel.id)}
+                aria-label={channel.label + " adatok"}
+                aria-pressed={activeContact === channel.id}
+                aria-expanded={activeContact === channel.id}
+                aria-controls="stevan-contact-detail"
+              >
+                <span className="stevan-contact-icon"><ContactIcon id={channel.id} /></span>
+                <span className="stevan-contact-label">{channel.label}</span>
+              </button>
+            ))}
+          </div>
+          {activeContact && (
+            <div className="stevan-contact-detail" id="stevan-contact-detail" aria-live="polite">
+              <span className="stevan-contact-detail-kind">{contactChannels.find((channel) => channel.id === activeContact)?.kind}</span>
+              <b>{contactChannels.find((channel) => channel.id === activeContact)?.label}</b>
+              <p>{contactChannels.find((channel) => channel.id === activeContact)?.hint}</p>
+              <small>AZONOSÍTÓ MÉG NINCS MEGADVA</small>
+            </div>
+          )}
+        </div>
       </section>
 
       <footer className="stevan-footer">
