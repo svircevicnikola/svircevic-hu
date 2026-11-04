@@ -148,15 +148,32 @@
 .stevan-interest-kayak .stevan-interest-mark { font-size: 63px; }
 .stevan-interest-code .stevan-interest-mark { font-size: 34px; }
 
-.stevan-about { position: relative; width: min(1320px, calc(100% - 72px)); min-height: 340px; margin: 24px auto 80px; padding: 55px 70px; display: grid; grid-template-columns: 150px minmax(0,1fr) 210px; align-items: center; gap: 35px; border: 1px solid var(--line); background: radial-gradient(ellipse at 85% 50%, rgba(40,141,141,.20), transparent 34%), linear-gradient(110deg,#0e181b,#080d0f 60%); }
-.stevan-about-mark { color: rgba(57,203,195,.8); font: 900 77px/.8 "Barlow Condensed",sans-serif; letter-spacing: -.05em; }
-.stevan-about-mark span { display: block; margin-top: 12px; color: #55716f; font: 700 11px/1 "Rajdhani",sans-serif; letter-spacing: .22em; }
+.stevan-about { position: relative; width: min(1320px, calc(100% - 72px)); min-height: 340px; margin: 24px auto 80px; padding: 48px 54px; display: grid; grid-template-columns: 90px minmax(0,1fr) 330px; align-items: center; gap: 28px; border: 1px solid var(--line); background: radial-gradient(ellipse at 85% 50%, rgba(40,141,141,.20), transparent 34%), linear-gradient(110deg,#0e181b,#080d0f 60%); }
+.stevan-about-mark { color: rgba(57,203,195,.8); font: 900 54px/.8 "Barlow Condensed",sans-serif; letter-spacing: -.05em; }
+.stevan-about-mark span { display: block; margin-top: 10px; color: #55716f; font: 700 10px/1 "Rajdhani",sans-serif; letter-spacing: .22em; }
 .stevan-about-copy h2 { margin: 13px 0 14px; font: 900 57px/.83 "Barlow Condensed",sans-serif; letter-spacing: -.03em; }
 .stevan-about-copy h2 span { color: var(--teal-bright); }
 .stevan-about-copy p { max-width: 550px; margin: 0; color: #9eadaa; font-size: 13px; line-height: 1.75; }
-.stevan-about-stamp { display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--teal-bright); transform: rotate(7deg); }
-.stevan-about-stamp svg { width: 135px; filter: drop-shadow(0 0 14px rgba(57,203,195,.28)); }
-.stevan-about-stamp span { color: #9ae6df; font: 800 13px/1 "Rajdhani",sans-serif; letter-spacing: .24em; text-align: center; }
+.stevan-about-social { min-width: 0; align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 17px; padding-left: 25px; border-left: 1px solid var(--line); }
+.stevan-about-logo { display: block; width: min(100%, 235px); max-height: 104px; object-fit: contain; }
+.stevan-contact-icons { width: 100%; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 6px; }
+.stevan-contact-button { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 9px 3px 7px; border: 1px solid rgba(92,199,194,.20); border-radius: 2px; background: rgba(5,13,15,.42); color: #d9e4e0; cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.stevan-contact-button:hover, .stevan-contact-button.is-active { border-color: var(--teal-bright); background: rgba(57,203,195,.10); transform: translateY(-2px); }
+.stevan-contact-button:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 3px; }
+.stevan-contact-icon { width: 27px; height: 27px; display: grid; place-items: center; }
+.stevan-contact-icon svg { display: block; width: 25px; height: 25px; }
+.stevan-contact-messenger .stevan-contact-icon { color: #168bff; }
+.stevan-contact-discord .stevan-contact-icon { color: #8997ff; }
+.stevan-contact-roblox .stevan-contact-icon { color: #f1f4ef; }
+.stevan-contact-xbox .stevan-contact-icon { color: #79cf59; }
+.stevan-contact-minecraft .stevan-contact-icon { color: #a5c7a7; }
+.stevan-contact-minecraft-mark { width: 25px; height: 25px; display: grid; place-items: center; border: 2px solid currentColor; font: 900 18px/.9 "Barlow Condensed",sans-serif; clip-path: polygon(0 0,100% 0,100% 100%,0 100%); }
+.stevan-contact-label { max-width: 100%; color: #a8b8b3; font: 700 8px/1.1 "Rajdhani",sans-serif; letter-spacing: .05em; text-align: center; overflow-wrap: anywhere; }
+.stevan-contact-detail { width: 100%; padding: 12px 14px; border: 1px solid rgba(57,203,195,.32); border-left: 3px solid var(--teal-bright); background: rgba(4,12,14,.72); animation: stevan-fade-in .18s ease both; }
+.stevan-contact-detail-kind { display: block; color: var(--teal-bright); font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
+.stevan-contact-detail b { display: block; margin-top: 5px; color: #edf4ef; font: 800 17px/1 "Barlow Condensed",sans-serif; text-transform: uppercase; }
+.stevan-contact-detail p { margin: 5px 0 7px; color: #aebbb6; font-size: 10px; line-height: 1.4; }
+.stevan-contact-detail small { color: #748a84; font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .1em; }
 
 .stevan-footer { width: min(1320px, calc(100% - 72px)); min-height: 88px; margin: 0 auto; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); color: #738482; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
 .stevan-footer-brand { color: #f0f4f0 !important; font: 900 19px/1 "Barlow Condensed",sans-serif; letter-spacing: .08em; }
@@ -190,9 +207,14 @@
   .stevan-interest-cloud { grid-template-rows: 150px 140px 140px; gap: 11px; }
   .stevan-interest-card { padding: 15px; }
   .stevan-interest-content b { font-size: 23px; }
-  .stevan-about { padding: 42px 35px; grid-template-columns: 80px 1fr 130px; gap: 22px; }
-  .stevan-about-mark { font-size: 57px; }
-  .stevan-about-stamp svg { width: 100px; }
+  .stevan-about { padding: 38px 30px; grid-template-columns: 65px minmax(0,1fr) 250px; gap: 17px; }
+  .stevan-about-mark { font-size: 46px; }
+  .stevan-about-copy h2 { font-size: 48px; }
+  .stevan-about-social { padding-left: 17px; gap: 14px; }
+  .stevan-about-logo { width: min(100%, 190px); max-height: 86px; }
+  .stevan-contact-icons { gap: 4px; }
+  .stevan-contact-button { padding: 8px 2px 6px; }
+  .stevan-contact-label { font-size: 7px; }
 }
 @media (max-width: 640px) {
   .stevan-header, .stevan-hero, .stevan-gaming, .stevan-interests, .stevan-about, .stevan-footer { width: calc(100% - 34px); }
@@ -235,12 +257,15 @@
   .stevan-interest-math, .stevan-interest-science, .stevan-interest-drums, .stevan-interest-basketball, .stevan-interest-kayak, .stevan-interest-chess, .stevan-interest-code, .stevan-interest-hiking { grid-column: auto; grid-row: auto; }
   .stevan-interest-basketball, .stevan-interest-code, .stevan-interest-hiking { grid-column: span 2; min-height: 130px; }
   .stevan-interest-kayak { min-height: 180px; }
-  .stevan-about { width: calc(100% - 34px); margin: 5px auto 50px; min-height: 0; padding: 34px 24px; grid-template-columns: 1fr 92px; gap: 14px; }
-  .stevan-about-mark { grid-column: 1 / -1; font-size: 44px; }
+  .stevan-about { width: calc(100% - 34px); margin: 5px auto 50px; min-height: 0; padding: 30px 22px; grid-template-columns: 1fr; gap: 18px; }
+  .stevan-about-mark { grid-column: auto; font-size: 42px; }
   .stevan-about-copy h2 { font-size: 48px; }
   .stevan-about-copy p { font-size: 11px; }
-  .stevan-about-stamp svg { width: 86px; }
-  .stevan-about-stamp span { font-size: 10px; }
+  .stevan-about-social { width: 100%; padding: 19px 0 0; border-left: 0; border-top: 1px solid var(--line); gap: 14px; }
+  .stevan-about-logo { width: min(78%, 210px); max-height: 90px; }
+  .stevan-contact-icons { gap: 7px; }
+  .stevan-contact-button { padding: 9px 3px 7px; }
+  .stevan-contact-label { font-size: 8px; }
   .stevan-footer { min-height: 76px; flex-wrap: wrap; gap: 12px; }
   .stevan-footer > span { display: none; }
   .stevan-modal { padding: 38px 25px 27px; }
