@@ -64,6 +64,9 @@
 .stevan-button-primary { display: inline-flex; align-items: center; gap: 26px; background: var(--teal-bright); color: #051011 !important; padding: 15px 20px; font: 800 12px/1 "Rajdhani", sans-serif; letter-spacing: .13em; transition: transform .2s, background .2s; }
 .stevan-button-primary:hover { transform: translateY(-3px); background: #62e1d8; }
 .stevan-button-primary span { font-size: 17px; }
+.stevan-button-secondary { display: inline-flex; align-items: center; gap: 26px; background: #f3f5f2; color: #071012 !important; padding: 15px 20px; font: 800 12px/1 "Rajdhani", sans-serif; letter-spacing: .13em; transition: transform .2s, background .2s; }
+.stevan-button-secondary:hover { transform: translateY(-3px); background: #ffffff; }
+.stevan-button-secondary span { font-size: 17px; color: var(--teal); }
 .stevan-button-quiet { color: #c5d0cf !important; font: 700 11px/1 "Rajdhani", sans-serif; letter-spacing: .12em; }
 .stevan-button-quiet span { margin-left: 8px; color: var(--teal-bright); }
 .stevan-hero-footnote { display: flex; justify-content: space-between; width: min(430px, 92%); margin-top: 62px; padding-top: 13px; border-top: 1px solid var(--line); color: #627273; font: 700 9px/1 "Rajdhani", sans-serif; letter-spacing: .18em; }
