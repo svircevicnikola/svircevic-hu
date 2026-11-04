@@ -34,15 +34,6 @@ export async function GET() {
     isCircular: "false",
   }).toString();
 
-  const headshotUrl = new URL("https://thumbnails.roblox.com/v1/users/avatar-headshot");
-  headshotUrl.search = new URLSearchParams({
-    userIds: USER_ID,
-    size: "420x420",
-    format: "Png",
-    isCircular: "false",
-    thumbnailType: "HeadShot",
-  }).toString();
-
   const gamesUrl = new URL("https://thumbnails.roblox.com/v1/places/gameicons");
   gamesUrl.search = new URLSearchParams({
     placeIds: GAME_PLACE_IDS.join(","),
@@ -52,9 +43,8 @@ export async function GET() {
   }).toString();
 
   try {
-    const [avatar, headshot, gameIcons] = await Promise.all([
+    const [avatar, gameIcons] = await Promise.all([
       getJson(avatarUrl.toString()),
-      getJson(headshotUrl.toString()),
       getJson(gamesUrl.toString()),
     ]);
 
@@ -65,20 +55,20 @@ export async function GET() {
       }
     }
 
-    const payload = {
-      avatar: avatar?.data?.[0]?.imageUrl ?? null,
-      headshot: headshot?.data?.[0]?.imageUrl ?? null,
-      games,
-    };
-
-    return Response.json(payload, {
-      headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+    return Response.json(
+      {
+        avatar: avatar?.data?.[0]?.imageUrl ?? null,
+        games,
       },
-    });
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      },
+    );
   } catch {
     return Response.json(
-      { avatar: null, headshot: null, games: {} },
+      { avatar: null, games: {} },
       { status: 502, headers: { "Cache-Control": "no-store" } },
     );
   }
