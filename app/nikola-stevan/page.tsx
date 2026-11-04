@@ -216,10 +216,10 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
       <div className="stevan-mix-body">
         <aside className="stevan-mix-sidebar">
           <div className="stevan-mix-player">
-            <img src="/images/xboxavatar.png" alt="TeamNikola profilavatárja" loading="eager" decoding="async"/>
+            <img className="stevan-mix-player-logo" src="/images/Logo3.png" alt="TeamNikola logó" loading="eager" decoding="async"/>
             <span className="stevan-mix-online-dot"/>
             <h3>TeamNikola</h3>
-            <img className="stevan-mix-player-logo" src="/images/Logo3.png" alt="TeamNikola logo" loading="eager" decoding="async"/>
+            
           </div>
           <nav className="stevan-mix-nav" aria-label="Játékplatformok">
             <a href="#mix-roblox"><PlatformMark platform="roblox"/><span>ROBLOX</span><i>↗</i></a>
@@ -232,7 +232,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
         <div className="stevan-platform-grid">
           <section className="stevan-platform-card stevan-platform-roblox" id="mix-roblox" aria-label="Roblox játékok">
             <header className="stevan-platform-heading">
-              <div className="stevan-platform-brand"><PlatformMark platform="roblox"/></div>
+              <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
               <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
                 <b>TeamNikola</b><small>@snikola32 <i>↗</i></small>
               </a>
@@ -241,7 +241,6 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
               <img className="stevan-roblox-hero-background" src="https://cdn-www.bluestacks.com/bs-images/roblox-quest-metaverse-1400x825.jpg" alt="" loading="eager" decoding="async"/>
               <span className="stevan-roblox-hero-shade"/>
               <img className="stevan-roblox-hero-avatar" src="/images/noFilter.webp" alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async"/>
-              <span className="stevan-roblox-hero-caption"><b>TEAMNIKOLA</b><small>ROBLOX PLAYER · @SNIKOLA32</small></span>
               <i>↗</i>
             </a>
             <div className="stevan-platform-subheading"><span>Kiemelt játékok</span></div>
