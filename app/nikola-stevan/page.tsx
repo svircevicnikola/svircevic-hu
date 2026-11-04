@@ -154,37 +154,56 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
 function PlatformMark({ platform }: { platform: "roblox" | "xbox" | "steam" }) {
   const src = {
-    roblox: "/images/platform-roblox.svg",
-    xbox: "/images/platform-xbox.svg",
-    steam: "/images/platform-steam.svg"
+    roblox: "https://cdn.simpleicons.org/roblox/FFFFFF",
+    xbox: "https://cdn.simpleicons.org/xbox/FFFFFF",
+    steam: "https://cdn.simpleicons.org/steam/FFFFFF"
   }[platform];
   return <img className="stevan-platform-logo" src={src} alt="" aria-hidden="true" />;
 }
 
-type RobloxAssetData = {
-  avatar: string | null;
-  games: Record<string, string>;
-};
+type RobloxAssetData = { games: Record<string, string> };
+
+function MetricIcon({ kind }: { kind: "gamepad" | "clock" | "trophy" }) {
+  if (kind === "gamepad") return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M12 11h16c4.2 0 6.6 2.4 7.5 6.2l2.1 8.4c.8 3.3-1.6 5.4-4.4 3.4l-5.8-4.2H12.6l-5.8 4.2c-2.8 2-5.2-.1-4.4-3.4l2.1-8.4C5.4 13.4 7.8 11 12 11Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"/>
+      <path d="M12 17v8M8 21h8" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/>
+      <circle cx="27" cy="18" r="1.7" fill="currentColor"/><circle cx="31" cy="22" r="1.7" fill="currentColor"/>
+    </svg>
+  );
+  if (kind === "clock") return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <circle cx="20" cy="20" r="15" stroke="currentColor" strokeWidth="2.2"/>
+      <path d="M20 10v10l7 4" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M13 5h14v7a7 7 0 0 1-14 0V5ZM13 9H7v3a7 7 0 0 0 7 7M27 9h6v3a7 7 0 0 1-7 7M20 19v9m-7 7h14m-7-7v7m-7-7h14" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function XboxSocialMetric({ value, label, people = false }: { value: string; label: string; people?: boolean }) {
+  return (
+    <div className="stevan-xbox-social-metric">
+      {people && <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="5.5" r="3" fill="none" stroke="currentColor" strokeWidth="1.6"/><path d="M3.5 17v-1.2a6.5 6.5 0 0 1 13 0V17" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>}
+      <b>{value}</b><small>{label}</small>
+    </div>
+  );
+}
 
 function GamePlatformCollection({ onClose }: { onClose: () => void }) {
-  const [robloxAssets, setRobloxAssets] = useState<RobloxAssetData>({
-    avatar: null,
-    games: {}
-  });
+  const [robloxAssets, setRobloxAssets] = useState<RobloxAssetData>({ games: {} });
 
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/roblox-assets", { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) throw new Error("Roblox képek nem tölthetők be.");
+        if (!response.ok) throw new Error("Roblox játékikonok nem tölthetők be.");
         return response.json() as Promise<RobloxAssetData>;
       })
-      .then((data) => {
-        setRobloxAssets({
-          avatar: data.avatar ?? null,
-          games: data.games ?? {}
-        });
-      })
+      .then((data) => setRobloxAssets({ games: data.games ?? {} }))
       .catch((error: unknown) => {
         if (error instanceof Error && error.name === "AbortError") return;
       });
@@ -197,8 +216,8 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
       <div className="stevan-mix-body">
         <aside className="stevan-mix-sidebar">
           <div className="stevan-mix-player">
-            <img src="/images/team-nikola-profile-avatar.webp" alt="TeamNikola profilavatárja" loading="eager" decoding="async" />
-            <span className="stevan-mix-online-dot" />
+            <img src="/images/xboxavatar.png" alt="TeamNikola profilavatárja" loading="eager" decoding="async"/>
+            <span className="stevan-mix-online-dot"/>
             <h3>TeamNikola</h3>
             <p>GAMER PROFILE</p>
           </div>
@@ -215,22 +234,24 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
             <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
               <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
-                <b>TeamNikola</b><small>@snikola32 ↗</small>
+                <b>TeamNikola</b><small>@snikola32 <i>↗</i></small>
               </a>
             </header>
             <a className="stevan-roblox-hero" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer" aria-label="TeamNikola Roblox-profilja">
-              <img src={robloxAssets.avatar || "/images/team-nikola-roblox-avatar.webp"} alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async"/>
-              <span className="stevan-roblox-hero-caption"><b>PLAYER PROFILE</b><small>ROBLOX · TEAMNIKOLA</small></span>
+              <img className="stevan-roblox-hero-background" src="https://cdn-www.bluestacks.com/bs-images/roblox-quest-metaverse-1400x825.jpg" alt="" loading="eager" decoding="async"/>
+              <span className="stevan-roblox-hero-shade"/>
+              <img className="stevan-roblox-hero-avatar" src="/images/noFilter.webp" alt="TeamNikola Roblox-avatárja" loading="eager" decoding="async"/>
+              <span className="stevan-roblox-hero-caption"><b>TEAMNIKOLA</b><small>ROBLOX PLAYER · @SNIKOLA32</small></span>
               <i>↗</i>
             </a>
             <div className="stevan-platform-subheading"><span>Kiemelt játékok</span></div>
             <div className="stevan-roblox-games-grid">
               {robloxGames.map((game) => {
-                const image=robloxAssets.games[game.placeId];
+                const image = robloxAssets.games[game.placeId];
                 return (
                   <a className="stevan-roblox-game" href={game.href} key={game.placeId} target="_blank" rel="noreferrer">
                     <span className="stevan-roblox-game-image">
-                      {image ? <img src={image} alt={game.title + " Roblox-játék ikon"} loading="lazy" decoding="async"/> : <span className="stevan-roblox-image-loading">LOADING</span>}
+                      {image ? <img src={image} alt={game.title + " Roblox-játék képe"} loading="lazy" decoding="async"/> : <span className="stevan-roblox-image-loading">LOADING</span>}
                     </span>
                     <span className="stevan-roblox-game-title">{game.title}</span>
                   </a>
@@ -239,12 +260,24 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
             </div>
           </section>
 
-          <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox játékok">
+          <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox profil és játékok">
             <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="xbox"/><span>XBOX</span></div>
-              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola</b></span>
+              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola <i>↗</i></b></span>
             </header>
-            <div className="stevan-platform-subheading"><span>Játékok</span></div>
+            <div className="stevan-xbox-profile">
+              <img className="stevan-xbox-avatar" src="/images/xboxavatar.png" alt="TeamNikola Xbox-avatarja" loading="eager" decoding="async"/>
+              <div className="stevan-xbox-profile-main">
+                <div className="stevan-xbox-online"><span/>Online</div>
+                <div className="stevan-xbox-score"><b>G</b><strong>8 160</strong></div>
+              </div>
+              <div className="stevan-xbox-social">
+                <XboxSocialMetric value="8" label="Barát" people/>
+                <XboxSocialMetric value="8" label="Követés"/>
+                <XboxSocialMetric value="28" label="Követő"/>
+              </div>
+            </div>
+            <div className="stevan-platform-subheading stevan-xbox-games-heading"><span>Minecraft</span></div>
             <div className="stevan-xbox-featured">
               <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC" target="_blank" rel="noreferrer">
                 <img src="https://www.nintendo.com/eu/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_Minecraft.jpg" alt="Minecraft" loading="lazy" decoding="async"/>
@@ -252,13 +285,13 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
               </a>
               <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-us/games/store/_/9P5786PJB9RP" target="_blank" rel="noreferrer">
                 <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/homepage_discover_our_games_mc_dungeons_ii_key_art_864x864.jpg" alt="Minecraft Dungeons II" loading="lazy" decoding="async"/>
-                <span>MINECRAFT DUNGEONS II</span>
+                <span>DUNGEONS II</span>
               </a>
             </div>
             <div className="stevan-xbox-secondary">
               <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons/9N8NJ74FZTG9" target="_blank" rel="noreferrer">
                 <img src="https://www.minecraft.net/content/dam/minecraftnet/games/dungeons/key-art/Homepage_Discover-our-games_MC-Dungeons-KeyArt_864x864.jpg" alt="Minecraft Dungeons" loading="lazy" decoding="async"/>
-                <span>MINECRAFT DUNGEONS</span>
+                <span>DUNGEONS</span>
               </a>
               <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.minecraft.net/en-us/download" target="_blank" rel="noreferrer">
                 <img src="https://images.igdb.com/igdb/image/upload/t_1080p_2x/co8fu6.webp" alt="Minecraft Java Edition" loading="lazy" decoding="async"/>
@@ -267,17 +300,25 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
             </div>
           </section>
 
-          <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam játékok">
+          <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam profil és játékok">
             <header className="stevan-platform-heading">
               <div className="stevan-platform-brand"><PlatformMark platform="steam"/><span>STEAM</span></div>
-              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola</b></span>
+              <span className="stevan-platform-account stevan-platform-account-plain"><b>TeamNikola <i>↗</i></b></span>
             </header>
-            <div className="stevan-platform-subheading"><span>Kiemelt játékok</span></div>
+            <div className="stevan-steam-summary" aria-label="Steam statisztikák">
+              <div className="stevan-steam-metric"><MetricIcon kind="gamepad"/><span><b>40</b><small>Játék</small></span></div>
+              <div className="stevan-steam-metric"><MetricIcon kind="clock"/><span><b>4</b><small>Nemrég játszott</small></span></div>
+              <div className="stevan-steam-metric"><MetricIcon kind="trophy"/><span><b>0</b><small>Teljesített</small></span></div>
+            </div>
+            <div className="stevan-platform-subheading stevan-steam-games-heading"><span>Kiemelt játékok</span></div>
             <div className="stevan-steam-games-grid">
-              {steamGames.map((game) => (
+              {steamGames.map((game, index) => (
                 <a className="stevan-steam-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
                   <img src={game.image} alt={game.title + " Steam-borító"} loading="lazy" decoding="async"/>
-                  <span className="stevan-steam-game-copy"><b>{game.title}</b><i aria-hidden="true"><span /></i></span>
+                  <span className="stevan-steam-game-copy">
+                    <b>{game.title}</b>
+                    <i aria-hidden="true"><span style={{ width: ["72%","46%","34%","9%","13%"][index] }}/></i>
+                  </span>
                 </a>
               ))}
             </div>
