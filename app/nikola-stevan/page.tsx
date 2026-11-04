@@ -38,6 +38,11 @@ const interests: Interest[] = [
     detail: "Kosárlabdás pillanatok, kedvenc játékosok, edzések és mérkőzések – azok a dolgok, amelyek igazán meghatározzák ezt az érdeklődést."
   },
   {
+    id: "hiking", number: "08", title: "Túrázás", subtitle: "HIKING · OUTDOORS", mark: "⌃",
+    size: "wide", description: "Természet, útvonalak és új panorámák.",
+    detail: "Túrák, útvonalak, hegyek és természetben töltött napok – fotók és élmények gyűjtőhelye."
+  },
+  {
     id: "kayak", number: "05", title: "Kajak", subtitle: "ON THE WATER", mark: "≈",
     size: "small", description: "Víz, természet és kitartás.",
     detail: "A kajakozáshoz kapcsolódó élmények, túrák, edzések és fotók gyűjtőhelye."
