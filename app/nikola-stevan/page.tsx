@@ -153,113 +153,104 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
 
 function PlatformMark({ platform }: { platform: "roblox" | "xbox" | "steam" }) {
-  if (platform === "roblox") {
-    return <svg viewBox="0 0 48 48" aria-hidden="true"><g transform="rotate(18 24 24)"><rect x="6" y="6" width="36" height="36" rx="2" fill="currentColor"/><rect x="18" y="18" width="12" height="12" fill="#071012"/></g></svg>;
-  }
-  if (platform === "xbox") {
-    return <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="currentColor"/><path d="M10 12c6 0 11 4 14 8 3-4 8-8 14-8-4 4-7 9-9 13 3 4 6 8 9 12-6 0-11-4-14-8-3 4-8 8-14 8 3-4 6-8 9-12-2-4-5-9-9-13Z" fill="#081315"/></svg>;
-  }
-  return <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" strokeWidth="5"/><circle cx="18" cy="19" r="7" fill="none" stroke="currentColor" strokeWidth="4"/><path d="M22 23 33 33m-3-8 6-6m-9 3 6-6" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/><circle cx="18" cy="19" r="2" fill="currentColor"/></svg>;
-}
-
-function MixControllerArt() {
-  return <svg viewBox="0 0 280 170" fill="none" aria-hidden="true"><path d="M69 39h142c19 0 31 11 37 30l20 62c6 20-9 30-25 19l-42-31H79l-42 31c-16 11-31 1-25-19l20-62c6-19 18-30 37-30Z" stroke="currentColor" strokeWidth="7" strokeLinejoin="round"/><path d="M75 66v38M56 85h38" stroke="currentColor" strokeWidth="9" strokeLinecap="round"/><circle cx="188" cy="72" r="7" fill="currentColor"/><circle cx="211" cy="91" r="7" fill="currentColor"/><circle cx="166" cy="91" r="7" fill="currentColor"/><circle cx="188" cy="110" r="7" fill="currentColor"/></svg>;
+  const logos = {
+    roblox: "https://commons.wikimedia.org/wiki/Special:FilePath/Roblox_Logo.svg",
+    xbox: "https://commons.wikimedia.org/wiki/Special:FilePath/Xbox_Logo.svg",
+    steam: "https://commons.wikimedia.org/wiki/Special:FilePath/Steam_icon_logo.svg"
+  };
+  return <img className="stevan-platform-logo" src={logos[platform]} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" />;
 }
 
 function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => void }) {
   return (
     <div className="stevan-game-expansion" id="stevan-game-expansion" key={panel}>
+      <button className="stevan-mix-close" type="button" onClick={onClose} aria-label="Tartalom bezárása">×</button>
       {panel === "games" ? (
-        <>
-          <header className="stevan-mix-header">
-            <div className="stevan-mix-header-icon"><MixControllerArt /></div>
-            <div className="stevan-mix-header-copy">
-              <span>TEAM NIKOLA / PLAYER COLLECTION</span>
-              <h2>GAMES IN THE <b>MIX.</b></h2>
-              <p>Játékok, platformok, élmények — egy helyen.</p>
+        <div className="stevan-mix-body">
+          <aside className="stevan-mix-sidebar">
+            <div className="stevan-mix-player">
+              <img src="https://www.roblox.com/headshot-thumbnail/image?userId=2651064775&width=420&height=420&format=png" alt="TeamNikola Roblox-avatárja" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+              <span className="stevan-mix-online-dot" />
+              <h3>TeamNikola</h3>
+              <p>GAMER PROFILE</p>
             </div>
-            <div className="stevan-mix-header-art"><MixControllerArt /></div>
-            <button className="stevan-mix-close" type="button" onClick={onClose} aria-label="Tartalom bezárása">CLOSE ×</button>
-          </header>
+            <nav className="stevan-mix-nav" aria-label="Játékplatformok">
+              <a href="#mix-roblox"><PlatformMark platform="roblox"/><span>ROBLOX</span><i>↗</i></a>
+              <a href="#mix-xbox"><PlatformMark platform="xbox"/><span>XBOX / MINECRAFT</span><i>↗</i></a>
+              <a href="#mix-steam"><PlatformMark platform="steam"/><span>STEAM</span><i>↗</i></a>
+            </nav>
+            <div className="stevan-mix-sidebar-foot"><span className="stevan-status-dot"/> PLAY · THINK · CREATE</div>
+          </aside>
 
-          <div className="stevan-mix-body">
-            <aside className="stevan-mix-sidebar">
-              <div className="stevan-mix-player">
-                <img src="https://www.roblox.com/headshot-thumbnail/image?userId=2651064775&width=420&height=420&format=png" alt="TeamNikola Roblox-avatárja" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                <span className="stevan-mix-online-dot" />
-                <h3>TeamNikola</h3>
-                <p>GAMER PROFILE</p>
+          <div className="stevan-platform-grid">
+            <section className="stevan-platform-card stevan-platform-roblox" id="mix-roblox" aria-label="Roblox játékok">
+              <div className="stevan-platform-heading">
+                <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
+                <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
+                  <b>TeamNikola</b><small>@snikola32 ↗</small>
+                </a>
               </div>
-              <nav className="stevan-mix-nav" aria-label="Játékplatformok">
-                <a href="#mix-roblox"><PlatformMark platform="roblox"/><span>ROBLOX</span><i>↗</i></a>
-                <a href="#mix-xbox"><PlatformMark platform="xbox"/><span>XBOX / MINECRAFT</span><i>↗</i></a>
-                <a href="#mix-steam"><PlatformMark platform="steam"/><span>STEAM</span><i>↗</i></a>
-              </nav>
-              <div className="stevan-mix-sidebar-foot"><span className="stevan-status-dot"/> PLAY · THINK · CREATE</div>
-            </aside>
+              <a className="stevan-roblox-hero" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer" aria-label="TeamNikola Roblox-profilja">
+                <img src="https://www.roblox.com/headshot-thumbnail/image?userId=2651064775&width=420&height=420&format=png" alt="TeamNikola Roblox-avatárja" loading="lazy" decoding="async" referrerPolicy="no-referrer"/>
+                <span className="stevan-roblox-hero-caption"><b>PLAYER PROFILE</b><small>ROBLOX · TEAMNIKOLA</small></span>
+                <i>↗</i>
+              </a>
+              <div className="stevan-platform-subheading"><span>Kiemelt játékok</span><small>SELECTED GAMES</small></div>
+              <div className="stevan-roblox-games-grid">
+                {robloxGames.map((game) => (
+                  <a className="stevan-roblox-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
+                    <img src={game.image} alt={game.title + " Roblox-játék képe"} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                    <span>{game.title}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
 
-            <div className="stevan-platform-grid">
-              <section className="stevan-platform-card stevan-platform-roblox" id="mix-roblox" aria-label="Roblox játékok">
-                <div className="stevan-platform-heading">
-                  <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
-                  <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
-                    <b>TeamNikola</b><small>@snikola32</small>
-                  </a>
-                </div>
-                <div className="stevan-roblox-games-grid">
-                  {robloxGames.map((game) => (
-                    <a className="stevan-roblox-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
-                      <img src={game.image} alt={game.title + " Roblox-játék képe"} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                      <span>{game.title}</span>
-                    </a>
-                  ))}
-                </div>
-              </section>
+            <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox játékok">
+              <div className="stevan-platform-heading">
+                <div className="stevan-platform-brand"><PlatformMark platform="xbox"/><span>XBOX</span></div>
+                <a className="stevan-platform-account" href="https://www.xbox.com/" target="_blank" rel="noreferrer"><b>TeamNikola ↗</b></a>
+              </div>
+              <div className="stevan-platform-subheading"><span>Játékok</span><small>MICROSOFT ACCOUNT</small></div>
+              <div className="stevan-xbox-featured">
+                <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC" target="_blank" rel="noreferrer">
+                  <img src="https://www.nintendo.com/eu/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_Minecraft.jpg" alt="Minecraft" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                  <span>MINECRAFT</span>
+                </a>
+                <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-us/games/store/_/9P5786PJB9RP" target="_blank" rel="noreferrer">
+                  <img src="https://www.minecraft.net/content/dam/minecraftnet/games/spicewood/screenshots/MCSW_Nintendo-PDP_Screenshot_Soul-Crisis_1200x675.png" alt="Minecraft Dungeons II" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                  <span>MINECRAFT DUNGEONS II</span>
+                </a>
+              </div>
+              <div className="stevan-xbox-secondary">
+                <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons/9N8NJ74FZTG9" target="_blank" rel="noreferrer">
+                  <img src="https://www.minecraft.net/content/dam/minecraftnet/games/dungeons/key-art/Homepage_Discover-our-games_MC-Dungeons-KeyArt_864x864.jpg" alt="Minecraft Dungeons" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                  <span>MINECRAFT DUNGEONS</span>
+                </a>
+                <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.minecraft.net/en-us/download" target="_blank" rel="noreferrer">
+                  <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/logos/icon_javaedition.jpg" alt="Minecraft Java Edition" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                  <span>MINECRAFT JAVA EDITION</span>
+                </a>
+              </div>
+            </section>
 
-              <section className="stevan-platform-card stevan-platform-xbox" id="mix-xbox" aria-label="Xbox játékok">
-                <div className="stevan-platform-heading">
-                  <div className="stevan-platform-brand"><PlatformMark platform="xbox"/><span>XBOX</span></div>
-                  <span className="stevan-platform-account"><b>TeamNikola</b></span>
-                </div>
-                <div className="stevan-xbox-featured">
-                  <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC" target="_blank" rel="noreferrer">
-                    <img src="https://www.nintendo.com/eu/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_Minecraft.jpg" alt="Minecraft" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                    <span>MINECRAFT</span>
+            <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam játékok">
+              <div className="stevan-platform-heading">
+                <div className="stevan-platform-brand"><PlatformMark platform="steam"/><span>STEAM</span></div>
+                <a className="stevan-platform-account" href="https://store.steampowered.com/" target="_blank" rel="noreferrer"><b>TeamNikola ↗</b></a>
+              </div>
+              <div className="stevan-platform-subheading"><span>Kiemelt játékok</span><small>STEAM LIBRARY</small></div>
+              <div className="stevan-steam-games-grid">
+                {steamGames.map((game) => (
+                  <a className="stevan-steam-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
+                    <img src={game.image} alt={game.title + " Steam-borító"} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                    <span className="stevan-steam-game-copy"><b>{game.title}</b><i aria-hidden="true"><span /></i></span>
                   </a>
-                  <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons-ii/9P5786PJB9RP" target="_blank" rel="noreferrer">
-                    <img src="https://www.minecraft.net/content/dam/minecraftnet/games/spicewood/key-art/Homepage_Discover-our-games_MC-Spicewood-KeyArt_864x864.jpg.jpg" alt="Minecraft Dungeons II" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                    <span>DUNGEONS II</span>
-                  </a>
-                </div>
-                <div className="stevan-xbox-secondary">
-                  <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons/9N8NJ74FZTG9" target="_blank" rel="noreferrer">
-                    <img src="https://www.minecraft.net/content/dam/minecraftnet/games/dungeons/key-art/Homepage_Discover-our-games_MC-Dungeons-KeyArt_864x864.jpg" alt="Minecraft Dungeons" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                    <span>DUNGEONS</span>
-                  </a>
-                  <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.minecraft.net/en-us/download" target="_blank" rel="noreferrer">
-                    <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/logos/icon_javaedition.jpg" alt="Minecraft Java Edition" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                    <span>MINECRAFT JAVA</span>
-                  </a>
-                </div>
-              </section>
-
-              <section className="stevan-platform-card stevan-platform-steam" id="mix-steam" aria-label="Steam játékok">
-                <div className="stevan-platform-heading">
-                  <div className="stevan-platform-brand"><PlatformMark platform="steam"/><span>STEAM</span></div>
-                  <span className="stevan-platform-account"><b>TeamNikola</b></span>
-                </div>
-                <div className="stevan-steam-games-grid">
-                  {steamGames.map((game) => (
-                    <a className="stevan-steam-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
-                      <img src={game.image} alt={game.title + " Steam-borító"} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                      <span>{game.title}</span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            </div>
+                ))}
+              </div>
+            </section>
           </div>
-        </>
+        </div>
       ) : (
         <>
           <div className="stevan-game-expansion-top">
