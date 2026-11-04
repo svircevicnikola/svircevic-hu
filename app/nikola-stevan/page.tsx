@@ -231,7 +231,6 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
           <div className="stevan-mix-player">
             <img className="stevan-mix-player-logo" src="/images/Logo3.png" alt="TeamNikola logó" loading="eager" decoding="async"/>
             <span className="stevan-mix-online-dot"/>
-            <h3>TeamNikola</h3>
             
           </div>
           <nav className="stevan-mix-nav" aria-label="Játékplatformok">
