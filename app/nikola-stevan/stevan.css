@@ -1039,3 +1039,16 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     height:100px;
   }
 }
+
+
+/* Definitive logo matte integration: keep the central mark, feather every edge */
+.stevan-mix-player > img.stevan-mix-player-logo {
+  mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 36%,rgba(0,0,0,.94) 51%,rgba(0,0,0,.72) 66%,rgba(0,0,0,.34) 81%,rgba(0,0,0,.08) 92%,transparent 100%);
+  mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 36%,rgba(0,0,0,.94) 51%,rgba(0,0,0,.72) 66%,rgba(0,0,0,.34) 81%,rgba(0,0,0,.08) 92%,transparent 100%);
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  filter:brightness(1.16) contrast(1.12) drop-shadow(0 0 8px rgba(46,213,207,.18));
+}
