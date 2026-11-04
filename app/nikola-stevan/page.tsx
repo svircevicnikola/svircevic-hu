@@ -7,12 +7,20 @@ type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess
 type GamePanel = "games" | "highlights" | "setup";
 
 const robloxGames = [
-  { title: "Forsaken Combat", number: "01 / 06" },
-  { title: "Forsaken", number: "02 / 06" },
-  { title: "RIVALS", number: "03 / 06" },
-  { title: "The Backrooms With Guns", number: "04 / 06" },
-  { title: "99 Nights in the Forest", number: "05 / 06" },
-  { title: "Last: Memories", number: "06 / 06" }
+  { title: "Forsaken Combat", href: "https://www.roblox.com/games/126815230666914/Forsaken-Combat", image: "https://tr.rbxcdn.com/180DAY-12174c302f10e7ac87727fdd0f18de2e/500/280/Image/Jpeg/noFilter" },
+  { title: "Forsaken", href: "https://www.roblox.com/games/18687417158/Forsaken", image: "https://tr.rbxcdn.com/180DAY-55e99cf98b802b038752d8db880bf318/500/280/Image/Jpeg/noFilter" },
+  { title: "RIVALS", href: "https://www.roblox.com/games/17625359962/RIVALS", image: "https://tr.rbxcdn.com/180DAY-0379e61f5a8aebd28371e80dd76189a6/500/280/Image/Jpeg/noFilter" },
+  { title: "The Backrooms With Guns", href: "https://www.roblox.com/games/8455137364/The-Backrooms-With-Guns", image: "https://tr.rbxcdn.com/180DAY-bf93048a8b5b21d6a958beea6ef85504/500/280/Image/Jpeg/noFilter" },
+  { title: "99 Nights in the Forest", href: "https://www.roblox.com/games/79546208627805/99-Nights-in-the-Forest", image: "https://tr.rbxcdn.com/180DAY-cd20e3c4b38e59cff4c62cc7435a820c/500/280/Image/Jpeg/noFilter" },
+  { title: "Last: Memories", href: "https://www.roblox.com/games/86022723355936/Last-Memories", image: "https://tr.rbxcdn.com/180DAY-7c784e5b519599cf6b9dd0eaad26ad02/500/280/Image/Jpeg/noFilter" }
+] as const;
+
+const steamGames = [
+  { title: "Geometry Dash", href: "https://store.steampowered.com/app/322170/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/322170/header.jpg" },
+  { title: "Might & Magic: Heroes VI", href: "https://store.steampowered.com/app/48220/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/48220/header.jpg" },
+  { title: "Bloons TD 6", href: "https://store.steampowered.com/app/960090/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg" },
+  { title: "Baldur's Gate 3", href: "https://store.steampowered.com/app/1086940/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" },
+  { title: "Heroes of Might and Magic: Olden Era", href: "https://store.steampowered.com/app/3105440/", image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3105440/header.jpg" }
 ] as const;
 
 const contactChannels = [
@@ -148,50 +156,76 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
   return (
     <div className="stevan-game-expansion" id="stevan-game-expansion" key={panel}>
       <div className="stevan-game-expansion-top">
-        <span>{panel === "games" ? "ROBLOX / PLAYER PROFILE" : panel === "highlights" ? "PLAYER MODE / HIGHLIGHTS" : "PLAYER MODE / SETUP"}</span>
+        <span>{panel === "games" ? "GAMES IN THE MIX / PLATFORM COLLECTION" : panel === "highlights" ? "PLAYER MODE / HIGHLIGHTS" : "PLAYER MODE / SETUP"}</span>
         <button type="button" onClick={onClose} aria-label="Tartalom bezárása">CLOSE ×</button>
       </div>
 
       {panel === "games" ? (
-        <>
-          <div className="stevan-roblox-profile">
-            <img src="/images/team-nikola-roblox-avatar.webp" alt="TeamNikola Roblox-avatárja" />
-            <div className="stevan-roblox-player-copy">
-              <span>ROBLOX PLAYER</span>
-              <h3>TeamNikola</h3>
-              <p>@snikola32</p>
+        <div className="stevan-platform-grid">
+          <section className="stevan-platform-card stevan-platform-roblox" aria-label="Roblox játékok">
+            <div className="stevan-platform-heading">
+              <span>ROBLOX</span>
+              <a href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">PROFILE ↗</a>
             </div>
-            <a href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">VIEW ROBLOX PROFILE <span>↗</span></a>
-          </div>
+            <div className="stevan-roblox-identity">
+              <img src="/images/team-nikola-roblox-avatar.webp" alt="TeamNikola Roblox-avatárja" loading="lazy" decoding="async" />
+              <div><strong>TeamNikola</strong><span>@snikola32</span></div>
+            </div>
+            <div className="stevan-roblox-games-grid">
+              {robloxGames.map((game) => (
+                <a className="stevan-roblox-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
+                  <img src={game.image} alt={game.title + " Roblox-játék képe"} loading="lazy" decoding="async" />
+                  <span>{game.title}</span>
+                </a>
+              ))}
+            </div>
+          </section>
 
-          <div className="stevan-roblox-games-heading">
-            <div><span className="stevan-eyebrow">RECENTLY PLAYED</span><h3>GAMES IN THE <b>MIX.</b></h3></div>
-            <span>SELECTED FROM ROBLOX CONTINUE</span>
-          </div>
+          <section className="stevan-platform-card stevan-platform-xbox" aria-label="Xbox játékok">
+            <div className="stevan-platform-heading"><span>XBOX</span><span className="stevan-platform-account">TeamNikola</span></div>
+            <div className="stevan-xbox-featured">
+              <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft/9MVXMVT8ZKWC" target="_blank" rel="noreferrer">
+                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/logos/icon_bedrock.jpg" alt="Minecraft" loading="lazy" decoding="async" />
+                <span>MINECRAFT</span>
+              </a>
+              <a className="stevan-xbox-game stevan-xbox-game-large" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons-ii/9P5786PJB9RP" target="_blank" rel="noreferrer">
+                <img src="https://store-images.s-microsoft.com/image/apps.1020.14578966298260124.ac5059d8-7ee1-409a-8326-c91ad228baaf.a97b984e-8283-44f4-8b8f-f6949d38008f?h=270&q=90&w=480" alt="Minecraft Dungeons II" loading="lazy" decoding="async" />
+                <span>DUNGEONS II</span>
+              </a>
+            </div>
+            <div className="stevan-xbox-secondary">
+              <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.xbox.com/en-US/games/store/minecraft-dungeons/9N8NJ74FZTG9" target="_blank" rel="noreferrer">
+                <img src="https://store-images.s-microsoft.com/image/apps.15805.14045794648370014.2229d39b-90c3-496e-8fac-9987450ca4d8.5af45927-45d1-4c93-9d60-26f6ca857701?h=270&q=90&w=480" alt="Minecraft Dungeons" loading="lazy" decoding="async" />
+                <span>DUNGEONS</span>
+              </a>
+              <a className="stevan-xbox-game stevan-xbox-game-small" href="https://www.minecraft.net/en-us/download" target="_blank" rel="noreferrer">
+                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/logos/icon_javaedition.jpg" alt="Minecraft Java Edition" loading="lazy" decoding="async" />
+                <span>MINECRAFT JAVA EDITION</span>
+              </a>
+            </div>
+          </section>
 
-          <div className="stevan-roblox-games-grid">
-            {robloxGames.map((game, index) => (
-              <article className="stevan-roblox-game-card" key={game.title}>
-                <div className="stevan-roblox-game-cover" style={{ backgroundPosition: `${index * 20}% center` }} />
-                <div className="stevan-roblox-game-info">
-                  <span>{game.number} · ROBLOX</span>
-                  <h4>{game.title}</h4>
-                </div>
-              </article>
-            ))}
-          </div>
-        </>
+          <section className="stevan-platform-card stevan-platform-steam" aria-label="Steam játékok">
+            <div className="stevan-platform-heading"><span>STEAM</span><span className="stevan-platform-account">TeamNikola</span></div>
+            <div className="stevan-steam-games-grid">
+              {steamGames.map((game) => (
+                <a className="stevan-steam-game" href={game.href} key={game.title} target="_blank" rel="noreferrer">
+                  <img src={game.image} alt={game.title + " Steam-borító"} loading="lazy" decoding="async" />
+                  <span>{game.title}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
       ) : panel === "highlights" ? (
         <div className="stevan-game-empty">
-          <span>02 / GAMEPLAY HIGHLIGHTS</span>
-          <h3>CLIPS. MOMENTS. WINS.</h3>
+          <span>GAMEPLAY HIGHLIGHTS</span><h3>CLIPS. MOMENTS. WINS.</h3>
           <p>Videók, klipek és emlékezetes játékpillanatok helye.</p>
           <small>HIGHLIGHTS CAN BE ADDED HERE</small>
         </div>
       ) : (
         <div className="stevan-game-empty">
-          <span>03 / GAMING SETUP</span>
-          <h3>THE PLAYER STATION.</h3>
+          <span>GAMING SETUP</span><h3>THE PLAYER STATION.</h3>
           <p>Eszközök, perifériák és a saját játékállomás bemutatása.</p>
           <small>SETUP DETAILS CAN BE ADDED HERE</small>
         </div>
@@ -266,20 +300,20 @@ export default function NikolaStevanPage() {
           </article>
           <div className="stevan-game-cards">
             <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "games" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "games" ? null : "games")} aria-expanded={activeGamePanel === "games"} aria-controls="stevan-game-expansion">
-              <span className="stevan-card-index">A / 01</span><span className="stevan-game-card-icon">▤</span>
+              <span className="stevan-game-card-icon">▤</span>
               <span className="stevan-game-card-copy"><h3>GAMES IN THE MIX</h3><p>Roblox-játékok, amelyek mostanában képben vannak.</p></span><span className="stevan-card-arrow">↗</span>
             </button>
             <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "highlights" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "highlights" ? null : "highlights")} aria-expanded={activeGamePanel === "highlights"} aria-controls="stevan-game-expansion">
-              <span className="stevan-card-index">B / 02</span><span className="stevan-game-card-icon">▶</span>
+              <span className="stevan-game-card-icon">▶</span>
               <span className="stevan-game-card-copy"><h3>GAMEPLAY HIGHLIGHTS</h3><p>Videók, klipek és emlékezetes játékpillanatok.</p></span><span className="stevan-card-arrow">↗</span>
             </button>
             <button className={`stevan-game-card stevan-game-card-button${activeGamePanel === "setup" ? " is-active" : ""}`} type="button" onClick={() => setActiveGamePanel(activeGamePanel === "setup" ? null : "setup")} aria-expanded={activeGamePanel === "setup"} aria-controls="stevan-game-expansion">
-              <span className="stevan-card-index">C / 03</span><span className="stevan-game-card-icon">⌘</span>
+              <span className="stevan-game-card-icon">⌘</span>
               <span className="stevan-game-card-copy"><h3>GAMING SETUP</h3><p>Eszközök, perifériák és a saját játékállomás.</p></span><span className="stevan-card-arrow">↗</span>
             </button>
           </div>
         </div>
-        <div className="stevan-game-note"><span className="stevan-status-dot" /> A JÁTÉKOK, PROFILOK ÉS VIDEÓK FELTÖLTÉSE KÖVETKEZIK <span className="stevan-game-note-line" /></div>
+        <div className="stevan-game-note"><span className="stevan-status-dot" /> PLATFORMOK · JÁTÉKOK · PLAYER PROFILES <span className="stevan-game-note-line" /></div>
         {activeGamePanel && <GameExpansion panel={activeGamePanel} onClose={() => setActiveGamePanel(null)} />}
       </section>
 
