@@ -138,7 +138,7 @@
 .stevan-interest-code { grid-column: 10 / span 3; grid-row: 1 / span 2; transform: translateY(13px) rotate(1deg); }
 .stevan-interest-kayak { grid-column: 1 / span 3; grid-row: 2; transform: translateY(0) rotate(1deg); }
 .stevan-interest-chess { grid-column: 4 / span 5; grid-row: 2; transform: translateY(16px) rotate(-1.2deg); }
-.stevan-interest-basketball { grid-column: 7 / span 4; grid-row: 3; transform: translateY(5px) rotate(.9deg); }
+.stevan-interest-basketball { grid-column: 7 / span 6; grid-row: 3; transform: translateY(5px) rotate(.9deg); }
 .stevan-interest-hiking { grid-column: 1 / span 6; grid-row: 3; transform: translateY(5px) rotate(-.8deg); }
 .stevan-interest-math { background: linear-gradient(135deg, rgba(24,69,69,.98), rgba(7,15,17,.98) 75%); }
 .stevan-interest-math .stevan-interest-mark { font-size: 54px; }
