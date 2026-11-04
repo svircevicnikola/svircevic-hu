@@ -138,7 +138,7 @@ export default function NikolaStevanPage() {
           <div className="stevan-visual-grid" aria-hidden="true" />
           <div className="stevan-portrait-frame">
             <div className="stevan-portrait-top"><span>PLAYER / 001</span><span>ONLINE PROFILE</span></div>
-            <img src="/images/nikola-stevan.jpg" alt="Nikola Stevan portréja" />
+            <img src="/images/team-nikola-hero.jpg" alt="Nikola Stevan portréja" />
             <div className="stevan-portrait-overlay">
               <span>TEAM NIKOLA</span>
               <b>PLAYER ONE</b>
@@ -160,7 +160,7 @@ export default function NikolaStevanPage() {
         <div className="stevan-game-layout">
           <article className="stevan-feature-card">
             <div className="stevan-feature-top"><span>PLAYER AREA</span><span>01 / 03</span></div>
-            <div className="stevan-feature-art"><ControllerMark /><div className="stevan-feature-orbit" /><div className="stevan-feature-plus">+</div><div className="stevan-feature-word">PLAY<br/><b>HARD.</b></div></div>
+            <div className="stevan-feature-art"><img className="stevan-feature-image" src="/images/team-nikola-secondary.jpg" alt="Team Nikola gaming vizuál" /><div className="stevan-feature-image-shade" /><div className="stevan-feature-word">PLAY<br/><b>HARD.</b></div></div>
             <div className="stevan-feature-bottom"><span>FOCUS MODE</span><span>GAME ON <i>↗</i></span></div>
           </article>
           <div className="stevan-game-cards">
