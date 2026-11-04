@@ -232,7 +232,7 @@ function GamePlatformCollection({ onClose }: { onClose: () => void }) {
         <div className="stevan-platform-grid">
           <section className="stevan-platform-card stevan-platform-roblox" id="mix-roblox" aria-label="Roblox játékok">
             <header className="stevan-platform-heading">
-              <div className="stevan-platform-brand"><PlatformMark platform="roblox"/><span>ROBLOX</span></div>
+              <div className="stevan-platform-brand"><PlatformMark platform="roblox"/></div>
               <a className="stevan-platform-account" href="https://www.roblox.com/users/2651064775/profile" target="_blank" rel="noreferrer">
                 <b>TeamNikola</b><small>@snikola32 <i>↗</i></small>
               </a>
