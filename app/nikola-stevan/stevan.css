@@ -135,10 +135,11 @@
 .stevan-interest-math { grid-column: 1 / span 4; grid-row: 1; transform: rotate(-1deg); }
 .stevan-interest-science { grid-column: 5 / span 3; grid-row: 1; transform: translateY(12px) rotate(1.4deg); }
 .stevan-interest-drums { grid-column: 8 / span 2; grid-row: 1; transform: translateY(-5px) rotate(-1.3deg); }
-.stevan-interest-basketball { grid-column: 10 / span 3; grid-row: 1 / span 2; transform: translateY(13px) rotate(1deg); }
-.stevan-interest-kayak { grid-column: 1 / span 3; grid-row: 2 / span 2; transform: translateY(0) rotate(1deg); }
+.stevan-interest-code { grid-column: 10 / span 3; grid-row: 1 / span 2; transform: translateY(13px) rotate(1deg); }
+.stevan-interest-kayak { grid-column: 1 / span 3; grid-row: 2; transform: translateY(0) rotate(1deg); }
 .stevan-interest-chess { grid-column: 4 / span 5; grid-row: 2; transform: translateY(16px) rotate(-1.2deg); }
-.stevan-interest-code { grid-column: 7 / span 4; grid-row: 3; transform: translateY(5px) rotate(.9deg); }
+.stevan-interest-basketball { grid-column: 7 / span 4; grid-row: 3; transform: translateY(5px) rotate(.9deg); }
+.stevan-interest-hiking { grid-column: 1 / span 6; grid-row: 3; transform: translateY(5px) rotate(-.8deg); }
 .stevan-interest-math { background: linear-gradient(135deg, rgba(24,69,69,.98), rgba(7,15,17,.98) 75%); }
 .stevan-interest-math .stevan-interest-mark { font-size: 54px; }
 .stevan-interest-kayak .stevan-interest-mark { font-size: 63px; }
@@ -228,8 +229,8 @@
   .stevan-interest-card { min-height: 150px; transform: none !important; }
   .stevan-interest-content b { font-size: 23px; }
   .stevan-interest-content em { font-size: 10px; }
-  .stevan-interest-math, .stevan-interest-science, .stevan-interest-drums, .stevan-interest-basketball, .stevan-interest-kayak, .stevan-interest-chess, .stevan-interest-code { grid-column: auto; grid-row: auto; }
-  .stevan-interest-basketball, .stevan-interest-code { grid-column: span 2; min-height: 130px; }
+  .stevan-interest-math, .stevan-interest-science, .stevan-interest-drums, .stevan-interest-basketball, .stevan-interest-kayak, .stevan-interest-chess, .stevan-interest-code, .stevan-interest-hiking { grid-column: auto; grid-row: auto; }
+  .stevan-interest-basketball, .stevan-interest-code, .stevan-interest-hiking { grid-column: span 2; min-height: 130px; }
   .stevan-interest-kayak { min-height: 180px; }
   .stevan-about { width: calc(100% - 34px); margin: 5px auto 50px; min-height: 0; padding: 34px 24px; grid-template-columns: 1fr 92px; gap: 14px; }
   .stevan-about-mark { grid-column: 1 / -1; font-size: 44px; }
