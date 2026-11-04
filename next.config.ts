@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
           destination: "/agota",
         },
         {
+          source: "/",
+          has: [{ type: "host", value: "nikola.stevan.svircevic.hu" }],
+          destination: "/nikola-stevan",
+        },
+        {
           source: "/en",
           has: [{ type: "host", value: "agota.bodnar.svircevic.hu" }],
           destination: "/agota/en",
