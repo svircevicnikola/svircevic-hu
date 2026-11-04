@@ -535,3 +535,55 @@ a.stevan-setup-item:hover {border-color:rgba(57,203,195,.72);background:linear-g
   .stevan-highlights-player {width:100%;}
   .stevan-highlights-links {gap:9px;}
 }
+
+
+/* Hardware setup cards with dedicated component pictograms */
+.stevan-setup-item {
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  align-items:center;
+  gap:14px;
+  min-height:116px;
+  padding:17px 42px 17px 17px;
+}
+.stevan-setup-icon {
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  color:#67ddd5;
+  border:1px solid rgba(75,207,199,.26);
+  background:linear-gradient(145deg,rgba(26,79,82,.32),rgba(5,19,23,.8));
+  box-shadow:inset 0 0 14px rgba(56,205,197,.055),0 0 16px rgba(56,205,197,.045);
+}
+.stevan-setup-icon svg {
+  display:block;
+  width:34px;
+  height:34px;
+  filter:drop-shadow(0 0 5px rgba(78,220,211,.12));
+}
+.stevan-setup-copy {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+}
+.stevan-setup-copy strong {max-width:100%;}
+.stevan-setup-copy small {max-width:100%;}
+a.stevan-setup-item:hover .stevan-setup-icon {
+  color:#9afaf2;
+  border-color:rgba(86,231,222,.58);
+  background:linear-gradient(145deg,rgba(30,105,107,.4),rgba(5,19,23,.86));
+  box-shadow:0 0 17px rgba(56,205,197,.11);
+}
+@media (max-width:640px) {
+  .stevan-setup-item {
+    grid-template-columns:42px minmax(0,1fr);
+    gap:11px;
+    min-height:96px;
+    padding:13px 36px 13px 13px;
+  }
+  .stevan-setup-icon {width:40px;height:40px;}
+  .stevan-setup-icon svg {width:30px;height:30px;}
+}
