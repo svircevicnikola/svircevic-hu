@@ -278,159 +278,154 @@
 }
 
 
-/* GAMES IN THE MIX — scoped platform showcase; other page sections remain untouched */
-.stevan-game-expansion { position:relative; width:calc(100% + 60px); margin:27px 0 0 -30px; padding:17px; overflow:hidden; border:1px solid rgba(57,203,195,.52); border-radius:17px; background:radial-gradient(ellipse at 16% 0%,rgba(13,122,151,.23),transparent 36%),radial-gradient(ellipse at 88% 25%,rgba(20,89,119,.18),transparent 40%),linear-gradient(135deg,#061116 0%,#041015 55%,#03090d 100%); box-shadow:0 22px 68px rgba(0,0,0,.42),inset 0 1px 0 rgba(180,255,249,.07); animation:stevan-panel-in .3s ease both; }
-.stevan-mix-close { position:absolute; z-index:5; top:7px; right:9px; width:27px; height:27px; border:1px solid rgba(57,203,195,.3); border-radius:50%; background:rgba(3,12,16,.86); color:#68e5de; font:500 17px/1 "Space Grotesk",sans-serif; cursor:pointer; }
-.stevan-mix-close:hover { color:#fff; border-color:#60e6dc; box-shadow:0 0 16px rgba(57,203,195,.35); }
-.stevan-mix-body { position:relative; z-index:1; display:grid; grid-template-columns:168px minmax(0,1fr); gap:14px; }
-.stevan-mix-sidebar { min-width:0; min-height:520px; display:flex; flex-direction:column; padding:19px 12px 13px; border:1px solid rgba(57,203,195,.4); border-radius:13px; background:radial-gradient(circle at 50% 0%,rgba(40,163,165,.22),transparent 43%),linear-gradient(155deg,rgba(10,31,36,.99),rgba(3,12,16,.99)); box-shadow:inset 0 1px 0 rgba(179,255,248,.06),0 10px 32px rgba(0,0,0,.22); }
-.stevan-mix-player { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding:5px 0 18px; border-bottom:1px solid rgba(92,199,194,.21); }
-.stevan-mix-player img { display:block; width:112px; height:112px; object-fit:cover; border-radius:50%; border:2px solid #57ded6; background:#10252a; box-shadow:0 0 0 6px rgba(57,203,195,.07),0 0 29px rgba(57,203,195,.27); }
-.stevan-mix-online-dot { position:absolute; top:99px; left:calc(50% + 35px); width:13px; height:13px; border-radius:50%; background:#18d36b; border:2px solid #071316; box-shadow:0 0 13px rgba(27,215,107,.55); }
-.stevan-mix-player h3 { margin:16px 0 0; color:#f5f8f5; font:900 28px/.95 "Barlow Condensed",sans-serif; letter-spacing:.01em; }
-.stevan-mix-player p { margin:6px 0 0; color:#8ca8a4; font:700 8px/1 "Rajdhani",sans-serif; letter-spacing:.2em; }
-.stevan-mix-nav { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
-.stevan-mix-nav a { min-width:0; min-height:46px; display:flex; align-items:center; gap:9px; padding:6px 8px; color:#e3efea!important; border:1px solid rgba(95,169,167,.2); border-radius:8px; background:linear-gradient(100deg,rgba(21,52,57,.92),rgba(6,18,23,.96)); font:800 9px/1 "Rajdhani",sans-serif; letter-spacing:.09em; transition:border-color .2s,background .2s,transform .2s,box-shadow .2s; }
-.stevan-mix-nav a:hover { border-color:rgba(57,203,195,.72); background:linear-gradient(100deg,rgba(22,73,77,.97),rgba(7,24,29,.98)); transform:translateX(2px); box-shadow:0 0 17px rgba(29,186,181,.1); }
-.stevan-mix-nav a span { min-width:0; flex:1; }
-.stevan-mix-nav a i { color:#58ded7; font:normal 14px/1 "Space Grotesk",sans-serif; }
-.stevan-mix-nav .stevan-platform-logo { width:28px; height:28px; flex-basis:28px; filter:drop-shadow(0 0 6px rgba(57,203,195,.2)); }
-.stevan-mix-sidebar-foot { display:flex; align-items:center; gap:7px; margin-top:auto; padding-top:20px; color:#6e8e89; font:700 7px/1 "Rajdhani",sans-serif; letter-spacing:.14em; }
-.stevan-mix-sidebar-foot .stevan-status-dot { width:6px; height:6px; }
-.stevan-platform-grid { min-width:0; display:grid; grid-template-columns:1.02fr .84fr 1.08fr; align-items:stretch; gap:12px; }
-.stevan-platform-card { position:relative; min-width:0; min-height:520px; padding:16px 14px 15px; border:1px solid rgba(57,203,195,.46); border-top:2px solid rgba(57,203,195,.74); border-radius:13px; background:radial-gradient(ellipse at 45% 0%,rgba(25,127,134,.2),transparent 53%),linear-gradient(155deg,rgba(10,28,33,.99),rgba(3,11,15,.995)); box-shadow:inset 0 1px 0 rgba(187,255,247,.08),0 13px 34px rgba(0,0,0,.24); transition:border-color .22s,box-shadow .22s,transform .22s; }
-.stevan-platform-card:hover { border-color:rgba(66,221,213,.63); box-shadow:inset 0 1px 0 rgba(187,255,247,.07),0 17px 40px rgba(0,0,0,.28),0 0 25px rgba(38,177,174,.1); transform:translateY(-2px); }
-.stevan-platform-card::before { content:""; position:absolute; z-index:2; top:-1px; left:14px; right:14px; height:2px; border-radius:2px; background:linear-gradient(90deg,transparent,rgba(57,203,195,.96) 16%,rgba(74,220,215,.96) 84%,transparent); box-shadow:0 0 10px rgba(57,203,195,.54); pointer-events:none; }
-.stevan-platform-xbox, .stevan-platform-steam { border-top-width:2px; border-top-color:rgba(67,218,211,.86); }
-.stevan-platform-roblox { background:radial-gradient(ellipse at 15% 16%,rgba(0,128,189,.22),transparent 51%),linear-gradient(155deg,#0a1c25 0%,#041116 78%); }
-.stevan-platform-xbox { background:radial-gradient(ellipse at 45% 0%,rgba(38,133,92,.17),transparent 51%),linear-gradient(155deg,#0a1c20 0%,#041114 78%); }
-.stevan-platform-steam { background:radial-gradient(ellipse at 70% 0%,rgba(61,94,131,.17),transparent 50%),linear-gradient(155deg,#101d2a 0%,#07131b 78%); }
-.stevan-platform-heading {
-  position:relative;
-  min-height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:-16px -14px 15px;
-  padding:10px 15px 11px;
-  border:0;
-  border-bottom:1px solid rgba(92,199,194,.28);
-  border-radius:12px 12px 0 0;
-  background:
-    linear-gradient(105deg,rgba(25,86,94,.36),rgba(8,28,35,.82) 48%,rgba(5,17,25,.82)),
-    radial-gradient(ellipse at 15% 0%,rgba(45,207,207,.15),transparent 68%);
-  box-shadow:inset 0 1px 0 rgba(205,255,249,.10),inset 0 -1px 0 rgba(0,0,0,.3),0 8px 18px rgba(0,0,0,.13);
+/* GAMES IN THE MIX — reference-matched profile cards; isolated from the rest of the page */
+.stevan-game-expansion {
+  position:relative;width:100%;max-width:100%;margin:27px 0 0;padding:17px;overflow:hidden;
+  border:1px solid rgba(57,203,195,.54);border-radius:17px;
+  background:radial-gradient(ellipse at 15% 0%,rgba(13,122,151,.22),transparent 36%),radial-gradient(ellipse at 88% 24%,rgba(20,89,119,.16),transparent 40%),linear-gradient(135deg,#061116 0%,#041015 55%,#03090d 100%);
+  box-shadow:0 20px 58px rgba(0,0,0,.38),inset 0 1px 0 rgba(180,255,249,.07);animation:stevan-panel-in .3s ease both;
 }
-.stevan-platform-heading::after {
-  content:"";
-  position:absolute;
-  left:15px;
-  right:15px;
-  bottom:-1px;
-  height:1px;
-  background:linear-gradient(90deg,rgba(74,222,214,.85),rgba(74,222,214,.22) 70%,transparent);
-  box-shadow:0 0 9px rgba(57,203,195,.28);
-  pointer-events:none;
+.stevan-mix-close {position:absolute;z-index:5;top:7px;right:9px;width:27px;height:27px;border:1px solid rgba(57,203,195,.34);border-radius:50%;background:rgba(3,12,16,.88);color:#68e5de;font:500 17px/1 "Space Grotesk",sans-serif;cursor:pointer;}
+.stevan-mix-close:hover {color:#fff;border-color:#60e6dc;box-shadow:0 0 16px rgba(57,203,195,.35);}
+.stevan-mix-body {position:relative;z-index:1;display:grid;grid-template-columns:168px minmax(0,1fr);gap:14px;align-items:stretch;}
+.stevan-mix-sidebar {min-width:0;min-height:486px;display:flex;flex-direction:column;padding:17px 12px 13px;border:1px solid rgba(57,203,195,.42);border-radius:13px;background:radial-gradient(circle at 50% 0%,rgba(40,163,165,.22),transparent 43%),linear-gradient(155deg,rgba(10,31,36,.99),rgba(3,12,16,.99));box-shadow:inset 0 1px 0 rgba(179,255,248,.06),0 10px 32px rgba(0,0,0,.22);}
+.stevan-mix-player {position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:5px 0 16px;border-bottom:1px solid rgba(92,199,194,.22);}
+.stevan-mix-player img {display:block;width:104px;height:104px;object-fit:cover;border-radius:50%;border:2px solid #57ded6;background:#10252a;box-shadow:0 0 0 6px rgba(57,203,195,.07),0 0 27px rgba(57,203,195,.26);}
+.stevan-mix-online-dot {position:absolute;top:91px;left:calc(50% + 32px);width:13px;height:13px;border-radius:50%;background:#18d36b;border:2px solid #071316;box-shadow:0 0 13px rgba(27,215,107,.55);}
+.stevan-mix-player h3 {margin:15px 0 0;color:#f5f8f5;font:900 27px/.95 "Barlow Condensed",sans-serif;letter-spacing:.01em;}
+.stevan-mix-player p {margin:6px 0 0;color:#8ca8a4;font:700 8px/1 "Rajdhani",sans-serif;letter-spacing:.2em;}
+.stevan-mix-nav {display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.stevan-mix-nav a {min-width:0;min-height:45px;display:flex;align-items:center;gap:9px;padding:6px 8px;color:#e3efea!important;border:1px solid rgba(95,169,167,.2);border-radius:8px;background:linear-gradient(100deg,rgba(21,52,57,.92),rgba(6,18,23,.96));font:800 9px/1 "Rajdhani",sans-serif;letter-spacing:.09em;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
+.stevan-mix-nav a:hover {border-color:rgba(57,203,195,.72);background:linear-gradient(100deg,rgba(22,73,77,.97),rgba(7,24,29,.98));transform:translateX(2px);box-shadow:0 0 17px rgba(29,186,181,.1);}
+.stevan-mix-nav a span {min-width:0;flex:1;}.stevan-mix-nav a i {color:#58ded7;font:normal 14px/1 "Space Grotesk",sans-serif;}
+.stevan-mix-nav .stevan-platform-logo {width:27px;height:27px;flex:0 0 27px;filter:none;}
+.stevan-mix-sidebar-foot {display:flex;align-items:center;gap:7px;margin-top:auto;padding-top:18px;color:#6e8e89;font:700 7px/1 "Rajdhani",sans-serif;letter-spacing:.14em;}
+.stevan-mix-sidebar-foot .stevan-status-dot {width:6px;height:6px;}
+.stevan-platform-grid {min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px;}
+.stevan-platform-card {position:relative;min-width:0;min-height:486px;padding:15px 14px 14px;border:1px solid rgba(57,203,195,.42);border-radius:13px;background:radial-gradient(ellipse at 45% 0%,rgba(25,127,134,.18),transparent 53%),linear-gradient(155deg,rgba(10,28,33,.99),rgba(3,11,15,.995));box-shadow:inset 0 1px 0 rgba(187,255,247,.06),0 13px 32px rgba(0,0,0,.22);transition:border-color .22s,box-shadow .22s,transform .22s;}
+.stevan-platform-card:hover {border-color:rgba(66,221,213,.62);box-shadow:inset 0 1px 0 rgba(187,255,247,.07),0 17px 38px rgba(0,0,0,.27),0 0 24px rgba(38,177,174,.09);transform:translateY(-2px);}
+.stevan-platform-roblox {background:radial-gradient(ellipse at 15% 16%,rgba(0,128,189,.2),transparent 51%),linear-gradient(155deg,#0a1c25 0%,#041116 78%);}
+.stevan-platform-xbox {background:radial-gradient(ellipse at 45% 0%,rgba(38,133,92,.18),transparent 51%),linear-gradient(155deg,#0a1c20 0%,#041114 78%);}
+.stevan-platform-steam {background:radial-gradient(ellipse at 70% 0%,rgba(61,94,131,.18),transparent 50%),linear-gradient(155deg,#101d2a 0%,#07131b 78%);}
+.stevan-platform-heading {position:relative;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:9px;margin:-15px -14px 13px;padding:8px 14px 9px;border:0;border-bottom:1px solid rgba(92,199,194,.28);border-radius:12px 12px 0 0;background:linear-gradient(105deg,rgba(25,86,94,.38),rgba(8,28,35,.82) 48%,rgba(5,17,25,.86)),radial-gradient(ellipse at 15% 0%,rgba(45,207,207,.15),transparent 68%);box-shadow:inset 0 1px 0 rgba(205,255,249,.09),0 7px 15px rgba(0,0,0,.1);}
+.stevan-platform-xbox .stevan-platform-heading {background:linear-gradient(105deg,rgba(20,91,68,.36),rgba(7,29,31,.88) 52%,rgba(4,17,21,.84)),radial-gradient(ellipse at 12% 0%,rgba(71,213,150,.14),transparent 68%);}
+.stevan-platform-steam .stevan-platform-heading {background:linear-gradient(105deg,rgba(35,65,101,.39),rgba(12,30,47,.9) 52%,rgba(6,18,28,.88)),radial-gradient(ellipse at 12% 0%,rgba(111,163,218,.14),transparent 68%);}
+.stevan-platform-heading::after {content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:1px;background:linear-gradient(90deg,rgba(74,222,214,.82),rgba(74,222,214,.2) 70%,transparent);box-shadow:0 0 8px rgba(57,203,195,.25);pointer-events:none;}
+.stevan-platform-brand {min-width:0;display:flex;align-items:center;gap:9px;color:#f7fbf8;font:900 21px/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;white-space:nowrap;text-shadow:0 0 12px rgba(134,235,228,.1);}
+.stevan-platform-logo {display:block;width:34px;height:34px;flex:0 0 34px;object-fit:contain;filter:none;}
+.stevan-platform-account {min-width:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:4px;color:#f8fbf9!important;font:700 14px/1 "Rajdhani",sans-serif;letter-spacing:.045em;text-align:right;text-shadow:0 0 12px rgba(142,239,228,.12);}
+.stevan-platform-account small {color:#8fe8de;font:700 10px/1 "Rajdhani",sans-serif;letter-spacing:.09em;}
+.stevan-platform-account small i,.stevan-platform-account b i {margin-left:3px;color:#6fded6;font:normal 12px/1 "Space Grotesk",sans-serif;}
+.stevan-platform-account b {color:#f8fbf9;font:700 14px/1 "Rajdhani",sans-serif;letter-spacing:.045em;}
+.stevan-platform-subheading {display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 9px;color:#f0f5f1;font:700 13px/1.1 "Space Grotesk",sans-serif;}
+.stevan-roblox-hero {position:relative;height:119px;display:flex;align-items:center;gap:13px;margin-top:1px;padding:8px 12px;overflow:hidden;border:1px solid rgba(48,193,199,.4);border-radius:9px;background:#071b25;box-shadow:inset 0 0 28px rgba(31,167,186,.12),0 7px 18px rgba(0,0,0,.26);}
+.stevan-roblox-hero-background {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 43%;filter:saturate(1.08);}
+.stevan-roblox-hero-shade {position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,13,20,.68),rgba(2,13,20,.16) 50%,rgba(2,13,20,.73)),linear-gradient(0deg,rgba(2,10,14,.54),transparent 58%);}
+.stevan-roblox-hero-avatar {position:relative;z-index:1;display:block;width:83px;height:83px;flex:0 0 83px;object-fit:cover;border:2px solid rgba(83,223,214,.88);border-radius:50%;background:#07151b;box-shadow:0 0 0 4px rgba(57,203,195,.14),0 5px 16px rgba(0,0,0,.42);}
+.stevan-roblox-hero-caption {position:relative;z-index:1;display:flex;flex-direction:column;gap:7px;min-width:0;}
+.stevan-roblox-hero-caption b {color:#f6fbf8;font:900 23px/.95 "Barlow Condensed",sans-serif;letter-spacing:.02em;text-shadow:0 2px 8px #000;}
+.stevan-roblox-hero-caption small {color:#7cf0e3;font:700 8px/1 "Rajdhani",sans-serif;letter-spacing:.14em;text-shadow:0 1px 6px #000;}
+.stevan-roblox-hero i {position:absolute;z-index:2;right:9px;top:8px;color:#a0f2e9;font:normal 15px/1 "Space Grotesk",sans-serif;text-shadow:0 1px 6px #000;}
+.stevan-roblox-games-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 8px;}
+.stevan-roblox-game {min-width:0;display:flex;flex-direction:column;gap:0;color:#f1f6f1!important;text-decoration:none;}
+.stevan-roblox-game-image {display:flex;width:100%;aspect-ratio:1.22/1;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(109,180,177,.25);border-radius:7px;background:linear-gradient(145deg,#0e262d,#071116);box-shadow:0 5px 13px rgba(0,0,0,.28);}
+.stevan-roblox-game-image img {display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s,filter .2s;}
+.stevan-roblox-game:hover .stevan-roblox-game-image img {transform:scale(1.045);filter:saturate(1.13);}
+.stevan-roblox-image-loading {color:#55716e;font:700 8px/1 "Rajdhani",sans-serif;letter-spacing:.12em;}
+.stevan-roblox-game-title {display:block;min-height:26px;padding:5px 2px 0;color:#e4ece7;font:700 9px/1.15 "Rajdhani",sans-serif;letter-spacing:.005em;}
+.stevan-xbox-profile {display:grid;grid-template-columns:91px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:11px;row-gap:8px;padding:2px 2px 12px;border-bottom:1px solid rgba(92,199,194,.22);background:linear-gradient(90deg,rgba(16,72,59,.12),transparent 65%);}
+.stevan-xbox-avatar {display:block;width:88px;height:88px;grid-row:1/3;object-fit:cover;object-position:center;border-radius:50%;border:1.5px solid rgba(101,215,190,.82);box-shadow:0 0 0 4px rgba(48,201,154,.08),0 5px 16px rgba(0,0,0,.35);}
+.stevan-xbox-profile-main {display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:0;}
+.stevan-xbox-online {display:flex;align-items:center;gap:7px;color:#75e2ad;font:500 12px/1 "Space Grotesk",sans-serif;}
+.stevan-xbox-online span {width:10px;height:10px;border-radius:50%;background:#20d858;box-shadow:0 0 12px rgba(32,216,88,.35);}
+.stevan-xbox-score {display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid rgba(115,187,197,.27);border-radius:18px;background:rgba(3,14,18,.48);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+.stevan-xbox-score b {display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#eef4f0;color:#142326;font:900 11px/1 "Space Grotesk",sans-serif;}
+.stevan-xbox-score strong {color:#f1f5f2;font:700 16px/1 "Space Grotesk",sans-serif;letter-spacing:.03em;}
+.stevan-xbox-social {grid-column:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:center;}
+.stevan-xbox-social-metric {display:flex;flex-direction:column;align-items:center;gap:3px;color:#eef4f0;text-align:center;}
+.stevan-xbox-social-metric svg {width:16px;height:16px;color:#38c9bd;}
+.stevan-xbox-social-metric b {color:#f2f6f2;font:700 17px/1 "Space Grotesk",sans-serif;}
+.stevan-xbox-social-metric small {color:#8d9e9d;font:500 9px/1.2 "Space Grotesk",sans-serif;white-space:nowrap;}
+.stevan-xbox-games-heading {margin-top:11px;}
+.stevan-xbox-featured {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+.stevan-xbox-game {min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:5px;color:#eaf3ee!important;text-decoration:none;}
+.stevan-xbox-game img {display:block;width:100%;object-fit:cover;border:1px solid rgba(105,155,154,.27);border-radius:7px;background:#081215;box-shadow:0 5px 13px rgba(0,0,0,.28);transition:border-color .2s,transform .2s,filter .2s;}
+.stevan-xbox-game:hover img {border-color:#48d8d1;transform:translateY(-2px);filter:saturate(1.1);}
+.stevan-xbox-game-large img {height:105px;padding:0;}
+.stevan-xbox-game span {display:block;min-height:16px;color:#e8f0eb;font:800 8px/1.1 "Rajdhani",sans-serif;letter-spacing:.035em;text-align:center;}
+.stevan-xbox-secondary {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px;padding-top:11px;border-top:1px solid rgba(92,199,194,.18);}
+.stevan-xbox-game-small {flex-direction:column;align-items:stretch;gap:5px;}
+.stevan-xbox-game-small img {width:100%;height:83px;flex:0 0 83px;object-fit:cover;}
+.stevan-xbox-game-small span {font-size:8px;}
+.stevan-steam-summary {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;min-height:66px;margin:0 -14px;padding:9px 7px;border-bottom:1px solid rgba(92,199,194,.24);background:linear-gradient(90deg,rgba(15,49,62,.42),rgba(7,24,34,.24));}
+.stevan-steam-metric {min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:1px 6px;color:#5bc5e7;}
+.stevan-steam-metric + .stevan-steam-metric {border-left:1px solid rgba(92,199,194,.19);}
+.stevan-steam-metric > svg {display:block;width:27px;height:27px;flex:0 0 27px;}
+.stevan-steam-metric > span {min-width:0;display:flex;flex-direction:column;gap:3px;}
+.stevan-steam-metric b {color:#f4f7f4;font:700 18px/1 "Space Grotesk",sans-serif;}
+.stevan-steam-metric small {color:#a1b1b2;font:500 8px/1.15 "Space Grotesk",sans-serif;}
+.stevan-steam-games-heading {margin:13px 0 10px;}
+.stevan-steam-games-grid {display:flex;flex-direction:column;gap:9px;margin-top:0;}
+.stevan-steam-game {min-width:0;display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;gap:9px;color:#f0f6f2!important;text-decoration:none;}
+.stevan-steam-game img {display:block;width:112px;height:49px;object-fit:cover;border:1px solid rgba(105,155,154,.28);border-radius:6px;background:#081215;box-shadow:0 4px 11px rgba(0,0,0,.25);transition:border-color .2s,transform .2s,filter .2s;}
+.stevan-steam-game:hover img {border-color:#48d8d1;transform:translateY(-2px);filter:saturate(1.12);}
+.stevan-steam-game-copy {min-width:0;display:flex;flex-direction:column;gap:8px;}
+.stevan-steam-game-copy b {color:#edf4ef;font:700 9px/1.15 "Rajdhani",sans-serif;}
+.stevan-steam-game-copy i {display:block;width:100%;height:5px;overflow:hidden;border-radius:5px;background:rgba(101,136,139,.25);box-shadow:inset 0 1px 2px rgba(0,0,0,.35);}
+.stevan-steam-game-copy i span {display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#16aeb5,#48e1d5);box-shadow:0 0 10px rgba(57,203,195,.32);}
+@keyframes stevan-panel-in {from {opacity:0;transform:translateY(-8px);}to {opacity:1;transform:translateY(0);}}
+@media (max-width:1150px) {
+  .stevan-game-expansion {padding:14px;}
+  .stevan-mix-body {grid-template-columns:150px minmax(0,1fr);gap:10px;}
+  .stevan-platform-grid {gap:9px;}
+  .stevan-platform-card {padding:13px 11px 13px;}
+  .stevan-platform-heading {margin:-13px -11px 12px;padding:8px 11px;}
+  .stevan-platform-brand {font-size:19px;gap:7px;}
+  .stevan-platform-logo {width:30px;height:30px;flex-basis:30px;}
+  .stevan-platform-account,.stevan-platform-account b {font-size:12px;}
+  .stevan-steam-game {grid-template-columns:96px minmax(0,1fr);gap:7px;}
+  .stevan-steam-game img {width:96px;height:44px;}
+  .stevan-steam-metric {gap:4px;padding:1px 4px;}
+  .stevan-steam-metric > svg {width:22px;height:22px;flex-basis:22px;}
+  .stevan-steam-metric b {font-size:16px;}
 }
-.stevan-platform-xbox .stevan-platform-heading {
-  background:
-    linear-gradient(105deg,rgba(20,91,68,.34),rgba(7,29,31,.88) 52%,rgba(4,17,21,.84)),
-    radial-gradient(ellipse at 12% 0%,rgba(71,213,150,.14),transparent 68%);
+@media (max-width:900px) {
+  .stevan-mix-body {grid-template-columns:1fr;gap:12px;}
+  .stevan-mix-sidebar {min-height:0;display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;padding:12px;}
+  .stevan-mix-player {flex-direction:row;justify-content:flex-start;gap:10px;padding:0;border:0;text-align:left;}
+  .stevan-mix-player img {width:58px;height:58px;flex:0 0 58px;}
+  .stevan-mix-online-dot {top:44px;left:45px;width:10px;height:10px;}
+  .stevan-mix-player h3 {margin:0;font-size:22px;}
+  .stevan-mix-player p {margin-top:4px;}
+  .stevan-mix-nav {display:flex;flex-direction:row;justify-content:flex-end;gap:6px;margin:0;}
+  .stevan-mix-nav a {min-height:40px;justify-content:center;padding:5px 7px;}
+  .stevan-mix-nav a span {font-size:8px;}
+  .stevan-mix-nav a i,.stevan-mix-sidebar-foot {display:none;}
+  .stevan-platform-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .stevan-platform-steam {grid-column:1/-1;}
+  .stevan-steam-games-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
 }
-.stevan-platform-steam .stevan-platform-heading {
-  background:
-    linear-gradient(105deg,rgba(35,65,101,.38),rgba(12,30,47,.9) 52%,rgba(6,18,28,.88)),
-    radial-gradient(ellipse at 12% 0%,rgba(111,163,218,.14),transparent 68%);
-}
-.stevan-platform-brand { min-width:0; display:flex; align-items:center; gap:11px; color:#f7fbf8; font:900 23px/1 "Barlow Condensed",sans-serif; letter-spacing:.09em; white-space:nowrap; text-shadow:0 1px 0 rgba(0,0,0,.25),0 0 14px rgba(134,235,228,.10); }
-.stevan-platform-logo { display:block; width:38px; height:38px; flex:0 0 38px; object-fit:contain; filter:drop-shadow(0 0 8px rgba(57,203,195,.22)); }
-.stevan-platform-account { min-width:0; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; gap:5px; color:#f8fbf9!important; font:700 16px/1 "Rajdhani",sans-serif; letter-spacing:.055em; text-align:right; white-space:normal; text-shadow:0 0 13px rgba(142,239,228,.14); }
-.stevan-platform-account small { color:#8fe8de; font:700 11px/1 "Rajdhani",sans-serif; letter-spacing:.10em; }
-.stevan-platform-account:hover { color:#fff!important; }
-.stevan-platform-account-plain { padding:7px 10px 7px 13px; border-left:1px solid rgba(106,217,208,.25); }
-.stevan-platform-account b { color:#f8fbf9; font:700 16px/1 "Rajdhani",sans-serif; letter-spacing:.055em; text-shadow:0 0 13px rgba(124,231,221,.17); }
-.stevan-platform-subheading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:14px 0 11px; color:#f0f5f1; font:700 14px/1.1 "Space Grotesk",sans-serif; }
-.stevan-roblox-hero { position:relative; height:148px; display:flex; align-items:center; gap:13px; margin-top:13px; padding:5px 12px; overflow:hidden; border:1px solid rgba(48,193,199,.37); border-radius:9px; background:radial-gradient(ellipse at 23% 43%,rgba(0,141,211,.38),transparent 54%),radial-gradient(ellipse at 75% 30%,rgba(37,96,177,.25),transparent 55%),linear-gradient(112deg,#0b2533,#071622 58%,#071117); box-shadow:inset 0 0 32px rgba(31,167,186,.13),0 8px 20px rgba(0,0,0,.28); }
-.stevan-roblox-hero::before { content:""; position:absolute; inset:0; background:linear-gradient(112deg,transparent 30%,rgba(52,197,222,.13) 53%,transparent 73%),radial-gradient(circle at 8% 0%,rgba(47,182,255,.22),transparent 35%); pointer-events:none; }
-.stevan-roblox-hero img { position:relative; z-index:1; display:block; width:140px; height:138px; flex:0 0 140px; object-fit:contain; object-position:center bottom; filter:drop-shadow(0 5px 15px rgba(0,0,0,.5)); }
-.stevan-roblox-hero-caption { position:relative; z-index:1; display:flex; flex-direction:column; gap:8px; min-width:0; }
-.stevan-roblox-hero-caption b { color:#f5fbf7; font:900 25px/.95 "Barlow Condensed",sans-serif; letter-spacing:.01em; }
-.stevan-roblox-hero-caption small { color:#5fe0d9; font:700 8px/1 "Rajdhani",sans-serif; letter-spacing:.16em; }
-.stevan-roblox-hero i { position:absolute; z-index:2; right:10px; top:9px; color:#56dcd4; font:normal 15px/1 "Space Grotesk",sans-serif; }
-.stevan-roblox-games-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px 8px; }
-.stevan-roblox-game { min-width:0; display:flex; flex-direction:column; gap:0; color:#f1f6f1!important; text-decoration:none; }
-.stevan-roblox-game-image { display:flex; width:100%; aspect-ratio:1/1; align-items:center; justify-content:center; overflow:hidden; border:1px solid rgba(109,180,177,.25); border-radius:7px; background:linear-gradient(145deg,#0e262d,#071116); box-shadow:0 6px 15px rgba(0,0,0,.3); }
-.stevan-roblox-game-image img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .2s,filter .2s; }
-.stevan-roblox-game:hover .stevan-roblox-game-image img { transform:scale(1.045); filter:saturate(1.13); }
-.stevan-roblox-image-loading { color:#55716e; font:700 8px/1 "Rajdhani",sans-serif; letter-spacing:.12em; }
-.stevan-roblox-game-title { display:block; min-height:30px; padding:6px 2px 0; color:#e4ece7; font:700 10px/1.18 "Rajdhani",sans-serif; letter-spacing:.005em; }
-.stevan-xbox-featured { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-.stevan-xbox-game { min-width:0; display:flex; flex-direction:column; align-items:stretch; gap:7px; color:#eaf3ee!important; text-decoration:none; }
-.stevan-xbox-game img { display:block; width:100%; object-fit:cover; border:1px solid rgba(105,155,154,.27); border-radius:8px; background:#081215; box-shadow:0 6px 17px rgba(0,0,0,.3); transition:border-color .2s,transform .2s,filter .2s; }
-.stevan-xbox-game:hover img { border-color:#48d8d1; transform:translateY(-3px); filter:saturate(1.1); }
-.stevan-xbox-game-large img { height:157px; padding:0; }
-.stevan-xbox-game span { display:block; min-height:20px; color:#e8f0eb; font:800 10px/1.1 "Rajdhani",sans-serif; letter-spacing:.045em; text-align:center; }
-.stevan-xbox-secondary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:auto; padding-top:17px; border-top:1px solid rgba(92,199,194,.2); }
-.stevan-xbox-game-small { flex-direction:column; align-items:stretch; gap:7px; }
-.stevan-xbox-game-small img { width:100%; height:105px; flex:0 0 105px; object-fit:cover; }
-.stevan-xbox-game-small span { font-size:9px; }
-.stevan-steam-games-grid { display:flex; flex-direction:column; gap:11px; margin-top:13px; }
-.stevan-steam-game { min-width:0; display:grid; grid-template-columns:136px minmax(0,1fr); align-items:center; gap:11px; color:#f0f6f2!important; text-decoration:none; }
-.stevan-steam-game img { display:block; width:136px; height:59px; object-fit:cover; border:1px solid rgba(105,155,154,.28); border-radius:7px; background:#081215; box-shadow:0 5px 13px rgba(0,0,0,.26); transition:border-color .2s,transform .2s,filter .2s; }
-.stevan-steam-game:hover img { border-color:#48d8d1; transform:translateY(-2px); filter:saturate(1.12); }
-.stevan-steam-game-copy { min-width:0; display:flex; flex-direction:column; gap:10px; }
-.stevan-steam-game-copy b { color:#edf4ef; font:700 10px/1.2 "Rajdhani",sans-serif; }
-.stevan-steam-game-copy i { display:block; width:100%; max-width:155px; height:6px; overflow:hidden; border-radius:6px; background:rgba(101,136,139,.25); box-shadow:inset 0 1px 2px rgba(0,0,0,.35); }
-.stevan-steam-game-copy i span { display:block; width:72%; height:100%; border-radius:inherit; background:linear-gradient(90deg,#16aeb5,#48e1d5); box-shadow:0 0 11px rgba(57,203,195,.35); }
-.stevan-game-expansion-top { display:flex; align-items:center; justify-content:space-between; gap:20px; color:#829b98; font:700 9px/1 "Rajdhani",sans-serif; letter-spacing:.2em; }
-.stevan-game-expansion-top button { border:0; padding:5px 0 5px 12px; background:transparent; color:var(--teal-bright); font:700 9px/1 "Rajdhani",sans-serif; letter-spacing:.16em; cursor:pointer; }
-.stevan-game-empty { min-height:185px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:26px 0 12px; }
-.stevan-game-empty > span { color:var(--teal-bright); font:700 9px/1 "Rajdhani",sans-serif; letter-spacing:.2em; }
-.stevan-game-empty h3 { margin:12px 0 7px; color:#eff4ef; font:900 35px/.95 "Barlow Condensed",sans-serif; }
-.stevan-game-empty p { margin:0; color:#9aaba7; font-size:12px; line-height:1.6; }
-.stevan-game-empty small { margin-top:21px; color:#718985; font:700 8px/1 "Rajdhani",sans-serif; letter-spacing:.17em; }
-@keyframes stevan-panel-in { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-@media (max-width: 1150px) {
-  .stevan-game-expansion { width:100%; margin-left:0; padding:14px; }
-  .stevan-mix-body { grid-template-columns:150px minmax(0,1fr); gap:10px; }
-  .stevan-platform-grid { grid-template-columns:1fr .9fr; gap:10px; }
-  .stevan-platform-steam { grid-column:1 / -1; }
-  .stevan-steam-games-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-  .stevan-steam-game { grid-template-columns:125px minmax(0,1fr); }
-  .stevan-steam-game img { width:125px; height:56px; }
-}
-@media (max-width: 900px) {
-  .stevan-mix-body { grid-template-columns:1fr; gap:12px; }
-  .stevan-mix-sidebar { min-height:0; display:grid; grid-template-columns:170px minmax(0,1fr); align-items:center; padding:12px; }
-  .stevan-mix-player { flex-direction:row; justify-content:flex-start; gap:10px; padding:0; border:0; text-align:left; }
-  .stevan-mix-player img { width:58px; height:58px; flex:0 0 58px; }
-  .stevan-mix-online-dot { top:44px; left:45px; width:10px; height:10px; }
-  .stevan-mix-player h3 { margin:0; font-size:22px; }
-  .stevan-mix-player p { margin-top:4px; }
-  .stevan-mix-nav { display:flex; flex-direction:row; justify-content:flex-end; gap:6px; margin:0; }
-  .stevan-mix-nav a { min-height:40px; justify-content:center; padding:5px 7px; }
-  .stevan-mix-nav a span { font-size:8px; }
-  .stevan-mix-nav a i, .stevan-mix-sidebar-foot { display:none; }
-  .stevan-platform-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .stevan-platform-steam { grid-column:1 / -1; }
-  .stevan-steam-games-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
-}
-@media (max-width: 640px) {
-  .stevan-game-expansion { padding:12px; margin-top:19px; border-radius:11px; }
-  .stevan-mix-sidebar { grid-template-columns:1fr; gap:10px; padding:11px; }
-  .stevan-mix-nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
-  .stevan-mix-nav a { min-height:39px; gap:5px; padding:4px; }
-  .stevan-mix-nav a span { font-size:7px; }
-  .stevan-platform-grid { grid-template-columns:1fr; gap:10px; }
-  .stevan-platform-card { min-height:0; padding:13px; }
-  .stevan-platform-heading { min-height:58px; margin:-13px -13px 13px; padding:9px 13px 10px; }
-  .stevan-roblox-hero { height:130px; }
-  .stevan-roblox-hero img { width:125px; height:120px; flex-basis:125px; }
-  .stevan-roblox-game-title { font-size:9px; }
-  .stevan-xbox-game-large img { height:150px; }
-  .stevan-xbox-game-small img { height:100px; }
-  .stevan-steam-games-grid { display:flex; }
-  .stevan-steam-game { grid-template-columns:112px minmax(0,1fr); }
-  .stevan-steam-game img { width:112px; height:55px; }
+@media (max-width:640px) {
+  .stevan-game-expansion {padding:12px;margin-top:19px;border-radius:11px;}
+  .stevan-mix-sidebar {grid-template-columns:1fr;gap:10px;padding:11px;}
+  .stevan-mix-nav {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;}
+  .stevan-mix-nav a {min-height:39px;gap:5px;padding:4px;}
+  .stevan-mix-nav a span {font-size:7px;}
+  .stevan-platform-grid {grid-template-columns:1fr;gap:10px;}
+  .stevan-platform-card {min-height:0;padding:13px;}
+  .stevan-platform-heading {min-height:52px;margin:-13px -13px 12px;padding:8px 13px;}
+  .stevan-roblox-hero {height:118px;}
+  .stevan-roblox-hero-avatar {width:76px;height:76px;flex-basis:76px;}
+  .stevan-xbox-avatar {width:76px;height:76px;}
+  .stevan-xbox-profile {grid-template-columns:80px minmax(0,1fr);}
+  .stevan-xbox-game-large img {height:138px;}
+  .stevan-xbox-game-small img {height:96px;flex-basis:96px;}
+  .stevan-steam-summary {margin:0 -13px;padding:8px 4px;}
+  .stevan-steam-metric {gap:4px;padding:1px 3px;}
+  .stevan-steam-metric > svg {width:21px;height:21px;flex-basis:21px;}
+  .stevan-steam-metric b {font-size:16px;}
+  .stevan-steam-metric small {font-size:7px;}
+  .stevan-steam-games-grid {display:flex;}
+  .stevan-steam-game {grid-template-columns:112px minmax(0,1fr);}
+  .stevan-steam-game img {width:112px;height:55px;}
 }
