@@ -468,6 +468,81 @@ function GameSetupPanel() {
   );
 }
 
+function HighlightsControllerArt() {
+  return (
+    <svg className="stevan-highlights-art" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="highlight-bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#102d34"/>
+          <stop offset=".48" stopColor="#07171d"/>
+          <stop offset="1" stopColor="#020a10"/>
+        </linearGradient>
+        <radialGradient id="highlight-glow" cx=".52" cy=".55" r=".55">
+          <stop offset="0" stopColor="#00d9df" stopOpacity=".55"/>
+          <stop offset=".55" stopColor="#007e91" stopOpacity=".2"/>
+          <stop offset="1" stopColor="#001018" stopOpacity="0"/>
+        </radialGradient>
+        <linearGradient id="controller-shell" x1=".15" y1="0" x2=".85" y2="1">
+          <stop offset="0" stopColor="#263c44"/>
+          <stop offset=".35" stopColor="#101f27"/>
+          <stop offset=".72" stopColor="#09151c"/>
+          <stop offset="1" stopColor="#34434a"/>
+        </linearGradient>
+        <linearGradient id="controller-edge" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#a0faff"/>
+          <stop offset=".45" stopColor="#1ad8df"/>
+          <stop offset="1" stopColor="#087b9d"/>
+        </linearGradient>
+        <linearGradient id="controller-pad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#d5e7e9"/>
+          <stop offset="1" stopColor="#53666d"/>
+        </linearGradient>
+        <filter id="controller-shadow" x="-20%" y="-30%" width="140%" height="170%">
+          <feGaussianBlur stdDeviation="13"/>
+        </filter>
+      </defs>
+      <rect width="900" height="300" fill="url(#highlight-bg)"/>
+      <rect width="900" height="300" fill="url(#highlight-glow)"/>
+      <path d="M0 235 170 65h80L80 300H0Zm740-235h95L615 300h-95Z" fill="#00bac6" opacity=".07"/>
+      <path d="M0 38h210M690 260h210" stroke="#28d8dd" strokeOpacity=".25" strokeWidth="1"/>
+      <ellipse cx="450" cy="240" rx="260" ry="34" fill="#00d9df" opacity=".23" filter="url(#controller-shadow)"/>
+      <path d="M286 99c11-30 38-47 74-47h180c36 0 63 17 74 47l54 108c13 27-9 50-38 36l-73-36H343l-73 36c-29 14-51-9-38-36l54-108Z" transform="translate(0 12)" fill="#00c9d9" opacity=".2" filter="url(#controller-shadow)"/>
+      <path d="M286 91c11-30 38-47 74-47h180c36 0 63 17 74 47l54 108c13 27-9 50-38 36l-73-36H343l-73 36c-29 14-51-9-38-36l54-108Z" fill="url(#controller-shell)" stroke="url(#controller-edge)" strokeWidth="3"/>
+      <path d="M333 74c23-12 52-17 83-17h68c31 0 60 5 83 17" stroke="#d5fbff" strokeOpacity=".25" strokeWidth="3" fill="none"/>
+      <path d="M356 94h188" stroke="#030b10" strokeWidth="8" strokeLinecap="round" opacity=".75"/>
+      <path d="M373 91h154" stroke="#5c7780" strokeWidth="2" strokeLinecap="round" opacity=".55"/>
+      <g transform="translate(332 140)">
+        <path d="M0 16h20V0h18v16h20v18H38v20H20V34H0Z" fill="#050c11" stroke="#80969e" strokeWidth="2"/>
+        <path d="M9 25h38M29 7v37" stroke="#c5d5d7" strokeOpacity=".55" strokeWidth="2"/>
+      </g>
+      <g>
+        <circle cx="420" cy="164" r="25" fill="#050b10" stroke="#627982" strokeWidth="4"/>
+        <circle cx="420" cy="164" r="17" fill="url(#controller-pad)"/>
+        <circle cx="420" cy="164" r="9" fill="#293a41"/>
+        <circle cx="420" cy="164" r="4" fill="#a9c5ca"/>
+        <circle cx="505" cy="164" r="25" fill="#050b10" stroke="#627982" strokeWidth="4"/>
+        <circle cx="505" cy="164" r="17" fill="url(#controller-pad)"/>
+        <circle cx="505" cy="164" r="9" fill="#293a41"/>
+        <circle cx="505" cy="164" r="4" fill="#a9c5ca"/>
+      </g>
+      <g>
+        <circle cx="565" cy="119" r="10" fill="#a83b58" stroke="#f5a7b5" strokeWidth="2"/>
+        <circle cx="589" cy="143" r="10" fill="#3b87bc" stroke="#8bd5ff" strokeWidth="2"/>
+        <circle cx="541" cy="143" r="10" fill="#3c9c73" stroke="#a3f4c4" strokeWidth="2"/>
+        <circle cx="565" cy="167" r="10" fill="#b28a35" stroke="#ffe1a0" strokeWidth="2"/>
+      </g>
+      <g fill="none" stroke="#a7c3c9" strokeWidth="2" opacity=".55">
+        <path d="M450 205h30m-15-7v14"/>
+        <path d="M469 87h24m-12-5v10"/>
+      </g>
+      <path d="M260 215c20 12 40 10 60-1m320 0c20 11 40 13 60 1" stroke="#55e7eb" strokeOpacity=".4" strokeWidth="2" fill="none"/>
+      <g fill="#6bf5f0" opacity=".7">
+        <circle cx="170" cy="90" r="2"/><circle cx="210" cy="220" r="1.5"/><circle cx="700" cy="72" r="2"/><circle cx="755" cy="210" r="1.5"/>
+      </g>
+    </svg>
+  );
+}
+
 function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => void }) {
   if (panel === "games") return <GamePlatformCollection onClose={onClose} />;
   return (
@@ -483,16 +558,14 @@ function GameExpansion({ panel, onClose }: { panel: GamePanel; onClose: () => vo
             <h3>CLIPS. MOMENTS. WINS.</h3>
             <p>Videók, klipek és élő közvetítések.</p>
           </div>
-          <div className="stevan-highlights-player">
-            <iframe
-              src="https://www.youtube.com/embed?listType=user_uploads&list=TeamNikola&rel=0"
-              title="TeamNikola YouTube-videók"
-              loading="lazy"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
+          <a className="stevan-highlights-feature" href="https://www.youtube.com/@TeamNikola/videos" target="_blank" rel="noreferrer" aria-label="TeamNikola gameplay-videók megnyitása a YouTube-on">
+            <HighlightsControllerArt />
+            <span className="stevan-highlights-feature-shade" />
+            <span className="stevan-highlights-feature-slashes" aria-hidden="true" />
+            <span className="stevan-highlights-play" aria-hidden="true"><i /></span>
+            <span className="stevan-highlights-feature-label">TEAMNIKOLA <b> / GAMEPLAY</b></span>
+            <span className="stevan-highlights-feature-cta">WATCH CLIPS <b>↗</b></span>
+          </a>
           <div className="stevan-highlights-links" aria-label="TeamNikola csatornák">
             <a className="stevan-highlight-link stevan-highlight-youtube" href="https://www.youtube.com/@TeamNikola" target="_blank" rel="noreferrer" aria-label="YouTube – @TeamNikola" title="YouTube – @TeamNikola">
               <img src="https://cdn.simpleicons.org/youtube/FF0033" alt="" />
