@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import "./stevan.css";
 
-type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess" | "code";
+type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess" | "code" | "hiking";
 
 type Interest = {
   id: InterestId;
