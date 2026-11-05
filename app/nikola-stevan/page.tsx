@@ -69,68 +69,6 @@ type MathResultsByGrade = {
 
 const mathResultsByGrade: MathResultsByGrade[] = [
   {
-    grade: "2. évfolyam",
-    results: [
-      {
-        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika (2. tárgy)",
-        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozatú elismerés · 2023–2024-es versenyév", "Szeged · 2024. március 22."],
-      },
-      {
-        competition: "Bendegúz Gyermek- és Ifjúsági Akadémia – IV. matekÁSZ",
-        details: ["Vármegyei forduló · 1. helyezés", "2024. február 23."],
-      },
-      {
-        competition: "Zrínyi Ilona Matematikaverseny",
-        details: ["Vármegyei/körzeti forduló · részvétel", "Kecskemét · 2024. február 16.", "A részvételi oklevél helyezést nem tüntet fel."],
-      },
-      {
-        competition: "Nemzetközi Kenguru Matematikaverseny",
-        details: ["2024. évi verseny · részvétel", "Részvételi emléklap · helyezés nélkül"],
-      },
-    ],
-  },
-  {
-    grade: "3. évfolyam",
-    results: [
-      {
-        competition: "Kalmár László Matematikaverseny",
-        details: ["Vármegyei forduló · 1. helyezés", "Országos forduló · 14. helyezés"],
-      },
-      {
-        competition: "Nemzetközi Kenguru Matematikaverseny",
-        details: ["Országos · 15. helyezés", "A 6. legmagasabb pontszámmal"],
-      },
-      {
-        competition: "Zrínyi Ilona Matematikaverseny",
-        details: ["Vármegyei csoportos · 1. helyezés", "Egyéni · 4. helyezés"],
-      },
-      {
-        competition: "MATEGYE Vármegyei Matematikaverseny",
-        details: ["7. helyezés", "A 6. legmagasabb pontszámmal"],
-      },
-      {
-        competition: "MATEGYE Internetes verseny",
-        details: ["Országos · 16. helyezés"],
-      },
-      {
-        competition: "Agyban Nagy Matematikaverseny",
-        details: ["Országos csapatverseny · 5. helyezés"],
-      },
-      {
-        competition: "Bendegúz Akadémia – V. MatekÁSZ tanulmányi verseny",
-        details: ["Vármegyei forduló · 1. helyezés", "Országos forduló · 24. helyezés"],
-      },
-      {
-        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika",
-        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozat"],
-      },
-      {
-        competition: "Abacus Matematikai Pontverseny",
-        details: ["200/210 pont · 16. helyezés"],
-      },
-    ],
-  },
-  {
     grade: "4. évfolyam",
     results: [
       {
@@ -153,17 +91,39 @@ const mathResultsByGrade: MathResultsByGrade[] = [
         competition: "Bolyai Matematika Csapatverseny",
         details: ["Vármegyei csapatverseny · 2. helyezés"],
       },
+    ],
+  },
+  {
+    grade: "3. évfolyam",
+    results: [
       {
         competition: "Kalmár László Matematikaverseny",
-        details: ["Országos · 22. helyezés"],
+        details: ["Vármegyei forduló · 1. helyezés"],
       },
       {
-        competition: "Nemzetközi Kenguru Matematikaverseny",
-        details: ["Vármegyei · 5. helyezés"],
+        competition: "Zrínyi Ilona Matematikaverseny",
+        details: ["Vármegyei csoportos · 1. helyezés"],
       },
       {
-        competition: "Abacus Matematikai Pontverseny",
-        details: ["27. helyezés"],
+        competition: "Bendegúz Akadémia – V. MatekÁSZ tanulmányi verseny",
+        details: ["Vármegyei forduló · 1. helyezés"],
+      },
+      {
+        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika",
+        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozat"],
+      },
+    ],
+  },
+  {
+    grade: "2. évfolyam",
+    results: [
+      {
+        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika (2. tárgy)",
+        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozatú elismerés · 2023–2024-es versenyév", "Szeged · 2024. március 22."],
+      },
+      {
+        competition: "Bendegúz Gyermek- és Ifjúsági Akadémia – IV. matekÁSZ",
+        details: ["Vármegyei forduló · 1. helyezés", "2024. február 23."],
       },
     ],
   },
@@ -173,7 +133,7 @@ const interests: Interest[] = [
   {
     id: "math", number: "01", title: "Matematika", subtitle: "LOGIC · CHALLENGE", mark: "∑",
     size: "large", description: "Logika, koncentráció, problémamegoldás.",
-    detail: "Matematikaversenyek eredményei évfolyamonként, a fordulók és pontszámok feltüntetésével."
+    detail: "Az alábbiakban évfolyamonként láthatók a matematikaversenyeken elért dobogós helyezések és a kiemelt elismerések."
   },
   {
     id: "science", number: "02", title: "Természettudomány", subtitle: "SCIENCE · DISCOVERY", mark: "⚛",
