@@ -85,11 +85,19 @@ const mathResultsByGrade: MathResultsByGrade[] = [
       },
       {
         competition: "Kalmár László Matematikaverseny",
-        details: ["Vármegyei · 3. helyezés"],
+        details: ["Vármegyei · 3. helyezés", "Országos · 22. helyezés"],
       },
       {
         competition: "Bolyai Matematika Csapatverseny",
         details: ["Vármegyei csapatverseny · 2. helyezés"],
+      },
+      {
+        competition: "Nemzetközi Kenguru Matematikaverseny",
+        details: ["Vármegyei · 5. helyezés"],
+      },
+      {
+        competition: "Abacus Matematikai Pontverseny",
+        details: ["27. helyezés"],
       },
     ],
   },
@@ -98,19 +106,39 @@ const mathResultsByGrade: MathResultsByGrade[] = [
     results: [
       {
         competition: "Kalmár László Matematikaverseny",
-        details: ["Vármegyei forduló · 1. helyezés"],
+        details: ["Vármegyei forduló · 1. helyezés", "Országos · 14. helyezés"],
+      },
+      {
+        competition: "Nemzetközi Kenguru Matematikaverseny",
+        details: ["Országos · 15. helyezés", "6. legmagasabb pontszám"],
       },
       {
         competition: "Zrínyi Ilona Matematikaverseny",
-        details: ["Vármegyei csoportos · 1. helyezés"],
+        details: ["Vármegyei csoportos · 1. helyezés", "Egyéni · 4. helyezés"],
+      },
+      {
+        competition: "MATEGYE Vármegyei Matematikaverseny",
+        details: ["7. helyezés", "6. legmagasabb pontszám"],
+      },
+      {
+        competition: "MATEGYE Internetes verseny",
+        details: ["Országos · 16. helyezés"],
+      },
+      {
+        competition: "Agyban Nagy Matematikaverseny",
+        details: ["Országos csapatverseny · 5. helyezés"],
       },
       {
         competition: "Bendegúz Akadémia – V. MatekÁSZ tanulmányi verseny",
-        details: ["Vármegyei forduló · 1. helyezés"],
+        details: ["Vármegyei forduló · 1. helyezés", "Országos · 24. helyezés"],
       },
       {
         competition: "Bendegúz Akadémia – Tudásbajnokság, matematika",
         details: ["Vármegyei forduló · 2. helyezés", "Arany fokozat"],
+      },
+      {
+        competition: "Abacus Matematikai Pontverseny",
+        details: ["200/210 pont", "16. helyezés"],
       },
     ],
   },
@@ -133,7 +161,7 @@ const interests: Interest[] = [
   {
     id: "math", number: "01", title: "Matematika", subtitle: "LOGIC · CHALLENGE", mark: "∑",
     size: "large", description: "Logika, koncentráció, problémamegoldás.",
-    detail: "Matekpályák teljesítve — nézd meg a dobogós eredményeket!"
+    detail: "Matekpályák teljesítve — jöhetnek az eredmények!"
   },
   {
     id: "science", number: "02", title: "Természettudomány", subtitle: "SCIENCE · DISCOVERY", mark: "⚛",
