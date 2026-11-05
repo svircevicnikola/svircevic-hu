@@ -133,7 +133,7 @@ const interests: Interest[] = [
   {
     id: "math", number: "01", title: "Matematika", subtitle: "LOGIC · CHALLENGE", mark: "∑",
     size: "large", description: "Logika, koncentráció, problémamegoldás.",
-    detail: "Az alábbiakban évfolyamonként láthatók a matematikaversenyeken elért dobogós helyezések és a kiemelt elismerések."
+    detail: "Matekpályák teljesítve — nézd meg a dobogós eredményeket!"
   },
   {
     id: "science", number: "02", title: "Természettudomány", subtitle: "SCIENCE · DISCOVERY", mark: "⚛",
