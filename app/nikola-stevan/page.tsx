@@ -171,7 +171,7 @@ const interests: Interest[] = [
   {
     id: "drums", number: "03", title: "Dob", subtitle: "RHYTHM · MUSIC", mark: "◖))",
     size: "small", description: "Ritmus, zene és gyakorlás.",
-    detail: "A zenei érdeklődés, kedvenc ritmusok, felvételek és később akár saját videók helye."
+    detail: "Dobos felvételek és gyakorlós pillanatok — indulhat a lejátszás."
   },
   {
     id: "basketball", number: "04", title: "Kosárlabda", subtitle: "BASKETBALL", mark: "◉",
@@ -241,7 +241,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         <div className="stevan-modal-mark">{interest.mark}</div>
         <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
@@ -272,6 +272,19 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                 </ul>
               </section>
             ))}
+          </div>
+        ) : interest.id === "drums" ? (
+          <div className="stevan-drum-video">
+            <span className="stevan-drum-video-label">DOBOS VIDEÓ · 01</span>
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="Dobos videó"
+            >
+              <source src="https://drive.google.com/uc?export=download&id=1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" type="video/mp4" />
+              A böngésző nem tudja lejátszani ezt a videót.
+            </video>
           </div>
         ) : (
           <div className="stevan-modal-note">
