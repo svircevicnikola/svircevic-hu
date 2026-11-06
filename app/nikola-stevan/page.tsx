@@ -282,7 +282,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               preload="metadata"
               aria-label="Dobos videó"
             >
-              <source src="https://drive.google.com/uc?export=download&id=1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" type="video/mp4" />
+              <source src="https://drive.google.com/uc?export=view&id=1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" type="video/mp4" />
               A böngésző nem tudja lejátszani ezt a videót.
             </video>
           </div>
