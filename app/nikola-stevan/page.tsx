@@ -67,9 +67,11 @@ type MathResultsByGrade = {
   results: MathResult[];
 };
 
-const drumVideoSrc = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
-  ? `https://www.googleapis.com/drive/v3/files/1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
-  : null;
+type DrumVideo = { id: string; title: string; fileId: string };
+
+const drumVideos: DrumVideo[] = [
+  { id: "drum-video-01", title: "Dobos videó · 01", fileId: "1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" },
+];
 
 const mathResultsByGrade: MathResultsByGrade[] = [
   {
@@ -233,6 +235,12 @@ function ContactIcon({ id }: { id: ContactId }) {
 }
 
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
+  const [selectedDrumVideoId, setSelectedDrumVideoId] = useState(drumVideos[0]?.id ?? "");
+  const selectedDrumVideo = drumVideos.find((video) => video.id === selectedDrumVideoId) ?? drumVideos[0];
+  const drumVideoSrc = selectedDrumVideo && process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
+    ? `https://www.googleapis.com/drive/v3/files/${selectedDrumVideo.fileId}?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
+    : null;
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKeyDown);
@@ -279,9 +287,33 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           </div>
         ) : interest.id === "drums" ? (
           <div className="stevan-drum-video">
-            <span className="stevan-drum-video-label">DOBOS VIDEÓ · 01</span>
+            <div className="stevan-drum-gallery">
+              <div className="stevan-drum-gallery-heading">
+                <span>VIDEÓGALÉRIA</span>
+                <span>{drumVideos.length} FELVÉTEL</span>
+              </div>
+              <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
+                {drumVideos.map((video, index) => (
+                  <button
+                    className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
+                    type="button"
+                    key={video.id}
+                    aria-pressed={video.id === selectedDrumVideoId}
+                    onClick={() => setSelectedDrumVideoId(video.id)}
+                  >
+                    <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
+                    <span className="stevan-drum-gallery-card-copy">
+                      <strong>{video.title}</strong>
+                      <small>FELVÉTEL · {String(index + 1).padStart(2, "0")}</small>
+                    </span>
+                    <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <span className="stevan-drum-video-label">LEJÁTSZÁS · {selectedDrumVideo?.title ?? "VÁLASSZ VIDEÓT"}</span>
             {drumVideoSrc ? (
-              <video controls playsInline preload="metadata" aria-label="Dobos videó">
+              <video key={selectedDrumVideo?.id} controls playsInline preload="metadata" aria-label={selectedDrumVideo?.title ?? "Dobos videó"}>
                 <source src={drumVideoSrc} type="video/mp4" />
                 A böngésző nem tudja lejátszani ezt a videót.
               </video>
