@@ -67,10 +67,15 @@ type MathResultsByGrade = {
   results: MathResult[];
 };
 
-type DrumVideo = { id: string; title: string; fileId: string };
+type DrumVideo = { id: string; fileName: string; fileId: string };
+
+function drumPerformanceTitle(fileName: string) {
+  const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
+  return date ? `Fellépés · ${date[1]}. ${date[2]}. ${date[3]}.` : "Fellépés";
+}
 
 const drumVideos: DrumVideo[] = [
-  { id: "drum-video-01", title: "Dobos videó · 01", fileId: "1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" },
+  { id: "drum-video-01", fileName: "VID_20250327_183614.mp4", fileId: "1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" },
 ];
 
 const scienceChannels = [
@@ -79,13 +84,13 @@ const scienceChannels = [
   { title: "Szertár", href: "https://www.youtube.com/results?search_query=Szert%C3%A1r", topics: "Kísérletek és tudomány", language: "MAGYAR" },
   { title: "Zanza TV", href: "https://www.youtube.com/results?search_query=Zanza+TV", topics: "Tudás röviden, érthetően", language: "MAGYAR" },
   { title: "Vicc Elek", href: "https://www.youtube.com/results?search_query=Vicc+Elek", topics: "Érdekes és vicces videók", language: "MAGYAR" },
-  { title: "Mateking", href: "https://www.youtube.com/results?search_query=Mateking+matematika", topics: "Matematika", language: "MAGYAR" },
-  { title: "Kurzgesagt – In a Nutshell", href: "https://www.youtube.com/@kurzgesagt", topics: "Tudomány, űrkutatás, biológia, technológia", language: "ANGOL · 10–16 ÉV", featured: true, description: "Látványos animációk és igényes magyarázatok a világ működéséről, a fekete lyukakról és a jövő technológiájáról." },
-  { title: "TED-Ed", href: "https://www.youtube.com/@TEDEd", topics: "Tudomány, történelem, logika", language: "ANGOL · 10–16 ÉV", featured: true, description: "Rövid, animált magyarázatok érdekes kérdésekről, gyakran meglepő válaszokkal." },
-  { title: "Veritasium", href: "https://www.youtube.com/@veritasium", topics: "Fizika, matematika, kísérletek", language: "ANGOL · 12–16 ÉV", description: "Látványos kísérletek és tudományos magyarázatok, amelyek gondolkodásra késztetnek." },
-  { title: "Mark Rober", href: "https://www.youtube.com/@MarkRober", topics: "Mérnöki tudomány, fizika, robotika", language: "ANGOL · 10–14 ÉV", description: "Látványos kísérletek, szerkezetek és mérnöki megoldások, szórakoztatóan." },
-  { title: "SmarterEveryDay", href: "https://www.youtube.com/@smartereveryday", topics: "Fizika, technológia, mérnöki tudomány", language: "ANGOL · 11–16 ÉV", description: "Hétköznapi jelenségek tudományos szemmel, gyakran lassított felvételekkel." },
-  { title: "SciShow", href: "https://www.youtube.com/@SciShow", topics: "Biológia, kémia, fizika, tudomány", language: "ANGOL · 11–16 ÉV", description: "Változatos, közérthető tudományos magyarázatok." },
+  { title: "Tízes Lista", href: "https://www.youtube.com/@tizeslista_hu", topics: "Tudomány, történelem, érdekességek", language: "MAGYAR" },
+  { title: "Kurzgesagt – In a Nutshell", href: "https://www.youtube.com/@kurzgesagt", topics: "Tudomány, űrkutatás, biológia, technológia", language: "ANGOL", description: "Látványos animációk és igényes magyarázatok a világ működéséről, a fekete lyukakról és a jövő technológiájáról." },
+  { title: "TED-Ed", href: "https://www.youtube.com/@TEDEd", topics: "Tudomány, történelem, logika", language: "ANGOL", description: "Rövid, animált magyarázatok érdekes kérdésekről, gyakran meglepő válaszokkal." },
+  { title: "Veritasium", href: "https://www.youtube.com/@veritasium", topics: "Fizika, matematika, kísérletek", language: "ANGOL", description: "Látványos kísérletek és tudományos magyarázatok, amelyek gondolkodásra késztetnek." },
+  { title: "Mark Rober", href: "https://www.youtube.com/@MarkRober", topics: "Mérnöki tudomány, fizika, robotika", language: "ANGOL", description: "Látványos kísérletek, szerkezetek és mérnöki megoldások, szórakoztatóan." },
+  { title: "SmarterEveryDay", href: "https://www.youtube.com/@smartereveryday", topics: "Fizika, technológia, mérnöki tudomány", language: "ANGOL", description: "Hétköznapi jelenségek tudományos szemmel, gyakran lassított felvételekkel." },
+  { title: "SciShow", href: "https://www.youtube.com/@SciShow", topics: "Biológia, kémia, fizika, tudomány", language: "ANGOL", description: "Változatos, közérthető tudományos magyarázatok." },
 ] as const;
 
 const mathResultsByGrade: MathResultsByGrade[] = [
@@ -192,7 +197,7 @@ const interests: Interest[] = [
   {
     id: "drums", number: "03", title: "Dob", subtitle: "RHYTHM · MUSIC", mark: "◖))",
     size: "small", description: "Ritmus, zene és gyakorlás.",
-    detail: "Dobos felvételek és gyakorlós pillanatok — indulhat a lejátszás."
+    detail: "Próba, fellépés, kedvenc ritmusok — válassz egy videót, és indul."
   },
   {
     id: "basketball", number: "04", title: "Kosárlabda", subtitle: "BASKETBALL", mark: "◉",
@@ -217,7 +222,7 @@ const interests: Interest[] = [
   {
     id: "code", number: "07", title: "Programozás", subtitle: "CODE · CREATE", mark: "</>",
     size: "wide", description: "Ötletekből működő dolgok.",
-    detail: "Saját projektek, kísérletezés, játékötletek és a programozás során születő megoldások bemutatására szolgáló rész."
+    detail: "A terv: saját játék. Még tanulom, hogyan rakjam össze."
   }
 ];
 
@@ -250,8 +255,8 @@ function ContactIcon({ id }: { id: ContactId }) {
 }
 
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
-  const [selectedDrumVideoId, setSelectedDrumVideoId] = useState(drumVideos[0]?.id ?? "");
-  const selectedDrumVideo = drumVideos.find((video) => video.id === selectedDrumVideoId) ?? drumVideos[0];
+  const [selectedDrumVideoId, setSelectedDrumVideoId] = useState<string | null>(null);
+  const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
   const drumVideoSrc = selectedDrumVideo && process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
     ? `https://www.googleapis.com/drive/v3/files/${selectedDrumVideo.fileId}?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
     : null;
@@ -268,17 +273,13 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         <div className="stevan-modal-mark">{interest.mark}</div>
         <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
         <h2 id="interest-modal-title">{interest.title}</h2>
         <p className="stevan-modal-subtitle">{interest.subtitle}</p>
-        {interest.id === "science" ? (
-          <p className="stevan-modal-copy stevan-science-intro">Ezek a kedvenc csatornáim — van köztük kísérlet, űr, matek meg egy csomó „na, ezt nem tudtam!” pillanat. Kattints arra, amelyik érdekel!</p>
-        ) : (
-          <p className="stevan-modal-copy">{interest.detail}</p>
-        )}
+        {interest.id !== "science" && <p className="stevan-modal-copy">{interest.detail}</p>}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -322,12 +323,11 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               <h3 id="science-en-heading"><span>02</span> ANGOL CSATORNÁK</h3>
               <div className="stevan-science-grid">
                 {scienceChannels.filter((channel) => channel.language.startsWith("ANGOL")).map((channel) => (
-                  <a className={`stevan-science-card stevan-science-card-english${"featured" in channel && channel.featured ? " is-featured" : ""}`} href={channel.href} key={channel.title} target="_blank" rel="noreferrer">
+                  <a className="stevan-science-card stevan-science-card-english" href={channel.href} key={channel.title} target="_blank" rel="noreferrer">
                     <span className="stevan-science-card-top"><small>{channel.language}</small><b aria-hidden="true">↗</b></span>
                     <strong>{channel.title}</strong>
                     <span className="stevan-science-topics">{channel.topics}</span>
                     {"description" in channel && <span className="stevan-science-description">{channel.description}</span>}
-                    {"featured" in channel && channel.featured && <span className="stevan-science-pick">KIEMELTEN AJÁNLOTT</span>}
                   </a>
                 ))}
               </div>
@@ -351,7 +351,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   >
                     <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
                     <span className="stevan-drum-gallery-card-copy">
-                      <strong>{video.title}</strong>
+                      <strong>{drumPerformanceTitle(video.fileName)}</strong>
                       <small>FELVÉTEL · {String(index + 1).padStart(2, "0")}</small>
                     </span>
                     <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
@@ -359,15 +359,50 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                 ))}
               </div>
             </div>
-            <span className="stevan-drum-video-label">LEJÁTSZÁS · {selectedDrumVideo?.title ?? "VÁLASSZ VIDEÓT"}</span>
-            {drumVideoSrc ? (
-              <video key={selectedDrumVideo?.id} controls playsInline preload="metadata" aria-label={selectedDrumVideo?.title ?? "Dobos videó"}>
-                <source src={drumVideoSrc} type="video/mp4" />
-                A böngésző nem tudja lejátszani ezt a videót.
-              </video>
+            {selectedDrumVideo && drumVideoSrc ? (
+              <>
+                <span className="stevan-drum-video-label">{drumPerformanceTitle(selectedDrumVideo.fileName)}</span>
+                <video key={selectedDrumVideo.id} autoPlay controls playsInline preload="metadata" aria-label={drumPerformanceTitle(selectedDrumVideo.fileName)}>
+                  <source src={drumVideoSrc} type="video/mp4" />
+                  A böngésző nem tudja lejátszani ezt a videót.
+                </video>
+              </>
             ) : (
-              <p role="status">A videó most nem érhető el.</p>
+              <p className="stevan-drum-empty" role="status">Kattints egy felvételre, és indul.</p>
             )}
+          </div>
+        ) : interest.id === "code" ? (
+          <div className="stevan-code-content">
+            <div className="stevan-code-status">AI status: AFK, saját build készül...</div>
+            <section className="stevan-code-section" aria-labelledby="code-tools-heading">
+              <h3 id="code-tools-heading">AMIVEL ISMERKEDEM</h3>
+              <div className="stevan-code-tools">
+                <article className="stevan-code-tool">
+                  <strong>Scratch</strong>
+                  <span>Vizuális programozás</span>
+                </article>
+                <article className="stevan-code-tool">
+                  <strong>Python</strong>
+                  <span>Programozási nyelv</span>
+                </article>
+                <article className="stevan-code-tool">
+                  <strong>C# <small>(C-sharp)</small></strong>
+                  <span>Programozási nyelv</span>
+                </article>
+                <article className="stevan-code-tool">
+                  <strong>Visual Studio</strong>
+                  <span>Fejlesztőkörnyezet</span>
+                </article>
+                <article className="stevan-code-tool">
+                  <strong>Blender</strong>
+                  <span>3D modellezés és animáció</span>
+                </article>
+              </div>
+            </section>
+            <section className="stevan-code-projects" aria-labelledby="code-projects-heading">
+              <h3 id="code-projects-heading">ELSŐ PROJEKTEK</h3>
+              <p>Ahogy elkészülnek az első játékötletek és próbálkozások, itt kapnak helyet.</p>
+            </section>
           </div>
         ) : (
           <div className="stevan-modal-note">
@@ -721,7 +756,7 @@ export default function NikolaStevanPage() {
       <div className="stevan-noise" aria-hidden="true" />
       <header className="stevan-header">
         <a className="stevan-brand" href="#top" aria-label="Team Nikola – főoldal">
-          <span className="stevan-brand-icon"><ControllerMark /></span>
+          <span className="stevan-brand-icon"><img src="/images/Logo3.png" alt="" /></span>
           <span><b>TEAM <em>NIKOLA</em></b><small>GAMER PROFILE</small></span>
         </a>
         <nav className="stevan-nav" aria-label="Fő navigáció">
@@ -796,7 +831,7 @@ export default function NikolaStevanPage() {
       <section className="stevan-interests" id="interests">
         <div className="stevan-section-heading">
           <div><span className="stevan-eyebrow">02 — CURIOSITY MODE</span><h2>GEEK <span>ZONE.</span></h2></div>
-          <p>A játék csak az egyik pálya.<br/>Nézz körül a többi világban is.</p>
+          <p>A játék csak az egyik pálya!<br/>Kíváncsi vagy, mi érdekel még? Nézz körül.</p>
         </div>
         <div className="stevan-interest-intro"><span>OTHER INTERESTS</span><span>VÁLASSZ EGYET A RÉSZLETEKHEZ <b>↓</b></span></div>
         <div className="stevan-interest-cloud">
@@ -853,7 +888,10 @@ export default function NikolaStevanPage() {
       </section>
 
       <footer className="stevan-footer">
-        <a className="stevan-footer-brand" href="#top">TEAM <span>NIKOLA</span></a>
+        <a className="stevan-footer-brand" href="#top">
+          <img src="/images/Logo4.png" alt="" />
+          <span>TEAM <em>NIKOLA</em></span>
+        </a>
         <span>GAMING · TECH · CURIOSITY</span>
         <a href="#top">BACK TO TOP ↑</a>
       </footer>
@@ -862,5 +900,6 @@ export default function NikolaStevanPage() {
     </main>
   );
 }
+
 
 
