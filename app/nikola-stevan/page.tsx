@@ -67,6 +67,27 @@ type MathResultsByGrade = {
   results: MathResult[];
 };
 
+type DrumVideo = { id: string; title: string; fileId: string };
+
+const drumVideos: DrumVideo[] = [
+  { id: "drum-video-01", title: "Dobos videó · 01", fileId: "1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" },
+];
+
+const scienceChannels = [
+  { title: "Tanulom Magam", href: "https://www.youtube.com/@TanulomMagam", topics: "Érdekes kérdések, ember és világ", language: "MAGYAR" },
+  { title: "Zseni Leszek", href: "https://www.youtube.com/results?search_query=Zseni+Leszek", topics: "Tanulás és tudomány", language: "MAGYAR" },
+  { title: "Szertár", href: "https://www.youtube.com/results?search_query=Szert%C3%A1r", topics: "Kísérletek és tudomány", language: "MAGYAR" },
+  { title: "Zanza TV", href: "https://www.youtube.com/results?search_query=Zanza+TV", topics: "Tudás röviden, érthetően", language: "MAGYAR" },
+  { title: "Vicc Elek", href: "https://www.youtube.com/results?search_query=Vicc+Elek", topics: "Érdekes és vicces videók", language: "MAGYAR" },
+  { title: "Mateking", href: "https://www.youtube.com/results?search_query=Mateking+matematika", topics: "Matematika", language: "MAGYAR" },
+  { title: "Kurzgesagt – In a Nutshell", href: "https://www.youtube.com/@kurzgesagt", topics: "Tudomány, űrkutatás, biológia, technológia", language: "ANGOL · 10–16 ÉV", featured: true, description: "Látványos animációk és igényes magyarázatok a világ működéséről, a fekete lyukakról és a jövő technológiájáról." },
+  { title: "TED-Ed", href: "https://www.youtube.com/@TEDEd", topics: "Tudomány, történelem, logika", language: "ANGOL · 10–16 ÉV", featured: true, description: "Rövid, animált magyarázatok érdekes kérdésekről, gyakran meglepő válaszokkal." },
+  { title: "Veritasium", href: "https://www.youtube.com/@veritasium", topics: "Fizika, matematika, kísérletek", language: "ANGOL · 12–16 ÉV", description: "Látványos kísérletek és tudományos magyarázatok, amelyek gondolkodásra késztetnek." },
+  { title: "Mark Rober", href: "https://www.youtube.com/@MarkRober", topics: "Mérnöki tudomány, fizika, robotika", language: "ANGOL · 10–14 ÉV", description: "Látványos kísérletek, szerkezetek és mérnöki megoldások, szórakoztatóan." },
+  { title: "SmarterEveryDay", href: "https://www.youtube.com/@smartereveryday", topics: "Fizika, technológia, mérnöki tudomány", language: "ANGOL · 11–16 ÉV", description: "Hétköznapi jelenségek tudományos szemmel, gyakran lassított felvételekkel." },
+  { title: "SciShow", href: "https://www.youtube.com/@SciShow", topics: "Biológia, kémia, fizika, tudomány", language: "ANGOL · 11–16 ÉV", description: "Változatos, közérthető tudományos magyarázatok." },
+] as const;
+
 const mathResultsByGrade: MathResultsByGrade[] = [
   {
     grade: "4. évfolyam",
@@ -229,6 +250,12 @@ function ContactIcon({ id }: { id: ContactId }) {
 }
 
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
+  const [selectedDrumVideoId, setSelectedDrumVideoId] = useState(drumVideos[0]?.id ?? "");
+  const selectedDrumVideo = drumVideos.find((video) => video.id === selectedDrumVideoId) ?? drumVideos[0];
+  const drumVideoSrc = selectedDrumVideo && process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
+    ? `https://www.googleapis.com/drive/v3/files/${selectedDrumVideo.fileId}?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
+    : null;
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKeyDown);
@@ -241,13 +268,17 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         <div className="stevan-modal-mark">{interest.mark}</div>
         <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
         <h2 id="interest-modal-title">{interest.title}</h2>
         <p className="stevan-modal-subtitle">{interest.subtitle}</p>
-        <p className="stevan-modal-copy">{interest.detail}</p>
+        {interest.id === "science" ? (
+          <p className="stevan-modal-copy stevan-science-intro">Ezek a kedvenc csatornáim — van köztük kísérlet, űr, matek meg egy csomó „na, ezt nem tudtam!” pillanat. Kattints arra, amelyik érdekel!</p>
+        ) : (
+          <p className="stevan-modal-copy">{interest.detail}</p>
+        )}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -273,18 +304,70 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               </section>
             ))}
           </div>
+        ) : interest.id === "science" ? (
+          <div className="stevan-science-channels">
+            <section className="stevan-science-group" aria-labelledby="science-hu-heading">
+              <h3 id="science-hu-heading"><span>01</span> MAGYAR CSATORNÁK</h3>
+              <div className="stevan-science-grid">
+                {scienceChannels.filter((channel) => channel.language === "MAGYAR").map((channel) => (
+                  <a className="stevan-science-card" href={channel.href} key={channel.title} target="_blank" rel="noreferrer">
+                    <span className="stevan-science-card-top"><small>{channel.language}</small><b aria-hidden="true">↗</b></span>
+                    <strong>{channel.title}</strong>
+                    <span className="stevan-science-topics">{channel.topics}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+            <section className="stevan-science-group" aria-labelledby="science-en-heading">
+              <h3 id="science-en-heading"><span>02</span> ANGOL CSATORNÁK</h3>
+              <div className="stevan-science-grid">
+                {scienceChannels.filter((channel) => channel.language.startsWith("ANGOL")).map((channel) => (
+                  <a className={`stevan-science-card stevan-science-card-english${"featured" in channel && channel.featured ? " is-featured" : ""}`} href={channel.href} key={channel.title} target="_blank" rel="noreferrer">
+                    <span className="stevan-science-card-top"><small>{channel.language}</small><b aria-hidden="true">↗</b></span>
+                    <strong>{channel.title}</strong>
+                    <span className="stevan-science-topics">{channel.topics}</span>
+                    {"description" in channel && <span className="stevan-science-description">{channel.description}</span>}
+                    {"featured" in channel && channel.featured && <span className="stevan-science-pick">KIEMELTEN AJÁNLOTT</span>}
+                  </a>
+                ))}
+              </div>
+            </section>
+          </div>
         ) : interest.id === "drums" ? (
           <div className="stevan-drum-video">
-            <span className="stevan-drum-video-label">DOBOS VIDEÓ · 01</span>
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Dobos videó"
-            >
-              <source src="https://drive.google.com/uc?export=view&id=1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" type="video/mp4" />
-              A böngésző nem tudja lejátszani ezt a videót.
-            </video>
+            <div className="stevan-drum-gallery">
+              <div className="stevan-drum-gallery-heading">
+                <span>VIDEÓGALÉRIA</span>
+                <span>{drumVideos.length} FELVÉTEL</span>
+              </div>
+              <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
+                {drumVideos.map((video, index) => (
+                  <button
+                    className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
+                    type="button"
+                    key={video.id}
+                    aria-pressed={video.id === selectedDrumVideoId}
+                    onClick={() => setSelectedDrumVideoId(video.id)}
+                  >
+                    <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
+                    <span className="stevan-drum-gallery-card-copy">
+                      <strong>{video.title}</strong>
+                      <small>FELVÉTEL · {String(index + 1).padStart(2, "0")}</small>
+                    </span>
+                    <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <span className="stevan-drum-video-label">LEJÁTSZÁS · {selectedDrumVideo?.title ?? "VÁLASSZ VIDEÓT"}</span>
+            {drumVideoSrc ? (
+              <video key={selectedDrumVideo?.id} controls playsInline preload="metadata" aria-label={selectedDrumVideo?.title ?? "Dobos videó"}>
+                <source src={drumVideoSrc} type="video/mp4" />
+                A böngésző nem tudja lejátszani ezt a videót.
+              </video>
+            ) : (
+              <p role="status">A videó most nem érhető el.</p>
+            )}
           </div>
         ) : (
           <div className="stevan-modal-note">
@@ -779,4 +862,5 @@ export default function NikolaStevanPage() {
     </main>
   );
 }
+
 

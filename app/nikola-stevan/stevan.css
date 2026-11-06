@@ -194,12 +194,37 @@
 .stevan-modal-note span { color: var(--teal-bright); font: 800 10px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
 .stevan-modal-note p { margin: 8px 0 0; color: #aab7b4; font-size: 12px; line-height: 1.6; }
 .stevan-modal-drums { width: min(820px,calc(100vw - 44px)); min-width: 0; max-height: calc(100vh - 44px); max-height: calc(100dvh - 44px); overflow-y: auto; }
+.stevan-modal-science { width: min(960px,calc(100vw - 44px)); max-height: calc(100vh - 44px); max-height: calc(100dvh - 44px); overflow-y: auto; }
 .stevan-drum-video { display: grid; min-width: 0; gap: 10px; margin-top: 26px; }
 .stevan-drum-video-label { color: var(--teal-bright); font: 800 10px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
 .stevan-drum-video video { display: block; width: auto; max-width: 100%; max-height: min(62vh,560px); margin-inline: auto; background: #020506; object-fit: contain; }
 @media (max-width: 700px) {
   .stevan-modal-drums { width: calc(100vw - 44px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); padding: 36px 18px 22px; }
   .stevan-drum-video { margin-top: 20px; }
+}
+.stevan-science-intro { max-width: 760px; }
+.stevan-science-channels { display: grid; gap: 25px; margin-top: 25px; }
+.stevan-science-group { display: grid; gap: 12px; }
+.stevan-science-group h3 { display: flex; align-items: baseline; gap: 10px; margin: 0; padding-bottom: 9px; border-bottom: 1px solid rgba(57,203,195,.24); color: #dce9e5; font: 800 12px/1 "Rajdhani",sans-serif; letter-spacing: .15em; }
+.stevan-science-group h3 span { color: var(--teal-bright); }
+.stevan-science-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 9px; }
+.stevan-science-card { position: relative; display: grid; align-content: start; gap: 8px; min-width: 0; min-height: 104px; padding: 13px 14px; border: 1px solid rgba(132,164,160,.22); background: linear-gradient(145deg,rgba(18,42,43,.68),rgba(7,16,18,.72)); color: #e6efec; text-decoration: none; transition: border-color .18s ease,background .18s ease,transform .18s ease; }
+.stevan-science-card:hover { transform: translateY(-2px); border-color: rgba(57,203,195,.65); background: linear-gradient(145deg,rgba(22,61,62,.78),rgba(7,18,20,.82)); }
+.stevan-science-card:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
+.stevan-science-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--teal-bright); font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .14em; }
+.stevan-science-card-top small { color: #86a09a; font: inherit; }
+.stevan-science-card-top b { font-size: 13px; }
+.stevan-science-card > strong { color: #f0f5f2; font: 800 18px/1 "Barlow Condensed",sans-serif; text-transform: uppercase; }
+.stevan-science-topics { color: #aab9b5; font: 500 10px/1.4 "Space Grotesk",sans-serif; }
+.stevan-science-description { color: #91a5a0; font: 400 10px/1.5 "Space Grotesk",sans-serif; }
+.stevan-science-card.is-featured { border-color: rgba(57,203,195,.4); background: linear-gradient(145deg,rgba(20,61,61,.82),rgba(7,19,21,.8)); }
+.stevan-science-pick { justify-self: start; margin-top: 2px; padding: 5px 7px; background: rgba(57,203,195,.12); color: var(--teal-bright); font: 800 8px/1 "Rajdhani",sans-serif; letter-spacing: .12em; }
+@media (max-width: 700px) {
+  .stevan-modal-science { width: calc(100vw - 24px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); padding: 36px 18px 22px; }
+  .stevan-science-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 430px) {
+  .stevan-science-grid { grid-template-columns: 1fr; }
 }
 @keyframes stevan-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes stevan-modal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -1170,4 +1195,5 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   .stevan-math-results-grid {grid-template-columns:1fr;}
   .stevan-math-results-heading {align-items:flex-start;flex-direction:column;gap:6px;}
 }
+
 
