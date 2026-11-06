@@ -1,3 +1,4 @@
+Warning: fs was declared with const; use let for reassignable variables.
 "use client";
 
 import { useEffect, useState } from "react";
@@ -57,11 +58,115 @@ type Interest = {
   detail: string;
 };
 
+type MathResult = {
+  competition: string;
+  details: string[];
+};
+
+type MathResultsByGrade = {
+  grade: string;
+  results: MathResult[];
+};
+
+const drumVideoSrc = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
+  ? `https://www.googleapis.com/drive/v3/files/1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
+  : null;
+
+const mathResultsByGrade: MathResultsByGrade[] = [
+  {
+    grade: "4. évfolyam",
+    results: [
+      {
+        competition: "XXII. Bonifert Domonkos Nemzetközi Matematikaverseny",
+        details: ["Kiemelt 1. helyezés"],
+      },
+      {
+        competition: "MATEGYE Megyei Matematikaverseny",
+        details: ["1. helyezés"],
+      },
+      {
+        competition: "Agyban Nagy Matematikaverseny",
+        details: ["Országos · 3. helyezés"],
+      },
+      {
+        competition: "Kalmár László Matematikaverseny",
+        details: ["Vármegyei · 3. helyezés", "Országos · 22. helyezés"],
+      },
+      {
+        competition: "Bolyai Matematika Csapatverseny",
+        details: ["Vármegyei csapatverseny · 2. helyezés"],
+      },
+      {
+        competition: "Nemzetközi Kenguru Matematikaverseny",
+        details: ["Vármegyei · 5. helyezés"],
+      },
+      {
+        competition: "Abacus Matematikai Pontverseny",
+        details: ["27. helyezés"],
+      },
+    ],
+  },
+  {
+    grade: "3. évfolyam",
+    results: [
+      {
+        competition: "Kalmár László Matematikaverseny",
+        details: ["Vármegyei forduló · 1. helyezés", "Országos · 14. helyezés"],
+      },
+      {
+        competition: "Nemzetközi Kenguru Matematikaverseny",
+        details: ["Országos · 15. helyezés", "6. legmagasabb pontszám"],
+      },
+      {
+        competition: "Zrínyi Ilona Matematikaverseny",
+        details: ["Vármegyei csoportos · 1. helyezés", "Egyéni · 4. helyezés"],
+      },
+      {
+        competition: "MATEGYE Vármegyei Matematikaverseny",
+        details: ["7. helyezés", "6. legmagasabb pontszám"],
+      },
+      {
+        competition: "MATEGYE Internetes verseny",
+        details: ["Országos · 16. helyezés"],
+      },
+      {
+        competition: "Agyban Nagy Matematikaverseny",
+        details: ["Országos csapatverseny · 5. helyezés"],
+      },
+      {
+        competition: "Bendegúz Akadémia – V. MatekÁSZ tanulmányi verseny",
+        details: ["Vármegyei forduló · 1. helyezés", "Országos · 24. helyezés"],
+      },
+      {
+        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika",
+        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozat"],
+      },
+      {
+        competition: "Abacus Matematikai Pontverseny",
+        details: ["200/210 pont", "16. helyezés"],
+      },
+    ],
+  },
+  {
+    grade: "2. évfolyam",
+    results: [
+      {
+        competition: "Bendegúz Akadémia – Tudásbajnokság, matematika (2. tárgy)",
+        details: ["Vármegyei forduló · 2. helyezés", "Arany fokozatú elismerés · 2023–2024-es versenyév", "Szeged · 2024. március 22."],
+      },
+      {
+        competition: "Bendegúz Gyermek- és Ifjúsági Akadémia – IV. matekÁSZ",
+        details: ["Vármegyei forduló · 1. helyezés", "2024. február 23."],
+      },
+    ],
+  },
+];
+
 const interests: Interest[] = [
   {
     id: "math", number: "01", title: "Matematika", subtitle: "LOGIC · CHALLENGE", mark: "∑",
     size: "large", description: "Logika, koncentráció, problémamegoldás.",
-    detail: "A matematikaversenyek eredményei, oklevelei és versenyfotói itt kapnak helyet. A konkrét versenyneveket, évszámokat és helyezéseket a tényleges adatok alapján töltjük fel."
+    detail: "Matekpályák teljesítve — jöhetnek az eredmények!"
   },
   {
     id: "science", number: "02", title: "Természettudomány", subtitle: "SCIENCE · DISCOVERY", mark: "⚛",
@@ -71,7 +176,7 @@ const interests: Interest[] = [
   {
     id: "drums", number: "03", title: "Dob", subtitle: "RHYTHM · MUSIC", mark: "◖))",
     size: "small", description: "Ritmus, zene és gyakorlás.",
-    detail: "A zenei érdeklődés, kedvenc ritmusok, felvételek és később akár saját videók helye."
+    detail: "Dobos felvételek és gyakorlós pillanatok — indulhat a lejátszás."
   },
   {
     id: "basketball", number: "04", title: "Kosárlabda", subtitle: "BASKETBALL", mark: "◉",
@@ -141,7 +246,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className="stevan-modal" role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         <div className="stevan-modal-mark">{interest.mark}</div>
         <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
@@ -149,9 +254,41 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
         <p className="stevan-modal-subtitle">{interest.subtitle}</p>
         <p className="stevan-modal-copy">{interest.detail}</p>
         {interest.id === "math" ? (
-          <div className="stevan-modal-note">
-            <span>VERSENYEREDMÉNYEK</span>
-            <p>Verseny neve · évszám · elért helyezés · oklevél vagy fotó</p>
+          <div className="stevan-math-results">
+            <div className="stevan-math-results-heading">
+              <span>VERSENYEREDMÉNYEK</span>
+              <p>Évfolyamonkénti bontás</p>
+            </div>
+            {mathResultsByGrade.map((grade) => (
+              <section className="stevan-math-grade" key={grade.grade} aria-label={grade.grade}>
+                <header className="stevan-math-grade-heading">
+                  <h3>{grade.grade}</h3>
+                  <span>{grade.results.length} adat</span>
+                </header>
+                <ul className="stevan-math-results-grid">
+                  {grade.results.map((result, index) => (
+                    <li className="stevan-math-result" key={result.competition + index}>
+                      <h4>{result.competition}</h4>
+                      <ul className="stevan-math-result-details">
+                        {result.details.map((detail) => <li key={detail}>{detail}</li>)}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        ) : interest.id === "drums" ? (
+          <div className="stevan-drum-video">
+            <span className="stevan-drum-video-label">DOBOS VIDEÓ · 01</span>
+            {drumVideoSrc ? (
+              <video controls playsInline preload="metadata" aria-label="Dobos videó">
+                <source src={drumVideoSrc} type="video/mp4" />
+                A böngésző nem tudja lejátszani ezt a videót.
+              </video>
+            ) : (
+              <p role="status">A videó most nem érhető el.</p>
+            )}
           </div>
         ) : (
           <div className="stevan-modal-note">
