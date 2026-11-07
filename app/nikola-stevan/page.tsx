@@ -278,8 +278,11 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
   const selectedKayakPhoto = selectedKayakPhotoId ? kayakPhotos.find((photo) => photo.id === selectedKayakPhotoId) : undefined;
   const selectedKayakPhotoSrc = selectedKayakPhoto ? driveMediaUrl(selectedKayakPhoto.fileId) : null;
-  const kayakCover = kayakPhotos.find((photo) => photo.fileName.toLowerCase().startsWith("chatgpt-kép")) ?? kayakPhotos[0];
+  const kayakCover = kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_173407.jpg")
+    ?? kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_170848.jpg")
+    ?? kayakPhotos[0];
   const kayakCoverSrc = kayakCover ? driveMediaUrl(kayakCover.fileId) : null;
+  const kayakGalleryPhotos = kayakPhotos.filter((photo) => photo.id !== kayakCover?.id);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -497,19 +500,19 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
         ) : interest.id === "kayak" ? (
           <div className="stevan-kayak-gallery">
             <div className="stevan-kayak-gallery-heading">
-              <span>KÉPEK</span>
+              <span>PILLANATOK A VÍZEN</span>
               <span>{kayakPhotosLoading ? "BETÖLTÉS…" : `${kayakPhotos.length} FOTÓ`}</span>
             </div>
             {kayakPhotosError && <p className="stevan-drum-empty" role="status">A kajakos képmappát most nem sikerült betölteni.</p>}
             {!kayakPhotosLoading && !kayakPhotosError && kayakPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
             <div className="stevan-kayak-photo-grid">
-              {kayakPhotos.map((photo) => {
+              {kayakGalleryPhotos.map((photo) => {
                 const src = driveMediaUrl(photo.fileId);
                 const date = kayakPhotoDate(photo.fileName);
                 if (!src) return null;
                 return (
                   <button
-                    className="stevan-kayak-photo"
+                    className={`stevan-kayak-photo${photo.fileName.toLowerCase().startsWith("chatgpt-kép") ? " is-portrait" : ""}`}
                     type="button"
                     key={photo.id}
                     aria-label={date ? `Kajakos fotó nagyítása, ${date}` : "Kajakos fotó nagyítása"}
@@ -1058,6 +1061,7 @@ export default function NikolaStevanPage() {
     </main>
   );
 }
+
 
 
 
