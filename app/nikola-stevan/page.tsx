@@ -275,6 +275,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [kayakPhotosError, setKayakPhotosError] = useState(false);
   const [activeKayakPhotoId, setActiveKayakPhotoId] = useState<string | null>(null);
   const [portraitKayakPhotoId, setPortraitKayakPhotoId] = useState<string | null>(null);
+  const [portraitKayakPhotoIds, setPortraitKayakPhotoIds] = useState<Set<string>>(() => new Set());
   const [kayakGalleryPaused, setKayakGalleryPaused] = useState(false);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
   const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
@@ -544,14 +545,23 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                 if (!src) return null;
                 return (
                   <button
-                    className="stevan-kayak-photo"
+                    className={`stevan-kayak-photo${portraitKayakPhotoIds.has(photo.id) ? " is-portrait" : ""}`}
                     type="button"
                     key={photo.id}
                     aria-label={date ? `Kajakfotó ${String(index + 2).padStart(2, "0")}, ${date} megjelenítése felül` : `Kajakfotó ${String(index + 2).padStart(2, "0")} megjelenítése felül`}
                     aria-pressed={activeKayakPhoto?.id === photo.id}
                     onClick={() => setActiveKayakPhotoId(photo.id)}
                   >
-                    <img src={src} alt={date ? `Kajakos fotó, ${date}` : "Kajakos fotó"} loading="lazy" decoding="async" />
+                    <img
+                      src={src}
+                      alt={date ? `Kajakos fotó, ${date}` : "Kajakos fotó"}
+                      loading="lazy"
+                      decoding="async"
+                      onLoad={(event) => {
+                        if (event.currentTarget.naturalHeight <= event.currentTarget.naturalWidth) return;
+                        setPortraitKayakPhotoIds((current) => current.has(photo.id) ? current : new Set(current).add(photo.id));
+                      }}
+                    />
                     <span className="stevan-kayak-photo-index">{String(index + 2).padStart(2, "0")}</span>
                     {date && <span className="stevan-kayak-photo-date">{date}</span>}
                   </button>
