@@ -85,7 +85,7 @@ function driveMediaUrl(fileId: string) {
 }
 
 function driveImageUrl(fileId: string) {
-  return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(fileId)}`;
+  return `/api/kayak-image/${encodeURIComponent(fileId)}`;
 }
 
 function kayakPhotoDate(fileName: string) {
