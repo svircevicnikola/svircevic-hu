@@ -1269,3 +1269,40 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 
 
 
+
+/* Chess.com account link inside the chess modal hero. */
+.stevan-chess-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+  padding: 8px 10px;
+  border: 1px solid rgba(39,222,212,.52);
+  color: #b9e9e3;
+  background: rgba(5,20,23,.62);
+  font: 800 9px/1 "Rajdhani",sans-serif;
+  letter-spacing: .12em;
+  text-decoration: none;
+  transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+}
+.stevan-chess-profile-link:hover {
+  border-color: #27ded4;
+  color: #fff;
+  background: rgba(15,61,63,.82);
+  transform: translateY(-1px);
+}
+.stevan-chess-profile-link:focus-visible {
+  outline: 2px solid #27ded4;
+  outline-offset: 3px;
+}
+.stevan-chess-route span { text-transform: none; }
+
+@media (max-width: 700px) {
+  .stevan-chess-profile-link {
+    margin-top: 11px;
+    padding: 7px 8px;
+    font-size: 7px;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
+}

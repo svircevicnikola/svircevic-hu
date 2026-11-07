@@ -69,6 +69,7 @@ type MathResultsByGrade = {
 
 type DrumVideo = { id: string; fileName: string; fileId: string };
 type KayakPhoto = { id: string; fileName: string; fileId: string };
+type ChessPhoto = { id: string; fileName: string; fileId: string };
 type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string }> };
 
 function drumPerformanceTitle(fileName: string) {
@@ -78,6 +79,7 @@ function drumPerformanceTitle(fileName: string) {
 
 const drumFolderId = "1AbUN60lNWcps1BO7tyuGpLqu5KQNLekw";
 const kayakFolderId = "1GnrXHUHSQqmDvhYPk7aLNyfoa52xZM9I";
+const chessFolderId = "1uUfZi4K-Mr-aBVLchpncmZU7Y86Ha5KU";
 
 function driveMediaUrl(fileId: string) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
@@ -91,6 +93,14 @@ function driveImageUrl(fileId: string) {
 function kayakPhotoDate(fileName: string) {
   const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
   return date ? `${date[1]}. ${date[2]}. ${date[3]}.` : "";
+}
+function chessImageUrl(fileId: string) {
+  return `/api/chess-image/${encodeURIComponent(fileId)}`;
+}
+
+function chessPhotoDate(fileName: string) {
+  const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
+  return date ? date[1] + ". " + date[2] + ". " + date[3] + "." : "";
 }
 
 const scienceChannels = [
@@ -281,6 +291,13 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [portraitKayakPhotoId, setPortraitKayakPhotoId] = useState<string | null>(null);
   const [portraitKayakPhotoIds, setPortraitKayakPhotoIds] = useState<Set<string>>(() => new Set());
   const [kayakGalleryPaused, setKayakGalleryPaused] = useState(false);
+  const [chessPhotos, setChessPhotos] = useState<ChessPhoto[]>([]);
+  const [chessPhotosLoading, setChessPhotosLoading] = useState(false);
+  const [chessPhotosError, setChessPhotosError] = useState(false);
+  const [activeChessPhotoId, setActiveChessPhotoId] = useState<string | null>(null);
+  const [portraitChessPhotoIds, setPortraitChessPhotoIds] = useState<Set<string>>(() => new Set());
+  const [portraitChessPhotoId, setPortraitChessPhotoId] = useState<string | null>(null);
+  const [chessGalleryPaused, setChessGalleryPaused] = useState(false);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
   const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
   const kayakCover = kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_173407.jpg")
@@ -295,6 +312,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const kayakCoverSrc = activeKayakPhoto ? driveImageUrl(activeKayakPhoto.fileId) : null;
   const kayakGalleryPhotos = kayakCyclePhotos.length > 1
     ? [...kayakCyclePhotos.slice(activeKayakPhotoIndex + 1), ...kayakCyclePhotos.slice(0, activeKayakPhotoIndex)]
+    : [];
+  const chessCyclePhotos = chessPhotos;
+  const activeChessPhotoIndex = Math.max(0, chessCyclePhotos.findIndex((photo) => photo.id === activeChessPhotoId));
+  const activeChessPhoto = chessCyclePhotos[activeChessPhotoIndex];
+  const activeChessPhotoIsPortrait = activeChessPhoto?.id === portraitChessPhotoId;
+  const chessCoverSrc = activeChessPhoto ? chessImageUrl(activeChessPhoto.fileId) : null;
+  const chessGalleryPhotos = chessCyclePhotos.length > 1
+    ? [...chessCyclePhotos.slice(activeChessPhotoIndex + 1), ...chessCyclePhotos.slice(0, activeChessPhotoIndex)]
     : [];
 
   useEffect(() => {
@@ -372,7 +397,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     setKayakPhotosError(false);
     fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) throw new Error("A Kajak mappa nem érhető el.");
+        if (!response.ok) throw new Error("A Sakk mappa nem érhető el.");
         return response.json() as Promise<GoogleDriveFileList>;
       })
       .then((data) => {
@@ -398,6 +423,56 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   }, [interest.id]);
 
   useEffect(() => {
+    if (interest.id !== "chess") return;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+    if (!apiKey) {
+      setChessPhotosError(true);
+      return;
+    }
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: `'${chessFolderId}' in parents and trashed = false`,
+      fields: "files(id,name,mimeType)",
+      pageSize: "100",
+      key: apiKey,
+    });
+
+    setChessPhotosLoading(true);
+    setChessPhotosError(false);
+    fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("A Sakk mappa nem érhető el.");
+        return response.json() as Promise<GoogleDriveFileList>;
+      })
+      .then((data) => {
+        const uniquePhotos = new Map<string, ChessPhoto>();
+        (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("image/"))
+          .forEach((file) => {
+            const normalizedName = file.name.replace(/\s+\(\d+\)(?=\.[^.]+$)/, "");
+            const existing = uniquePhotos.get(normalizedName);
+            if (!existing || file.name === normalizedName) {
+              uniquePhotos.set(normalizedName, { id: file.id, fileName: file.name, fileId: file.id });
+            }
+          });
+        const photos = [...uniquePhotos.values()]
+          .sort((a, b) => a.fileName.localeCompare(b.fileName, undefined, { numeric: true }));
+        setChessPhotos(photos);
+        setActiveChessPhotoId(photos[0]?.id ?? null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setChessPhotosError(true);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setChessPhotosLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [interest.id]);
+
+  useEffect(() => {
     if (interest.id !== "kayak" || kayakGalleryPaused || kayakCyclePhotos.length < 2) return;
     const timeout = window.setTimeout(() => {
       const currentIndex = kayakCyclePhotos.findIndex((photo) => photo.id === activeKayakPhotoId);
@@ -406,9 +481,18 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     return () => window.clearTimeout(timeout);
   }, [interest.id, kayakCyclePhotos, activeKayakPhotoId, kayakGalleryPaused]);
 
+  useEffect(() => {
+    if (interest.id !== "chess" || chessGalleryPaused || chessCyclePhotos.length < 2) return;
+    const timeout = window.setTimeout(() => {
+      const currentIndex = chessCyclePhotos.findIndex((photo) => photo.id === activeChessPhotoId);
+      setActiveChessPhotoId(chessCyclePhotos[(currentIndex + 1 + chessCyclePhotos.length) % chessCyclePhotos.length].id);
+    }, 5000);
+    return () => window.clearTimeout(timeout);
+  }, [interest.id, chessCyclePhotos, activeChessPhotoId, chessGalleryPaused]);
+
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "kayak" ? (
           <div className={`stevan-kayak-cover${activeKayakPhotoIsPortrait ? " is-portrait" : ""}`}>
@@ -425,6 +509,22 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               <p className="stevan-modal-subtitle">{interest.subtitle}</p>
             </div>
           </div>
+        ) : interest.id === "chess" ? (
+          <div className={`stevan-kayak-cover${activeChessPhotoIsPortrait ? " is-portrait" : ""}`}>
+            {chessCoverSrc && activeChessPhotoIsPortrait && <img className="stevan-kayak-cover-image-background" src={chessCoverSrc} alt="" aria-hidden="true" />}
+            {chessCoverSrc && activeChessPhoto && <img key={activeChessPhoto.id} className={`stevan-kayak-cover-image${activeChessPhotoIsPortrait ? " is-portrait" : ""}`} src={chessCoverSrc} alt={chessPhotoDate(activeChessPhoto.fileName) ? `Sakkos pillanat, ${chessPhotoDate(activeChessPhoto.fileName)}` : "Sakkos pillanat"} onLoad={(event) => setPortraitChessPhotoId(event.currentTarget.naturalHeight > event.currentTarget.naturalWidth ? activeChessPhoto.id : null)} fetchPriority="high" />}
+            <div className="stevan-kayak-cover-shade" />
+            <div className="stevan-kayak-route stevan-chess-route" aria-hidden="true">
+              <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M8 205 C190 95 315 84 470 126 S760 172 990 22" /></svg>
+              <span style={{ left: "25%", top: "56%" }}>e4</span><span style={{ left: "61%", top: "30%" }}>Nf3</span><span style={{ left: "82%", top: "17%" }}>Bb5</span>
+            </div>
+            <div className="stevan-kayak-cover-copy">
+              <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
+              <h2 id="interest-modal-title">{interest.title}</h2>
+              <p className="stevan-modal-subtitle">{interest.subtitle}</p>
+              <a className="stevan-chess-profile-link" href="https://www.chess.com/member/teamnikola1" target="_blank" rel="noreferrer">CHESS.COM · TEAMNIKOLA1 ↗</a>
+            </div>
+          </div>
         ) : (
           <>
             <div className="stevan-modal-mark">{interest.mark}</div>
@@ -433,7 +533,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <p className="stevan-modal-subtitle">{interest.subtitle}</p>
           </>
         )}
-        {interest.id !== "science" && interest.id !== "kayak" && <p className="stevan-modal-copy">{interest.detail}</p>}
+        {interest.id !== "science" && interest.id !== "kayak" && interest.id !== "chess" && <p className="stevan-modal-copy">{interest.detail}</p>}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -564,6 +664,54 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                       onLoad={(event) => {
                         if (event.currentTarget.naturalHeight <= event.currentTarget.naturalWidth) return;
                         setPortraitKayakPhotoIds((current) => current.has(photo.id) ? current : new Set(current).add(photo.id));
+                      }}
+                    />
+                    <span className="stevan-kayak-photo-index">{String(index + 2).padStart(2, "0")}</span>
+                    {date && <span className="stevan-kayak-photo-date">{date}</span>}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )
+        : interest.id === "chess" ? (
+          <div
+            className="stevan-kayak-gallery"
+            onMouseEnter={() => setChessGalleryPaused(true)}
+            onMouseLeave={() => setChessGalleryPaused(false)}
+            onFocusCapture={() => setChessGalleryPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setChessGalleryPaused(false);
+            }}
+          >
+            <div className="stevan-kayak-gallery-heading">
+              <span>PILLANATOK A TÁBLÁN</span>
+              <span>{chessPhotosLoading ? "BETÖLTÉS…" : `${chessPhotos.length} FOTÓ`}</span>
+            </div>
+            {chessPhotosError && <p className="stevan-drum-empty" role="status">A sakkos képmappát most nem sikerült betölteni.</p>}
+            {!chessPhotosLoading && !chessPhotosError && chessPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
+            <div className="stevan-kayak-photo-grid" aria-label="Választható sakkfotók">
+              {chessGalleryPhotos.map((photo, index) => {
+                const src = chessImageUrl(photo.fileId);
+                const date = chessPhotoDate(photo.fileName);
+                if (!src) return null;
+                return (
+                  <button
+                    className={`stevan-kayak-photo${portraitChessPhotoIds.has(photo.id) ? " is-portrait" : ""}`}
+                    type="button"
+                    key={photo.id}
+                    aria-label={date ? `Sakkfotó ${String(index + 2).padStart(2, "0")}, ${date} megjelenítése felül` : `Sakkfotó ${String(index + 2).padStart(2, "0")} megjelenítése felül`}
+                    aria-pressed={activeChessPhoto?.id === photo.id}
+                    onClick={() => setActiveChessPhotoId(photo.id)}
+                  >
+                    <img
+                      src={src}
+                      alt={date ? `Sakkos pillanat, ${date}` : "Sakkos pillanat"}
+                      loading="lazy"
+                      decoding="async"
+                      onLoad={(event) => {
+                        if (event.currentTarget.naturalHeight <= event.currentTarget.naturalWidth) return;
+                        setPortraitChessPhotoIds((current) => current.has(photo.id) ? current : new Set(current).add(photo.id));
                       }}
                     />
                     <span className="stevan-kayak-photo-index">{String(index + 2).padStart(2, "0")}</span>
