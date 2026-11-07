@@ -203,6 +203,8 @@
 .stevan-kayak-cover-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(1.04) contrast(1.03); animation: stevan-kayak-photo-in .65s ease both; }
 .stevan-kayak-cover-image-background { position: absolute; inset: -20px; display: block; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; object-position: center 28%; filter: blur(12px) brightness(.58) saturate(.82); transform: scale(1.04); }
 .stevan-kayak-cover.is-portrait .stevan-kayak-cover-image.is-portrait { inset: 0 0 0 40%; width: 40%; object-fit: cover; object-position: center 30%; transform: none; }
+.stevan-kayak-cover.is-portrait { background: radial-gradient(ellipse at 70% 34%,rgba(39,222,212,.12),transparent 38%),repeating-linear-gradient(0deg,rgba(57,203,195,.035) 0 1px,transparent 1px 44px),repeating-linear-gradient(90deg,rgba(57,203,195,.035) 0 1px,transparent 1px 44px),linear-gradient(145deg,#0b171a,#071012 62%,#0a1518); }
+.stevan-kayak-cover.is-portrait .stevan-kayak-cover-image-background { display: none; }
 .stevan-kayak-cover.is-portrait .stevan-kayak-route { display: none; }
 .stevan-kayak-cover.is-portrait .stevan-kayak-cover-shade { background: linear-gradient(90deg,#071012 0%,rgba(7,16,18,.8) 12%,rgba(7,16,18,.3) 27%,rgba(7,16,18,.04) 48%,rgba(7,16,18,.04) 82%,rgba(7,16,18,.58) 100%),linear-gradient(0deg,#071012 0%,rgba(7,16,18,.72) 8%,transparent 42%); }
 .stevan-kayak-cover-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg,#071012 0%,rgba(7,16,18,.94) 16%,rgba(7,16,18,.5) 35%,transparent 62%),linear-gradient(0deg,#071012 0%,rgba(7,16,18,.86) 10%,rgba(7,16,18,.2) 32%,transparent 58%); }
