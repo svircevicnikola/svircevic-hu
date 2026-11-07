@@ -273,22 +273,27 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [kayakPhotos, setKayakPhotos] = useState<KayakPhoto[]>([]);
   const [kayakPhotosLoading, setKayakPhotosLoading] = useState(false);
   const [kayakPhotosError, setKayakPhotosError] = useState(false);
-  const [selectedKayakPhotoId, setSelectedKayakPhotoId] = useState<string | null>(null);
+  const [activeKayakPhotoId, setActiveKayakPhotoId] = useState<string | null>(null);
+  const [kayakGalleryPaused, setKayakGalleryPaused] = useState(false);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
   const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
-  const selectedKayakPhoto = selectedKayakPhotoId ? kayakPhotos.find((photo) => photo.id === selectedKayakPhotoId) : undefined;
-  const selectedKayakPhotoSrc = selectedKayakPhoto ? driveMediaUrl(selectedKayakPhoto.fileId) : null;
   const kayakCover = kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_173407.jpg")
     ?? kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_170848.jpg")
     ?? kayakPhotos[0];
-  const kayakCoverSrc = kayakCover ? driveMediaUrl(kayakCover.fileId) : null;
-  const kayakGalleryPhotos = kayakPhotos.filter((photo) => photo.id !== kayakCover?.id);
+  const kayakCyclePhotos = kayakCover
+    ? [kayakCover, ...kayakPhotos.filter((photo) => photo.id !== kayakCover.id)]
+    : kayakPhotos;
+  const activeKayakPhotoIndex = Math.max(0, kayakCyclePhotos.findIndex((photo) => photo.id === activeKayakPhotoId));
+  const activeKayakPhoto = kayakCyclePhotos[activeKayakPhotoIndex];
+  const kayakCoverSrc = activeKayakPhoto ? driveMediaUrl(activeKayakPhoto.fileId) : null;
+  const kayakGalleryPhotos = kayakCyclePhotos.length > 1
+    ? [...kayakCyclePhotos.slice(activeKayakPhotoIndex + 1), ...kayakCyclePhotos.slice(0, activeKayakPhotoIndex)]
+    : [];
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      if (selectedKayakPhotoId) setSelectedKayakPhotoId(null);
-      else onClose();
+      onClose();
     };
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
@@ -296,7 +301,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
-  }, [onClose, selectedKayakPhotoId]);
+  }, [onClose]);
 
   useEffect(() => {
     if (interest.id !== "drums") return;
@@ -369,7 +374,10 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
           .sort((a, b) => a.fileName.localeCompare(b.fileName, undefined, { numeric: true }));
         setKayakPhotos(photos);
-        setSelectedKayakPhotoId(null);
+        const cover = photos.find((photo) => photo.fileName === "IMG_20260818_173407.jpg")
+          ?? photos.find((photo) => photo.fileName === "IMG_20260818_170848.jpg")
+          ?? photos[0];
+        setActiveKayakPhotoId(cover?.id ?? null);
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -382,14 +390,27 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     return () => controller.abort();
   }, [interest.id]);
 
+  useEffect(() => {
+    if (interest.id !== "kayak" || kayakGalleryPaused || kayakCyclePhotos.length < 2) return;
+    const timeout = window.setTimeout(() => {
+      const currentIndex = kayakCyclePhotos.findIndex((photo) => photo.id === activeKayakPhotoId);
+      setActiveKayakPhotoId(kayakCyclePhotos[(currentIndex + 1 + kayakCyclePhotos.length) % kayakCyclePhotos.length].id);
+    }, 5000);
+    return () => window.clearTimeout(timeout);
+  }, [interest.id, kayakCyclePhotos, activeKayakPhotoId, kayakGalleryPaused]);
+
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
       <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "kayak" ? (
           <div className="stevan-kayak-cover">
-            {kayakCoverSrc && <img className="stevan-kayak-cover-image" src={kayakCoverSrc} alt="" fetchPriority="high" />}
+            {kayakCoverSrc && activeKayakPhoto && <img key={activeKayakPhoto.id} className={`stevan-kayak-cover-image${activeKayakPhoto.fileName.toLowerCase().startsWith("chatgpt-kép") ? " is-portrait" : ""}`} src={kayakCoverSrc} alt={kayakPhotoDate(activeKayakPhoto.fileName) ? `Kajakos fotó, ${kayakPhotoDate(activeKayakPhoto.fileName)}` : "Kajakos fotó"} fetchPriority="high" />}
             <div className="stevan-kayak-cover-shade" />
+            <div className="stevan-kayak-route" aria-hidden="true">
+              <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M8 205 C190 95 315 84 470 126 S760 172 990 22" /></svg>
+              <span style={{ left: "25%", top: "56%" }}>02</span><span style={{ left: "61%", top: "30%" }}>03</span><span style={{ left: "82%", top: "17%" }}>04</span>
+            </div>
             <div className="stevan-kayak-cover-copy">
               <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
               <h2 id="interest-modal-title">{interest.title}</h2>
@@ -498,15 +519,23 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             )}
           </div>
         ) : interest.id === "kayak" ? (
-          <div className="stevan-kayak-gallery">
+          <div
+            className="stevan-kayak-gallery"
+            onMouseEnter={() => setKayakGalleryPaused(true)}
+            onMouseLeave={() => setKayakGalleryPaused(false)}
+            onFocusCapture={() => setKayakGalleryPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setKayakGalleryPaused(false);
+            }}
+          >
             <div className="stevan-kayak-gallery-heading">
               <span>PILLANATOK A VÍZEN</span>
               <span>{kayakPhotosLoading ? "BETÖLTÉS…" : `${kayakPhotos.length} FOTÓ`}</span>
             </div>
             {kayakPhotosError && <p className="stevan-drum-empty" role="status">A kajakos képmappát most nem sikerült betölteni.</p>}
             {!kayakPhotosLoading && !kayakPhotosError && kayakPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
-            <div className="stevan-kayak-photo-grid">
-              {kayakGalleryPhotos.map((photo) => {
+            <div className="stevan-kayak-photo-grid" aria-label="Választható kajakfotók">
+              {kayakGalleryPhotos.map((photo, index) => {
                 const src = driveMediaUrl(photo.fileId);
                 const date = kayakPhotoDate(photo.fileName);
                 if (!src) return null;
@@ -515,22 +544,17 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                     className={`stevan-kayak-photo${photo.fileName.toLowerCase().startsWith("chatgpt-kép") ? " is-portrait" : ""}`}
                     type="button"
                     key={photo.id}
-                    aria-label={date ? `Kajakos fotó nagyítása, ${date}` : "Kajakos fotó nagyítása"}
-                    onClick={() => setSelectedKayakPhotoId(photo.id)}
+                    aria-label={date ? `Kajakfotó ${String(index + 2).padStart(2, "0")}, ${date} megjelenítése felül` : `Kajakfotó ${String(index + 2).padStart(2, "0")} megjelenítése felül`}
+                    aria-pressed={activeKayakPhoto?.id === photo.id}
+                    onClick={() => setActiveKayakPhotoId(photo.id)}
                   >
                     <img src={src} alt={date ? `Kajakos fotó, ${date}` : "Kajakos fotó"} loading="lazy" decoding="async" />
-                    {date && <span>{date}</span>}
+                    <span className="stevan-kayak-photo-index">{String(index + 2).padStart(2, "0")}</span>
+                    {date && <span className="stevan-kayak-photo-date">{date}</span>}
                   </button>
                 );
               })}
             </div>
-            {selectedKayakPhoto && selectedKayakPhotoSrc && (
-              <div className="stevan-kayak-lightbox" role="presentation" onMouseDown={() => setSelectedKayakPhotoId(null)}>
-                <button className="stevan-kayak-lightbox-close" type="button" onClick={() => setSelectedKayakPhotoId(null)} aria-label="Fénykép bezárása">×</button>
-                <img src={selectedKayakPhotoSrc} alt={kayakPhotoDate(selectedKayakPhoto.fileName) ? `Kajakos fotó, ${kayakPhotoDate(selectedKayakPhoto.fileName)}` : "Kajakos fotó"} onMouseDown={(event) => event.stopPropagation()} />
-                {kayakPhotoDate(selectedKayakPhoto.fileName) && <span>{kayakPhotoDate(selectedKayakPhoto.fileName)}</span>}
-              </div>
-            )}
           </div>
         ) : interest.id === "code" ? (
           <div className="stevan-code-content">
