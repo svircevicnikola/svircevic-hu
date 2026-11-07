@@ -68,6 +68,7 @@ type MathResultsByGrade = {
 };
 
 type DrumVideo = { id: string; fileName: string; fileId: string };
+type KayakPhoto = { id: string; fileName: string; fileId: string };
 type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string }> };
 
 function drumPerformanceTitle(fileName: string) {
@@ -76,6 +77,17 @@ function drumPerformanceTitle(fileName: string) {
 }
 
 const drumFolderId = "1AbUN60lNWcps1BO7tyuGpLqu5KQNLekw";
+const kayakFolderId = "1GnrXHUHSQqmDvhYPk7aLNyfoa52xZM9I";
+
+function driveMediaUrl(fileId: string) {
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+  return apiKey ? `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}` : null;
+}
+
+function kayakPhotoDate(fileName: string) {
+  const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
+  return date ? `${date[1]}. ${date[2]}. ${date[3]}.` : "";
+}
 
 const scienceChannels = [
   { title: "Tanulom Magam", href: "https://www.youtube.com/@TanulomMagam", topics: "Érdekes kérdések, ember és világ", language: "MAGYAR" },
@@ -258,20 +270,30 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [drumVideos, setDrumVideos] = useState<DrumVideo[]>([]);
   const [drumVideosLoading, setDrumVideosLoading] = useState(false);
   const [drumVideosError, setDrumVideosError] = useState(false);
+  const [kayakPhotos, setKayakPhotos] = useState<KayakPhoto[]>([]);
+  const [kayakPhotosLoading, setKayakPhotosLoading] = useState(false);
+  const [kayakPhotosError, setKayakPhotosError] = useState(false);
+  const [selectedKayakPhotoId, setSelectedKayakPhotoId] = useState<string | null>(null);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
-  const drumVideoSrc = selectedDrumVideo && process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
-    ? `https://www.googleapis.com/drive/v3/files/${selectedDrumVideo.fileId}?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
-    : null;
+  const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
+  const selectedKayakPhoto = selectedKayakPhotoId ? kayakPhotos.find((photo) => photo.id === selectedKayakPhotoId) : undefined;
+  const selectedKayakPhotoSrc = selectedKayakPhoto ? driveMediaUrl(selectedKayakPhoto.fileId) : null;
+  const kayakCover = kayakPhotos.find((photo) => photo.fileName.toLowerCase().startsWith("chatgpt-kép")) ?? kayakPhotos[0];
+  const kayakCoverSrc = kayakCover ? driveMediaUrl(kayakCover.fileId) : null;
 
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      if (selectedKayakPhotoId) setSelectedKayakPhotoId(null);
+      else onClose();
+    };
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, selectedKayakPhotoId]);
 
   useEffect(() => {
     if (interest.id !== "drums") return;
@@ -315,15 +337,71 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     return () => controller.abort();
   }, [interest.id]);
 
+  useEffect(() => {
+    if (interest.id !== "kayak") return;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+    if (!apiKey) {
+      setKayakPhotosError(true);
+      return;
+    }
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: `'${kayakFolderId}' in parents and trashed = false`,
+      fields: "files(id,name,mimeType)",
+      pageSize: "100",
+      key: apiKey,
+    });
+
+    setKayakPhotosLoading(true);
+    setKayakPhotosError(false);
+    fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("A Kajak mappa nem érhető el.");
+        return response.json() as Promise<GoogleDriveFileList>;
+      })
+      .then((data) => {
+        const photos = (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("image/"))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
+          .sort((a, b) => a.fileName.localeCompare(b.fileName, undefined, { numeric: true }));
+        setKayakPhotos(photos);
+        setSelectedKayakPhotoId(null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setKayakPhotosError(true);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setKayakPhotosLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [interest.id]);
+
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
-        <div className="stevan-modal-mark">{interest.mark}</div>
-        <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
-        <h2 id="interest-modal-title">{interest.title}</h2>
-        <p className="stevan-modal-subtitle">{interest.subtitle}</p>
-        {interest.id !== "science" && <p className="stevan-modal-copy">{interest.detail}</p>}
+        {interest.id === "kayak" ? (
+          <div className="stevan-kayak-cover">
+            {kayakCoverSrc && <img className="stevan-kayak-cover-image" src={kayakCoverSrc} alt="" fetchPriority="high" />}
+            <div className="stevan-kayak-cover-shade" />
+            <div className="stevan-kayak-cover-copy">
+              <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
+              <h2 id="interest-modal-title">{interest.title}</h2>
+              <p className="stevan-modal-subtitle">{interest.subtitle}</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="stevan-modal-mark">{interest.mark}</div>
+            <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
+            <h2 id="interest-modal-title">{interest.title}</h2>
+            <p className="stevan-modal-subtitle">{interest.subtitle}</p>
+          </>
+        )}
+        {interest.id !== "science" && interest.id !== "kayak" && <p className="stevan-modal-copy">{interest.detail}</p>}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -414,6 +492,41 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               </>
             ) : (
               <p className="stevan-drum-empty" role="status">Kattints egy felvételre, és indul.</p>
+            )}
+          </div>
+        ) : interest.id === "kayak" ? (
+          <div className="stevan-kayak-gallery">
+            <div className="stevan-kayak-gallery-heading">
+              <span>KÉPEK</span>
+              <span>{kayakPhotosLoading ? "BETÖLTÉS…" : `${kayakPhotos.length} FOTÓ`}</span>
+            </div>
+            {kayakPhotosError && <p className="stevan-drum-empty" role="status">A kajakos képmappát most nem sikerült betölteni.</p>}
+            {!kayakPhotosLoading && !kayakPhotosError && kayakPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
+            <div className="stevan-kayak-photo-grid">
+              {kayakPhotos.map((photo) => {
+                const src = driveMediaUrl(photo.fileId);
+                const date = kayakPhotoDate(photo.fileName);
+                if (!src) return null;
+                return (
+                  <button
+                    className="stevan-kayak-photo"
+                    type="button"
+                    key={photo.id}
+                    aria-label={date ? `Kajakos fotó nagyítása, ${date}` : "Kajakos fotó nagyítása"}
+                    onClick={() => setSelectedKayakPhotoId(photo.id)}
+                  >
+                    <img src={src} alt={date ? `Kajakos fotó, ${date}` : "Kajakos fotó"} loading="lazy" decoding="async" />
+                    {date && <span>{date}</span>}
+                  </button>
+                );
+              })}
+            </div>
+            {selectedKayakPhoto && selectedKayakPhotoSrc && (
+              <div className="stevan-kayak-lightbox" role="presentation" onMouseDown={() => setSelectedKayakPhotoId(null)}>
+                <button className="stevan-kayak-lightbox-close" type="button" onClick={() => setSelectedKayakPhotoId(null)} aria-label="Fénykép bezárása">×</button>
+                <img src={selectedKayakPhotoSrc} alt={kayakPhotoDate(selectedKayakPhoto.fileName) ? `Kajakos fotó, ${kayakPhotoDate(selectedKayakPhoto.fileName)}` : "Kajakos fotó"} onMouseDown={(event) => event.stopPropagation()} />
+                {kayakPhotoDate(selectedKayakPhoto.fileName) && <span>{kayakPhotoDate(selectedKayakPhoto.fileName)}</span>}
+              </div>
             )}
           </div>
         ) : interest.id === "code" ? (
@@ -945,6 +1058,7 @@ export default function NikolaStevanPage() {
     </main>
   );
 }
+
 
 
 
