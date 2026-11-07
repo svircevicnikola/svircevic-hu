@@ -68,15 +68,14 @@ type MathResultsByGrade = {
 };
 
 type DrumVideo = { id: string; fileName: string; fileId: string };
+type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string }> };
 
 function drumPerformanceTitle(fileName: string) {
   const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
   return date ? `Fellépés · ${date[1]}. ${date[2]}. ${date[3]}.` : "Fellépés";
 }
 
-const drumVideos: DrumVideo[] = [
-  { id: "drum-video-01", fileName: "VID_20250327_183614.mp4", fileId: "1zN5hAf0_w5ZCuFIqKiF3BzxuvAgfKiKC" },
-];
+const drumFolderId = "1AbUN60lNWcps1BO7tyuGpLqu5KQNLekw";
 
 const scienceChannels = [
   { title: "Tanulom Magam", href: "https://www.youtube.com/@TanulomMagam", topics: "Érdekes kérdések, ember és világ", language: "MAGYAR" },
@@ -256,6 +255,9 @@ function ContactIcon({ id }: { id: ContactId }) {
 
 function InterestModal({ interest, onClose }: { interest: Interest; onClose: () => void }) {
   const [selectedDrumVideoId, setSelectedDrumVideoId] = useState<string | null>(null);
+  const [drumVideos, setDrumVideos] = useState<DrumVideo[]>([]);
+  const [drumVideosLoading, setDrumVideosLoading] = useState(false);
+  const [drumVideosError, setDrumVideosError] = useState(false);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
   const drumVideoSrc = selectedDrumVideo && process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY
     ? `https://www.googleapis.com/drive/v3/files/${selectedDrumVideo.fileId}?alt=media&key=${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY}`
@@ -270,6 +272,48 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
       document.body.style.overflow = "";
     };
   }, [onClose]);
+
+  useEffect(() => {
+    if (interest.id !== "drums") return;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+    if (!apiKey) {
+      setDrumVideosError(true);
+      return;
+    }
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: `'${drumFolderId}' in parents and trashed = false`,
+      fields: "files(id,name,mimeType)",
+      pageSize: "100",
+      key: apiKey,
+    });
+
+    setDrumVideosLoading(true);
+    setDrumVideosError(false);
+    fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("A Drive-mappa nem érhető el.");
+        return response.json() as Promise<GoogleDriveFileList>;
+      })
+      .then((data) => {
+        const videos = (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("video/"))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
+          .sort((a, b) => b.fileName.localeCompare(a.fileName));
+        setDrumVideos(videos);
+        setSelectedDrumVideoId(null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setDrumVideosError(true);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setDrumVideosLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [interest.id]);
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
@@ -338,10 +382,10 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <div className="stevan-drum-gallery">
               <div className="stevan-drum-gallery-heading">
                 <span>VIDEÓGALÉRIA</span>
-                <span>{drumVideos.length} FELVÉTEL</span>
+                <span>{drumVideosLoading ? "BETÖLTÉS…" : `${drumVideos.length} VIDEÓ`}</span>
               </div>
               <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
-                {drumVideos.map((video, index) => (
+                {drumVideos.map((video) => (
                   <button
                     className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
                     type="button"
@@ -352,13 +396,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                     <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
                     <span className="stevan-drum-gallery-card-copy">
                       <strong>{drumPerformanceTitle(video.fileName)}</strong>
-                      <small>FELVÉTEL · {String(index + 1).padStart(2, "0")}</small>
                     </span>
                     <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
                   </button>
                 ))}
               </div>
             </div>
+            {drumVideosError && <p className="stevan-drum-empty" role="status">A videómappát most nem sikerült betölteni.</p>}
+            {!drumVideosLoading && !drumVideosError && drumVideos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs videó a mappában.</p>}
             {selectedDrumVideo && drumVideoSrc ? (
               <>
                 <span className="stevan-drum-video-label">{drumPerformanceTitle(selectedDrumVideo.fileName)}</span>
@@ -900,6 +945,7 @@ export default function NikolaStevanPage() {
     </main>
   );
 }
+
 
 
 
