@@ -84,6 +84,10 @@ function driveMediaUrl(fileId: string) {
   return apiKey ? `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}` : null;
 }
 
+function driveImageUrl(fileId: string) {
+  return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(fileId)}`;
+}
+
 function kayakPhotoDate(fileName: string) {
   const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
   return date ? `${date[1]}. ${date[2]}. ${date[3]}.` : "";
@@ -288,7 +292,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const activeKayakPhotoIndex = Math.max(0, kayakCyclePhotos.findIndex((photo) => photo.id === activeKayakPhotoId));
   const activeKayakPhoto = kayakCyclePhotos[activeKayakPhotoIndex];
   const activeKayakPhotoIsPortrait = activeKayakPhoto?.id === portraitKayakPhotoId;
-  const kayakCoverSrc = activeKayakPhoto ? driveMediaUrl(activeKayakPhoto.fileId) : null;
+  const kayakCoverSrc = activeKayakPhoto ? driveImageUrl(activeKayakPhoto.fileId) : null;
   const kayakGalleryPhotos = kayakCyclePhotos.length > 1
     ? [...kayakCyclePhotos.slice(activeKayakPhotoIndex + 1), ...kayakCyclePhotos.slice(0, activeKayakPhotoIndex)]
     : [];
@@ -540,7 +544,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             {!kayakPhotosLoading && !kayakPhotosError && kayakPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
             <div className="stevan-kayak-photo-grid" aria-label="Választható kajakfotók">
               {kayakGalleryPhotos.map((photo, index) => {
-                const src = driveMediaUrl(photo.fileId);
+                const src = driveImageUrl(photo.fileId);
                 const date = kayakPhotoDate(photo.fileName);
                 if (!src) return null;
                 return (
