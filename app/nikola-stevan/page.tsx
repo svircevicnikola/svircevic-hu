@@ -404,7 +404,8 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
       <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "kayak" ? (
-          <div className="stevan-kayak-cover">
+          <div className={`stevan-kayak-cover${activeKayakPhoto?.fileName.toLowerCase().startsWith("chatgpt-kép") ? " is-portrait" : ""}`}>
+            {kayakCoverSrc && activeKayakPhoto?.fileName.toLowerCase().startsWith("chatgpt-kép") && <img className="stevan-kayak-cover-image-background" src={kayakCoverSrc} alt="" aria-hidden="true" />}
             {kayakCoverSrc && activeKayakPhoto && <img key={activeKayakPhoto.id} className={`stevan-kayak-cover-image${activeKayakPhoto.fileName.toLowerCase().startsWith("chatgpt-kép") ? " is-portrait" : ""}`} src={kayakCoverSrc} alt={kayakPhotoDate(activeKayakPhoto.fileName) ? `Kajakos fotó, ${kayakPhotoDate(activeKayakPhoto.fileName)}` : "Kajakos fotó"} fetchPriority="high" />}
             <div className="stevan-kayak-cover-shade" />
             <div className="stevan-kayak-route" aria-hidden="true">
