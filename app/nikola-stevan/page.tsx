@@ -67,7 +67,7 @@ type MathResultsByGrade = {
   results: MathResult[];
 };
 
-type DrumVideo = { id: string; fileName: string; fileId: string };
+type DrumVideo = { id: string; fileName: string; fileId: string; mimeType: string };
 type DrumPhoto = { id: string; fileName: string; fileId: string };
 type KayakPhoto = { id: string; fileName: string; fileId: string };
 type HikingPhoto = { id: string; fileName: string; fileId: string; createdTime?: string };
@@ -86,9 +86,8 @@ const basketballFolderId = "1XdEBBEIskYhDrKLio4L-p3hRd5k5GMdq";
 const hikingFolderId = "1MXD0nkFX0vYnP1AVpwGz6dXbUpcAatrY";
 const chessFolderId = "1uUfZi4K-Mr-aBVLchpncmZU7Y86Ha5KU";
 
-function driveMediaUrl(fileId: string) {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
-  return apiKey ? `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}` : null;
+function drumVideoUrl(fileId: string) {
+  return `/api/drum-video/${encodeURIComponent(fileId)}`;
 }
 
 function drumImageUrl(fileId: string) {
@@ -314,6 +313,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [drumPhotos, setDrumPhotos] = useState<DrumPhoto[]>([]);
   const [activeDrumPhotoIndex, setActiveDrumPhotoIndex] = useState(0);
   const drumPlayerRef = useRef<HTMLDivElement>(null);
+  const drumVideoElementRef = useRef<HTMLVideoElement>(null);
   const [kayakPhotos, setKayakPhotos] = useState<KayakPhoto[]>([]);
   const [kayakPhotosLoading, setKayakPhotosLoading] = useState(false);
   const [kayakPhotosError, setKayakPhotosError] = useState(false);
@@ -343,7 +343,28 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [portraitChessPhotoId, setPortraitChessPhotoId] = useState<string | null>(null);
   const [chessGalleryPaused, setChessGalleryPaused] = useState(false);
   const selectedDrumVideo = selectedDrumVideoId ? drumVideos.find((video) => video.id === selectedDrumVideoId) : undefined;
-  const drumVideoSrc = selectedDrumVideo ? driveMediaUrl(selectedDrumVideo.fileId) : null;
+  const drumVideoSrc = selectedDrumVideo ? drumVideoUrl(selectedDrumVideo.fileId) : null;
+
+  function handleDrumVideoSelect(videoId: string) {
+    if (selectedDrumVideoId === videoId) {
+      const player = drumVideoElementRef.current;
+      if (player) {
+        // Re-selecting the same performance must restart its media element.
+        player.pause();
+        try {
+          player.currentTime = 0;
+        } catch {
+          // The media may still be loading; load() below resets it in that case.
+        }
+        player.load();
+        void player.play().catch(() => {
+          // Keep native controls available if autoplay/replay is temporarily blocked.
+        });
+        return;
+      }
+    }
+    setSelectedDrumVideoId(videoId);
+  }
   const kayakCover = kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_173407.jpg")
     ?? kayakPhotos.find((photo) => photo.fileName === "IMG_20260818_170848.jpg")
     ?? kayakPhotos[0];
@@ -421,7 +442,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
       .then((data) => {
         const videos = (data.files ?? [])
           .filter((file) => file.mimeType?.startsWith("video/"))
-          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id, mimeType: file.mimeType ?? "video/mp4" }))
           .sort((a, b) => b.fileName.localeCompare(a.fileName));
         const photos = (data.files ?? [])
           .filter((file) => file.mimeType?.startsWith("image/"))
@@ -830,6 +851,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   <span className="stevan-drum-video-label">{drumPerformanceTitle(selectedDrumVideo.fileName)}</span>
                   <video
                     key={selectedDrumVideo.id}
+                    ref={drumVideoElementRef}
                     autoPlay
                     controls
                     playsInline
@@ -837,7 +859,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                     aria-label={drumPerformanceTitle(selectedDrumVideo.fileName)}
                     onLoadedMetadata={() => drumPlayerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
                   >
-                    <source src={drumVideoSrc} type="video/mp4" />
+                    <source src={drumVideoSrc} type={selectedDrumVideo.mimeType} />
                     A böngésző nem tudja lejátszani ezt a videót.
                   </video>
                 </div>
@@ -851,7 +873,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   {drumVideos.map((video) => (
                     <button className={`stevan-drum-performance-button${video.id === selectedDrumVideoId ? " is-selected" : ""}`} type="button" key={video.id}
                       aria-pressed={video.id === selectedDrumVideoId} aria-label={`${drumPerformanceTitle(video.fileName)} lejátszása`}
-                      onClick={() => setSelectedDrumVideoId(video.id)}>
+                      onClick={() => handleDrumVideoSelect(video.id)}>
                       <span className="stevan-drum-performance-play" aria-hidden="true">▶</span>
                       <strong>{drumPerformanceTitle(video.fileName)}</strong>
                       <span className="stevan-drum-performance-arrow" aria-hidden="true">↗</span>
