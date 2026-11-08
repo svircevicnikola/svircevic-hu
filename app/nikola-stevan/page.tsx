@@ -1540,9 +1540,8 @@ export default function NikolaStevanPage() {
       </section>
 
       <footer className="stevan-footer">
-        <a className="stevan-footer-brand" href="#top">
-          <img src="/images/Logo4.png" alt="" />
-          <span>TEAM <em>NIKOLA</em></span>
+        <a className="stevan-footer-brand" href="#top" aria-label="Team Nikola – vissza az oldal tetejére">
+          <img className="stevan-footer-banner" src="/images/Neon%20Team%20Nikola%20gamer%20banner.png" alt="Team Nikola gamer banner" />
         </a>
         <span>GAMING · TECH · CURIOSITY</span>
         <a href="#top">BACK TO TOP ↑</a>

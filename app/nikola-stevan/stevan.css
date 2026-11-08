@@ -179,8 +179,19 @@
 .stevan-contact-detail small { color: #748a84; font: 700 8px/1 "Rajdhani",sans-serif; letter-spacing: .1em; }
 
 .stevan-footer { width: min(1320px, calc(100% - 72px)); min-height: 88px; margin: 0 auto; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); color: #738482; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
-.stevan-footer-brand { display: inline-flex; align-items: center; gap: 10px; color: #f0f4f0 !important; font: 900 19px/1 "Barlow Condensed",sans-serif; letter-spacing: .08em; }
-.stevan-footer-brand img { display: block; width: 42px; height: 42px; object-fit: contain; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 50%,#000 63%,rgba(0,0,0,.78) 82%,transparent 100%); mask-image: radial-gradient(ellipse 78% 78% at 50% 50%,#000 63%,rgba(0,0,0,.78) 82%,transparent 100%); }
+.stevan-footer-brand { display: inline-flex; flex: 0 1 330px; align-items: center; justify-content: flex-start; width: min(330px,38vw); min-width: 220px; color: #f0f4f0 !important; text-decoration: none; }
+.stevan-footer-brand .stevan-footer-banner {
+  display: block;
+  width: 100%;
+  height: 68px;
+  object-fit: contain;
+  object-position: left center;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 10px rgba(39,222,212,.12));
+  -webkit-mask-image: linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+  mask-image: linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+}
+.stevan-footer-brand:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 5px; }
 .stevan-footer-brand em { color: var(--teal-bright); font-style: normal; }
 .stevan-footer a:last-child { color: var(--teal-bright); }
 
@@ -374,6 +385,8 @@
   .stevan-contact-button { min-height: 64px; padding: 9px 3px 7px; }
   .stevan-contact-label { font-size: 8px; }
   .stevan-footer { min-height: 76px; flex-wrap: wrap; gap: 12px; }
+  .stevan-footer-brand { flex-basis: min(260px,72vw); width: min(260px,72vw); min-width: 0; }
+  .stevan-footer-brand .stevan-footer-banner { height: 58px; }
   .stevan-footer > span { display: none; }
   .stevan-modal { padding: 38px 25px 27px; }
   .stevan-modal h2 { font-size: 45px; }
