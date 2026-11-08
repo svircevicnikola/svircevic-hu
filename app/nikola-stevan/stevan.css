@@ -1700,7 +1700,7 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 }
 .stevan-modal-drums .stevan-drum-video:not(.has-selected-video) {
   min-height: 0;
-  margin-top: 24px;
+  margin-top: 44px;
   padding: 0;
   border: 0;
   background: transparent;

@@ -851,7 +851,6 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               </div>
               {drumVideosError && <p className="stevan-drum-empty" role="status">A videómappát most nem sikerült betölteni.</p>}
               {!drumVideosLoading && !drumVideosError && drumVideos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs videó a mappában.</p>}
-              {!selectedDrumVideo && <p className="stevan-drum-empty" role="status">Kattints egy felvételre, és indul.</p>}
             </div>
           </div>
         ) : interest.id === "kayak" ? (
