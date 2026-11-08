@@ -525,6 +525,17 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
       <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
+        {interest.id === "drums" && drumPhotos[activeDrumPhotoIndex] && (
+          <div className="stevan-drum-wallpaper" aria-hidden="true">
+            <img
+              key={drumPhotos[activeDrumPhotoIndex].id}
+              className="stevan-drum-wallpaper-image"
+              src={drumImageUrl(drumPhotos[activeDrumPhotoIndex].fileId)}
+              alt=""
+            />
+            <div className="stevan-drum-wallpaper-shade" />
+          </div>
+        )}
         {interest.id === "kayak" ? (
           <div className={`stevan-kayak-cover${activeKayakPhotoIsPortrait ? " is-portrait" : ""}`}>
             {kayakCoverSrc && activeKayakPhotoIsPortrait && <img className="stevan-kayak-cover-image-background" src={kayakCoverSrc} alt="" aria-hidden="true" />}
@@ -620,16 +631,6 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           </div>
         ) : interest.id === "drums" ? (
           <div className={`stevan-drum-video${selectedDrumVideo ? " has-selected-video" : ""}`}>
-            {drumPhotos[activeDrumPhotoIndex] && (
-              <img
-                key={drumPhotos[activeDrumPhotoIndex].id}
-                className="stevan-drum-background-image"
-                src={drumImageUrl(drumPhotos[activeDrumPhotoIndex].fileId)}
-                alt=""
-                aria-hidden="true"
-              />
-            )}
-            <div className="stevan-drum-background-shade" aria-hidden="true" />
             <div className="stevan-drum-content">
               {selectedDrumVideo && drumVideoSrc && (
                 <div className="stevan-drum-player" ref={drumPlayerRef}>
