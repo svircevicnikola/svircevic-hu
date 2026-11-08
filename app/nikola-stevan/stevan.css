@@ -1597,3 +1597,61 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     aspect-ratio: 1.9 / 1;
   }
 }
+
+
+/* Gamer logo badge, exclusive to the Programming modal. The soft radial mask
+   feathers the PNG edges into the existing dark teal panel. */
+.stevan-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 144px;
+  margin: -4px 0 8px;
+}
+.stevan-code-header .stevan-code-status {
+  align-self: flex-start;
+  max-width: calc(100% - 164px);
+  margin-top: 12px;
+}
+.stevan-code-gamer-logo {
+  position: relative;
+  flex: 0 0 150px;
+  width: 150px;
+  height: 136px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.stevan-code-gamer-logo::before {
+  content: "";
+  position: absolute;
+  inset: 15px 10px;
+  border: 1px solid rgba(57,203,195,.18);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 48%,rgba(57,203,195,.12),rgba(57,203,195,.025) 56%,transparent 76%);
+  box-shadow: 0 0 24px rgba(57,203,195,.08), inset 0 0 18px rgba(57,203,195,.05);
+  z-index: -1;
+}
+.stevan-code-gamer-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: screen;
+  background: transparent;
+  -webkit-mask-image: radial-gradient(ellipse 78% 76% at 50% 49%,#000 42%,rgba(0,0,0,.96) 57%,rgba(0,0,0,.76) 70%,rgba(0,0,0,.38) 84%,rgba(0,0,0,.12) 94%,transparent 100%);
+  mask-image: radial-gradient(ellipse 78% 76% at 50% 49%,#000 42%,rgba(0,0,0,.96) 57%,rgba(0,0,0,.76) 70%,rgba(0,0,0,.38) 84%,rgba(0,0,0,.12) 94%,transparent 100%);
+  filter: drop-shadow(0 0 12px rgba(57,203,195,.16));
+}
+@media (max-width: 700px) {
+  .stevan-code-header { min-height: 112px; gap: 10px; }
+  .stevan-code-header .stevan-code-status { max-width: calc(100% - 118px); font-size: 9px; }
+  .stevan-code-gamer-logo { flex-basis: 112px; width: 112px; height: 108px; }
+}
+@media (max-width: 430px) {
+  .stevan-code-header { min-height: 94px; gap: 6px; }
+  .stevan-code-header .stevan-code-status { max-width: calc(100% - 94px); padding: 7px 8px; font-size: 8px; }
+  .stevan-code-gamer-logo { flex-basis: 90px; width: 90px; height: 90px; }
+}

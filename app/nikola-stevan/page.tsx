@@ -1009,7 +1009,12 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           </div>
         ) : interest.id === "code" ? (
           <div className="stevan-code-content">
-            <div className="stevan-code-status">AI status: AFK, saját build készül...</div>
+            <div className="stevan-code-header">
+              <div className="stevan-code-status">AI status: AFK, saját build készül...</div>
+              <div className="stevan-code-gamer-logo" aria-hidden="true">
+                <img src="/images/nikola-gamer-logo.png" alt="" fetchPriority="high" />
+              </div>
+            </div>
             <section className="stevan-code-section" aria-labelledby="code-tools-heading">
               <h3 id="code-tools-heading">AMIVEL ISMERKEDEM</h3>
               <div className="stevan-code-tools">
