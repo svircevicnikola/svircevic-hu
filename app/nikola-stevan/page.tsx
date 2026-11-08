@@ -429,7 +429,8 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           .sort((a, b) => a.fileName.localeCompare(b.fileName, undefined, { numeric: true }))
           .slice(0, 2);
         setDrumPhotos(photos);
-        setActiveDrumPhotoIndex(0);
+        // Keep the second Drum-folder photo as the fixed modal background.
+        setActiveDrumPhotoIndex(photos.length > 1 ? 1 : 0);
         setDrumVideos(videos);
         setSelectedDrumVideoId(null);
       })
@@ -443,14 +444,6 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
     return () => controller.abort();
   }, [interest.id]);
-
-  useEffect(() => {
-    if (interest.id !== "drums" || drumPhotos.length < 2) return;
-    const interval = window.setInterval(() => {
-      setActiveDrumPhotoIndex((index) => (index + 1) % drumPhotos.length);
-    }, 8000);
-    return () => window.clearInterval(interval);
-  }, [interest.id, drumPhotos.length]);
 
   useEffect(() => {
     if (interest.id !== "drums" || !selectedDrumVideoId) return;

@@ -1692,3 +1692,101 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     opacity: .52;
   }
 }
+
+
+/* Drum modal tidy-up: fixed second background and a compact, aligned performance grid. */
+.stevan-modal-drums .stevan-drum-wallpaper-image {
+  animation: none;
+}
+.stevan-modal-drums .stevan-drum-video:not(.has-selected-video) {
+  min-height: 0;
+  margin-top: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.stevan-modal-drums .stevan-drum-video:not(.has-selected-video) .stevan-drum-gallery {
+  gap: 13px;
+  padding: 16px 17px 17px;
+  border: 1px solid rgba(57,203,195,.28);
+  background: rgba(3,12,15,.68);
+}
+.stevan-modal-drums .stevan-drum-gallery-heading {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(57,203,195,.24);
+}
+.stevan-modal-drums .stevan-drum-performance-list {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  align-items: stretch;
+  gap: 9px;
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+}
+.stevan-modal-drums .stevan-drum-performance-button {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  padding: 9px 11px;
+  border: 1px solid rgba(132,164,160,.28);
+  border-radius: 3px;
+  background: linear-gradient(135deg,rgba(13,31,34,.94),rgba(6,17,20,.94));
+  color: #e2eeea;
+  box-shadow: none;
+}
+.stevan-modal-drums .stevan-drum-performance-button:hover,
+.stevan-modal-drums .stevan-drum-performance-button.is-selected {
+  transform: translateY(-1px);
+  border-color: rgba(39,222,212,.76);
+  background: linear-gradient(135deg,rgba(15,55,57,.96),rgba(7,25,28,.96));
+  box-shadow: 0 0 0 1px rgba(39,222,212,.12);
+}
+.stevan-modal-drums .stevan-drum-performance-play {
+  flex: 0 0 23px;
+  width: 23px;
+  height: 23px;
+  background: rgba(39,222,212,.14);
+  color: #56ded4;
+}
+.stevan-modal-drums .stevan-drum-performance-button strong {
+  min-width: 0;
+  color: #dce9e5;
+  font: 600 10px/1.35 "Space Grotesk",sans-serif;
+  white-space: normal;
+}
+.stevan-modal-drums .stevan-drum-performance-arrow {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: rgba(39,222,212,.72);
+}
+.stevan-modal-drums .stevan-drum-video:not(.has-selected-video) .stevan-drum-empty {
+  padding: 8px 1px 0;
+  border: 0;
+  background: transparent;
+  color: #aebdb8;
+}
+@media (max-width: 800px) {
+  .stevan-modal-drums .stevan-drum-performance-list {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+@media (max-width: 480px) {
+  .stevan-modal-drums .stevan-drum-video:not(.has-selected-video) {
+    margin-top: 18px;
+  }
+  .stevan-modal-drums .stevan-drum-video:not(.has-selected-video) .stevan-drum-gallery {
+    padding: 12px;
+  }
+  .stevan-modal-drums .stevan-drum-performance-list {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+  .stevan-modal-drums .stevan-drum-performance-button {
+    min-height: 42px;
+  }
+}
