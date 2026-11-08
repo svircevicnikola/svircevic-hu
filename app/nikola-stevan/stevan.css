@@ -1818,8 +1818,11 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   opacity: .52;
   mix-blend-mode: screen;
   filter: saturate(.9) brightness(.82) contrast(1.04);
-  -webkit-mask-image: radial-gradient(ellipse 90% 82% at 76% 32%,#000 26%,rgba(0,0,0,.96) 45%,rgba(0,0,0,.72) 64%,rgba(0,0,0,.32) 82%,transparent 100%);
-  mask-image: radial-gradient(ellipse 90% 82% at 76% 32%,#000 26%,rgba(0,0,0,.96) 45%,rgba(0,0,0,.72) 64%,rgba(0,0,0,.32) 82%,transparent 100%);
+  /* Trim roughly half of the unused headroom and blend every image edge into the modal. */
+  transform: translateY(-7%) scale(1.04);
+  transform-origin: right top;
+  -webkit-mask-image: radial-gradient(ellipse 108% 98% at 74% 34%,#000 18%,rgba(0,0,0,.94) 42%,rgba(0,0,0,.72) 60%,rgba(0,0,0,.38) 78%,rgba(0,0,0,.12) 91%,transparent 100%);
+  mask-image: radial-gradient(ellipse 108% 98% at 74% 34%,#000 18%,rgba(0,0,0,.94) 42%,rgba(0,0,0,.72) 60%,rgba(0,0,0,.38) 78%,rgba(0,0,0,.12) 91%,transparent 100%);
 }
 .stevan-math-wallpaper-shade {
   position: absolute;
@@ -1832,12 +1835,7 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   position: relative;
   z-index: 2;
 }
-.stevan-modal-math > .stevan-modal-mark {
-  position: absolute;
-  top: 24px;
-  right: 65px;
-  z-index: 3;
-}
+.stevan-modal-math > .stevan-modal-mark { display: none; }
 .stevan-modal-math > .stevan-modal-close { z-index: 4; }
 @media (max-width: 700px) {
   .stevan-math-wallpaper-image {
@@ -1845,6 +1843,6 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     height: 76%;
     opacity: .42;
     object-position: right top;
+    transform: translateY(-7%) scale(1.04);
   }
-  .stevan-modal-math > .stevan-modal-mark { top: 18px; right: 58px; }
 }

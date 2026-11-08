@@ -763,7 +763,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           </div>
         ) : (
           <>
-            <div className="stevan-modal-mark">{interest.mark}</div>
+            {interest.id !== "math" && <div className="stevan-modal-mark">{interest.mark}</div>}
             <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
             <h2 id="interest-modal-title">{interest.title}</h2>
             <p className="stevan-modal-subtitle">{interest.subtitle}</p>
