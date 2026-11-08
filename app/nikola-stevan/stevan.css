@@ -1790,3 +1790,61 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     min-height: 42px;
   }
 }
+
+
+/* Math modal: softly blend the uploaded math logo into the upper-right background,
+   while keeping all result text and the decorative sigma mark above it. */
+.stevan-modal-math {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(circle at 94% 5%,rgba(57,203,195,.14),transparent 37%),#0b1417;
+}
+.stevan-modal-math > .stevan-math-wallpaper {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.stevan-math-wallpaper-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 57%;
+  height: 88%;
+  object-fit: contain;
+  object-position: right top;
+  opacity: .52;
+  mix-blend-mode: screen;
+  filter: saturate(.9) brightness(.82) contrast(1.04);
+  -webkit-mask-image: radial-gradient(ellipse 90% 82% at 76% 32%,#000 26%,rgba(0,0,0,.96) 45%,rgba(0,0,0,.72) 64%,rgba(0,0,0,.32) 82%,transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 82% at 76% 32%,#000 26%,rgba(0,0,0,.96) 45%,rgba(0,0,0,.72) 64%,rgba(0,0,0,.32) 82%,transparent 100%);
+}
+.stevan-math-wallpaper-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.98) 30%,rgba(11,20,23,.86) 48%,rgba(11,20,23,.35) 72%,rgba(11,20,23,.08) 100%),
+    linear-gradient(180deg,rgba(11,20,23,.04) 0%,rgba(11,20,23,.12) 54%,rgba(11,20,23,.7) 100%);
+}
+.stevan-modal-math > :not(.stevan-math-wallpaper):not(.stevan-modal-close):not(.stevan-modal-mark) {
+  position: relative;
+  z-index: 2;
+}
+.stevan-modal-math > .stevan-modal-mark {
+  position: absolute;
+  top: 24px;
+  right: 65px;
+  z-index: 3;
+}
+.stevan-modal-math > .stevan-modal-close { z-index: 4; }
+@media (max-width: 700px) {
+  .stevan-math-wallpaper-image {
+    width: 66%;
+    height: 76%;
+    opacity: .42;
+    object-position: right top;
+  }
+  .stevan-modal-math > .stevan-modal-mark { top: 18px; right: 58px; }
+}

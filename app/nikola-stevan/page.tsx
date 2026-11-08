@@ -667,6 +667,17 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
       <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" || interest.id === "hiking" || interest.id === "basketball" ? `stevan-modal stevan-modal-kayak${interest.id === "hiking" ? " stevan-modal-hiking" : interest.id === "basketball" ? " stevan-modal-basketball" : ""}` : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
+        {interest.id === "math" && (
+          <div className="stevan-math-wallpaper" aria-hidden="true">
+            <img
+              className="stevan-math-wallpaper-image"
+              src="/images/matekos-logo.png"
+              alt=""
+              fetchPriority="high"
+            />
+            <div className="stevan-math-wallpaper-shade" />
+          </div>
+        )}
         {interest.id === "code" && (
           <div className="stevan-code-wallpaper" aria-hidden="true">
             <img
