@@ -180,32 +180,18 @@
 
 .stevan-footer { width: min(1320px, calc(100% - 72px)); min-height: 88px; margin: 0 auto; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); color: #738482; font: 700 9px/1 "Rajdhani",sans-serif; letter-spacing: .18em; }
 .stevan-footer-brand { display: inline-flex; flex: 0 1 330px; align-items: center; justify-content: flex-start; width: min(330px,38vw); min-width: 220px; color: #f0f4f0 !important; text-decoration: none; }
-.stevan-footer-brand {
-  position: relative;
-  isolation: isolate;
-}
-.stevan-footer-brand .stevan-footer-banner {
+.stevan-footer-brand .stevan-footer-logo {
   display: block;
   width: 100%;
-  height: 68px;
+  height: 76px;
   object-fit: contain;
   object-position: left center;
-  mix-blend-mode: screen;
+  /* Use the uploaded logo as-is: its canvas is designed for the site's dark background,
+     so no mask, screen blend, overlay, or edge filter is applied. */
+  mix-blend-mode: normal;
   filter: none;
-  /* Fade the actual raster edge to transparency instead of shrinking the fade zone
-     to the extreme corners. The central gamepad and lettering stay untouched. */
-  -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 50%,#000 45%,rgba(0,0,0,.94) 57%,rgba(0,0,0,.76) 70%,rgba(0,0,0,.42) 84%,rgba(0,0,0,.12) 96%,transparent 100%);
-  mask-image: radial-gradient(ellipse 78% 62% at 50% 50%,#000 45%,rgba(0,0,0,.94) 57%,rgba(0,0,0,.76) 70%,rgba(0,0,0,.42) 84%,rgba(0,0,0,.12) 96%,transparent 100%);
-}
-.stevan-footer-brand::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  pointer-events: none;
-  /* Darken the banner's own near-black canvas at its perimeter so it melts
-     into the site's #05090b background, without dimming the centre artwork. */
-  background: radial-gradient(ellipse 72% 54% at 50% 50%,transparent 43%,rgba(5,9,11,.14) 61%,rgba(5,9,11,.42) 79%,rgba(5,9,11,.78) 94%,#05090b 100%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .stevan-footer-brand:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 5px; }
 .stevan-footer-brand em { color: var(--teal-bright); font-style: normal; }
@@ -402,7 +388,7 @@
   .stevan-contact-label { font-size: 8px; }
   .stevan-footer { min-height: 76px; flex-wrap: wrap; gap: 12px; }
   .stevan-footer-brand { flex-basis: min(260px,72vw); width: min(260px,72vw); min-width: 0; }
-  .stevan-footer-brand .stevan-footer-banner { height: 58px; }
+  .stevan-footer-brand .stevan-footer-logo { height: 60px; }
   .stevan-footer > span { display: none; }
   .stevan-modal { padding: 38px 25px 27px; }
   .stevan-modal h2 { font-size: 45px; }
