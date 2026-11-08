@@ -1636,8 +1636,15 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 }
 /* The title, eyebrow, subtitle, status and the lower sections must all sit
    above the wallpaper and its shading layer. */
-.stevan-modal-code > :not(.stevan-code-wallpaper):not(.stevan-modal-close) {
+.stevan-modal-code > :not(.stevan-code-wallpaper):not(.stevan-modal-close):not(.stevan-modal-mark) {
   position: relative;
+  z-index: 2;
+}
+/* Keep the decorative </> mark absolutely anchored in the upper-right corner. */
+.stevan-modal-code > .stevan-modal-mark {
+  position: absolute;
+  top: 24px;
+  right: 65px;
   z-index: 2;
 }
 .stevan-modal-code > .stevan-modal-close { z-index: 4; }
