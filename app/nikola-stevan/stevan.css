@@ -1615,15 +1615,15 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 .stevan-code-wallpaper-image {
   position: absolute;
   top: -1%;
-  right: -2%;
+  right: -10%;
   display: block;
-  width: 69%;
+  width: 72%;
   height: 90%;
   object-fit: cover;
   object-position: 74% 42%;
-  opacity: .68;
+  opacity: .76;
   mix-blend-mode: screen;
-  filter: saturate(.98) brightness(.94) contrast(1.06);
+  filter: saturate(1.02) brightness(1.02) contrast(1.08);
   -webkit-mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
   mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
 }
@@ -1631,8 +1631,8 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.96) 21%,rgba(11,20,23,.66) 42%,rgba(11,20,23,.16) 72%,rgba(11,20,23,.04) 100%),
-    linear-gradient(180deg,rgba(11,20,23,.02) 0%,rgba(11,20,23,.04) 54%,rgba(11,20,23,.72) 100%);
+    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.99) 30%,rgba(11,20,23,.94) 46%,rgba(11,20,23,.58) 64%,rgba(11,20,23,.10) 100%),
+    linear-gradient(180deg,rgba(11,20,23,.02) 0%,rgba(11,20,23,.05) 48%,rgba(11,20,23,.82) 100%);
 }
 /* The title, eyebrow, subtitle, status and the lower sections must all sit
    above the wallpaper and its shading layer. */
@@ -1644,33 +1644,40 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 .stevan-code-content {
   position: relative;
   z-index: 2;
+  gap: 14px;
+  margin-top: 8px;
+}
+.stevan-modal-code .stevan-modal-copy {
+  margin-bottom: 8px;
 }
 .stevan-code-header {
   display: block;
-  min-height: 144px;
-  margin: -4px 0 8px;
+  min-height: 82px;
+  margin: -4px 0 0;
 }
 .stevan-code-header .stevan-code-status {
   margin-top: 12px;
 }
 @media (max-width: 700px) {
-  .stevan-code-header { min-height: 112px; }
+  .stevan-code-header { min-height: 72px; }
+  .stevan-code-content { gap: 12px; margin-top: 7px; }
   .stevan-code-status { font-size: 9px; }
   .stevan-code-wallpaper-image {
     top: 0;
-    right: -5%;
-    width: 78%;
-    height: 76%;
-    object-position: 76% 40%;
-    opacity: .56;
+    right: -12%;
+    width: 88%;
+    height: 78%;
+    object-position: 74% 40%;
+    opacity: .62;
   }
 }
 @media (max-width: 430px) {
-  .stevan-code-header { min-height: 94px; }
+  .stevan-code-header { min-height: 64px; }
   .stevan-code-status { padding: 7px 8px; font-size: 8px; }
   .stevan-code-wallpaper-image {
-    width: 84%;
-    height: 64%;
-    opacity: .46;
+    right: -14%;
+    width: 94%;
+    height: 66%;
+    opacity: .52;
   }
 }

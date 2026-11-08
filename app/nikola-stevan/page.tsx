@@ -1035,7 +1035,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   <span>Programozási nyelv</span>
                 </article>
                 <article className="stevan-code-tool">
-                  <strong>C# <small>(C-sharp)</small></strong>
+                  <strong>C#</strong>
                   <span>Programozási nyelv</span>
                 </article>
                 <article className="stevan-code-tool">
