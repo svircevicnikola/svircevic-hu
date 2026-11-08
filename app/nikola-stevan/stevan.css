@@ -1624,6 +1624,9 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   opacity: .76;
   mix-blend-mode: screen;
   filter: saturate(1.02) brightness(1.02) contrast(1.08);
+  /* Move the whole child-and-chair composition up and toward the right edge. */
+  transform: translate(16%, -12%);
+  transform-origin: center center;
   -webkit-mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
   mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
 }
@@ -1676,6 +1679,7 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     height: 78%;
     object-position: 74% 40%;
     opacity: .62;
+    transform: translate(10%, -9%);
   }
 }
 @media (max-width: 430px) {
