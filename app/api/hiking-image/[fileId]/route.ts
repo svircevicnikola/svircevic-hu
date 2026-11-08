@@ -1,4 +1,4 @@
-const hikingFolderId = "1XdEBBEIskYhDrKLio4L-p3hRd5k5GMdq";
+const hikingFolderId = "1MXD0nkFX0vYnP1AVpwGz6dXbUpcAatrY";
 const siteReferer = "https://nikola.stevan.svircevic.hu/";
 
 type DriveFileList = { files?: Array<{ id: string; mimeType?: string }> };

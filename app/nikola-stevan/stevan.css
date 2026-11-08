@@ -1534,3 +1534,8 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 .stevan-hiking-route { top:17%; right:5%; width:66%; height:38%; opacity:.78; }
 .stevan-hiking-route path { stroke-dasharray:2 7; stroke-width:1.35; }
 @media (max-width:700px) { .stevan-drum-performance-list { gap:7px; max-height:26vh; } .stevan-drum-performance-button { min-height:36px; padding:6px 10px 6px 8px; gap:7px; } .stevan-drum-performance-button strong { font-size:10px; } .stevan-hiking-route { top:13%; right:2%; width:49%; height:30%; } }
+
+
+/* Basketball uses the same photo-led modal as hiking and kayaking. */
+.stevan-basketball-route { top:15%; right:5%; width:66%; height:40%; opacity:.76; }
+.stevan-basketball-route path { stroke-dasharray:3 8; stroke-width:1.35; }

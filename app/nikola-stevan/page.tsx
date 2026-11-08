@@ -71,6 +71,7 @@ type DrumVideo = { id: string; fileName: string; fileId: string };
 type DrumPhoto = { id: string; fileName: string; fileId: string };
 type KayakPhoto = { id: string; fileName: string; fileId: string };
 type HikingPhoto = { id: string; fileName: string; fileId: string; createdTime?: string };
+type BasketballPhoto = { id: string; fileName: string; fileId: string; createdTime?: string };
 type ChessPhoto = { id: string; fileName: string; fileId: string };
 type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string; createdTime?: string }> };
 
@@ -81,7 +82,8 @@ function drumPerformanceTitle(fileName: string) {
 
 const drumFolderId = "1AbUN60lNWcps1BO7tyuGpLqu5KQNLekw";
 const kayakFolderId = "1GnrXHUHSQqmDvhYPk7aLNyfoa52xZM9I";
-const hikingFolderId = "1XdEBBEIskYhDrKLio4L-p3hRd5k5GMdq";
+const basketballFolderId = "1XdEBBEIskYhDrKLio4L-p3hRd5k5GMdq";
+const hikingFolderId = "1MXD0nkFX0vYnP1AVpwGz6dXbUpcAatrY";
 const chessFolderId = "1uUfZi4K-Mr-aBVLchpncmZU7Y86Ha5KU";
 
 function driveMediaUrl(fileId: string) {
@@ -101,10 +103,24 @@ function hikingImageUrl(fileId: string) {
   return `/api/hiking-image/${encodeURIComponent(fileId)}`;
 }
 
+function basketballImageUrl(fileId: string) {
+  return `/api/basketball-image/${encodeURIComponent(fileId)}`;
+}
+
 function kayakPhotoDate(fileName: string) {
   const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
   return date ? `${date[1]}. ${date[2]}. ${date[3]}.` : "";
 }
+
+function newestDrivePhotoFirst(a: { fileName: string; createdTime?: string }, b: { fileName: string; createdTime?: string }) {
+  const timestamp = (photo: { fileName: string; createdTime?: string }) => {
+    const match = photo.fileName.match(/(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})/);
+    if (match) return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    return Date.parse(photo.createdTime ?? "") || 0;
+  };
+  return timestamp(b) - timestamp(a);
+}
+
 function chessImageUrl(fileId: string) {
   return `/api/chess-image/${encodeURIComponent(fileId)}`;
 }
@@ -312,6 +328,13 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [portraitHikingPhotoId, setPortraitHikingPhotoId] = useState<string | null>(null);
   const [portraitHikingPhotoIds, setPortraitHikingPhotoIds] = useState<Set<string>>(() => new Set());
   const [hikingGalleryPaused, setHikingGalleryPaused] = useState(false);
+  const [basketballPhotos, setBasketballPhotos] = useState<BasketballPhoto[]>([]);
+  const [basketballPhotosLoading, setBasketballPhotosLoading] = useState(false);
+  const [basketballPhotosError, setBasketballPhotosError] = useState(false);
+  const [activeBasketballPhotoId, setActiveBasketballPhotoId] = useState<string | null>(null);
+  const [portraitBasketballPhotoId, setPortraitBasketballPhotoId] = useState<string | null>(null);
+  const [portraitBasketballPhotoIds, setPortraitBasketballPhotoIds] = useState<Set<string>>(() => new Set());
+  const [basketballGalleryPaused, setBasketballGalleryPaused] = useState(false);
   const [chessPhotos, setChessPhotos] = useState<ChessPhoto[]>([]);
   const [chessPhotosLoading, setChessPhotosLoading] = useState(false);
   const [chessPhotosError, setChessPhotosError] = useState(false);
@@ -341,6 +364,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const hikingCoverSrc = activeHikingPhoto ? hikingImageUrl(activeHikingPhoto.fileId) : null;
   const hikingGalleryPhotos = hikingCyclePhotos.length > 1
     ? [...hikingCyclePhotos.slice(activeHikingPhotoIndex + 1), ...hikingCyclePhotos.slice(0, activeHikingPhotoIndex)]
+    : [];
+  const basketballCyclePhotos = basketballPhotos;
+  const activeBasketballPhotoIndex = Math.max(0, basketballCyclePhotos.findIndex((photo) => photo.id === activeBasketballPhotoId));
+  const activeBasketballPhoto = basketballCyclePhotos[activeBasketballPhotoIndex];
+  const activeBasketballPhotoIsPortrait = activeBasketballPhoto?.id === portraitBasketballPhotoId;
+  const basketballCoverSrc = activeBasketballPhoto ? basketballImageUrl(activeBasketballPhoto.fileId) : null;
+  const basketballGalleryPhotos = basketballCyclePhotos.length > 1
+    ? [...basketballCyclePhotos.slice(activeBasketballPhotoIndex + 1), ...basketballCyclePhotos.slice(0, activeBasketballPhotoIndex)]
     : [];
   const chessCyclePhotos = chessPhotos;
   const activeChessPhotoIndex = Math.max(0, chessCyclePhotos.findIndex((photo) => photo.id === activeChessPhotoId));
@@ -521,6 +552,41 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   }, [interest.id]);
 
   useEffect(() => {
+    if (interest.id !== "basketball") return;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+    if (!apiKey) { setBasketballPhotosError(true); return; }
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: `'${basketballFolderId}' in parents and trashed = false`,
+      fields: "files(id,name,mimeType,createdTime)",
+      pageSize: "100",
+      orderBy: "createdTime desc",
+      key: apiKey,
+    });
+    setBasketballPhotosLoading(true);
+    setBasketballPhotosError(false);
+    fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("A kosárlabdás képmappa nem érhető el.");
+        return response.json() as Promise<GoogleDriveFileList>;
+      })
+      .then((data) => {
+        const photos = (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("image/"))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id, createdTime: file.createdTime }))
+          .sort(newestDrivePhotoFirst);
+        setBasketballPhotos(photos);
+        setActiveBasketballPhotoId(photos[0]?.id ?? null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setBasketballPhotosError(true);
+      })
+      .finally(() => { if (!controller.signal.aborted) setBasketballPhotosLoading(false); });
+    return () => controller.abort();
+  }, [interest.id]);
+
+  useEffect(() => {
     if (interest.id !== "chess") return;
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
     if (!apiKey) {
@@ -586,6 +652,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     }, 5000);
     return () => window.clearTimeout(timeout);
   }, [interest.id, hikingCyclePhotos, activeHikingPhotoId, hikingGalleryPaused]);
+  useEffect(() => {
+    if (interest.id !== "basketball" || basketballGalleryPaused || basketballCyclePhotos.length < 2) return;
+    const timeout = window.setTimeout(() => {
+      const currentIndex = basketballCyclePhotos.findIndex((photo) => photo.id === activeBasketballPhotoId);
+      setActiveBasketballPhotoId(basketballCyclePhotos[(currentIndex + 1 + basketballCyclePhotos.length) % basketballCyclePhotos.length].id);
+    }, 5000);
+    return () => window.clearTimeout(timeout);
+  }, [interest.id, basketballCyclePhotos, activeBasketballPhotoId, basketballGalleryPaused]);
 
   useEffect(() => {
     if (interest.id !== "chess" || chessGalleryPaused || chessCyclePhotos.length < 2) return;
@@ -598,7 +672,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" || interest.id === "hiking" ? `stevan-modal stevan-modal-kayak${interest.id === "hiking" ? " stevan-modal-hiking" : ""}` : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" || interest.id === "hiking" || interest.id === "basketball" ? `stevan-modal stevan-modal-kayak${interest.id === "hiking" ? " stevan-modal-hiking" : interest.id === "basketball" ? " stevan-modal-basketball" : ""}` : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "drums" && drumPhotos[activeDrumPhotoIndex] && (
           <div className="stevan-drum-wallpaper" aria-hidden="true">
@@ -619,6 +693,21 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <div className="stevan-kayak-route" aria-hidden="true">
               <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M8 205 C190 95 315 84 470 126 S760 172 990 22" /></svg>
               <span style={{ left: "25%", top: "56%" }}>02</span><span style={{ left: "61%", top: "30%" }}>03</span><span style={{ left: "82%", top: "17%" }}>04</span>
+            </div>
+            <div className="stevan-kayak-cover-copy">
+              <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
+              <h2 id="interest-modal-title">{interest.title}</h2>
+              <p className="stevan-modal-subtitle">{interest.subtitle}</p>
+            </div>
+          </div>
+        ) : interest.id === "basketball" ? (
+          <div className={`stevan-kayak-cover${activeBasketballPhotoIsPortrait ? " is-portrait" : ""}`}>
+            {basketballCoverSrc && activeBasketballPhotoIsPortrait && <img className="stevan-kayak-cover-image-background" src={basketballCoverSrc} alt="" aria-hidden="true" />}
+            {basketballCoverSrc && activeBasketballPhoto && <img key={activeBasketballPhoto.id} className={`stevan-kayak-cover-image${activeBasketballPhotoIsPortrait ? " is-portrait" : ""}`} src={basketballCoverSrc} alt="Kosárlabdás fotó" onLoad={(event) => setPortraitBasketballPhotoId(event.currentTarget.naturalHeight > event.currentTarget.naturalWidth ? activeBasketballPhoto.id : null)} fetchPriority="high" />}
+            <div className="stevan-kayak-cover-shade" />
+            <div className="stevan-kayak-route stevan-basketball-route" aria-hidden="true">
+              <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M24 188 C180 188 208 48 390 60 S650 224 976 24" /></svg>
+              <span style={{ left: "19%", top: "75%" }}>01</span><span style={{ left: "42%", top: "28%" }}>02</span><span style={{ left: "70%", top: "62%" }}>03</span><span style={{ left: "93%", top: "14%" }}>04</span>
             </div>
             <div className="stevan-kayak-cover-copy">
               <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
@@ -665,7 +754,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <p className="stevan-modal-subtitle">{interest.subtitle}</p>
           </>
         )}
-        {interest.id !== "science" && interest.id !== "kayak" && interest.id !== "chess" && interest.id !== "hiking" && <p className="stevan-modal-copy">{interest.detail}</p>}
+        {interest.id !== "science" && interest.id !== "kayak" && interest.id !== "chess" && interest.id !== "hiking" && interest.id !== "basketball" && <p className="stevan-modal-copy">{interest.detail}</p>}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -806,6 +895,34 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   </button>
                 );
               })}
+            </div>
+          </div>
+        ) : interest.id === "basketball" ? (
+          <div
+            className="stevan-kayak-gallery"
+            onMouseEnter={() => setBasketballGalleryPaused(true)}
+            onMouseLeave={() => setBasketballGalleryPaused(false)}
+            onFocusCapture={() => setBasketballGalleryPaused(true)}
+            onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setBasketballGalleryPaused(false); }}
+          >
+            <div className="stevan-kayak-gallery-heading">
+              <span>PILLANATOK A PÁLYÁN</span>
+              <span>{basketballPhotosLoading ? "BETÖLTÉS…" : `${basketballPhotos.length} FOTÓ`}</span>
+            </div>
+            {basketballPhotosError && <p className="stevan-drum-empty" role="status">A kosárlabdás képmappát most nem sikerült betölteni.</p>}
+            {!basketballPhotosLoading && !basketballPhotosError && basketballPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
+            <div className="stevan-kayak-photo-grid" aria-label="Kosárlabdás fotók">
+              {basketballGalleryPhotos.map((photo) => (
+                <button className={`stevan-kayak-photo${portraitBasketballPhotoIds.has(photo.id) ? " is-portrait" : ""}`} type="button" key={photo.id}
+                  aria-label="Kosárlabdás fotó megjelenítése felül" aria-pressed={activeBasketballPhoto?.id === photo.id}
+                  onClick={() => setActiveBasketballPhotoId(photo.id)}>
+                  <img src={basketballImageUrl(photo.fileId)} alt="Kosárlabdás fotó" loading="lazy" decoding="async"
+                    onLoad={(event) => {
+                      if (event.currentTarget.naturalHeight <= event.currentTarget.naturalWidth) return;
+                      setPortraitBasketballPhotoIds((current) => current.has(photo.id) ? current : new Set(current).add(photo.id));
+                    }} />
+                </button>
+              ))}
             </div>
           </div>
         ) : interest.id === "hiking" ? (
