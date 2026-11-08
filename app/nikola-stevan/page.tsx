@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./stevan.css";
 
 type InterestId = "math" | "science" | "drums" | "basketball" | "kayak" | "chess" | "code" | "hiking";
@@ -68,6 +68,7 @@ type MathResultsByGrade = {
 };
 
 type DrumVideo = { id: string; fileName: string; fileId: string };
+type DrumPhoto = { id: string; fileName: string; fileId: string };
 type KayakPhoto = { id: string; fileName: string; fileId: string };
 type ChessPhoto = { id: string; fileName: string; fileId: string };
 type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string }> };
@@ -84,6 +85,10 @@ const chessFolderId = "1uUfZi4K-Mr-aBVLchpncmZU7Y86Ha5KU";
 function driveMediaUrl(fileId: string) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
   return apiKey ? `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${apiKey}` : null;
+}
+
+function drumImageUrl(fileId: string) {
+  return `/api/drum-image/${encodeURIComponent(fileId)}`;
 }
 
 function driveImageUrl(fileId: string) {
@@ -284,6 +289,9 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [drumVideos, setDrumVideos] = useState<DrumVideo[]>([]);
   const [drumVideosLoading, setDrumVideosLoading] = useState(false);
   const [drumVideosError, setDrumVideosError] = useState(false);
+  const [drumPhotos, setDrumPhotos] = useState<DrumPhoto[]>([]);
+  const [activeDrumPhotoIndex, setActiveDrumPhotoIndex] = useState(0);
+  const drumPlayerRef = useRef<HTMLDivElement>(null);
   const [kayakPhotos, setKayakPhotos] = useState<KayakPhoto[]>([]);
   const [kayakPhotosLoading, setKayakPhotosLoading] = useState(false);
   const [kayakPhotosError, setKayakPhotosError] = useState(false);
@@ -363,6 +371,13 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           .filter((file) => file.mimeType?.startsWith("video/"))
           .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
           .sort((a, b) => b.fileName.localeCompare(a.fileName));
+        const photos = (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("image/"))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id }))
+          .sort((a, b) => a.fileName.localeCompare(b.fileName, undefined, { numeric: true }))
+          .slice(0, 2);
+        setDrumPhotos(photos);
+        setActiveDrumPhotoIndex(0);
         setDrumVideos(videos);
         setSelectedDrumVideoId(null);
       })
@@ -376,6 +391,22 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
     return () => controller.abort();
   }, [interest.id]);
+
+  useEffect(() => {
+    if (interest.id !== "drums" || drumPhotos.length < 2) return;
+    const interval = window.setInterval(() => {
+      setActiveDrumPhotoIndex((index) => (index + 1) % drumPhotos.length);
+    }, 8000);
+    return () => window.clearInterval(interval);
+  }, [interest.id, drumPhotos.length]);
+
+  useEffect(() => {
+    if (interest.id !== "drums" || !selectedDrumVideoId) return;
+    const frame = window.requestAnimationFrame(() => {
+      drumPlayerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [interest.id, selectedDrumVideoId]);
 
   useEffect(() => {
     if (interest.id !== "kayak") return;
@@ -492,7 +523,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? "stevan-modal stevan-modal-drums" : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "kayak" ? (
           <div className={`stevan-kayak-cover${activeKayakPhotoIsPortrait ? " is-portrait" : ""}`}>
@@ -588,43 +619,62 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             </section>
           </div>
         ) : interest.id === "drums" ? (
-          <div className="stevan-drum-video">
-            <div className="stevan-drum-gallery">
-              <div className="stevan-drum-gallery-heading">
-                <span>VIDEÓGALÉRIA</span>
-                <span>{drumVideosLoading ? "BETÖLTÉS…" : `${drumVideos.length} VIDEÓ`}</span>
-              </div>
-              <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
-                {drumVideos.map((video) => (
-                  <button
-                    className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
-                    type="button"
-                    key={video.id}
-                    aria-pressed={video.id === selectedDrumVideoId}
-                    onClick={() => setSelectedDrumVideoId(video.id)}
-                  >
-                    <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
-                    <span className="stevan-drum-gallery-card-copy">
-                      <strong>{drumPerformanceTitle(video.fileName)}</strong>
-                    </span>
-                    <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            {drumVideosError && <p className="stevan-drum-empty" role="status">A videómappát most nem sikerült betölteni.</p>}
-            {!drumVideosLoading && !drumVideosError && drumVideos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs videó a mappában.</p>}
-            {selectedDrumVideo && drumVideoSrc ? (
-              <>
-                <span className="stevan-drum-video-label">{drumPerformanceTitle(selectedDrumVideo.fileName)}</span>
-                <video key={selectedDrumVideo.id} autoPlay controls playsInline preload="metadata" aria-label={drumPerformanceTitle(selectedDrumVideo.fileName)}>
-                  <source src={drumVideoSrc} type="video/mp4" />
-                  A böngésző nem tudja lejátszani ezt a videót.
-                </video>
-              </>
-            ) : (
-              <p className="stevan-drum-empty" role="status">Kattints egy felvételre, és indul.</p>
+          <div className={`stevan-drum-video${selectedDrumVideo ? " has-selected-video" : ""}`}>
+            {drumPhotos[activeDrumPhotoIndex] && (
+              <img
+                key={drumPhotos[activeDrumPhotoIndex].id}
+                className="stevan-drum-background-image"
+                src={drumImageUrl(drumPhotos[activeDrumPhotoIndex].fileId)}
+                alt=""
+                aria-hidden="true"
+              />
             )}
+            <div className="stevan-drum-background-shade" aria-hidden="true" />
+            <div className="stevan-drum-content">
+              {selectedDrumVideo && drumVideoSrc && (
+                <div className="stevan-drum-player" ref={drumPlayerRef}>
+                  <span className="stevan-drum-video-label">{drumPerformanceTitle(selectedDrumVideo.fileName)}</span>
+                  <video
+                    key={selectedDrumVideo.id}
+                    autoPlay
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label={drumPerformanceTitle(selectedDrumVideo.fileName)}
+                    onLoadedMetadata={() => drumPlayerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                  >
+                    <source src={drumVideoSrc} type="video/mp4" />
+                    A böngésző nem tudja lejátszani ezt a videót.
+                  </video>
+                </div>
+              )}
+              <div className="stevan-drum-gallery">
+                <div className="stevan-drum-gallery-heading">
+                  <span>VIDEÓGALÉRIA</span>
+                  <span>{drumVideosLoading ? "BETÖLTÉS…" : `${drumVideos.length} VIDEÓ`}</span>
+                </div>
+                <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
+                  {drumVideos.map((video) => (
+                    <button
+                      className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
+                      type="button"
+                      key={video.id}
+                      aria-pressed={video.id === selectedDrumVideoId}
+                      onClick={() => setSelectedDrumVideoId(video.id)}
+                    >
+                      <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
+                      <span className="stevan-drum-gallery-card-copy">
+                        <strong>{drumPerformanceTitle(video.fileName)}</strong>
+                      </span>
+                      <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {drumVideosError && <p className="stevan-drum-empty" role="status">A videómappát most nem sikerült betölteni.</p>}
+              {!drumVideosLoading && !drumVideosError && drumVideos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs videó a mappában.</p>}
+              {!selectedDrumVideo && <p className="stevan-drum-empty" role="status">Kattints egy felvételre, és indul.</p>}
+            </div>
           </div>
         ) : interest.id === "kayak" ? (
           <div

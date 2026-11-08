@@ -1306,3 +1306,147 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     white-space: nowrap;
   }
 }
+
+/* Keep the selected drum video in view and use the two Drum-folder photos as its rotating backdrop. */
+.stevan-modal-drums {
+  width: min(960px,calc(100vw - 44px));
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 14px;
+}
+.stevan-modal-drums.has-selected-video {
+  max-height: calc(100dvh - 24px);
+  scroll-behavior: smooth;
+}
+.stevan-drum-video {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-width: 0;
+  min-height: 330px;
+  margin-top: 18px;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(57,203,195,.34);
+  background: #071012;
+}
+.stevan-drum-background-image,
+.stevan-drum-background-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.stevan-drum-background-image {
+  z-index: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: saturate(.76) brightness(.56) contrast(.94);
+  animation: stevan-drum-photo-in .65s ease both;
+}
+.stevan-drum-background-shade {
+  z-index: 1;
+  background: linear-gradient(90deg,rgba(3,12,15,.88),rgba(3,12,15,.58) 52%,rgba(3,12,15,.74)),
+    linear-gradient(0deg,rgba(3,12,15,.7),rgba(3,12,15,.16) 68%,rgba(3,12,15,.42));
+}
+.stevan-drum-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  gap: 14px;
+}
+.stevan-drum-player {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+  scroll-margin-top: 14px;
+}
+.stevan-drum-video video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(62vh,560px,calc(100dvh - 250px));
+  margin-inline: auto;
+  background: #020506;
+  object-fit: contain;
+}
+.stevan-drum-gallery {
+  display: grid;
+  min-width: 0;
+  gap: 9px;
+  padding: 13px;
+  border: 1px solid rgba(132,164,160,.25);
+  background: rgba(4,13,16,.74);
+}
+.stevan-drum-gallery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #dce9e5;
+  font: 800 11px/1 "Rajdhani",sans-serif;
+  letter-spacing: .16em;
+}
+.stevan-drum-gallery-heading span:last-child { color: #86a09a; font-size: 9px; }
+.stevan-drum-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 7px;
+  max-height: min(24vh,180px);
+  overflow-y: auto;
+}
+.stevan-drum-gallery-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 11px;
+  border: 1px solid rgba(132,164,160,.22);
+  background: rgba(8,21,24,.88);
+  color: #dce9e5;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .18s ease,background .18s ease;
+}
+.stevan-drum-gallery-card:hover,
+.stevan-drum-gallery-card.is-selected {
+  border-color: rgba(39,222,212,.8);
+  background: rgba(12,47,50,.88);
+}
+.stevan-drum-gallery-play,
+.stevan-drum-gallery-arrow { color: #27ded4; }
+.stevan-drum-gallery-card-copy { min-width: 0; }
+.stevan-drum-gallery-card-copy strong {
+  color: #e6efec;
+  font: 700 11px/1.3 "Space Grotesk",sans-serif;
+}
+.stevan-drum-empty {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(132,164,160,.25);
+  background: rgba(4,13,16,.68);
+  color: #c0d0cc;
+  font-size: 12px;
+  line-height: 1.5;
+}
+@keyframes stevan-drum-photo-in {
+  from { opacity: .4; }
+  to { opacity: 1; }
+}
+@media (max-width: 700px) {
+  .stevan-modal-drums,
+  .stevan-modal-drums.has-selected-video {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 36px 12px 16px;
+  }
+  .stevan-drum-video { min-height: 270px; margin-top: 14px; padding: 10px; }
+  .stevan-drum-video video { max-height: min(54vh,calc(100dvh - 230px)); }
+  .stevan-drum-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); max-height: 20vh; }
+}
