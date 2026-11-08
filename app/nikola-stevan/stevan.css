@@ -1599,8 +1599,8 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 }
 
 
-/* Programming modal: place the gamer photograph into the upper-right of the
-   entire panel, then feather it into the dark surface like a background texture. */
+/* Programming modal: the gamer image is a right-aligned background layer.
+   Keep every modal text element above it and readable. */
 .stevan-modal-code {
   isolation: isolate;
   background: radial-gradient(circle at 95% 0%,rgba(57,203,195,.15),transparent 34%),#0b1417;
@@ -1614,25 +1614,31 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 }
 .stevan-code-wallpaper-image {
   position: absolute;
-  top: -2%;
-  right: -1%;
+  top: -1%;
+  right: -2%;
   display: block;
-  width: 56%;
-  height: 80%;
+  width: 69%;
+  height: 90%;
   object-fit: cover;
-  object-position: center 43%;
-  opacity: .42;
+  object-position: 74% 42%;
+  opacity: .68;
   mix-blend-mode: screen;
-  filter: saturate(.84) brightness(.76) contrast(1.04);
-  -webkit-mask-image: radial-gradient(ellipse 88% 84% at 70% 34%,#000 22%,rgba(0,0,0,.96) 42%,rgba(0,0,0,.74) 61%,rgba(0,0,0,.38) 79%,transparent 100%);
-  mask-image: radial-gradient(ellipse 88% 84% at 70% 34%,#000 22%,rgba(0,0,0,.96) 42%,rgba(0,0,0,.74) 61%,rgba(0,0,0,.38) 79%,transparent 100%);
+  filter: saturate(.98) brightness(.94) contrast(1.06);
+  -webkit-mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
+  mask-image: radial-gradient(ellipse 96% 88% at 78% 38%,#000 36%,rgba(0,0,0,.96) 55%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.34) 87%,transparent 100%);
 }
 .stevan-code-wallpaper-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.94) 27%,rgba(11,20,23,.56) 55%,rgba(11,20,23,.08) 100%),
-    linear-gradient(180deg,rgba(11,20,23,.04) 0%,rgba(11,20,23,.08) 52%,#0b1417 100%);
+    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.96) 21%,rgba(11,20,23,.66) 42%,rgba(11,20,23,.16) 72%,rgba(11,20,23,.04) 100%),
+    linear-gradient(180deg,rgba(11,20,23,.02) 0%,rgba(11,20,23,.04) 54%,rgba(11,20,23,.72) 100%);
+}
+/* The title, eyebrow, subtitle, status and the lower sections must all sit
+   above the wallpaper and its shading layer. */
+.stevan-modal-code > :not(.stevan-code-wallpaper):not(.stevan-modal-close) {
+  position: relative;
+  z-index: 2;
 }
 .stevan-modal-code > .stevan-modal-close { z-index: 4; }
 .stevan-code-content {
@@ -1651,19 +1657,20 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   .stevan-code-header { min-height: 112px; }
   .stevan-code-status { font-size: 9px; }
   .stevan-code-wallpaper-image {
-    top: -2%;
-    right: -4%;
-    width: 66%;
-    height: 68%;
-    opacity: .34;
+    top: 0;
+    right: -5%;
+    width: 78%;
+    height: 76%;
+    object-position: 76% 40%;
+    opacity: .56;
   }
 }
 @media (max-width: 430px) {
   .stevan-code-header { min-height: 94px; }
   .stevan-code-status { padding: 7px 8px; font-size: 8px; }
   .stevan-code-wallpaper-image {
-    width: 76%;
-    height: 58%;
-    opacity: .28;
+    width: 84%;
+    height: 64%;
+    opacity: .46;
   }
 }
