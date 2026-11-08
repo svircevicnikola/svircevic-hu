@@ -774,7 +774,6 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
               <span>VERSENYEREDMÉNYEK</span>
-              <p>Évfolyamonkénti bontás</p>
             </div>
             {mathResultsByGrade.map((grade) => (
               <section className="stevan-math-grade" key={grade.grade} aria-label={grade.grade}>
