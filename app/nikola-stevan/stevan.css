@@ -1539,3 +1539,15 @@ a.stevan-setup-item:hover .stevan-setup-icon {
 /* Basketball uses the same photo-led modal as hiking and kayaking. */
 .stevan-basketball-route { top:15%; right:5%; width:66%; height:40%; opacity:.76; }
 .stevan-basketball-route path { stroke-dasharray:3 8; stroke-width:1.35; }
+
+
+/* Focal adjustment for the current Basketball hero image only; thumbnails stay untouched. */
+.stevan-modal-basketball .stevan-basketball-cover-image:not(.is-portrait) {
+  transform: translateX(3.2%) scale(1.04);
+  transform-origin: center center;
+}
+@media (max-width: 700px) {
+  .stevan-modal-basketball .stevan-basketball-cover-image:not(.is-portrait) {
+    transform: translateX(2%) scale(1.025);
+  }
+}

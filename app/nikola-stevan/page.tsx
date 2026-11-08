@@ -703,7 +703,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
         ) : interest.id === "basketball" ? (
           <div className={`stevan-kayak-cover${activeBasketballPhotoIsPortrait ? " is-portrait" : ""}`}>
             {basketballCoverSrc && activeBasketballPhotoIsPortrait && <img className="stevan-kayak-cover-image-background" src={basketballCoverSrc} alt="" aria-hidden="true" />}
-            {basketballCoverSrc && activeBasketballPhoto && <img key={activeBasketballPhoto.id} className={`stevan-kayak-cover-image${activeBasketballPhotoIsPortrait ? " is-portrait" : ""}`} src={basketballCoverSrc} alt="Kosárlabdás fotó" onLoad={(event) => setPortraitBasketballPhotoId(event.currentTarget.naturalHeight > event.currentTarget.naturalWidth ? activeBasketballPhoto.id : null)} fetchPriority="high" />}
+            {basketballCoverSrc && activeBasketballPhoto && <img key={activeBasketballPhoto.id} className={`stevan-kayak-cover-image stevan-basketball-cover-image${activeBasketballPhotoIsPortrait ? " is-portrait" : ""}`} src={basketballCoverSrc} alt="Kosárlabdás fotó" onLoad={(event) => setPortraitBasketballPhotoId(event.currentTarget.naturalHeight > event.currentTarget.naturalWidth ? activeBasketballPhoto.id : null)} fetchPriority="high" />}
             <div className="stevan-kayak-cover-shade" />
             <div className="stevan-kayak-route stevan-basketball-route" aria-hidden="true">
               <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M24 188 C180 188 208 48 390 60 S650 224 976 24" /></svg>
