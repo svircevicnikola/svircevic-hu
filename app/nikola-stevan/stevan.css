@@ -1551,3 +1551,49 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     transform: translateX(2%) scale(1.025);
   }
 }
+
+
+/* Hiking: one continuous, single-row thumbnail rail; the active cover photo
+   is already removed from the rail and appended to its end by hikingGalleryPhotos. */
+.stevan-modal-hiking .stevan-kayak-cover {
+  height: min(66vh, 620px);
+  min-height: 440px;
+}
+.stevan-modal-hiking .stevan-hiking-gallery {
+  gap: 12px;
+}
+.stevan-modal-hiking .stevan-hiking-photo-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 5px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.stevan-modal-hiking .stevan-hiking-photo-strip::-webkit-scrollbar {
+  display: none;
+}
+.stevan-modal-hiking .stevan-hiking-photo-strip .stevan-kayak-photo {
+  flex: 0 0 clamp(190px, 21vw, 230px);
+  aspect-ratio: 2.35 / 1;
+  scroll-snap-align: start;
+}
+@media (max-width: 700px) {
+  .stevan-modal-hiking .stevan-kayak-cover {
+    height: min(55vh, 430px);
+    min-height: 320px;
+  }
+  .stevan-modal-hiking .stevan-hiking-gallery {
+    gap: 9px;
+  }
+  .stevan-modal-hiking .stevan-hiking-photo-strip {
+    gap: 8px;
+  }
+  .stevan-modal-hiking .stevan-hiking-photo-strip .stevan-kayak-photo {
+    flex-basis: clamp(148px, 47vw, 190px);
+    aspect-ratio: 1.9 / 1;
+  }
+}

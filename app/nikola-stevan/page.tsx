@@ -927,7 +927,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
           </div>
         ) : interest.id === "hiking" ? (
           <div
-            className="stevan-kayak-gallery"
+            className="stevan-kayak-gallery stevan-hiking-gallery"
             onMouseEnter={() => setHikingGalleryPaused(true)}
             onMouseLeave={() => setHikingGalleryPaused(false)}
             onFocusCapture={() => setHikingGalleryPaused(true)}
@@ -939,7 +939,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             </div>
             {hikingPhotosError && <p className="stevan-drum-empty" role="status">A túramappát most nem sikerült betölteni.</p>}
             {!hikingPhotosLoading && !hikingPhotosError && hikingPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
-            <div className="stevan-kayak-photo-grid" aria-label="Választható túrafotók">
+            <div className="stevan-kayak-photo-grid stevan-hiking-photo-strip" aria-label="Választható túrafotók">
               {hikingGalleryPhotos.map((photo, index) => (
                 <button
                   className={`stevan-kayak-photo${portraitHikingPhotoIds.has(photo.id) ? " is-portrait" : ""}`}
