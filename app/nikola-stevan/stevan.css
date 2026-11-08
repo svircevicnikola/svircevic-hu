@@ -188,9 +188,10 @@
   object-position: left center;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 10px rgba(39,222,212,.12));
-  /* Fade only the two cut-off banner ends; preserve the artwork and lettering in the middle. */
-  -webkit-mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.08) 5%,rgba(0,0,0,.42) 11%,rgba(0,0,0,.82) 17%,#000 23%,#000 77%,rgba(0,0,0,.82) 83%,rgba(0,0,0,.42) 89%,rgba(0,0,0,.08) 95%,transparent 100%);
-  mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.08) 5%,rgba(0,0,0,.42) 11%,rgba(0,0,0,.82) 17%,#000 23%,#000 77%,rgba(0,0,0,.82) 83%,rgba(0,0,0,.42) 89%,rgba(0,0,0,.08) 95%,transparent 100%);
+  /* Softly feather the outer perimeter so cropped neon accents blend into the footer,
+     while the main Team Nikola lettering remains crisp and fully opaque. */
+  -webkit-mask-image: radial-gradient(ellipse 96% 92% at 50% 50%,#000 58%,rgba(0,0,0,.94) 70%,rgba(0,0,0,.72) 82%,rgba(0,0,0,.38) 92%,rgba(0,0,0,.10) 98%,transparent 100%);
+  mask-image: radial-gradient(ellipse 96% 92% at 50% 50%,#000 58%,rgba(0,0,0,.94) 70%,rgba(0,0,0,.72) 82%,rgba(0,0,0,.38) 92%,rgba(0,0,0,.10) 98%,transparent 100%);
 }
 .stevan-footer-brand:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 5px; }
 .stevan-footer-brand em { color: var(--teal-bright); font-style: normal; }
@@ -1832,18 +1833,17 @@ a.stevan-setup-item:hover .stevan-setup-icon {
   opacity: .66;
   mix-blend-mode: screen;
   filter: saturate(.94) brightness(.86) contrast(1.04);
-  /* Keep the full image crisp; feather only its hard left boundary into the modal background. */
+  /* Only the left edge dissolves into the modal; the face, equations and right edge stay crisp. */
   transform: translateY(-7%) scale(1.04);
   transform-origin: right top;
-  -webkit-mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.12) 5%,rgba(0,0,0,.5) 13%,rgba(0,0,0,.88) 20%,#000 25%,#000 100%);
-  mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.12) 5%,rgba(0,0,0,.5) 13%,rgba(0,0,0,.88) 20%,#000 25%,#000 100%);
+  -webkit-mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 14%,rgba(0,0,0,.18) 27%,rgba(0,0,0,.48) 41%,rgba(0,0,0,.82) 54%,#000 63%,#000 100%);
+  mask-image: linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 14%,rgba(0,0,0,.18) 27%,rgba(0,0,0,.48) 41%,rgba(0,0,0,.82) 54%,#000 63%,#000 100%);
 }
 .stevan-math-wallpaper-shade {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg,#0b1417 0%,rgba(11,20,23,.98) 30%,rgba(11,20,23,.86) 48%,rgba(11,20,23,.35) 72%,rgba(11,20,23,.08) 100%),
-    linear-gradient(180deg,rgba(11,20,23,.04) 0%,rgba(11,20,23,.12) 54%,rgba(11,20,23,.7) 100%);
+  /* No broad horizontal dark panel: the image itself now feathers only on its left edge. */
+  background: linear-gradient(180deg,rgba(11,20,23,.02) 0%,rgba(11,20,23,.04) 54%,rgba(11,20,23,.58) 100%);
 }
 .stevan-modal-math > :not(.stevan-math-wallpaper):not(.stevan-modal-close):not(.stevan-modal-mark) {
   position: relative;
