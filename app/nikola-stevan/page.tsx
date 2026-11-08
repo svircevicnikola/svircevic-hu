@@ -70,8 +70,9 @@ type MathResultsByGrade = {
 type DrumVideo = { id: string; fileName: string; fileId: string };
 type DrumPhoto = { id: string; fileName: string; fileId: string };
 type KayakPhoto = { id: string; fileName: string; fileId: string };
+type HikingPhoto = { id: string; fileName: string; fileId: string; createdTime?: string };
 type ChessPhoto = { id: string; fileName: string; fileId: string };
-type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string }> };
+type GoogleDriveFileList = { files?: Array<{ id: string; name: string; mimeType?: string; createdTime?: string }> };
 
 function drumPerformanceTitle(fileName: string) {
   const date = fileName.match(/(\d{4})(\d{2})(\d{2})/);
@@ -80,6 +81,7 @@ function drumPerformanceTitle(fileName: string) {
 
 const drumFolderId = "1AbUN60lNWcps1BO7tyuGpLqu5KQNLekw";
 const kayakFolderId = "1GnrXHUHSQqmDvhYPk7aLNyfoa52xZM9I";
+const hikingFolderId = "1XdEBBEIskYhDrKLio4L-p3hRd5k5GMdq";
 const chessFolderId = "1uUfZi4K-Mr-aBVLchpncmZU7Y86Ha5KU";
 
 function driveMediaUrl(fileId: string) {
@@ -93,6 +95,10 @@ function drumImageUrl(fileId: string) {
 
 function driveImageUrl(fileId: string) {
   return `/api/kayak-image/${encodeURIComponent(fileId)}`;
+}
+
+function hikingImageUrl(fileId: string) {
+  return `/api/hiking-image/${encodeURIComponent(fileId)}`;
 }
 
 function kayakPhotoDate(fileName: string) {
@@ -299,6 +305,13 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const [portraitKayakPhotoId, setPortraitKayakPhotoId] = useState<string | null>(null);
   const [portraitKayakPhotoIds, setPortraitKayakPhotoIds] = useState<Set<string>>(() => new Set());
   const [kayakGalleryPaused, setKayakGalleryPaused] = useState(false);
+  const [hikingPhotos, setHikingPhotos] = useState<HikingPhoto[]>([]);
+  const [hikingPhotosLoading, setHikingPhotosLoading] = useState(false);
+  const [hikingPhotosError, setHikingPhotosError] = useState(false);
+  const [activeHikingPhotoId, setActiveHikingPhotoId] = useState<string | null>(null);
+  const [portraitHikingPhotoId, setPortraitHikingPhotoId] = useState<string | null>(null);
+  const [portraitHikingPhotoIds, setPortraitHikingPhotoIds] = useState<Set<string>>(() => new Set());
+  const [hikingGalleryPaused, setHikingGalleryPaused] = useState(false);
   const [chessPhotos, setChessPhotos] = useState<ChessPhoto[]>([]);
   const [chessPhotosLoading, setChessPhotosLoading] = useState(false);
   const [chessPhotosError, setChessPhotosError] = useState(false);
@@ -320,6 +333,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
   const kayakCoverSrc = activeKayakPhoto ? driveImageUrl(activeKayakPhoto.fileId) : null;
   const kayakGalleryPhotos = kayakCyclePhotos.length > 1
     ? [...kayakCyclePhotos.slice(activeKayakPhotoIndex + 1), ...kayakCyclePhotos.slice(0, activeKayakPhotoIndex)]
+    : [];
+  const hikingCyclePhotos = hikingPhotos;
+  const activeHikingPhotoIndex = Math.max(0, hikingCyclePhotos.findIndex((photo) => photo.id === activeHikingPhotoId));
+  const activeHikingPhoto = hikingCyclePhotos[activeHikingPhotoIndex];
+  const activeHikingPhotoIsPortrait = activeHikingPhoto?.id === portraitHikingPhotoId;
+  const hikingCoverSrc = activeHikingPhoto ? hikingImageUrl(activeHikingPhoto.fileId) : null;
+  const hikingGalleryPhotos = hikingCyclePhotos.length > 1
+    ? [...hikingCyclePhotos.slice(activeHikingPhotoIndex + 1), ...hikingCyclePhotos.slice(0, activeHikingPhotoIndex)]
     : [];
   const chessCyclePhotos = chessPhotos;
   const activeChessPhotoIndex = Math.max(0, chessCyclePhotos.findIndex((photo) => photo.id === activeChessPhotoId));
@@ -428,7 +449,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     setKayakPhotosError(false);
     fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
       .then((response) => {
-        if (!response.ok) throw new Error("A Sakk mappa nem érhető el.");
+        if (!response.ok) throw new Error("A kajakmappa nem érhető el.");
         return response.json() as Promise<GoogleDriveFileList>;
       })
       .then((data) => {
@@ -450,6 +471,52 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
         if (!controller.signal.aborted) setKayakPhotosLoading(false);
       });
 
+    return () => controller.abort();
+  }, [interest.id]);
+
+  useEffect(() => {
+    if (interest.id !== "hiking") return;
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_DRIVE_API_KEY;
+    if (!apiKey) { setHikingPhotosError(true); return; }
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: `'${hikingFolderId}' in parents and trashed = false`,
+      fields: "files(id,name,mimeType,createdTime)",
+      pageSize: "100",
+      orderBy: "createdTime desc",
+      key: apiKey,
+    });
+    setHikingPhotosLoading(true);
+    setHikingPhotosError(false);
+    fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("A túramappa nem érhető el.");
+        return response.json() as Promise<GoogleDriveFileList>;
+      })
+      .then((data) => {
+        const photos = (data.files ?? [])
+          .filter((file) => file.mimeType?.startsWith("image/"))
+          .map((file) => ({ id: file.id, fileName: file.name, fileId: file.id, createdTime: file.createdTime }))
+          .sort((a, b) => {
+            const dateInName = (name: string) => {
+              const match = name.match(/(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})/);
+              return match ? Number(`${match[1]}${match[2]}${match[3]}`) : 0;
+            };
+            const aNameDate = dateInName(a.fileName);
+            const bNameDate = dateInName(b.fileName);
+            if (aNameDate && bNameDate && aNameDate !== bNameDate) return bNameDate - aNameDate;
+            if (aNameDate && !bNameDate) return -1;
+            if (!aNameDate && bNameDate) return 1;
+            return new Date(b.createdTime ?? 0).getTime() - new Date(a.createdTime ?? 0).getTime();
+          });
+        setHikingPhotos(photos);
+        setActiveHikingPhotoId(photos[0]?.id ?? null);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setHikingPhotosError(true);
+      })
+      .finally(() => { if (!controller.signal.aborted) setHikingPhotosLoading(false); });
     return () => controller.abort();
   }, [interest.id]);
 
@@ -511,6 +578,14 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
     }, 5000);
     return () => window.clearTimeout(timeout);
   }, [interest.id, kayakCyclePhotos, activeKayakPhotoId, kayakGalleryPaused]);
+  useEffect(() => {
+    if (interest.id !== "hiking" || hikingGalleryPaused || hikingCyclePhotos.length < 2) return;
+    const timeout = window.setTimeout(() => {
+      const currentIndex = hikingCyclePhotos.findIndex((photo) => photo.id === activeHikingPhotoId);
+      setActiveHikingPhotoId(hikingCyclePhotos[(currentIndex + 1 + hikingCyclePhotos.length) % hikingCyclePhotos.length].id);
+    }, 5000);
+    return () => window.clearTimeout(timeout);
+  }, [interest.id, hikingCyclePhotos, activeHikingPhotoId, hikingGalleryPaused]);
 
   useEffect(() => {
     if (interest.id !== "chess" || chessGalleryPaused || chessCyclePhotos.length < 2) return;
@@ -523,7 +598,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
 
   return (
     <div className="stevan-modal-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" ? "stevan-modal stevan-modal-kayak" : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+      <section className={interest.id === "math" ? "stevan-modal stevan-modal-math" : interest.id === "drums" ? `stevan-modal stevan-modal-drums${selectedDrumVideo ? " has-selected-video" : ""}` : interest.id === "science" ? "stevan-modal stevan-modal-science" : interest.id === "code" ? "stevan-modal stevan-modal-code" : interest.id === "kayak" || interest.id === "chess" || interest.id === "hiking" ? `stevan-modal stevan-modal-kayak${interest.id === "hiking" ? " stevan-modal-hiking" : ""}` : "stevan-modal"} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title" onMouseDown={(event) => event.stopPropagation()}>
         <button className="stevan-modal-close" type="button" onClick={onClose} aria-label="Ablak bezárása">×</button>
         {interest.id === "drums" && drumPhotos[activeDrumPhotoIndex] && (
           <div className="stevan-drum-wallpaper" aria-hidden="true">
@@ -544,6 +619,21 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <div className="stevan-kayak-route" aria-hidden="true">
               <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M8 205 C190 95 315 84 470 126 S760 172 990 22" /></svg>
               <span style={{ left: "25%", top: "56%" }}>02</span><span style={{ left: "61%", top: "30%" }}>03</span><span style={{ left: "82%", top: "17%" }}>04</span>
+            </div>
+            <div className="stevan-kayak-cover-copy">
+              <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
+              <h2 id="interest-modal-title">{interest.title}</h2>
+              <p className="stevan-modal-subtitle">{interest.subtitle}</p>
+            </div>
+          </div>
+        ) : interest.id === "hiking" ? (
+          <div className={`stevan-kayak-cover${activeHikingPhotoIsPortrait ? " is-portrait" : ""}`}>
+            {hikingCoverSrc && activeHikingPhotoIsPortrait && <img className="stevan-kayak-cover-image-background" src={hikingCoverSrc} alt="" aria-hidden="true" />}
+            {hikingCoverSrc && activeHikingPhoto && <img key={activeHikingPhoto.id} className={`stevan-kayak-cover-image${activeHikingPhotoIsPortrait ? " is-portrait" : ""}`} src={hikingCoverSrc} alt="Túrafotó" onLoad={(event) => setPortraitHikingPhotoId(event.currentTarget.naturalHeight > event.currentTarget.naturalWidth ? activeHikingPhoto.id : null)} fetchPriority="high" />}
+            <div className="stevan-kayak-cover-shade" />
+            <div className="stevan-kayak-route stevan-hiking-route" aria-hidden="true">
+              <svg viewBox="0 0 1000 240" preserveAspectRatio="none"><path d="M8 192 C130 142 190 34 340 64 S570 220 702 142 S866 70 992 18" /></svg>
+              <span style={{ left: "19%", top: "56%" }}>01</span><span style={{ left: "46%", top: "38%" }}>02</span><span style={{ left: "72%", top: "42%" }}>03</span><span style={{ left: "91%", top: "18%" }}>04</span>
             </div>
             <div className="stevan-kayak-cover-copy">
               <span className="stevan-eyebrow">A JÁTÉKON TÚL · {interest.number}</span>
@@ -575,7 +665,7 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
             <p className="stevan-modal-subtitle">{interest.subtitle}</p>
           </>
         )}
-        {interest.id !== "science" && interest.id !== "kayak" && interest.id !== "chess" && <p className="stevan-modal-copy">{interest.detail}</p>}
+        {interest.id !== "science" && interest.id !== "kayak" && interest.id !== "chess" && interest.id !== "hiking" && <p className="stevan-modal-copy">{interest.detail}</p>}
         {interest.id === "math" ? (
           <div className="stevan-math-results">
             <div className="stevan-math-results-heading">
@@ -651,23 +741,17 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
               )}
               <div className="stevan-drum-gallery">
                 <div className="stevan-drum-gallery-heading">
-                  <span>VIDEÓGALÉRIA</span>
+                  <span>FELLÉPÉSEK</span>
                   <span>{drumVideosLoading ? "BETÖLTÉS…" : `${drumVideos.length} VIDEÓ`}</span>
                 </div>
-                <div className="stevan-drum-gallery-grid" aria-label="Dobos videók">
+                <div className="stevan-drum-performance-list" aria-label="Dobos fellépések">
                   {drumVideos.map((video) => (
-                    <button
-                      className={`stevan-drum-gallery-card${video.id === selectedDrumVideoId ? " is-selected" : ""}`}
-                      type="button"
-                      key={video.id}
-                      aria-pressed={video.id === selectedDrumVideoId}
-                      onClick={() => setSelectedDrumVideoId(video.id)}
-                    >
-                      <span className="stevan-drum-gallery-play" aria-hidden="true">▶</span>
-                      <span className="stevan-drum-gallery-card-copy">
-                        <strong>{drumPerformanceTitle(video.fileName)}</strong>
-                      </span>
-                      <span className="stevan-drum-gallery-arrow" aria-hidden="true">↗</span>
+                    <button className={`stevan-drum-performance-button${video.id === selectedDrumVideoId ? " is-selected" : ""}`} type="button" key={video.id}
+                      aria-pressed={video.id === selectedDrumVideoId} aria-label={`${drumPerformanceTitle(video.fileName)} lejátszása`}
+                      onClick={() => setSelectedDrumVideoId(video.id)}>
+                      <span className="stevan-drum-performance-play" aria-hidden="true">▶</span>
+                      <strong>{drumPerformanceTitle(video.fileName)}</strong>
+                      <span className="stevan-drum-performance-arrow" aria-hidden="true">↗</span>
                     </button>
                   ))}
                 </div>
@@ -722,6 +806,40 @@ function InterestModal({ interest, onClose }: { interest: Interest; onClose: () 
                   </button>
                 );
               })}
+            </div>
+          </div>
+        ) : interest.id === "hiking" ? (
+          <div
+            className="stevan-kayak-gallery"
+            onMouseEnter={() => setHikingGalleryPaused(true)}
+            onMouseLeave={() => setHikingGalleryPaused(false)}
+            onFocusCapture={() => setHikingGalleryPaused(true)}
+            onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHikingGalleryPaused(false); }}
+          >
+            <div className="stevan-kayak-gallery-heading">
+              <span>TÚRAFOTÓK</span>
+              <span>{hikingPhotosLoading ? "BETÖLTÉS…" : `${hikingPhotos.length} FOTÓ`}</span>
+            </div>
+            {hikingPhotosError && <p className="stevan-drum-empty" role="status">A túramappát most nem sikerült betölteni.</p>}
+            {!hikingPhotosLoading && !hikingPhotosError && hikingPhotos.length === 0 && <p className="stevan-drum-empty" role="status">Még nincs kép a mappában.</p>}
+            <div className="stevan-kayak-photo-grid" aria-label="Választható túrafotók">
+              {hikingGalleryPhotos.map((photo, index) => (
+                <button
+                  className={`stevan-kayak-photo${portraitHikingPhotoIds.has(photo.id) ? " is-portrait" : ""}`}
+                  type="button"
+                  key={photo.id}
+                  aria-label={`Túrafotó ${String(index + 2).padStart(2, "0")} megjelenítése felül`}
+                  aria-pressed={activeHikingPhoto?.id === photo.id}
+                  onClick={() => setActiveHikingPhotoId(photo.id)}
+                >
+                  <img src={hikingImageUrl(photo.fileId)} alt="Túrafotó" loading="lazy" decoding="async"
+                    onLoad={(event) => {
+                      if (event.currentTarget.naturalHeight <= event.currentTarget.naturalWidth) return;
+                      setPortraitHikingPhotoIds((current) => current.has(photo.id) ? current : new Set(current).add(photo.id));
+                    }} />
+                  <span className="stevan-kayak-photo-index">{String(index + 2).padStart(2, "0")}</span>
+                </button>
+              ))}
             </div>
           </div>
         )
