@@ -1860,3 +1860,450 @@ a.stevan-setup-item:hover .stevan-setup-icon {
     transform: translateY(-7%) scale(1.04);
   }
 }
+
+
+/* MOBILE MODAL SYSTEM — CONSISTENT PHONE LAYOUT
+   All rules in this section are mobile-only. Desktop/tablet layouts above are untouched. */
+@media (max-width: 700px) {
+  .stevan-modal-backdrop {
+    padding: max(8px, env(safe-area-inset-top)) 10px max(8px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .stevan-modal:not(.stevan-modal-kayak) {
+    width: calc(100vw - 20px);
+    max-width: 620px;
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    min-height: 0;
+    padding: 42px 16px 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding-block: 12px;
+  }
+
+  .stevan-modal:not(.stevan-modal-kayak) > .stevan-modal-close {
+    position: sticky;
+    z-index: 12;
+    top: 8px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin: -30px -5px 2px auto;
+    background: rgba(4, 13, 16, .94);
+    box-shadow: 0 2px 12px rgba(0,0,0,.32);
+  }
+
+  .stevan-modal h2 {
+    max-width: 100%;
+    margin: 11px 0 5px;
+    font-size: clamp(35px, 8.8vw, 46px);
+    line-height: .98;
+    overflow-wrap: anywhere;
+  }
+
+  .stevan-modal-subtitle {
+    display: block;
+    max-width: 100%;
+    font-size: 9px;
+    line-height: 1.45;
+    letter-spacing: .14em;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .stevan-modal-copy {
+    margin: 17px 0 19px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .stevan-modal-mark {
+    display: none;
+  }
+
+  /* Science: readable cards, with flexible titles and descriptions. */
+  .stevan-modal-science {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 16px);
+    padding: 42px 14px 18px;
+  }
+  .stevan-science-channels {
+    gap: 19px;
+    margin-top: 18px;
+  }
+  .stevan-science-group {
+    min-width: 0;
+    gap: 9px;
+  }
+  .stevan-science-group h3 {
+    flex-wrap: wrap;
+    font-size: 11px;
+    line-height: 1.25;
+    letter-spacing: .12em;
+  }
+  .stevan-science-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    min-width: 0;
+  }
+  .stevan-science-card {
+    min-width: 0;
+    min-height: 0;
+    padding: 11px;
+    gap: 7px;
+    overflow-wrap: anywhere;
+  }
+  .stevan-science-card-top {
+    min-width: 0;
+    flex-wrap: wrap;
+    font-size: 8px;
+    letter-spacing: .1em;
+  }
+  .stevan-science-card > strong {
+    font-size: 16px;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .stevan-science-topics,
+  .stevan-science-description {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.45;
+  }
+
+  /* Programming: prevent long technology names and details from forcing card width. */
+  .stevan-modal-code {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 16px);
+    padding: 42px 14px 18px;
+  }
+  .stevan-code-content {
+    min-width: 0;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .stevan-code-section,
+  .stevan-code-projects {
+    min-width: 0;
+  }
+  .stevan-code-tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .stevan-code-tool {
+    min-width: 0;
+    min-height: 0;
+    padding: 11px;
+    overflow-wrap: anywhere;
+  }
+  .stevan-code-tool strong {
+    font-size: 16px;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+  .stevan-code-tool strong small {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+  .stevan-code-tool span,
+  .stevan-code-projects p {
+    font-size: 10px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .stevan-code-status {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  /* Mathematics: one-column results and safe wrapping for long competition names. */
+  .stevan-modal-math {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 16px);
+    padding: 42px 14px 18px;
+  }
+  .stevan-math-results {
+    min-width: 0;
+    gap: 15px;
+    margin-top: 23px;
+  }
+  .stevan-math-grade {
+    min-width: 0;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding-top: 13px;
+  }
+  .stevan-math-grade-heading h3 {
+    font-size: 22px;
+  }
+  .stevan-math-results-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    min-width: 0;
+  }
+  .stevan-math-result {
+    min-width: 0;
+    padding: 11px;
+  }
+  .stevan-math-result h4,
+  .stevan-math-result-details li {
+    overflow-wrap: anywhere;
+  }
+
+  /* Drum: use the available screen height for the player and keep the list compact. */
+  .stevan-modal-drums,
+  .stevan-modal-drums.has-selected-video {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 42px 11px 14px;
+  }
+  .stevan-modal-drums > .stevan-modal-close {
+    top: 9px;
+    right: 9px;
+  }
+  .stevan-modal-drums .stevan-drum-video {
+    min-width: 0;
+    min-height: 0;
+    margin-top: 12px;
+    padding: 9px;
+    gap: 10px;
+  }
+  .stevan-modal-drums .stevan-drum-video.has-selected-video {
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .stevan-drum-player {
+    min-width: 0;
+    width: 100%;
+  }
+  .stevan-drum-video video {
+    width: auto;
+    max-width: 100%;
+    max-height: min(48dvh, 420px);
+  }
+  .stevan-modal-drums .stevan-drum-gallery {
+    min-width: 0;
+    padding: 11px;
+    gap: 9px;
+  }
+  .stevan-modal-drums .stevan-drum-gallery-heading {
+    flex-wrap: wrap;
+    font-size: 10px;
+  }
+  .stevan-modal-drums .stevan-drum-performance-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    max-height: 34dvh;
+  }
+  .stevan-modal-drums .stevan-drum-performance-button {
+    min-width: 0;
+    min-height: 42px;
+    padding: 7px 8px;
+    gap: 6px;
+  }
+  .stevan-modal-drums .stevan-drum-performance-button strong {
+    min-width: 0;
+    font-size: 10px;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
+
+  /* Photo-led panels: shorter hero, protected title area and a horizontal thumb rail. */
+  .stevan-modal-kayak {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 0 0 14px;
+  }
+  .stevan-modal-kayak .stevan-modal-close {
+    position: absolute;
+    z-index: 5;
+    top: 9px;
+    right: 9px;
+  }
+  .stevan-modal-kayak .stevan-kayak-cover {
+    height: min(44dvh, 320px);
+    min-height: 220px;
+  }
+  .stevan-modal-hiking .stevan-kayak-cover {
+    height: min(44dvh, 320px);
+    min-height: 220px;
+  }
+  .stevan-kayak-cover-copy {
+    top: auto;
+    right: auto;
+    bottom: 15px;
+    left: 13px;
+    width: min(70%, 390px);
+    max-width: calc(100% - 26px);
+  }
+  .stevan-kayak-cover.is-portrait .stevan-kayak-cover-copy {
+    width: 54%;
+  }
+  .stevan-kayak-cover-copy h2 {
+    margin: 6px 0 4px;
+    font-size: clamp(32px, 9vw, 48px);
+    line-height: .94;
+    overflow-wrap: anywhere;
+  }
+  .stevan-kayak-cover-copy .stevan-modal-subtitle {
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+  .stevan-kayak-route {
+    top: 8%;
+    right: 3%;
+    width: 48%;
+    height: 25%;
+    opacity: .48;
+  }
+  .stevan-kayak-route span {
+    font-size: 8px;
+  }
+  .stevan-kayak-gallery {
+    min-width: 0;
+    gap: 9px;
+    padding: 0 11px;
+  }
+  .stevan-kayak-gallery-heading {
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+  .stevan-kayak-photo-grid {
+    display: flex;
+    min-width: 0;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 6px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .stevan-kayak-photo-grid .stevan-kayak-photo {
+    flex: 0 0 clamp(116px, 36vw, 150px);
+    aspect-ratio: 1.32 / 1;
+    scroll-snap-align: start;
+  }
+  .stevan-kayak-photo-index {
+    bottom: 5px;
+    left: 7px;
+    font-size: 8px;
+  }
+  .stevan-kayak-photo-date {
+    right: 5px;
+    bottom: 5px;
+    font-size: 7px;
+    letter-spacing: .04em;
+  }
+  .stevan-chess-profile-link {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stevan-modal-backdrop {
+    padding: max(6px, env(safe-area-inset-top)) 6px max(6px, env(safe-area-inset-bottom));
+  }
+  .stevan-modal:not(.stevan-modal-kayak) {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+    padding: 40px 13px 17px;
+  }
+  .stevan-modal h2 {
+    font-size: clamp(32px, 9vw, 40px);
+  }
+  .stevan-modal-copy {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .stevan-modal-science,
+  .stevan-modal-code,
+  .stevan-modal-math {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+    padding: 40px 12px 16px;
+  }
+  .stevan-science-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+  .stevan-science-card {
+    padding: 11px 12px;
+  }
+  .stevan-science-card > strong {
+    font-size: 17px;
+  }
+  .stevan-code-tools {
+    grid-template-columns: 1fr;
+  }
+  .stevan-code-tool {
+    padding: 10px 12px;
+  }
+  .stevan-math-results {
+    gap: 13px;
+  }
+
+  .stevan-modal-drums,
+  .stevan-modal-drums.has-selected-video {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+    padding: 40px 9px 12px;
+  }
+  .stevan-modal-drums .stevan-drum-performance-list {
+    grid-template-columns: 1fr;
+    max-height: 38dvh;
+  }
+  .stevan-modal-drums .stevan-drum-performance-button {
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+  .stevan-drum-video video {
+    max-height: min(44dvh, 360px);
+  }
+
+  .stevan-modal-kayak {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+  }
+  .stevan-modal-kayak .stevan-kayak-cover,
+  .stevan-modal-hiking .stevan-kayak-cover {
+    height: min(41dvh, 285px);
+    min-height: 205px;
+  }
+  .stevan-kayak-cover-copy {
+    bottom: 12px;
+    left: 11px;
+    width: min(74%, 350px);
+    max-width: calc(100% - 22px);
+  }
+  .stevan-kayak-cover.is-portrait .stevan-kayak-cover-copy {
+    width: 56%;
+  }
+  .stevan-kayak-cover-copy h2 {
+    font-size: clamp(29px, 8.5vw, 40px);
+  }
+  .stevan-kayak-gallery {
+    padding: 0 9px;
+  }
+  .stevan-kayak-photo-grid .stevan-kayak-photo {
+    flex-basis: 126px;
+  }
+}
